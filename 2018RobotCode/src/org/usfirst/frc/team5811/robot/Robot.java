@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team5811.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -8,8 +10,13 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5811.robot.commands.ExampleCommand;
-import org.usfirst.frc.team5811.robot.subsystems.ExampleSubsystem;
+
+import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5811.robot.subsystems.LEDS;
+import org.usfirst.frc.team5811.robot.subsystems.NavX;
+
+import com.kauailabs.navx.frc.AHRS;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,8 +27,11 @@ import org.usfirst.frc.team5811.robot.subsystems.ExampleSubsystem;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public static final DriveTrain driveSUB = new DriveTrain();
+	public static final LEDS ledsub = new LEDS();
+	public static final NavX navx = new NavX();
 	public static OI oi;
+	static AHRS navX = RobotMap.navx;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -30,12 +40,13 @@ public class Robot extends IterativeRobot {
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
+	public static float thing;
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		
 		SmartDashboard.putData("Auto mode", chooser);
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	}
 
 	/**
@@ -104,6 +115,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		thing = (float)navX.getAngle();
 	}
 
 	/**
