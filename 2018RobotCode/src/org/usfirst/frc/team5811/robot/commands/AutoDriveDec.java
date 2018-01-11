@@ -6,8 +6,7 @@ public class AutoDriveDec extends Command{
 	int count;
 	int duration;
 	
-	public AutoDriveDec(int count, int duration) {
-		this.count = count;
+	public AutoDriveDec( int duration) {
 		this.duration = duration;
 		//input duration length here, not sure how to do it yet.
 		//Automatically assign values through group
