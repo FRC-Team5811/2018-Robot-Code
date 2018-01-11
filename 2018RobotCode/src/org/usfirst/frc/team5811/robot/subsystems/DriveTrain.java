@@ -58,4 +58,15 @@ public class DriveTrain extends Subsystem {
 			motor3.set(-(i/(durationDecel*0.5))*0.5f);
 		}
 	}
+	
+	public static void autoDriveAcc(int duration, int i) {
+		
+		System.out.println((i/(duration*0.5))*0.5f);
+		motor0.set((i/(duration*0.5))*0.5f);
+		motor1.set((i/(duration*0.5))*0.5f);
+		motor2.set(-(i/(duration*0.5))*0.5f);
+		motor3.set(-(i/(duration*0.5))*0.5f);
+		
+	}
+	
 }

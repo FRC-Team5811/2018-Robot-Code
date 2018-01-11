@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
+import org.usfirst.frc.team5811.robot.commands.DriveAuto;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.LEDS;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
@@ -27,14 +27,16 @@ public class Robot extends IterativeRobot {
 	static AHRS navX = RobotMap.navx;
 
 	Command autonomousCommand;
+
+	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	public static float thing;
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		
 		SmartDashboard.putData("Auto mode", chooser);
+		chooser.addDefault("Drive Straight", new DriveAuto());
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	}
 
@@ -55,6 +57,7 @@ public class Robot extends IterativeRobot {
 
 		if (autonomousCommand != null)
 			autonomousCommand.start();
+		
 	}
 
 	
