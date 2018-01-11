@@ -33,6 +33,7 @@ public class DriveTrain extends Subsystem {
 		//arcade drive algor
 		//gdfg
 	}
+	/*
 	public static void AutoDrive(double durationAccel, double durationFull, double durationDecel) {
 		
 		for(float i = 0; i < durationAccel; i++){
@@ -58,7 +59,7 @@ public class DriveTrain extends Subsystem {
 			motor3.set(-(i/(durationDecel*0.5))*0.5f);
 		}
 	}
-	
+	*/
 	public static void autoDriveAcc(int duration, int i) {
 		
 		System.out.println((i/(duration*0.5))*0.5f);
@@ -68,5 +69,19 @@ public class DriveTrain extends Subsystem {
 		motor3.set(-(i/(duration*0.5))*0.5f);
 		
 	}
+	public static void autoDriveDec(int duration, int i){
+		System.out.println((i/(durationDecel*0.5))*0.5f);
+		motor0.set((i/(durationDecel*0.5))*0.5f);
+		motor1.set((i/(durationDecel*0.5))*0.5f);
+		motor2.set(-(i/(durationDecel*0.5))*0.5f);
+		motor3.set(-(i/(durationDecel*0.5))*0.5f);
+	}
+	public static void autoDriveFlat(int duration, int i){
+		System.out.println((i/(durationDecel*0.5))*0.5f);
+		motor0.set((i/(durationDecel*0.5))*0.5f);
+		motor1.set((i/(durationDecel*0.5))*0.5f);
+		motor2.set(-(i/(durationDecel*0.5))*0.5f);
+		motor3.set(-(i/(durationDecel*0.5))*0.5f);
+        }
 	
 }
