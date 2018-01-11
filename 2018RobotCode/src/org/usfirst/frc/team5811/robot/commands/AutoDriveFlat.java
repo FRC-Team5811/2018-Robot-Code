@@ -6,7 +6,7 @@ public class AutoDriveFlat extends Command{
 	int count;
 	int duration;
 	
-	public AutoDriveAcc(int count, int duration) {
+	public AutoDriveFlat(int count, int duration) {
 		this.count = count;
 		this.duration = duration;
 		//input duration length here, not sure how to do it yet.
