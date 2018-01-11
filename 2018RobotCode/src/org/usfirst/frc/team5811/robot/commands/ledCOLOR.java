@@ -11,7 +11,7 @@ public class ledCOLOR extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 

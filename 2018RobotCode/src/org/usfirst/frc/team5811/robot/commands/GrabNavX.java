@@ -11,7 +11,7 @@ public class GrabNavX extends Command {
 	}
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 

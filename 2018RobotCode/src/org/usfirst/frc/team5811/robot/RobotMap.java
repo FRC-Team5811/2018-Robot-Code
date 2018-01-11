@@ -2,6 +2,7 @@ package org.usfirst.frc.team5811.robot;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Victor;
 
@@ -12,4 +13,6 @@ public class RobotMap {
 	public static Victor motor3 = new Victor(3);
 	public static I2C arduino = new I2C(I2C.Port.kMXP, 58);
 	public static AHRS navx = new AHRS(I2C.Port.kOnboard);
+	public static Encoder driveEncR = new Encoder(11,12, true, Encoder.EncodingType.k4X);
+	public static Encoder friveEncL = new Encoder(13,14, true, Encoder.EncodingType.k4X);
 }

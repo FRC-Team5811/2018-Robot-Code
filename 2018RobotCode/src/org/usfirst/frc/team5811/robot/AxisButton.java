@@ -12,6 +12,6 @@ public class AxisButton extends Button {
 	}
 	public boolean get() {
 		return joy1.getRawAxis(axis1) != 0;
-		
+		//
 	}
 }

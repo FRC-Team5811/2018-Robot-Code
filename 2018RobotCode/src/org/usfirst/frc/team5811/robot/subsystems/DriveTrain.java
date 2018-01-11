@@ -16,22 +16,9 @@ public class DriveTrain extends Subsystem {
 	static Victor motor3 = RobotMap.motor3;
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
-	}
-	public static void run(double left, double right) {
-		motor0.set(left);
-		motor1.set(left);
-		motor2.set(-right);
-		motor3.set(-right);
 		
 	}
-	public static void stop() {//////
-		motor0.set(0);
-		motor1.set(0);
-		motor2.set(0);
-		motor3.set(0);
-	}
+
 	public static void tankDrive(double x, double y){
 		motor0.set(x);
 		motor1.set(x);
@@ -46,5 +33,29 @@ public class DriveTrain extends Subsystem {
 		//arcade drive algor
 		//gdfg
 	}
-	
+	public static void AutoDrive(double durationAccel, double durationFull, double durationDecel) {
+		
+		for(float i = 0; i < durationAccel; i++){
+			System.out.println((i/(durationAccel*0.5))*0.5f);
+			motor0.set((i/(durationAccel*0.5))*0.5f);
+			motor1.set((i/(durationAccel*0.5))*0.5f);
+			motor2.set(-(i/(durationAccel*0.5))*0.5f);
+			motor3.set(-(i/(durationAccel*0.5))*0.5f);
+		
+		}
+		for(float i = 0; i < durationFull; i++){
+			System.out.println(1);
+			motor0.set(1);
+			motor1.set(1);
+			motor2.set(-1);
+			motor3.set(-1);
+		}
+		for(double i = durationDecel; i >0 ; i--){
+			System.out.println((i/(durationDecel*0.5))*0.5f);
+			motor0.set((i/(durationDecel*0.5))*0.5f);
+			motor1.set((i/(durationDecel*0.5))*0.5f);
+			motor2.set(-(i/(durationDecel*0.5))*0.5f);
+			motor3.set(-(i/(durationDecel*0.5))*0.5f);
+		}
+	}
 }

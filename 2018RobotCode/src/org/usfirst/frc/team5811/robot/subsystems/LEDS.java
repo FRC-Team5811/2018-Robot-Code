@@ -13,7 +13,7 @@ public class LEDS extends Subsystem {
 	static byte[] toSend = new byte[1];
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	public static void color(){

@@ -22,8 +22,7 @@ public class OI {
 	
 	
 	public OI() {
-		//leftaxis.whileHeld(new TankDrive());
-		//rightaxis.whileHeld(new TankDrive());
+	
 		
 		righttrigger.whileHeld(new GrabNavX());
 		leftJoyY.whileHeld(new ArcadeDrive());
