@@ -77,11 +77,11 @@ public class DriveTrain extends Subsystem {
 		motor3.set(-(i/(durationDecel*0.5))*0.5f);
 	}
 	public static void autoDriveFlat(int duration, int i){
-		System.out.println((i/(durationDecel*0.5))*0.5f);
-		motor0.set((i/(durationDecel*0.5))*0.5f);
-		motor1.set((i/(durationDecel*0.5))*0.5f);
-		motor2.set(-(i/(durationDecel*0.5))*0.5f);
-		motor3.set(-(i/(durationDecel*0.5))*0.5f);
+		System.out.println(1);
+		motor0.set(1);
+		motor1.set(1);
+		motor2.set(1);
+		motor3.set(1);
         }
 	
 }
