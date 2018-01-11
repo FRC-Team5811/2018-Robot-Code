@@ -6,6 +6,7 @@ public class DriveAuto extends CommandGroup {
 	public DriveAuto () {
 		addSequential (new AutoDriveAcc());	
 		addSequential (new AutoDriveFlat());
+		addSequential (new AutoDriveDec());
 	}
 	
 
