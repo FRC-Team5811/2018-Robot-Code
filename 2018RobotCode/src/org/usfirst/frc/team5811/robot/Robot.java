@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		SmartDashboard.putData("Auto mode", chooser);
-		chooser.addDefault("Drive Straight", new DriveAuto());
+		chooser.addDefault("Drive Straight", new DriveAuto(100,100,100));
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	}
 
