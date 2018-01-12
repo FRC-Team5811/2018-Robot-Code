@@ -15,8 +15,8 @@ public class AutoDriveDec extends Command{
 	}
 	
 	protected void intialize() {
-		count = 0;
-		duration = 25;
+		count = this.duration;
+	
 	}
 	
 	protected void execute() {
@@ -25,7 +25,7 @@ public class AutoDriveDec extends Command{
 	}
 	
 	protected boolean isFinished() {
-		if (count > this.duration) {
+		if (count < 0) {
 			return true;
 		} else {
 			return false;

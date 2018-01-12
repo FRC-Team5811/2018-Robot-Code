@@ -80,8 +80,8 @@ public class DriveTrain extends Subsystem {
 		System.out.println(1);
 		motor0.set(1);
 		motor1.set(1);
-		motor2.set(1);
-		motor3.set(1);
+		motor2.set(-1);
+		motor3.set(-1);
         }
 	
 }

@@ -16,7 +16,7 @@ public class AutoDriveFlat extends Command{
 	
 	protected void intialize() {
 		count = 0;
-		duration = 25;
+	
 	}
 	
 	protected void execute() {

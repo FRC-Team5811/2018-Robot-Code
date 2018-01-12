@@ -10,9 +10,9 @@ public class DriveAuto extends CommandGroup {
 		this.flatTime = flatTime;
 		this.accelTime = accelTime;
 		
-		addSequential (new AutoDriveAcc(accelTime));	
-		addSequential (new AutoDriveFlat(flatTime));
-     	addSequential (new AutoDriveDec(decelTime));
+		addSequential (new AutoDriveAcc(this.accelTime));	
+		addSequential (new AutoDriveFlat(this.flatTime));
+     	addSequential (new AutoDriveDec(this.decelTime));
 	}
 	
 
