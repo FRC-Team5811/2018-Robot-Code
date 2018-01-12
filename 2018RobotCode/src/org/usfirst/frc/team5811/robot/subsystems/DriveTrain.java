@@ -34,49 +34,49 @@ public class DriveTrain extends Subsystem {
 		//gdfg
 	}
 	/*
-	public static void AutoDrive(double durationAccel, double durationFull, double durationDecel) {
+	public static void AutoDrive(double durationAccelAccel, double durationAccelFull, double durationAccelDecel) {
 		
-		for(float i = 0; i < durationAccel; i++){
-			System.out.println((i/(durationAccel*0.5))*0.5f);
-			motor0.set((i/(durationAccel*0.5))*0.5f);
-			motor1.set((i/(durationAccel*0.5))*0.5f);
-			motor2.set(-(i/(durationAccel*0.5))*0.5f);
-			motor3.set(-(i/(durationAccel*0.5))*0.5f);
+		for(float i = 0; i < durationAccelAccel; i++){
+			System.out.println((i/(durationAccelAccel*0.5))*0.5f);
+			motor0.set((i/(durationAccelAccel*0.5))*0.5f);
+			motor1.set((i/(durationAccelAccel*0.5))*0.5f);
+			motor2.set(-(i/(durationAccelAccel*0.5))*0.5f);
+			motor3.set(-(i/(durationAccelAccel*0.5))*0.5f);
 		
 		}
-		for(float i = 0; i < durationFull; i++){
+		for(float i = 0; i < durationAccelFull; i++){
 			System.out.println(1);
 			motor0.set(1);
 			motor1.set(1);
 			motor2.set(-1);
 			motor3.set(-1);
 		}
-		for(double i = durationDecel; i >0 ; i--){
-			System.out.println((i/(durationDecel*0.5))*0.5f);
-			motor0.set((i/(durationDecel*0.5))*0.5f);
-			motor1.set((i/(durationDecel*0.5))*0.5f);
-			motor2.set(-(i/(durationDecel*0.5))*0.5f);
-			motor3.set(-(i/(durationDecel*0.5))*0.5f);
+		for(double i = durationAccelDecel; i >0 ; i--){
+			System.out.println((i/(durationAccelDecel*0.5))*0.5f);
+			motor0.set((i/(durationAccelDecel*0.5))*0.5f);
+			motor1.set((i/(durationAccelDecel*0.5))*0.5f);
+			motor2.set(-(i/(durationAccelDecel*0.5))*0.5f);
+			motor3.set(-(i/(durationAccelDecel*0.5))*0.5f);
 		}
 	}
 	*/
-	public static void autoDriveAcc(int duration, int i) {
+	public static void autoDriveAcc(int durationAccel, int i) {
 		
-		System.out.println((i/(duration*0.5))*0.5f);
-		motor0.set((i/(duration*0.5))*0.5f);
-		motor1.set((i/(duration*0.5))*0.5f);
-		motor2.set(-(i/(duration*0.5))*0.5f);
-		motor3.set(-(i/(duration*0.5))*0.5f);
+		System.out.println((i/(durationAccel*0.5))*0.5f);
+		motor0.set((i/(durationAccel*0.5))*0.5f);
+		motor1.set((i/(durationAccel*0.5))*0.5f);
+		motor2.set(-(i/(durationAccel*0.5))*0.5f);
+		motor3.set(-(i/(durationAccel*0.5))*0.5f);
 		
 	}
-	public static void autoDriveDec(int duration, int i){
+	public static void autoDriveDec(int durationDecel, int i){
 		System.out.println((i/(durationDecel*0.5))*0.5f);
 		motor0.set((i/(durationDecel*0.5))*0.5f);
 		motor1.set((i/(durationDecel*0.5))*0.5f);
 		motor2.set(-(i/(durationDecel*0.5))*0.5f);
 		motor3.set(-(i/(durationDecel*0.5))*0.5f);
 	}
-	public static void autoDriveFlat(int duration, int i){
+	public static void autoDriveFlat(){
 		System.out.println(1);
 		motor0.set(1);
 		motor1.set(1);

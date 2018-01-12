@@ -20,7 +20,7 @@ public class AutoDriveFlat extends Command{
 	}
 	
 	protected void execute() {
-		DriveTrain.autoDriveFlat(duration, count);
+		DriveTrain.autoDriveFlat();
 		count ++;
 	}
 	
