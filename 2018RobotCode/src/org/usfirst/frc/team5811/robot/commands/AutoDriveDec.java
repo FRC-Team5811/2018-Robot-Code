@@ -25,7 +25,7 @@ public class AutoDriveDec extends Command{
 	}
 	
 	protected boolean isFinished() {
-		if (count > duration) {
+		if (count > this.duration) {
 			return true;
 		} else {
 			return false;
