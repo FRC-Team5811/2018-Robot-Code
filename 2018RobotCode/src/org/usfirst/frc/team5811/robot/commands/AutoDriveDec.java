@@ -21,7 +21,7 @@ public class AutoDriveDec extends Command{
 	
 	protected void execute() {
 		DriveTrain.autoDriveDec(duration, count);
-		count ++;
+		count --;
 	}
 	
 	protected boolean isFinished() {

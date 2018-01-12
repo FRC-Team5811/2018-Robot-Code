@@ -8,28 +8,36 @@ public class AutoDriveAcc extends Command{
 	int count;
 	int duration;
 	
-	public AutoDriveAcc( int duration) {
+	public AutoDriveAcc( int durationInput) {
 		
-		this.duration = duration;
+//		this.duration = durationInput;
 		//input duration length here, not sure how to do it yet.
 		//Automatically assign values through group
 	}
 	
 	protected void intialize() {
-		duration = 25;
-		count = duration;		
+		System.out.println("Initialized.");
+		duration = 50;
+		count = 0;		
 	}
 	
 	protected void execute() {
-		DriveTrain.autoDriveAcc(duration, count);
-		count --;
+//		DriveTrain.autoDriveAcc(duration, count);
+		count ++;
+//		System.out.print("count: ");
+//		System.out.println(count);
+//		System.out.print("duration: ");
+//		System.out.println(duration);
 	}
 	
+	
 	protected boolean isFinished() {
-		if (count < duration) {
-			return true;
-		} else {
-			return false;
-		}
+//		System.out.println("Calling isFinished");
+//		if (count > duration) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+		return false;
 	}
 }
