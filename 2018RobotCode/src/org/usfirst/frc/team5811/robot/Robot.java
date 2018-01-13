@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5811.robot.commands.AutoDriveAcc;
-import org.usfirst.frc.team5811.robot.commands.Autonomous;
+import org.usfirst.frc.team5811.robot.commands.AutonomousTestRoutine;
 import org.usfirst.frc.team5811.robot.commands.DriveAuto;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.LEDS;
@@ -56,7 +56,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		chooser.addDefault("Drive Straight", new Autonomous(75, 50,-1)); 
+		chooser.addDefault("Drive Straight", new AutonomousTestRoutine(75, 50,-1,1)); 
 		autonomousCommand = chooser.getSelected();
 
 		if (autonomousCommand != null)
