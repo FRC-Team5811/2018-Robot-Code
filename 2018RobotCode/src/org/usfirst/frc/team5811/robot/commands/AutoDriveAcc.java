@@ -5,12 +5,13 @@ import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoDriveAcc extends Command{
-	int count;
-	int duration;
+	double count;
+	double duration,direction;
 	
-	public AutoDriveAcc( int durationInput) {
+	public AutoDriveAcc(double durationInput, double direction) {
 		
 		this.duration = durationInput;
+		this.direction = direction;
 		//input duration length here, not sure how to do it yet.
 		//Automatically assign values through group
 	}
@@ -22,12 +23,13 @@ public class AutoDriveAcc extends Command{
 	}
 	
 	protected void execute() {
-	DriveTrain.autoDriveAcc(this.duration, count);
+	DriveTrain.autoDriveAcc(this.duration, count, direction);
 		count ++;
-//	System.out.print("count: ");
-	System.out.println(count);
-//		System.out.print("duration: ");
-//		System.out.println(duration);
+		System.out.println("Accelerating");
+		System.out.print("count: ");
+		System.out.println(count);
+		System.out.print("duration: ");
+		System.out.println(duration);
 	}
 	
 	

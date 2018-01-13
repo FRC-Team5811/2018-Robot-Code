@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5811.robot.commands.AutoDriveAcc;
+import org.usfirst.frc.team5811.robot.commands.Autonomous;
 import org.usfirst.frc.team5811.robot.commands.DriveAuto;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.LEDS;
@@ -37,7 +38,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		SmartDashboard.putData("Auto mode", chooser);
-		chooser.addDefault("Drive Straight", new DriveAuto(100, 100, 100)); 
+//		chooser.addDefault("Drive Straight", new DriveAuto(100, 100, 100)); 
 		//chooser.addObject("Drive", new DriveAuto(1,1,1));
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	}
@@ -55,6 +56,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
+		chooser.addDefault("Drive Straight", new Autonomous(75, 50,-1)); 
 		autonomousCommand = chooser.getSelected();
 
 		if (autonomousCommand != null)

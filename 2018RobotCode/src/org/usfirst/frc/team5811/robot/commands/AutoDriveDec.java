@@ -5,23 +5,30 @@ import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoDriveDec extends Command{
-	int count;
-	int duration;
+	double count;
+	double duration, direction;
 	
-	public AutoDriveDec( int duration) {
+	public AutoDriveDec(double duration, double direction) {
 		this.duration = duration;
+		this.direction = direction;
+		count = duration;
 		//input duration length here, not sure how to do it yet.
 		//Automatically assign values through group
 	}
 	
 	protected void intialize() {
-		count = this.duration;
+//		count = this.duration;
 	
 	}
 	
 	protected void execute() {
-		DriveTrain.autoDriveDec(duration, count);
+		DriveTrain.autoDriveDec(duration, count, direction);
 		count --;
+		System.out.println("Deccelerating");
+		System.out.print("count: ");
+		System.out.println(count);
+		System.out.print("duration: ");
+		System.out.println(duration);
 	}
 	
 	protected boolean isFinished() {

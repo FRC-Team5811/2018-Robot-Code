@@ -3,16 +3,23 @@ package org.usfirst.frc.team5811.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class DriveAuto extends CommandGroup {
-	int accelTime, flatTime, decelTime;
-	public DriveAuto (int accelTime, int flatTime, int decelTime) {
+	double accelTime, flatTime, decelTime, direction;
+	double accelFactor, decelFactor, flatFactor,totalTime;
+	public DriveAuto (double totalTime, double direction) {
+		this.accelFactor = 0.15;
+		this.flatFactor = 0.1;
+		this.decelFactor = 0.75;
+		this.direction = direction;
 		
-		this.decelTime = decelTime;
-		this.flatTime = flatTime;
-		this.accelTime = accelTime;
+		this.totalTime = totalTime;
 		
-		addSequential (new AutoDriveAcc(this.accelTime));	
-		addSequential (new AutoDriveFlat(this.flatTime));
-     	addSequential (new AutoDriveDec(this.decelTime));
+		this.accelTime = this.totalTime * this.accelFactor;
+		this.decelTime = this.totalTime * this.decelFactor;
+		this.flatTime = this.totalTime * this.flatFactor;
+		
+		addSequential (new AutoDriveAcc(this.accelTime, this.direction));	
+		addSequential (new AutoDriveFlat(this.flatTime, this.direction));
+     	addSequential (new AutoDriveDec(this.decelTime, this.direction));
 	}
 	
 
