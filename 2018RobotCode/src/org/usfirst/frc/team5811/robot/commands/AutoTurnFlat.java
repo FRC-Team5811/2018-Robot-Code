@@ -20,7 +20,7 @@ public class AutoTurnFlat extends Command{
 	}
 	
 	protected void execute() {
-		DriveTrain.autoTurnFlat(direction);
+		DriveTrain.autoTurnFlat(this.direction);
 		count++;
 		System.out.println("Flat");
 		System.out.print("count: ");

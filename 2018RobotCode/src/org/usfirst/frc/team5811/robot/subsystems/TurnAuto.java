@@ -1,5 +1,9 @@
 package org.usfirst.frc.team5811.robot.subsystems;
 
+import org.usfirst.frc.team5811.robot.commands.AutoTurnAcc;
+import org.usfirst.frc.team5811.robot.commands.AutoTurnDec;
+import org.usfirst.frc.team5811.robot.commands.AutoTurnFlat;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class TurnAuto extends CommandGroup {

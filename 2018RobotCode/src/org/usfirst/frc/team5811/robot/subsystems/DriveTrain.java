@@ -109,7 +109,7 @@ public class DriveTrain extends Subsystem {
 		motor3.set(direction*(i/(durationDecel*0.5))*0.5f);
 	}
 	public static void autoTurnFlat(double direction){
-		direction = 1;
+		
 		System.out.println(direction*1);
 		motor0.set(direction*1);
 		motor1.set(direction*1);
