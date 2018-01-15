@@ -7,14 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoTurnAcc extends Command{
 	double count;
-	double duration,direction;
+	double finalAngSeg,direction;
 	
 	public AutoTurnAcc(double angleInput, double direction) {
 		
-		this.duration = angleInput;
+		this.finalAngSeg = angleInput;
 		this.direction = direction;
 		count = 0;
-		//input duration length here, not sure how to do it yet.
+		//input finalAngSeg length here, not sure how to do it yet.
 		//Automatically assign values through group
 	}
 	
@@ -26,20 +26,20 @@ public class AutoTurnAcc extends Command{
 	
 	protected void execute() {
 		
-		DriveTrain.autoTurnAcc(this.duration, count, direction);
+		DriveTrain.autoTurnAcc(this.finalAngSeg, count, direction);
 		count++;
 		System.out.println("Accelerating");
-		System.out.print("count: ");
-		System.out.println(count);
-		System.out.print("duration: ");
-		System.out.println(duration);
+		//System.out.print("count: ");
+		//System.out.println(count);
+		//System.out.print("finalAngSeg: ");
+		//System.out.println(finalAngSeg);
 		System.out.println("ANGLE: "+NavX.grabValues());
 	}
 	
 	
 	protected boolean isFinished() {
 //		System.out.println("Calling isFinished");
-		if (NavX.grabValues() > this.duration) {
+		if (Math.abs(NavX.grabValues()) > this.finalAngSeg) {
 			return true;
 		} else {
 			

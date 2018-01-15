@@ -7,12 +7,15 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoTurnDec extends Command{
 	double count;
-	double duration, direction;
+	double finalAngSeg, direction;
+	double recip;
 	
-	public AutoTurnDec(double angleInput, double direction) {
-		this.duration = angleInput;
+	public AutoTurnDec(double angleInput, double direction, double reciprocal) {
+		this.finalAngSeg = angleInput;
 		this.direction = direction;
-		count = this.duration;
+		this.recip = reciprocal;
+		count = this.finalAngSeg*this.recip;
+		
 		//input duration length here, not sure how to do it yet.
 		//Automatically assign values through group
 	}
@@ -23,18 +26,18 @@ public class AutoTurnDec extends Command{
 	}
 	
 	protected void execute() {
-		DriveTrain.autoTurnDec(this.duration, count, direction);
-		count--;
+		DriveTrain.autoTurnDec(this.finalAngSeg, count, direction);
+		count -= Math.abs(NavX.grabValues())/((this.finalAngSeg*this.recip));
 		System.out.println("Deccelerating");
-		System.out.print("count: ");
-		System.out.println(count);
-		System.out.print("duration: ");
-		System.out.println(duration);
+//		System.out.print("count: ");
+//		System.out.println(count);
+//		System.out.print("duration: ");
+//		System.out.println(finalAngSeg);
 		System.out.println("ANGLE: "+NavX.grabValues());
 	}
 	
 	protected boolean isFinished() {
-		if (Math.abs(NavX.grabValues())> this.duration*3) {
+		if (Math.abs(NavX.grabValues())> this.finalAngSeg*this.recip) {
 			return true;
 		} else {
 			return false;

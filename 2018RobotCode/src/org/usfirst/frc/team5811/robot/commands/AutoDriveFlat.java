@@ -10,6 +10,7 @@ public class AutoDriveFlat extends Command{
 	
 	public AutoDriveFlat(double duration, double direction) {
 		this.duration = duration;
+		this.direction = direction;
 		//input duration length here, not sure how to do it yet.
 		//Automatically assign values through group
 	}
