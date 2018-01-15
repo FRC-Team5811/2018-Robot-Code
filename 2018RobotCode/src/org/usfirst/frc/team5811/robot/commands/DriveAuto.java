@@ -6,21 +6,27 @@ public class DriveAuto extends CommandGroup {
 	double accelTime, flatTime, decelTime, direction;
 	double accelFactor, decelFactor, flatFactor, totalTime;
 	public DriveAuto (double totalTime, double direction) {
-//		this.accelFactor = 0.15;
-//		this.flatFactor = 0.1;
-//		this.decelFactor = 0.75;
-//		this.direction = direction;
-//		
-//		this.totalTime = totalTime;
-//		
-//		this.accelTime = this.totalTime * this.accelFactor;
-//		this.decelTime = this.totalTime * this.decelFactor;
-//		this.flatTime = this.totalTime * this.flatFactor;
+		this.accelFactor = 0.15;
+		this.flatFactor = 0.1;
+		this.decelFactor = 0.75;
+
+		this.totalTime = totalTime;
+		
+		this.accelTime = this.totalTime * this.accelFactor;
+		this.decelTime = this.totalTime * this.decelFactor;
+		this.flatTime = this.totalTime * this.flatFactor;
 		
 		this.direction = direction;
-		this.accelTime = 10; // Set in constant time. 1 time = 20 milliseconds.
-		this.decelTime = 30;
-		this.flatTime = this.totalTime - this.accelTime - this.decelTime;
+//		this.accelTime = 10; // Set in constant time. 1 time = 20 milliseconds.
+//		this.decelTime = 30;
+//		this.flatTime = this.totalTime - this.accelTime - this.decelTime;
+//		
+//		System.out.print("acceltime: ");
+//		System.out.println(this.accelTime);
+//		System.out.print("deceltime: ");
+//		System.out.println(this.decelTime);
+//		System.out.print("flattime: ");
+//		System.out.println(this.flatTime);
 		
 		addSequential (new AutoDriveAcc(this.accelTime, this.direction));	
 		addSequential (new AutoDriveFlat(this.flatTime, this.direction));

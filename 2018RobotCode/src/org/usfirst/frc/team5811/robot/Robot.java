@@ -3,6 +3,8 @@ package org.usfirst.frc.team5811.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -26,7 +28,7 @@ public class Robot extends IterativeRobot {
 	public static final LEDS ledsub = new LEDS();
 	public static final NavX navx = new NavX();
 	public static OI oi;
-	static AHRS navX = RobotMap.navx;
+	
 
 	Command autonomousCommand;
 
@@ -40,7 +42,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 //		chooser.addDefault("Drive Straight", new DriveAuto(100, 100, 100)); 
 		//chooser.addObject("Drive", new DriveAuto(1,1,1));
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		//UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+
 	}
 
 	@Override
@@ -56,7 +59,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		chooser.addDefault("Drive Straight", new AutonomousTestRoutine(75, 50,-1,1)); 
+		chooser.addDefault("Drive Straight", new AutonomousTestRoutine(100,90,1,1)); 
 		autonomousCommand = chooser.getSelected();
 
 		if (autonomousCommand != null)
@@ -80,7 +83,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		thing = (float)navX.getAngle();
+		
 	}
 
 

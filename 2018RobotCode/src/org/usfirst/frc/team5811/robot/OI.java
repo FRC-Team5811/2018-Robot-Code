@@ -24,7 +24,7 @@ public class OI {
 	public OI() {
 	
 		
-		righttrigger.whileHeld(new GrabNavX());
+	//	righttrigger.whileHeld(new GrabNavX());
 		leftJoyY.whileHeld(new ArcadeDrive());
 		rightJoyX.whileHeld(new ArcadeDrive());
 		leftJoyX.whileHeld(new ArcadeDrive());
