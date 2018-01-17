@@ -10,7 +10,7 @@ public class AutonomousTestRoutine extends CommandGroup {
 		this.driveDirection1 = driveDirection1;
 		this.turnDirection1 = turnDirection1;
 		
-//		addSequential(new DriveAuto(this.driveTime1, this.driveTime1));
-		addSequential(new TurnAuto(this.turnAngle1, this.turnDirection1));
+		addSequential(new DriveAuto(this.driveTime1, this.driveTime1));
+		//addSequential(new TurnAuto(this.turnAngle1, this.turnDirection1));
 	}
 }
