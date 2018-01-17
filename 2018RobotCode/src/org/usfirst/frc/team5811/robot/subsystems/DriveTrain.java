@@ -66,21 +66,31 @@ public class DriveTrain extends Subsystem {
 		motor3.set(0);
 		
 	}
-	public static void autoTurnAcc(double durationAccel, double i,double direction) {
+	public static void autoTurnAcc(double finalAngle, double currentAngle, double direction) {
 		
-		System.out.println((i/(durationAccel*0.5))*0.5f);
-		motor0.set(direction*(i/(durationAccel*0.5))*0.5f);
-		motor1.set(direction*(i/(durationAccel*0.5))*0.5f);
-		motor2.set(direction*(i/(durationAccel*0.5))*0.5f);
-		motor3.set(direction*(i/(durationAccel*0.5))*0.5f);
+		System.out.println(direction*(currentAngle/finalAngle + 0.2));
+//		motor0.set(direction*(i/(durationAccel*0.5))*0.5f);
+//		motor1.set(direction*(i/(durationAccel*0.5))*0.5f);
+//		motor2.set(direction*(i/(durationAccel*0.5))*0.5f);
+//		motor3.set(direction*(i/(durationAccel*0.5))*0.5f);
+		motor0.set(direction*(currentAngle/finalAngle + 0.2)* 0.5);
+		motor1.set(direction*(currentAngle/finalAngle + 0.2)* 0.5);
+		motor2.set(direction*(currentAngle/finalAngle + 0.2)* 0.5);
+		motor3.set(direction*(currentAngle/finalAngle + 0.2)* 0.5);
+
+	
 		
 	}
-	public static void autoTurnDec(double durationDecel, double i, double direction){
-		System.out.println((i/(durationDecel*0.5))*0.5f);
-		motor0.set(direction*(i/(durationDecel*0.5))*0.5f);
-		motor1.set(direction*(i/(durationDecel*0.5))*0.5f);
-		motor2.set(direction*(i/(durationDecel*0.5))*0.5f);
-		motor3.set(direction*(i/(durationDecel*0.5))*0.5f);
+	public static void autoTurnDec(double finalAngle, double currentAngle, double direction){
+		System.out.println(direction*(1-(currentAngle/finalAngle + 0.2)));
+//		motor0.set(direction*(i/(durationDecel*0.5))*0.5f);
+//		motor1.set(direction*(i/(durationDecel*0.5))*0.5f);
+//		motor2.set(direction*(i/(durationDecel*0.5))*0.5f);
+//		motor3.set(direction*(i/(durationDecel*0.5))*0.5f);
+		motor0.set(direction*(1-(currentAngle/finalAngle)) * 0.5);
+		motor1.set(direction*(1-(currentAngle/finalAngle))* 0.5);
+		motor2.set(direction*(1-(currentAngle/finalAngle))* 0.5);
+		motor3.set(direction*(1-(currentAngle/finalAngle))* 0.5);
 	}
 	public static void autoTurnFlat(double direction){
 		//direction = 0.2;

@@ -10,11 +10,11 @@ public class AutoTurnDec extends Command{
 	double finalAngSeg, direction;
 	double recip;
 	
-	public AutoTurnDec(double angleInput, double direction, double reciprocal) {
+	public AutoTurnDec(double angleInput, double direction) {
 		this.finalAngSeg = angleInput;
 		this.direction = direction;
-		this.recip = reciprocal;
-		count = this.finalAngSeg*this.recip;
+	
+		//count = this.finalAngSeg;
 		
 		//input duration length here, not sure how to do it yet.
 		//Automatically assign values through group
@@ -26,8 +26,8 @@ public class AutoTurnDec extends Command{
 	}
 	
 	protected void execute() {
-		DriveTrain.autoTurnDec(this.finalAngSeg, count, direction);
-		count -= Math.abs(NavX.grabValues())/((this.finalAngSeg*this.recip));
+		DriveTrain.autoTurnDec(this.finalAngSeg, NavX.grabValues(), direction);
+		//count -=1;
 		System.out.println("Deccelerating");
 //		System.out.print("count: ");
 //		System.out.println(count);
@@ -37,7 +37,7 @@ public class AutoTurnDec extends Command{
 	}
 	
 	protected boolean isFinished() {
-		if (Math.abs(NavX.grabValues())> this.finalAngSeg*this.recip) {
+		if (Math.abs(NavX.grabValues())> this.finalAngSeg) {
 			return true;
 		} else {
 			return false;

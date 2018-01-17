@@ -15,7 +15,7 @@ public class NavX extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		try {
-			navX = new AHRS(I2C.Port.kOnboard);
+			navX = new AHRS(I2C.Port.kMXP);
 			System.out.println("NavX instantiated");
 			//ahrs = new AHRS(I2C.Port.kMXP); //WE WILL NEED I2C IN THE FUTURE.
 			// RIGHT NOW WE WILL STICK WITH USB
@@ -28,6 +28,9 @@ public class NavX extends Subsystem {
 	public static float grabValues(){
 		return (float)navX.getAngle();
 		//System.out.println(angle);
+	}
+	public static void reset() {
+		navX.reset();
 	}
 	
 

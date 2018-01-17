@@ -6,14 +6,14 @@ import org.usfirst.frc.team5811.robot.subsystems.NavX;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoTurnAcc extends Command{
-	double count;
+	double currentAngle;
 	double finalAngSeg,direction;
 	
 	public AutoTurnAcc(double angleInput, double direction) {
 		
 		this.finalAngSeg = angleInput;
 		this.direction = direction;
-		count = 0;
+		this.currentAngle = 0;
 		//input finalAngSeg length here, not sure how to do it yet.
 		//Automatically assign values through group
 	}
@@ -25,15 +25,14 @@ public class AutoTurnAcc extends Command{
 	}
 	
 	protected void execute() {
-		
-		DriveTrain.autoTurnAcc(this.finalAngSeg, count, direction);
-		count++;
+//		currentAngle = NavX.grabValues();
+		DriveTrain.autoTurnAcc(this.finalAngSeg, NavX.grabValues(), this.direction);
 		System.out.println("Accelerating");
 		//System.out.print("count: ");
 		//System.out.println(count);
 		//System.out.print("finalAngSeg: ");
 		//System.out.println(finalAngSeg);
-		System.out.println("ANGLE: "+NavX.grabValues());
+		System.out.println("ANGLE: "+ NavX.grabValues());
 	}
 	
 	

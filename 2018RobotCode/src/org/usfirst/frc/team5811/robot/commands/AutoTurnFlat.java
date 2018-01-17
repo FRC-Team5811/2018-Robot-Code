@@ -9,10 +9,10 @@ public class AutoTurnFlat extends Command{
 	double count;
 	double finalAngSeg, direction, recip;
 	
-	public AutoTurnFlat(double angleInput, double direction, double reciprocal) {
+	public AutoTurnFlat(double angleInput, double direction) {
 		this.finalAngSeg = angleInput;
 		this.direction = direction;
-		this.recip = reciprocal;
+		
 		//input finalAngSeg length here, not sure how to do it yet.
 		//Automatically assign values through group
 	}
@@ -33,7 +33,7 @@ public class AutoTurnFlat extends Command{
 	}
 	
 	protected boolean isFinished() {
-		if (Math.abs(NavX.grabValues()) > this.finalAngSeg*this.recip) {
+		if (Math.abs(NavX.grabValues()) > this.finalAngSeg) {
 			return true;
 		} else {
 			return false;
