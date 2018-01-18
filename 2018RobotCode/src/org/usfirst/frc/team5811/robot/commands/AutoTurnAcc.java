@@ -26,7 +26,7 @@ public class AutoTurnAcc extends Command{
 	
 	protected void execute() {
 //		currentAngle = NavX.grabValues();
-		DriveTrain.autoTurnAcc(this.finalAngSeg, NavX.grabValues(), this.direction);
+		DriveTrain.autoTurnAcc(this.finalAngSeg, Math.abs(NavX.grabValues()), this.direction);
 		System.out.println("Accelerating");
 		//System.out.print("count: ");
 		//System.out.println(count);
