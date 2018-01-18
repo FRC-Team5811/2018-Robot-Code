@@ -28,7 +28,7 @@ public class AutoTurnDec extends Command{
 	}
 	
 	protected void execute() {
-		DriveTrain.autoTurnDec(this.finalAngSeg, NavX.grabValues(), direction);
+		DriveTrain.autoTurnDec(this.finalAngSeg, Math.abs(NavX.grabValues()), direction);
 		//error = (float) (rotationPos - NavX.grabValues());
 		//count -=1;
 		System.out.println("Deccelerating");
