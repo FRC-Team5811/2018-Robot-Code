@@ -9,6 +9,8 @@ public class AutoTurnDec extends Command{
 	double count;
 	double finalAngSeg, direction;
 	double recip;
+	//double rotationPos = 0;
+	//float error;
 	
 	public AutoTurnDec(double angleInput, double direction) {
 		this.finalAngSeg = angleInput;
@@ -27,6 +29,7 @@ public class AutoTurnDec extends Command{
 	
 	protected void execute() {
 		DriveTrain.autoTurnDec(this.finalAngSeg, NavX.grabValues(), direction);
+		//error = (float) (rotationPos - NavX.grabValues());
 		//count -=1;
 		System.out.println("Deccelerating");
 //		System.out.print("count: ");

@@ -41,31 +41,37 @@ public class DriveTrain extends Subsystem {
 	public static void autoDriveAcc(double durationAccel, double i,double direction) {
 		float currentAngle = NavX.grabValues();
 		float error = rotationPos - currentAngle;
-		System.out.println((direction*(i/(durationAccel*0.5))*0.5f)-error/correctionStrength);
-		motor0.set((direction*(i/(durationAccel*0.5))*0.5f)-error/correctionStrength);
-		motor1.set((direction*(i/(durationAccel*0.5))*0.5f)-error/correctionStrength);
-		motor2.set((direction*-(i/(durationAccel*0.5))*0.5f)-error/correctionStrength);
-		motor3.set((direction*-(i/(durationAccel*0.5))*0.5f)-error/correctionStrength);
+		float correction = error/correctionStrength;
+		System.out.println((direction*(i/(durationAccel*0.5))*0.5f));
+		System.out.println("ERROR: "+error);
+		motor0.set((direction*(i/(durationAccel*0.5))*0.5f));
+		motor1.set((direction*(i/(durationAccel*0.5))*0.5f));
+		motor2.set((direction*-(i/(durationAccel*0.5))*0.5f));
+		motor3.set((direction*-(i/(durationAccel*0.5))*0.5f));
 		
 	}
 	public static void autoDriveDec(double durationDecel, double i, double direction){
 		float currentAngle = NavX.grabValues();
 		float error = rotationPos - currentAngle;
-		System.out.println((direction*(i/(durationDecel*0.5))*0.5f)-error/correctionStrength);
-		motor0.set((direction*(i/(durationDecel*0.5))*0.5f)-error/correctionStrength);
-		motor1.set((direction*(i/(durationDecel*0.5))*0.5f)-error/correctionStrength);
-		motor2.set((direction*-(i/(durationDecel*0.5))*0.5f)-error/correctionStrength);
-		motor3.set((direction*-(i/(durationDecel*0.5))*0.5f)-error/correctionStrength);
+		float correction = error/correctionStrength;
+		System.out.println((direction*(i/(durationDecel*0.5))*0.5f));
+		System.out.println("ERROR: "+error);
+		motor0.set((direction*(i/(durationDecel*0.5))*0.5f));
+		motor1.set((direction*(i/(durationDecel*0.5))*0.5f));
+		motor2.set((direction*-(i/(durationDecel*0.5))*0.5f));
+		motor3.set((direction*-(i/(durationDecel*0.5))*0.5f));
 	}
 	public static void autoDriveFlat(double direction){
 		float currentAngle = NavX.grabValues();
 		float error = rotationPos - currentAngle;
+		float correction = error/correctionStrength;
 		//direction = 1;
-		System.out.println((direction*1)-error/correctionStrength);
-		motor0.set((direction*1)-error/correctionStrength);
-		motor1.set((direction*1)-error/correctionStrength);
-		motor2.set((direction*-1)-error/correctionStrength);
-		motor3.set((direction*-1)-error/correctionStrength);
+		System.out.println((direction*1));
+		System.out.println("ERROR: "+error);
+		motor0.set((direction*1));
+		motor1.set((direction*1));
+		motor2.set((direction*-1));
+		motor3.set((direction*-1));
 	}
 	public static void fullStop() {
 		System.out.println(0);
@@ -82,10 +88,10 @@ public class DriveTrain extends Subsystem {
 //		motor1.set(direction*(i/(durationAccel*0.5))*0.5f);
 //		motor2.set(direction*(i/(durationAccel*0.5))*0.5f);
 //		motor3.set(direction*(i/(durationAccel*0.5))*0.5f);
-		motor0.set(direction*(currentAngle/finalAngle + 0.2)* 0.5);
-		motor1.set(direction*(currentAngle/finalAngle + 0.2)* 0.5);
-		motor2.set(direction*(currentAngle/finalAngle + 0.2)* 0.5);
-		motor3.set(direction*(currentAngle/finalAngle + 0.2)* 0.5);
+		motor0.set(direction*(currentAngle/finalAngle + 0.3)* 0.5);
+		motor1.set(direction*(currentAngle/finalAngle + 0.3)* 0.5);
+		motor2.set(direction*(currentAngle/finalAngle + 0.3)* 0.5);
+		motor3.set(direction*(currentAngle/finalAngle + 0.3)* 0.5);
 
 	
 		
@@ -96,10 +102,10 @@ public class DriveTrain extends Subsystem {
 //		motor1.set(direction*(i/(durationDecel*0.5))*0.5f);
 //		motor2.set(direction*(i/(durationDecel*0.5))*0.5f);
 //		motor3.set(direction*(i/(durationDecel*0.5))*0.5f);
-		motor0.set(direction*(1-(currentAngle/finalAngle)) * 0.5);
-		motor1.set(direction*(1-(currentAngle/finalAngle))* 0.5);
-		motor2.set(direction*(1-(currentAngle/finalAngle))* 0.5);
-		motor3.set(direction*(1-(currentAngle/finalAngle))* 0.5);
+		motor0.set(direction*(1-(currentAngle/finalAngle)+0.2) * 0.4);
+		motor1.set(direction*(1-(currentAngle/finalAngle)+0.2)* 0.4);
+		motor2.set(direction*(1-(currentAngle/finalAngle)+0.2)* 0.4);
+		motor3.set(direction*(1-(currentAngle/finalAngle)+0.2)* 0.4);
 	}
 	public static void autoTurnFlat(double direction){
 		//direction = 0.2;

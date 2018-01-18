@@ -11,9 +11,9 @@ public class TurnAuto extends CommandGroup {
 	double accelFactor, decelFactor, flatFactor,totalAngle;
 	double accelAngleTrue, flatAngleTrue, decelAngleTrue;
 	public TurnAuto (double angle, double direction) {
-		this.accelFactor = 0.15;
-		this.flatFactor = 0.15;
-		this.decelFactor = 0.70;
+		this.accelFactor = 0.10;
+		this.flatFactor = 0.05;
+		this.decelFactor = 0.80;
 		this.direction = direction;
 
 		this.totalAngle = angle;
