@@ -7,12 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class PosDown extends Command {
 	double angle = 270;
 	boolean complete;
+	int state = 1;
 	public PosDown() {
 		
 	}
 	
 	protected void execute() {
-		this.complete = Pivot.changeAngle(angle, 0);
+		this.complete = Pivot.changeAngle(this.angle, this.state);
 	}
 	
 	protected boolean isFinished() {
