@@ -1,11 +1,11 @@
 package org.usfirst.frc.team5811.robot.commands;
 
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5811.robot.subsystems.Encoders;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoDriveAcc extends Command{
-	double count;
 	double duration,direction;
 	
 	public AutoDriveAcc(double durationInput, double direction) {
@@ -19,23 +19,20 @@ public class AutoDriveAcc extends Command{
 	protected void intialize() {
 		System.out.println("Initialized.");
 	
-		count = 0;		
 	}
 	
 	protected void execute() {
-	DriveTrain.autoDriveAcc(this.duration, count, direction);
-		count ++;
+	DriveTrain.autoDriveAcc(this.duration, Math.abs(Encoders.getLeftVal()), direction);
 		System.out.println("Accelerating");
-		System.out.print("count: ");
-		System.out.println(count);
 		System.out.print("duration: ");
 		System.out.println(duration);
+		System.out.println(Math.abs(Encoders.getLeftVal()));
 	}
 	
 	
 	protected boolean isFinished() {
 //		System.out.println("Calling isFinished");
-		if (count > duration) {
+		if (Math.abs(Encoders.getLeftVal()) > this.duration) {
 			return true;
 		} else {
 			return false;

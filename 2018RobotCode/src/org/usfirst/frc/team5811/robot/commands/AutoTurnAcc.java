@@ -32,7 +32,7 @@ public class AutoTurnAcc extends Command{
 		//System.out.println(count);
 		//System.out.print("finalAngSeg: ");
 		//System.out.println(finalAngSeg);
-		System.out.println("ANGLE: "+ NavX.grabValues());
+		System.out.println("ANGLE: "+Math.abs(NavX.grabValues()));
 	}
 	
 	

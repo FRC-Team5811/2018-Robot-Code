@@ -1,17 +1,16 @@
 package org.usfirst.frc.team5811.robot.commands;
 
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5811.robot.subsystems.Encoders;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoDriveDec extends Command{
-	double count;
 	double duration, direction;
 	
 	public AutoDriveDec(double duration, double direction) {
 		this.duration = duration;
 		this.direction = direction;
-		count = duration;
 		//input duration length here, not sure how to do it yet.
 		//Automatically assign values through group
 	}
@@ -22,17 +21,16 @@ public class AutoDriveDec extends Command{
 	}
 	
 	protected void execute() {
-		DriveTrain.autoDriveDec(duration, count, direction);
-		count --;
+		DriveTrain.autoDriveDec(duration, Math.abs(Encoders.getLeftVal()), direction);
 		System.out.println("Deccelerating");
-		System.out.print("count: ");
-		System.out.println(count);
 		System.out.print("duration: ");
 		System.out.println(duration);
+		System.out.println(Math.abs(Encoders.getLeftVal()));
+
 	}
 	
 	protected boolean isFinished() {
-		if (count < 0) {
+		if (Math.abs(Encoders.getLeftVal()) > this.duration) {
 			return true;
 		} else {
 			return false;

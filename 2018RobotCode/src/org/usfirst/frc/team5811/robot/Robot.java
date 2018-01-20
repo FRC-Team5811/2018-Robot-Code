@@ -16,6 +16,7 @@ import org.usfirst.frc.team5811.robot.commands.AutoDriveAcc;
 import org.usfirst.frc.team5811.robot.commands.AutonomousTestRoutine;
 import org.usfirst.frc.team5811.robot.commands.DriveAuto;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5811.robot.subsystems.Encoders;
 import org.usfirst.frc.team5811.robot.subsystems.LEDS;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
 
@@ -61,7 +62,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		 
 		NavX.reset();
-		chooser.addDefault("Drive Straight", new AutonomousTestRoutine(50,1,90,1));
+		Encoders.reset();
+		chooser.addDefault("Drive Straight", new AutonomousTestRoutine(5000,-1,90,1));
 		
 		autonomousCommand = chooser.getSelected();
 		if (autonomousCommand != null)

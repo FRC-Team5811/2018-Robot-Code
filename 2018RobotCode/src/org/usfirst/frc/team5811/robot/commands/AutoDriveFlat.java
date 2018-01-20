@@ -1,11 +1,11 @@
 package org.usfirst.frc.team5811.robot.commands;
 
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5811.robot.subsystems.Encoders;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoDriveFlat extends Command{
-	double count;
 	double duration, direction;
 	
 	public AutoDriveFlat(double duration, double direction) {
@@ -16,22 +16,20 @@ public class AutoDriveFlat extends Command{
 	}
 	
 	protected void intialize() {
-		count = 0;
 	
 	}
 	
 	protected void execute() {
 		DriveTrain.autoDriveFlat(this.direction);
-		count ++;
 		System.out.println("Flat");
-		System.out.print("count: ");
-		System.out.println(count);
 		System.out.print("duration: ");
 		System.out.println(duration);
+		System.out.println(Math.abs(Encoders.getLeftVal()));
+
 	}
 	
 	protected boolean isFinished() {
-		if (count > this.duration) {
+		if (Math.abs(Encoders.getLeftVal()) > this.duration) {
 			return true;
 		} else {
 			return false;

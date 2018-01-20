@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5811.robot.commands;
 
+import org.usfirst.frc.team5811.robot.subsystems.Encoders;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -14,15 +15,19 @@ public class AutonomousTestRoutine extends CommandGroup {
 		this.turnDirection1 = turnDirection1;
 		*/
 		NavX.reset();
-//		addSequential(new DriveAuto(driveTime1, driveDirection1));
-//		NavX.reset();
+		Encoders.reset();
+		
+		addSequential(new DriveAuto(driveTime1, driveDirection1));
+		NavX.reset();
+		Encoders.reset();
 		addSequential(new TurnAuto(turnAngle1, turnDirection1));
 		addSequential(new FullStop(0));
 		NavX.reset();
-//		addSequential(new DriveAuto(driveTime1, driveDirection1));
-//		NavX.reset();
-//		addSequential(new TurnAuto(turnAngle1, ));
-//		NavX.reset();
+		addSequential(new DriveAuto(driveTime1, -driveDirection1));
+		NavX.reset();
+		addSequential(new TurnAuto(turnAngle1, -turnDirection1 ));
+		NavX.reset();
+		addSequential(new FullStop(0));
 //		addSequential(new DriveAuto(driveTime1, driveDirection1));
 		
 	}

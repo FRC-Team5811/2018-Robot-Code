@@ -39,35 +39,24 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public static void autoDriveAcc(double durationAccel, double i,double direction) {
-		float currentAngle = NavX.grabValues();
-		float error = rotationPos - currentAngle;
-		float correction = error/correctionStrength;
-		System.out.println((direction*(i/(durationAccel*0.5))*0.5f));
-		System.out.println("ERROR: "+error);
-		motor0.set((direction*(i/(durationAccel*0.5))*0.5f));
-		motor1.set((direction*(i/(durationAccel*0.5))*0.5f));
-		motor2.set((direction*-(i/(durationAccel*0.5))*0.5f));
-		motor3.set((direction*-(i/(durationAccel*0.5))*0.5f));
+
+		System.out.println((direction*(i/(durationAccel)+0.2)*0.5f));
+		motor0.set((direction*(i/(durationAccel)+0.2)*0.5f));
+		motor1.set((direction*(i/(durationAccel)+0.2)*0.5f));
+		motor2.set((-direction*(i/(durationAccel)+0.2)*0.5f));
+		motor3.set((-direction*(i/(durationAccel)+0.2)*0.5f));
 		
 	}
 	public static void autoDriveDec(double durationDecel, double i, double direction){
-		float currentAngle = NavX.grabValues();
-		float error = rotationPos - currentAngle;
-		float correction = error/correctionStrength;
-		System.out.println((direction*(i/(durationDecel*0.5))*0.5f));
-		System.out.println("ERROR: "+error);
-		motor0.set((direction*(i/(durationDecel*0.5))*0.5f));
-		motor1.set((direction*(i/(durationDecel*0.5))*0.5f));
-		motor2.set((direction*-(i/(durationDecel*0.5))*0.5f));
-		motor3.set((direction*-(i/(durationDecel*0.5))*0.5f));
+		System.out.println(direction*(1-(i/(durationDecel*0.5))*0.5f));
+		motor0.set(direction*(1-(i/(durationDecel)+0.25)*0.5f));
+		motor1.set(direction*(1-(i/(durationDecel)+0.25)*0.5f));
+		motor2.set(-direction*(1-(i/(durationDecel)+0.25)*0.5f));
+		motor3.set(-direction*(1-(i/(durationDecel)+0.25)*0.5f));
 	}
 	public static void autoDriveFlat(double direction){
-		float currentAngle = NavX.grabValues();
-		float error = rotationPos - currentAngle;
-		float correction = error/correctionStrength;
 		//direction = 1;
 		System.out.println((direction*1));
-		System.out.println("ERROR: "+error);
 		motor0.set((direction*1));
 		motor1.set((direction*1));
 		motor2.set((direction*-1));
