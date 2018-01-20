@@ -4,6 +4,7 @@ import org.usfirst.frc.team5811.robot.commands.ArcadeDrive;
 import org.usfirst.frc.team5811.robot.commands.GrabNavX;
 import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
+import org.usfirst.frc.team5811.robot.commands.PosDown;
 import org.usfirst.frc.team5811.robot.commands.ledOFF;
 import org.usfirst.frc.team5811.robot.commands.smartShoot;
 import org.usfirst.frc.team5811.robot.commands.ledCOLOR;
@@ -44,6 +45,8 @@ public class OI {
 		
 		yManip.whileHeld(new smartShoot());
 		aManip.whenPressed(new IntakeInward());
+		aManip.whenPressed(new PosDown());
+		
 		bManip.whenPressed(new HaltIntake());
 		
 	}
