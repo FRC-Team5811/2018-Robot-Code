@@ -15,5 +15,25 @@ public class Intake extends Subsystem{
 		// TODO Auto-generated method stub
 		
 	}
+	public void intakeIn(){
+		leftMotor.set(1);
+		rightMotor.set(1);
+	}
+	public void outtake(int position){
+		switch(position){
+			case 0: //switch
+ 				leftMotor.set(-1);
+				rightMotor.set(-1);
+			case 1: //backswitch
+				leftMotor.set(-1);
+				rightMotor.set(-1);
+			case 2: //Exchange
+				leftMotor.set(-0.5);
+				rightMotor.set(-0.5);
+			default:
+				leftMotor.set(0);
+				rightMotor.set(0);
+		}
+	}
 	
 }
