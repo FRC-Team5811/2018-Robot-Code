@@ -2,7 +2,10 @@ package org.usfirst.frc.team5811.robot;
 
 import org.usfirst.frc.team5811.robot.commands.ArcadeDrive;
 import org.usfirst.frc.team5811.robot.commands.GrabNavX;
+import org.usfirst.frc.team5811.robot.commands.HaltIntake;
+import org.usfirst.frc.team5811.robot.commands.IntakeInward;
 import org.usfirst.frc.team5811.robot.commands.ledOFF;
+import org.usfirst.frc.team5811.robot.commands.smartShoot;
 import org.usfirst.frc.team5811.robot.commands.ledCOLOR;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -20,6 +23,12 @@ public class OI {
 	AxisButton rightJoyX = new AxisButton(joy1, 2);
 	AxisButton righttrigger = new AxisButton(joy1,4);
 	
+	static Joystick joy2 = new Joystick(1);
+	JoystickButton aManip = new JoystickButton(joy2, 2);
+	JoystickButton bManip = new JoystickButton(joy2, 3);
+	JoystickButton yManip = new JoystickButton(joy2, 4);
+	JoystickButton xManip = new JoystickButton(joy2, 1);
+	
 	
 	public OI() {
 	
@@ -32,6 +41,10 @@ public class OI {
 		a.whileHeld(new ledCOLOR());
 		b.whileHeld(new ledOFF());
 		b.whenPressed(new GrabNavX());
+		
+		yManip.whileHeld(new smartShoot());
+		aManip.whenPressed(new IntakeInward());
+		bManip.whenPressed(new HaltIntake());
 		
 	}
 	

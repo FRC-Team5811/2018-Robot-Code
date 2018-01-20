@@ -15,11 +15,15 @@ public class Intake extends Subsystem{
 		// TODO Auto-generated method stub
 		
 	}
-	public void intakeIn(){
+	public static void intakeIn(){
 		leftMotor.set(1);
 		rightMotor.set(1);
 	}
-	public void outtake(int position){
+	public static void halt(){
+		leftMotor.set(0);
+		rightMotor.set(0);
+	}
+	public static void outtake(int position){
 		switch(position){
 			case 0: //switch
  				leftMotor.set(-1);
