@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static final DriveTrain driveSUB = new DriveTrain();
 	public static final LEDS ledsub = new LEDS();
 	public static final NavX navx = new NavX();
+	public static final Encoders encoders = new Encoders();
 	public static OI oi;
 	
 
