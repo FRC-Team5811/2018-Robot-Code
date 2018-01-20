@@ -18,6 +18,7 @@ public class RobotMap {
 	public static Victor motor4 = new Victor(4);
 	public static Victor motor5 = new Victor(5);
 	public static Victor motor6 = new Victor(6);
+	public static Victor motor7 = new Victor(7);
 	
 	//public static Potentiometer pivot = new Potentiometer();
 	
