@@ -14,6 +14,7 @@ public class Pivot extends Subsystem {
 	static double tolerance = 1; //how close to target is acceptable, in degrees
 	static int state = 0; //position state of arm
 	static double difference; 
+	static double proportionDist = 30; 
 	
 	public static double getAngle() {
 		return pivot.get();
@@ -22,14 +23,23 @@ public class Pivot extends Subsystem {
 	public static int getState() {
 		return state;
 	}
-	
-	public static void changeAngle(double angle, int stateIn) {
+	public static void setMotor(double speed) {
+		motor6.set(speed);
+		motor7.set(speed);
+	}
+	public static boolean changeAngle(double angle, int stateIn) {
 		state = stateIn;
 		difference = angle - pivot.get();
 		
-		if (difference > 0) {
-			
+		if (difference > tolerance) {
+			setMotor(difference/proportionDist);
+		} 
+		else if (difference < -tolerance) {
+			setMotor(difference/proportionDist);
+		} else {
+			return true;
 		}
+		return false;
 		
 		
 		
