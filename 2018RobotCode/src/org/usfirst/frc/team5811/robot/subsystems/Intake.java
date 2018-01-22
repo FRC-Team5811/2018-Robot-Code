@@ -26,8 +26,8 @@ public class Intake extends Subsystem{
 	public static void outtake(int position){
 		switch(position){
 			case 0: //switch
- 				leftMotor.set(-1);
-				rightMotor.set(-1);
+ 				leftMotor.set(-0.75);
+				rightMotor.set(-0.75);
 			case 1: //backswitch
 				leftMotor.set(-1);
 				rightMotor.set(-1);
