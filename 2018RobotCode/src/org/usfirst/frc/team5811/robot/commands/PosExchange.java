@@ -4,11 +4,11 @@ import org.usfirst.frc.team5811.robot.subsystems.Pivot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class PosDown extends Command {
-	double angle = 0;
+public class PosExchange extends Command {
+	double angle = 5;
 	boolean complete;
-	int state = 0;
-	public PosDown() {
+	int state = 1;
+	public PosExchange() {
 		
 	}
 	
