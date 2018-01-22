@@ -6,7 +6,7 @@ import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
 import org.usfirst.frc.team5811.robot.commands.PosDown;
 import org.usfirst.frc.team5811.robot.commands.ledOFF;
-import org.usfirst.frc.team5811.robot.commands.smartShoot;
+import org.usfirst.frc.team5811.robot.commands.SmartShoot;
 import org.usfirst.frc.team5811.robot.commands.ledCOLOR;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -43,7 +43,7 @@ public class OI {
 		b.whileHeld(new ledOFF());
 		b.whenPressed(new GrabNavX());
 		
-		yManip.whileHeld(new smartShoot());
+		yManip.whileHeld(new SmartShoot());
 		aManip.whenPressed(new IntakeInward());
 		aManip.whenPressed(new PosDown());
 		

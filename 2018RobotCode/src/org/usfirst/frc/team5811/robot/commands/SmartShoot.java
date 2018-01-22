@@ -5,7 +5,7 @@ import org.usfirst.frc.team5811.robot.subsystems.Pivot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class smartShoot extends Command {
+public class SmartShoot extends Command {
 	int state;
 	@Override
 	protected boolean isFinished() {
