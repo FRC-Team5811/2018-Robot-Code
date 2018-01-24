@@ -14,13 +14,13 @@ public class Encoders extends Subsystem {
 		
 	}
 	
-	public static double getLeftVal() {
-		System.out.println("left heft");
+	public static double getRightVal() {
+		System.out.println("Encoder val: "+driveR.get());
 		return driveL.get();
 	}
-	public static double getRightVal() {
-		System.out.println("right fright");
-		return driveR.get();
+	public static double getLeftVal() {
+		//System.out.println("right fright");
+		return driveL.get();
 	}
 	public static void reset(){
 		driveR.reset();

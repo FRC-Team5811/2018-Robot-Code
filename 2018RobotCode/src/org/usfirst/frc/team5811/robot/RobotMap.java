@@ -29,6 +29,6 @@ public class RobotMap {
 	public static I2C arduino = new I2C(I2C.Port.kMXP, 58);
 	public static AHRS navx;
 
-	public static Encoder driveEncR = new Encoder(2,3, true, Encoder.EncodingType.k4X);
-	public static Encoder driveEncL = new Encoder(0,1, false, Encoder.EncodingType.k4X);
+	public static Encoder driveEncL = new Encoder(2,3, true, Encoder.EncodingType.k4X);
+	public static Encoder driveEncR = new Encoder(0,1, false, Encoder.EncodingType.k4X);
 }

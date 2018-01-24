@@ -24,12 +24,12 @@ public class AutoDriveFlat extends Command{
 		System.out.println("Flat");
 		System.out.print("duration: ");
 		System.out.println(duration);
-		System.out.println(Math.abs(Encoders.getLeftVal()));
+		//System.out.println(Math.abs(Encoders.getRightVal()));
 
 	}
 	
 	protected boolean isFinished() {
-		if (Math.abs(Encoders.getLeftVal()) > this.duration) {
+		if (Math.abs(Encoders.getRightVal()) > this.duration) {
 			return true;
 		} else {
 			return false;

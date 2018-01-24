@@ -36,10 +36,11 @@ public class DriveAuto extends CommandGroup {
 //		System.out.println(this.decelTime);
 //		System.out.print("flattime: ");
 //		System.out.println(this.flatTime);
-		DriveTrain.setCurrentAngle();
-		addSequential (new AutoDriveAcc(this.accelDistanceTrue, this.direction));	
-		addSequential (new AutoDriveFlat(this.flatDistanceTrue, this.direction));
-     	addSequential (new AutoDriveDec(this.decelDistanceTrue, this.direction));
+//		DriveTrain.setCurrentAngle();
+		System.out.println("Does this owrk?");
+		addSequential(new AutoDriveAcc(this.accelDistanceTrue, this.direction));	
+		addSequential(new AutoDriveFlat(this.flatDistanceTrue, this.direction));
+     	addSequential(new AutoDriveDec(this.decelDistanceTrue, this.direction));
 	}
 	
 
