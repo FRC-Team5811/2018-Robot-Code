@@ -16,7 +16,7 @@ public class Encoders extends Subsystem {
 	
 	public static double getRightVal() {
 		System.out.println("Encoder val: "+driveR.get());
-		return driveL.get();
+		return driveR.get();
 	}
 	public static double getLeftVal() {
 		//System.out.println("right fright");

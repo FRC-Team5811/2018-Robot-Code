@@ -10,9 +10,9 @@ public class DriveAuto extends CommandGroup {
 	double accelFactor, decelFactor, flatFactor, totalDistance;
 	double accelDistanceTrue, flatDistanceTrue, decelDistanceTrue;
 	public DriveAuto (double totalTime, double direction) {
-		this.accelFactor = 0.15;
-		this.flatFactor = 0.1;
-		this.decelFactor = 0.75;
+		this.accelFactor = 0.20;
+		this.flatFactor = 0.20;
+		this.decelFactor = 0.6;
 
 		this.totalDistance = totalTime;
 		

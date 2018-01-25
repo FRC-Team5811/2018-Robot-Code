@@ -17,9 +17,8 @@ public class DriveTrain extends Subsystem {
 	
 	static float rotationPos = 0;
 	
-	static float correctionStrength = 7;
-	
-	static double magicNumber = 90;
+	static float correctionStrength = 7;	
+	static double magicNumber = 25;
 	static double currentAngle;
 
 	public void initDefaultCommand() {
@@ -54,28 +53,30 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public static void autoDriveAcc(double durationAccel, double i,double direction) {
-		double motorCorrect = errorCorrect(currentAngle);
-		//double motorCorrect = 0;
-		System.out.println("Motor sped: "+(direction*(i/(durationAccel)+0.2)*0.5f));
-		motor0.set((direction*(i/(durationAccel)+0.2)*0.5f) + motorCorrect);
-		motor1.set((direction*(i/(durationAccel)+0.2)*0.5f) + motorCorrect);
+		//double motorCorrect = errorCorrect(currentAngle);
+		double motorCorrect = 0;
+		System.out.println("Motor sped: "+((direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect));
+		motor0.set((direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect);
+		motor1.set((direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect);
 		motor2.set((-direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect);
 		motor3.set((-direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect);
 		
 	}
 	public static void autoDriveDec(double durationDecel, double i, double direction){
-		double motorCorrect = errorCorrect(currentAngle);
-		System.out.println("Motor sped: "+direction*(1-(i/(durationDecel*0.5))*0.5f));
-		motor0.set(direction*(1-(i/(durationDecel)+0.25)*0.5f) + motorCorrect);
-		motor1.set(direction*(1-(i/(durationDecel)+0.25)*0.5f) + motorCorrect);
-		motor2.set(-direction*(1-(i/(durationDecel)+0.25)*0.5f) - motorCorrect);
-		motor3.set(-direction*(1-(i/(durationDecel)+0.25)*0.5f) - motorCorrect);
+		//double motorCorrect = errorCorrect(currentAngle);
+				double motorCorrect = 0;
+		System.out.println("Motor sped: "+(direction*(1-(i/(durationDecel*0.5))*0.5f)-motorCorrect));
+		motor0.set(direction*(1-(i/(durationDecel)+0.25)*0.5f) - motorCorrect + 0.23);
+		motor1.set(direction*(1-(i/(durationDecel)+0.25)*0.5f) - motorCorrect + 0.23);
+		motor2.set(-direction*(1-(i/(durationDecel)+0.25)*0.5f) - motorCorrect-0.23);
+		motor3.set(-direction*(1-(i/(durationDecel)+0.25)*0.5f) - motorCorrect-0.23);
 	}
 	public static void autoDriveFlat(double direction){
-		double motorCorrect = errorCorrect(currentAngle);
-		System.out.println("Motor sped: "+(direction*1));
-		motor0.set((direction*1) + motorCorrect);
-		motor1.set((direction*1) + motorCorrect);
+		//double motorCorrect = errorCorrect(currentAngle);
+				double motorCorrect = 0;
+		System.out.println("Motor sped: "+((direction*1)-motorCorrect));
+		motor0.set((direction*1) - motorCorrect);
+		motor1.set((direction*1) - motorCorrect);
 		motor2.set((direction*-1) - motorCorrect);
 		motor3.set((direction*-1) - motorCorrect);
 	}
