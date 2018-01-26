@@ -64,7 +64,7 @@ public class Robot extends IterativeRobot {
 		 
 		NavX.reset();
 		Encoders.reset();
-		chooser.addDefault("Drive Straight", new AutonomousTestRoutine(5000,1,90,1));
+		chooser.addDefault("Drive Straight", new AutonomousTestRoutine(7000,1,90,1));
 		
 		autonomousCommand = chooser.getSelected();
 		if (autonomousCommand != null)
