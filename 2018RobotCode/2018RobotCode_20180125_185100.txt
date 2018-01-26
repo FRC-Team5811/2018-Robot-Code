@@ -1,0 +1,26 @@
+ERROR - 18:51:00: java.net.MalformedURLException: unknown protocol: pathmap
+INFO - 18:51:13: Entering Java JavaProject 2018RobotCode
+INFO - 18:51:13:    UML ModelImpl 2018RobotCode was created
+ERROR - 18:51:13: java.net.MalformedURLException: unknown protocol: pathmap
+org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.handleDemandLoadException(ResourceSetImpl.java:319)
+org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:278)
+org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.getResource(ResourceSetImpl.java:406)
+org.eclipse.umlgen.reverse.java.AbstractJava2UMLConverter.load(AbstractJava2UMLConverter.java:2274)
+org.eclipse.umlgen.reverse.java.Java2UMLConverter.initializeModel(Java2UMLConverter.java:137)
+org.eclipse.umlgen.reverse.java.AbstractJava2UMLConverter.doConvertion(AbstractJava2UMLConverter.java:453)
+org.eclipse.umlgen.reverse.java.AbstractJava2UMLConverter.convert(AbstractJava2UMLConverter.java:253)
+org.eclipse.umlgen.reverse.java.AbstractJava2UMLConverter.convert(AbstractJava2UMLConverter.java:2248)
+org.eclipse.umlgen.reverse.java.diagram.PrototypeJava2UMLWizard.doFinish(PrototypeJava2UMLWizard.java:144)
+org.eclipse.umlgen.reverse.java.internal.wizards.Java2UMLWizard$1.run(Java2UMLWizard.java:104)
+org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+ERROR - 18:51:20: java.net.MalformedURLException: unknown protocol: pathmap
+ERROR - 18:53:16: java.net.MalformedURLException: unknown protocol: pathmap
+WARNING - 18:56:48: Convert 2018RobotCode
+ERROR - 18:56:48: java.net.MalformedURLException: unknown protocol: pathmap
+WARNING - 18:58:02: Convert 2018RobotCode
+ERROR - 18:58:02: org.xml.sax.SAXParseExceptionpublicId: /2018RobotCode/src/org/usfirst/frc/team5811/robot/AxisButton.java; systemId: file:///2018RobotCode/src/org/usfirst/frc/team5811/robot/AxisButton.java; lineNumber: 1; columnNumber: 1; Content is not allowed in prolog.
+ERROR - 18:58:02: org.xml.sax.SAXParseExceptionpublicId: /2018RobotCode/src/org/usfirst/frc/team5811/robot/AxisButton.java; systemId: file:///2018RobotCode/src/org/usfirst/frc/team5811/robot/AxisButton.java; lineNumber: 1; columnNumber: 1; Content is not allowed in prolog.
+WARNING - 18:58:32: Convert 2018RobotCode
+ERROR - 18:58:32: java.net.MalformedURLException: unknown protocol: pathmap
+ERROR - 18:59:12: org.xml.sax.SAXParseExceptionpublicId: /2018RobotCode/src/org/usfirst/frc/team5811/robot/AxisButton.java; systemId: file:///2018RobotCode/src/org/usfirst/frc/team5811/robot/AxisButton.java; lineNumber: 1; columnNumber: 1; Content is not allowed in prolog.
+ERROR - 18:59:12: org.xml.sax.SAXParseExceptionpublicId: /2018RobotCode/src/org/usfirst/frc/team5811/robot/AxisButton.java; systemId: file:///2018RobotCode/src/org/usfirst/frc/team5811/robot/AxisButton.java; lineNumber: 1; columnNumber: 1; Content is not allowed in prolog.
