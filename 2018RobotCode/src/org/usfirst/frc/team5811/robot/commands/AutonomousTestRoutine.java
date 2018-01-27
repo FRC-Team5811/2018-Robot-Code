@@ -18,17 +18,17 @@ public class AutonomousTestRoutine extends CommandGroup {
 		Encoders.reset();
 		
 		addSequential(new DriveAuto(driveTime1, driveDirection1));
-	NavX.reset();
-		Encoders.reset();
-		addSequential(new FullStop(1));
-		NavX.reset();
-		Encoders.reset();
-		addSequential(new TurnAuto(turnAngle1, turnDirection1));
-		addSequential(new FullStop(0));
-	NavX.reset();
-	Encoders.reset();
-		addSequential(new DriveAuto(driveTime1/2, -driveDirection1));
-		addSequential(new FullStop(1));
+//	NavX.reset();
+//		Encoders.reset();
+//		addSequential(new FullStop(1));
+//		NavX.reset();
+//		Encoders.reset();
+//		addSequential(new TurnAuto(turnAngle1, turnDirection1));
+//		addSequential(new FullStop(0));
+//	NavX.reset();
+//	Encoders.reset();
+//		addSequential(new DriveAuto(driveTime1/2, -driveDirection1));
+//		addSequential(new FullStop(1));
 ////		NavX.reset();
 ////		addSequential(new TurnAuto(turnAngle1, -turnDirection1 ));
 //		NavX.reset();
