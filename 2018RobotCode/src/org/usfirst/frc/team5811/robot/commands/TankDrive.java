@@ -14,7 +14,6 @@ public class TankDrive extends Command {
 		DriveTrain.tankDrive(OI.getRightY(), OI.getLeftY());
 	}
 	
-	@Override
 	protected boolean isFinished() {
 	
 		return false;

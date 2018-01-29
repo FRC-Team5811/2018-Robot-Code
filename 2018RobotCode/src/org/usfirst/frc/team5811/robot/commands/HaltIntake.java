@@ -6,13 +6,12 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class HaltIntake extends Command {
 
-	@Override
+	protected void execute(){
+		Intake.halt();
+	}
+	
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	protected void execute(){
-		Intake.halt();
-	}
-
 }

@@ -9,7 +9,6 @@ public class GrabNavX extends Command {
 		
 		NavX.grabValues();
 	}
-	@Override
 	protected boolean isFinished() {
 		
 		return false;
