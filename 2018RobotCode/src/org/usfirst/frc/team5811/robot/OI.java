@@ -41,13 +41,22 @@ public class OI {
 		rightJoyY.whileHeld(new ArcadeDrive());
 		a.whileHeld(new ledCOLOR());
 		b.whileHeld(new ledOFF());
-		b.whenPressed(new GrabNavX());
+		//b.whenPressed(new GrabNavX());
 		
-		yManip.whileHeld(new SmartShoot());
-		aManip.whenPressed(new IntakeInward());
-		aManip.whenPressed(new PosDown());
+		//yManip.whileHeld(new SmartShoot());
+		//aManip.whenPressed(new IntakeInward());
+		//aManip.whenPressed(new PosDown());
+		if(aManip.get()){
+			new IntakeInward();
+		}else if(yManip.get()){
+			new SmartShoot();	
+		}else{
+			new HaltIntake();
+		}
 		
-		bManip.whenPressed(new HaltIntake());
+		
+		
+		//bManip.whenPressed(new HaltIntake());
 		
 	}
 	
