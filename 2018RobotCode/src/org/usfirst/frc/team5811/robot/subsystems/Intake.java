@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Intake extends Subsystem{
 	
-	static Victor leftMotor = RobotMap.motor4;
-	static Victor rightMotor = RobotMap.motor5;
+	static Victor leftMotor = RobotMap.motor0;
+	static Victor rightMotor = RobotMap.motor1;
 	
 	@Override
 	protected void initDefaultCommand() {

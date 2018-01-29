@@ -25,12 +25,6 @@ public class DriveTrain extends Subsystem {
 		
 	}
 
-	public static void tankDrive(double x, double y){
-		motor0.set(x);
-		motor1.set(x);
-		motor2.set(-y);
-		motor3.set(-y);
-	}
 	public static void arcadeDrive(double turn, double throttle) {
 		motor0.set(throttle + turn);
 		motor1.set(throttle + turn);
