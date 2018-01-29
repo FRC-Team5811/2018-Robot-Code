@@ -17,8 +17,11 @@ import org.usfirst.frc.team5811.robot.commands.AutonomousTestRoutine;
 import org.usfirst.frc.team5811.robot.commands.DriveAuto;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.Encoders;
+import org.usfirst.frc.team5811.robot.subsystems.Intake;
 import org.usfirst.frc.team5811.robot.subsystems.LEDS;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
+import org.usfirst.frc.team5811.robot.subsystems.Pivot;
+import org.usfirst.frc.team5811.robot.subsystems.Ramp;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -29,6 +32,9 @@ public class Robot extends IterativeRobot {
 	public static final LEDS ledsub = new LEDS();
 	public static final NavX navx = new NavX();
 	public static final Encoders encoders = new Encoders();
+	public static final Intake intake = new Intake();
+	public static final Pivot pivot = new Pivot();
+	public static final Ramp ramp = new Ramp();
 	public static OI oi;
 	
 
