@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
 	public static final Pivot pivot = new Pivot();
 	public static final Ramp ramp = new Ramp();
 	public static OI oi;
-	
+	//hi
 
 	Command autonomousCommand;
 
