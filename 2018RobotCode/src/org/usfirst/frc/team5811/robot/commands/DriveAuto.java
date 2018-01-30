@@ -30,14 +30,14 @@ public class DriveAuto extends CommandGroup {
 //		this.decelTime = 30;
 //		this.flatTime = this.totalTime - this.accelTime - this.decelTime;
 //		
-//		System.out.print("acceltime: ");
-//		System.out.println(this.accelTime);
-//		System.out.print("deceltime: ");
-//		System.out.println(this.decelTime);
-//		System.out.print("flattime: ");
-//		System.out.println(this.flatTime);
+//		//System.out.print("acceltime: ");
+//		//System.out.println(this.accelTime);
+//		//System.out.print("deceltime: ");
+//		//System.out.println(this.decelTime);
+//		//System.out.print("flattime: ");
+//		//System.out.println(this.flatTime);
 //		DriveTrain.setCurrentAngle();
-		System.out.println("Does this owrk?");
+		//System.out.println("Does this owrk?");
 		addSequential(new AutoDriveAcc(this.accelDistanceTrue, this.direction));	
 		addSequential(new AutoDriveFlat(this.flatDistanceTrue, this.direction));
      	addSequential(new AutoDriveDec(this.decelDistanceTrue, this.direction));

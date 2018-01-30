@@ -24,12 +24,12 @@ public class AutoTurnFlat extends Command{
 	protected void execute() {
 		DriveTrain.autoTurnFlat(this.direction);
 
-		System.out.println("Flat");
-//		System.out.print("count: ");
-	//	System.out.println(count);
-//		System.out.print("finalAngSeg: ");
-	//	System.out.println(finalAngSeg);
-		System.out.println("ANGLE: "+NavX.grabValues());
+		//System.out.println("Flat");
+//		//System.out.print("count: ");
+	//	//System.out.println(count);
+//		//System.out.print("finalAngSeg: ");
+	//	//System.out.println(finalAngSeg);
+		//System.out.println("ANGLE: "+NavX.grabValues());
 	}
 	
 	protected boolean isFinished() {

@@ -21,10 +21,10 @@ public class AutoDriveFlat extends Command{
 	
 	protected void execute() {
 		DriveTrain.autoDriveFlat(this.direction);
-		System.out.println("Flat");
-		System.out.print("duration: ");
-		System.out.println(duration);
-		//System.out.println(Math.abs(Encoders.getRightVal()));
+		//System.out.println("Flat");
+		//System.out.print("duration: ");
+		//System.out.println(duration);
+		////System.out.println(Math.abs(Encoders.getRightVal()));
 
 	}
 	

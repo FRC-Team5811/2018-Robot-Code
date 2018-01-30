@@ -18,22 +18,22 @@ public class AutoDriveAcc extends Command{
 	}
 	
 	protected void intialize() {
-		System.out.println("Initialized.");
+		//System.out.println("Initialized.");
 	
 	}
 	
 	protected void execute() {
-		//System.out.println("does this work?");
+		////System.out.println("does this work?");
 		DriveTrain.autoDriveAcc(this.duration, Math.abs(Encoders.getRightVal()), direction);
-		System.out.println("Accelerating");
-		System.out.print("duration: ");
-		System.out.println(duration);
-		//System.out.println(Math.abs(Encoders.getRightVal()));
+		//System.out.println("Accelerating");
+		//System.out.print("duration: ");
+		//System.out.println(duration);
+		////System.out.println(Math.abs(Encoders.getRightVal()));
 	}
 	
 	
 	protected boolean isFinished() {
-//		System.out.println("Calling isFinished");
+//		//System.out.println("Calling isFinished");
 		if (Math.abs(Encoders.getRightVal()) > this.duration) {
 			return true;
 		} else {

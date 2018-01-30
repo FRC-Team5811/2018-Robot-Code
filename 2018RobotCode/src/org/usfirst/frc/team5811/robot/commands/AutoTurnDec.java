@@ -31,12 +31,12 @@ public class AutoTurnDec extends Command{
 		DriveTrain.autoTurnDec(this.finalAngSeg, Math.abs(NavX.grabValues()), direction);
 		//error = (float) (rotationPos - NavX.grabValues());
 		//count -=1;
-		System.out.println("Deccelerating");
-//		System.out.print("count: ");
-//		System.out.println(count);
-//		System.out.print("duration: ");
-//		System.out.println(finalAngSeg);
-		System.out.println("ANGLE: "+Math.abs(NavX.grabValues()));
+		//System.out.println("Deccelerating");
+//		//System.out.print("count: ");
+//		//System.out.println(count);
+//		//System.out.print("duration: ");
+//		//System.out.println(finalAngSeg);
+		//System.out.println("ANGLE: "+Math.abs(NavX.grabValues()));
 	}
 	
 	protected boolean isFinished() {

@@ -37,10 +37,10 @@ public class TurnAuto extends CommandGroup {
 //		this.accelTime = this.totalTime/3;
 //		this.decelTime = this.totalTime/3;
 //		this.flatTime = this.totalTime/3;
-		System.out.println("accel: " + this.accelAngleTrue);
-		System.out.println("flat " + this.flatAngleTrue);
-		System.out.println("decel " + this.decelAngleTrue);
-		System.out.println("TURN AUTO START");
+		//System.out.println("accel: " + this.accelAngleTrue);
+		//System.out.println("flat " + this.flatAngleTrue);
+		//System.out.println("decel " + this.decelAngleTrue);
+		//System.out.println("TURN AUTO START");
 		NavX.reset();
 
 		addSequential (new AutoTurnAcc(this.accelAngleTrue, this.direction));	
@@ -49,7 +49,7 @@ public class TurnAuto extends CommandGroup {
 		//NavX.reset();
      	addSequential (new AutoTurnDec(this.decelAngleTrue, this.direction));
      	//NavX.reset();
-		System.out.println("TURN AUTO STOP");
+		//System.out.println("TURN AUTO STOP");
 
 	}
 	

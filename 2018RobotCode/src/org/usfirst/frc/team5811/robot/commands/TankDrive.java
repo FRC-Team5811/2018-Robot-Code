@@ -8,12 +8,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class TankDrive extends Command {
 	
-
-	
-	protected void execute() {
-		DriveTrain.tankDrive(OI.getRightY(), OI.getLeftY());
-	}
-	
 	protected boolean isFinished() {
 	
 		return false;

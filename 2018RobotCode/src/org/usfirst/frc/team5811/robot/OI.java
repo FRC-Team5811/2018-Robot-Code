@@ -44,15 +44,11 @@ public class OI {
 		//b.whenPressed(new GrabNavX());
 		
 		//yManip.whileHeld(new SmartShoot());
-		//aManip.whenPressed(new IntakeInward());
+		aManip.whenPressed(new IntakeInward());
+		bManip.whenPressed(new HaltIntake());
 		//aManip.whenPressed(new PosDown());
-		if(aManip.get()){
-			new IntakeInward();
-		}else if(yManip.get()){
-			new SmartShoot();	
-		}else{
-			new HaltIntake();
-		}
+		
+		
 		
 		
 		

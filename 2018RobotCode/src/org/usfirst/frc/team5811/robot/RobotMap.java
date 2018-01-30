@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
@@ -20,6 +21,8 @@ public class RobotMap {
 	public static Victor motor5 = new Victor(5);
 	public static Victor motor6 = new Victor(6);
 	public static Victor motor7 = new Victor(7);
+	
+	public static PowerDistributionPanel PDP = new PowerDistributionPanel();
 	
 
 	public static Potentiometer pivot = new AnalogPotentiometer(7, 360, 150);

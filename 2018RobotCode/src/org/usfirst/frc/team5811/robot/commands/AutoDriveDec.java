@@ -22,10 +22,10 @@ public class AutoDriveDec extends Command{
 	
 	protected void execute() {
 		DriveTrain.autoDriveDec(duration, Math.abs(Encoders.getRightVal()), direction);
-		System.out.println("Deccelerating");
-		System.out.print("duration: ");
-		System.out.println(duration);
-		//System.out.println(Math.abs(Encoders.getRightVal()));
+		//System.out.println("Deccelerating");
+		//System.out.print("duration: ");
+		//System.out.println(duration);
+		////System.out.println(Math.abs(Encoders.getRightVal()));
 
 	}
 	

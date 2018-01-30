@@ -18,22 +18,22 @@ public class LEDS extends Subsystem {
 	}
 	public static void color(){
 		toSend[0] = 3;
-		System.out.println("Sending RED");
+		//System.out.println("Sending RED");
 		if(LEDArduino.writeBulk(toSend)){
-			System.out.println("didnt send");
+			//System.out.println("didnt send");
 		}
 		else{
-			System.out.println("sent");
+			//System.out.println("sent");
 		}
 	}
 	public static void off(){
 		toSend[0] = 10;
-		System.out.println("Sending OFF");
+		//System.out.println("Sending OFF");
 		if(LEDArduino.writeBulk(toSend)){
-			System.out.println("didnt send");
+			//System.out.println("didnt send");
 		}
 		else{
-			System.out.println("sent");
+			//System.out.println("sent");
 		}
 	}
 
