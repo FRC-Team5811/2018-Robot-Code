@@ -55,13 +55,13 @@ public class OI {
 		
 	}
 	
-	public  double getLeftY() {
+	public double getLeftY() {
 		return joy1.getRawAxis(1);
 	}
-	public  double getRightY() {
+	public double getRightY() {
 		return joy1.getRawAxis(3);
 	}
-	public  double getLeftX(){
+	public double getLeftX(){
 		return joy1.getRawAxis(0);
 	}
 	public double getRightX(){

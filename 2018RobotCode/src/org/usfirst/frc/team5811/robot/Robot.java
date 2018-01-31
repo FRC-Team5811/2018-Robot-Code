@@ -28,13 +28,13 @@ import com.kauailabs.navx.frc.AHRS;
 
 public class Robot extends IterativeRobot {
 
-	public static final DriveTrain driveSUB = new DriveTrain();
-	public static final LEDS ledsub = new LEDS();
-	public static final NavX navx = new NavX();
-	public static final Encoders encoders = new Encoders();
-	public static final Intake intake = new Intake();
-	public static final Pivot pivot = new Pivot();
-	public static final Ramp ramp = new Ramp();
+	public static DriveTrain driveSUB;
+	public static LEDS ledsub;
+	public static NavX navx;
+	public static Encoders encoders;
+	public static Intake intake;
+	public static Pivot pivot;
+	public static Ramp ramp;
 	public static OI oi;
 	//hi
 
@@ -42,10 +42,20 @@ public class Robot extends IterativeRobot {
 
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	public Robot(){
+		oi = new OI();
+		driveSUB = new DriveTrain();
+		ledsub = new LEDS();
+		navx = new NavX();
+		encoders = new Encoders();
+		intake = new Intake();
+		pivot = new Pivot();
+		ramp = new Ramp();
+	}
 //
 	@Override
 	public void robotInit() {
-		oi = new OI();
+		
 		SmartDashboard.putData("Auto mode", chooser);
 		
 //		chooser.addDefault("Drive Straight", new DriveAuto(100, 100, 100)); 

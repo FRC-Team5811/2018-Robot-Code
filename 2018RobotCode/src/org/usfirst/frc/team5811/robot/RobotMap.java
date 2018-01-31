@@ -22,9 +22,8 @@ public class RobotMap {
 	public static Victor motor6 = new Victor(6);
 	public static Victor motor7 = new Victor(7);
 	
-	public static PowerDistributionPanel PDP = new PowerDistributionPanel();
+	//public static PowerDistributionPanel PDP = new PowerDistributionPanel();
 	
-
 	public static Potentiometer pivot = new AnalogPotentiometer(7, 360, 150);
 	
 	public static DoubleSolenoid rampRelease = new DoubleSolenoid(0, 1);

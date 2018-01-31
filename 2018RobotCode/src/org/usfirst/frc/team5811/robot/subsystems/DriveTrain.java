@@ -18,7 +18,7 @@ public class DriveTrain extends Subsystem {
 	  Victor motor2 = RobotMap.motor2;
 	  Victor motor3 = RobotMap.motor3;
 	
-	  PowerDistributionPanel pdp = RobotMap.PDP;
+	  //PowerDistributionPanel pdp = RobotMap.PDP;
 	
 	NavX navX = Robot.navx;
 	

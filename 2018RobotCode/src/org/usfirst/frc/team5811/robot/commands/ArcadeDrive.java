@@ -10,7 +10,9 @@ public class ArcadeDrive extends Command {
 	DriveTrain driveSUB = Robot.driveSUB;
 	OI oi = Robot.oi;
 	protected void execute() {
-		driveSUB.arcadeDrive(oi.getRightX(), oi.getLeftY());
+		double x = oi.getRightX();
+		double y = oi.getLeftY();
+		driveSUB.arcadeDrive(x,y);
 	}
 
 	
