@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5811.robot.commands;
 
+import org.usfirst.frc.team5811.robot.Robot;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -7,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class FullStop extends Command {
 	int count;
 	int duration;
-	
+	DriveTrain driveSUB = Robot.driveSUB;
 	public FullStop(int duration) {
 		this.duration = duration;
 	}
@@ -17,7 +18,7 @@ public class FullStop extends Command {
 	}
 	
 	protected void execute() {
-		DriveTrain.fullStop();
+		driveSUB.fullStop();
 		count ++;
 	}
 

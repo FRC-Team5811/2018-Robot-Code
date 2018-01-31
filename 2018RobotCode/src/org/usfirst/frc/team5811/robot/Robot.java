@@ -95,6 +95,9 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		
+		System.out.println("Motor0: " + RobotMap.motor0.get());
+		System.out.println("Motor1: " + RobotMap.motor1.get());
+
 	}
 
 

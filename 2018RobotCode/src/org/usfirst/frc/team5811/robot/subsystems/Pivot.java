@@ -27,7 +27,7 @@ public class Pivot extends Subsystem {
 		motor6.set(speed);
 		motor7.set(speed);
 	}
-	public static boolean changeAngle(double angle, int stateIn) {
+	public boolean changeAngle(double angle, int stateIn) {
 		state = stateIn;
 		difference = angle - pivot.get();
 		

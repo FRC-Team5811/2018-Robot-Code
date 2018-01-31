@@ -7,23 +7,23 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Intake extends Subsystem{
 	
-	static Victor leftMotor = RobotMap.motor0;
-	static Victor rightMotor = RobotMap.motor1;
+	static Victor leftMotor = RobotMap.motor4;
+	static Victor rightMotor = RobotMap.motor5;
 	
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
 		
 	}
-	public static void intakeIn(){
+	public void intakeIn(){
 		leftMotor.set(1);
 		rightMotor.set(1);
 	}
-	public static void halt(){
+	public void halt(){
 		leftMotor.set(0);
 		rightMotor.set(0);
 	}
-	public static void outtake(int position){
+	public void outtake(int position){
 		position = 1;
 		switch(position){
 			case 0: //switch

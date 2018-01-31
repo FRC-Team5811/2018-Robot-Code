@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5811.robot.commands;
 
+import org.usfirst.frc.team5811.robot.Robot;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.Encoders;
 
@@ -7,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoDriveFlat extends Command{
 	double duration, direction;
-	
+	DriveTrain driveSUB = Robot.driveSUB;
 	public AutoDriveFlat(double duration, double direction) {
 		this.duration = duration;
 		this.direction = direction;
@@ -20,7 +21,7 @@ public class AutoDriveFlat extends Command{
 	}
 	
 	protected void execute() {
-		DriveTrain.autoDriveFlat(this.direction);
+		driveSUB.autoDriveFlat(this.direction);
 		//System.out.println("Flat");
 		//System.out.print("duration: ");
 		//System.out.println(duration);

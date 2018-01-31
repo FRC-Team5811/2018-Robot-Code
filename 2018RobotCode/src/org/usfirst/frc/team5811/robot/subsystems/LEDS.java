@@ -16,7 +16,7 @@ public class LEDS extends Subsystem {
 		
 		
 	}
-	public static void color(){
+	public void color(){
 		toSend[0] = 3;
 		//System.out.println("Sending RED");
 		if(LEDArduino.writeBulk(toSend)){
@@ -26,7 +26,7 @@ public class LEDS extends Subsystem {
 			//System.out.println("sent");
 		}
 	}
-	public static void off(){
+	public void off(){
 		toSend[0] = 10;
 		//System.out.println("Sending OFF");
 		if(LEDArduino.writeBulk(toSend)){

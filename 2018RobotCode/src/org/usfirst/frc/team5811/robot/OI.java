@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
 public class OI {
-	static Joystick joy1 = new Joystick(0);
+	Joystick joy1 = new Joystick(0);
 	JoystickButton a = new JoystickButton(joy1, 2);
 	JoystickButton b = new JoystickButton(joy1, 3);
 	AxisButton leftJoyY = new AxisButton(joy1, 1);
@@ -24,7 +24,7 @@ public class OI {
 	AxisButton rightJoyX = new AxisButton(joy1, 2);
 	AxisButton righttrigger = new AxisButton(joy1,4);
 	
-	static Joystick joy2 = new Joystick(1);
+	 Joystick joy2 = new Joystick(1);
 	JoystickButton aManip = new JoystickButton(joy2, 2);
 	JoystickButton bManip = new JoystickButton(joy2, 3);
 	JoystickButton yManip = new JoystickButton(joy2, 4);
@@ -45,7 +45,7 @@ public class OI {
 		
 		//yManip.whileHeld(new SmartShoot());
 		aManip.whenPressed(new IntakeInward());
-		bManip.whenPressed(new HaltIntake());
+		aManip.whenReleased(new HaltIntake());
 		//aManip.whenPressed(new PosDown());
 		
 		
@@ -56,16 +56,16 @@ public class OI {
 		
 	}
 	
-	public static double getLeftY() {
+	public  double getLeftY() {
 		return joy1.getRawAxis(1);
 	}
-	public static double getRightY() {
+	public  double getRightY() {
 		return joy1.getRawAxis(3);
 	}
-	public static double getLeftX(){
+	public  double getLeftX(){
 		return joy1.getRawAxis(0);
 	}
-	public static double getRightX(){
+	public double getRightX(){
 		return joy1.getRawAxis(2);
 	}
 }

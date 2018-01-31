@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5811.robot.commands;
 
+import org.usfirst.frc.team5811.robot.Robot;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.Encoders;
 
@@ -7,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoDriveDec extends Command{
 	double duration, direction;
-	
+	DriveTrain driveSUB = Robot.driveSUB;
 	public AutoDriveDec(double duration, double direction) {
 		this.duration = duration;
 		this.direction = direction;
@@ -21,7 +22,7 @@ public class AutoDriveDec extends Command{
 	}
 	
 	protected void execute() {
-		DriveTrain.autoDriveDec(duration, Math.abs(Encoders.getRightVal()), direction);
+		driveSUB.autoDriveDec(duration, Math.abs(Encoders.getRightVal()), direction);
 		//System.out.println("Deccelerating");
 		//System.out.print("duration: ");
 		//System.out.println(duration);

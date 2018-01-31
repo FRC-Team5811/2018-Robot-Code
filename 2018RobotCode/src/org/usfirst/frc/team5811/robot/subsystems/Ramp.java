@@ -11,10 +11,10 @@ public class Ramp extends Subsystem {
 		
 	}
 	
-	public static void extend() {
+	public void extend() {
 		rampRelease.set(DoubleSolenoid.Value.kForward);
 	}
-	public static void retract() {
+	public void retract() {
 		rampRelease.set(DoubleSolenoid.Value.kReverse);
 	}
 

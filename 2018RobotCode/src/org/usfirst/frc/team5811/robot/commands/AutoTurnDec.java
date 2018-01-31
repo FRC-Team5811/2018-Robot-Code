@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5811.robot.commands;
 
+import org.usfirst.frc.team5811.robot.Robot;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
 
@@ -11,6 +12,7 @@ public class AutoTurnDec extends Command{
 	double recip;
 	//double rotationPos = 0;
 	//float error;
+	DriveTrain driveSUB = Robot.driveSUB;
 	
 	public AutoTurnDec(double angleInput, double direction) {
 		this.finalAngSeg = angleInput;
@@ -28,7 +30,7 @@ public class AutoTurnDec extends Command{
 	}
 	
 	protected void execute() {
-		DriveTrain.autoTurnDec(this.finalAngSeg, Math.abs(NavX.grabValues()), direction);
+		driveSUB.autoTurnDec(this.finalAngSeg, Math.abs(NavX.grabValues()), direction);
 		//error = (float) (rotationPos - NavX.grabValues());
 		//count -=1;
 		//System.out.println("Deccelerating");

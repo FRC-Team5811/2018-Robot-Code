@@ -25,7 +25,7 @@ public class NavX extends Subsystem {
 		}
 		
 	}
-	public static float grabValues(){
+	public float grabValues(){
 		return (float)navX.getAngle();
 		////System.out.println(angle);
 	}

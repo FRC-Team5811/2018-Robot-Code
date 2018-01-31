@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5811.robot.commands;
 
+import org.usfirst.frc.team5811.robot.Robot;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
 
@@ -8,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoTurnFlat extends Command{
 	double count;
 	double finalAngSeg, direction, recip;
-	
+	DriveTrain driveSUB = Robot.driveSUB;
 	public AutoTurnFlat(double angleInput, double direction) {
 		this.finalAngSeg = angleInput;
 		this.direction = direction;
@@ -22,7 +23,7 @@ public class AutoTurnFlat extends Command{
 	}
 	
 	protected void execute() {
-		DriveTrain.autoTurnFlat(this.direction);
+		driveSUB.autoTurnFlat(this.direction);
 
 		//System.out.println("Flat");
 //		//System.out.print("count: ");

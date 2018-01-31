@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5811.robot.commands;
 
+import org.usfirst.frc.team5811.robot.Robot;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
 
@@ -8,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoTurnAcc extends Command{
 	double currentAngle;
 	double finalAngSeg,direction;
+	DriveTrain driveSUB = Robot.driveSUB;
 	
 	public AutoTurnAcc(double angleInput, double direction) {
 		
@@ -26,7 +28,7 @@ public class AutoTurnAcc extends Command{
 	
 	protected void execute() {
 //		currentAngle = NavX.grabValues();
-		DriveTrain.autoTurnAcc(this.finalAngSeg, Math.abs(NavX.grabValues()), this.direction);
+		driveSUB.autoTurnAcc(this.finalAngSeg, Math.abs(NavX.grabValues()), this.direction);
 		//System.out.println("Accelerating");
 		////System.out.print("count: ");
 		////System.out.println(count);
