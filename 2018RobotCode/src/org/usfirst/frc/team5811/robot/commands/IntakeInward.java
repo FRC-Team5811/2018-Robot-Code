@@ -10,9 +10,17 @@ public class IntakeInward extends Command {
 	protected void execute(){
 		intake.intakeIn();
 	}
+	protected void end(){
+		intake.halt();
+	}
+	protected void interrupted(){
+		end();
+	}
+	
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 
 }

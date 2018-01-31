@@ -3,6 +3,8 @@ package org.usfirst.frc.team5811.robot.subsystems;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import org.usfirst.frc.team5811.robot.Robot;
 import org.usfirst.frc.team5811.robot.RobotMap;
 
 /**
@@ -11,18 +13,20 @@ import org.usfirst.frc.team5811.robot.RobotMap;
 public class DriveTrain extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	static Victor motor0 = RobotMap.motor0;
-	static Victor motor1 = RobotMap.motor1;
-	static Victor motor2 = RobotMap.motor2;
-	static Victor motor3 = RobotMap.motor3;
+	  Victor motor0 = RobotMap.motor0;
+	  Victor motor1 = RobotMap.motor1;
+	  Victor motor2 = RobotMap.motor2;
+	  Victor motor3 = RobotMap.motor3;
 	
-	static PowerDistributionPanel pdp = RobotMap.PDP;
+	  PowerDistributionPanel pdp = RobotMap.PDP;
 	
-	static float rotationPos = 0;
+	NavX navX = Robot.navx;
 	
-	static float correctionStrength = 7;	
-	static double magicNumber = 25;
-	static double currentAngle;
+	  float rotationPos = 0;
+	
+	  float correctionStrength = 7;	
+	  double magicNumber = 25;
+	  double currentAngle;
 
 	public void initDefaultCommand() {
 		
@@ -37,13 +41,13 @@ public class DriveTrain extends Subsystem {
 		
 		
 	}
-	public static void setCurrentAngle() {
-		currentAngle = NavX.grabValues();
+	public   void setCurrentAngle() {
+		currentAngle = navX.grabValues();
 		//System.out.println("desired angle: " + currentAngle);
 	}
 	
-	public static double errorCorrect(double desiredAng) {
-		double error = NavX.grabValues() - desiredAng;
+	public   double errorCorrect(double desiredAng) {
+		double error = navX.grabValues() - desiredAng;
 		////System.out.println("error: " + error);
 		double motorDelta = error/magicNumber;
 		////System.out.println("motor delta: " + motorDelta);

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5811.robot.commands;
 
+import org.usfirst.frc.team5811.robot.Robot;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -10,6 +11,7 @@ public class TurnAuto extends CommandGroup {
 	
 	double accelFactor, decelFactor, flatFactor,totalAngle;
 	double accelAngleTrue, flatAngleTrue, decelAngleTrue;
+	NavX navX = Robot.navx;
 	public TurnAuto (double angle, double direction) {
 		this.accelFactor = 0.10;
 		this.flatFactor = 0.05;
@@ -32,7 +34,7 @@ public class TurnAuto extends CommandGroup {
 		this.decelTime = 30;
 		this.flatTime = this.totalTime - this.accelTime - this.decelTime;
 		*/
-		NavX.reset();
+		navX.reset();
 		//this.angle = angle;
 //		this.accelTime = this.totalTime/3;
 //		this.decelTime = this.totalTime/3;
@@ -41,7 +43,7 @@ public class TurnAuto extends CommandGroup {
 		//System.out.println("flat " + this.flatAngleTrue);
 		//System.out.println("decel " + this.decelAngleTrue);
 		//System.out.println("TURN AUTO START");
-		NavX.reset();
+		navX.reset();
 
 		addSequential (new AutoTurnAcc(this.accelAngleTrue, this.direction));	
 		//NavX.reset();

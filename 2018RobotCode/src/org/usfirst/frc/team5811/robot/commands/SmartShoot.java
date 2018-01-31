@@ -9,8 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
 public class SmartShoot extends Command {
 	int state;
 	Intake intake = Robot.intake;
+	Pivot pivot = Robot.pivot;
 	protected void initialize(){
-		 state = Pivot.getState();
+		 state = pivot.getState();
 	}
 	protected void execute(){
 		intake.outtake(state);

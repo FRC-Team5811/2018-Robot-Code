@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class LEDS extends Subsystem {
 	
-	static I2C LEDArduino = RobotMap.arduino;
-	static byte[] toSend = new byte[1];
+	 I2C LEDArduino = RobotMap.arduino;
+	 byte[] toSend = new byte[1];
 	@Override
 	protected void initDefaultCommand() {
 		

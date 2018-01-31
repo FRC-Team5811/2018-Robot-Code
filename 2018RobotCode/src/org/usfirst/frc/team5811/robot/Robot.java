@@ -68,8 +68,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		 
-		NavX.reset();
-		Encoders.reset();
+		navx.reset();
+		encoders.reset();
 		chooser.addDefault("Drive Straight", new AutonomousTestRoutine(100000,1,90,1));
 		
 		autonomousCommand = chooser.getSelected();

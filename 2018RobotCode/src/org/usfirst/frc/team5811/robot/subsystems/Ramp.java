@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Ramp extends Subsystem {
-	static DoubleSolenoid rampRelease = RobotMap.rampRelease;
+	 DoubleSolenoid rampRelease = RobotMap.rampRelease;
 	public Ramp() {
 		
 	}

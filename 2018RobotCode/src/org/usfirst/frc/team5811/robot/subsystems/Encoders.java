@@ -6,23 +6,23 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Encoders extends Subsystem {
-	public static Encoder driveR = RobotMap.driveEncR;
-	public static Encoder driveL = RobotMap.driveEncL;
+	public  Encoder driveR = RobotMap.driveEncR;
+	public  Encoder driveL = RobotMap.driveEncL;
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	public static double getRightVal() {
+	public  double getRightVal() {
 		//System.out.println("Encoder val: "+driveR.get());
 		return driveR.get();
 	}
-	public static double getLeftVal() {
+	public  double getLeftVal() {
 		////System.out.println("right fright");
 		return driveL.get();
 	}
-	public static void reset(){
+	public  void reset(){
 		driveR.reset();
 		driveL.reset();
 	}

@@ -29,7 +29,7 @@ public class NavX extends Subsystem {
 		return (float)navX.getAngle();
 		////System.out.println(angle);
 	}
-	public static void reset() {
+	public void reset() {
 		navX.reset();
 	}
 	

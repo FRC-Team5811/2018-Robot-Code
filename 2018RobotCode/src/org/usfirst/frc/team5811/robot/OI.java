@@ -43,10 +43,9 @@ public class OI {
 		b.whileHeld(new ledOFF());
 		//b.whenPressed(new GrabNavX());
 		
-		//yManip.whileHeld(new SmartShoot());
-		aManip.whenPressed(new IntakeInward());
-		aManip.whenReleased(new HaltIntake());
-		//aManip.whenPressed(new PosDown());
+		
+		aManip.toggleWhenPressed(new IntakeInward());
+	
 		
 		
 		

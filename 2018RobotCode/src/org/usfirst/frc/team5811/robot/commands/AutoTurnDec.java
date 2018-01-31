@@ -13,6 +13,7 @@ public class AutoTurnDec extends Command{
 	//double rotationPos = 0;
 	//float error;
 	DriveTrain driveSUB = Robot.driveSUB;
+	NavX navX = Robot.navx;
 	
 	public AutoTurnDec(double angleInput, double direction) {
 		this.finalAngSeg = angleInput;
@@ -30,7 +31,7 @@ public class AutoTurnDec extends Command{
 	}
 	
 	protected void execute() {
-		driveSUB.autoTurnDec(this.finalAngSeg, Math.abs(NavX.grabValues()), direction);
+		driveSUB.autoTurnDec(this.finalAngSeg, Math.abs(navX.grabValues()), direction);
 		//error = (float) (rotationPos - NavX.grabValues());
 		//count -=1;
 		//System.out.println("Deccelerating");
@@ -42,7 +43,7 @@ public class AutoTurnDec extends Command{
 	}
 	
 	protected boolean isFinished() {
-		if (Math.abs(NavX.grabValues())> this.finalAngSeg) {
+		if (Math.abs(navX.grabValues())> this.finalAngSeg) {
 			return true;
 		} else {
 			return false;

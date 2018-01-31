@@ -10,6 +10,7 @@ public class AutoTurnFlat extends Command{
 	double count;
 	double finalAngSeg, direction, recip;
 	DriveTrain driveSUB = Robot.driveSUB;
+	NavX navX = Robot.navx;
 	public AutoTurnFlat(double angleInput, double direction) {
 		this.finalAngSeg = angleInput;
 		this.direction = direction;
@@ -34,7 +35,7 @@ public class AutoTurnFlat extends Command{
 	}
 	
 	protected boolean isFinished() {
-		if (Math.abs(NavX.grabValues()) > this.finalAngSeg) {
+		if (Math.abs(navX.grabValues()) > this.finalAngSeg) {
 			return true;
 		} else {
 			return false;
