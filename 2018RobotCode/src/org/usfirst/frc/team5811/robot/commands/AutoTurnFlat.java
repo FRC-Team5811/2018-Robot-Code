@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoTurnFlat extends Command{
 	double count;
 	double finalAngSeg, direction, recip;
-	DriveTrain driveSUB = Robot.driveSUB;
-	NavX navX = Robot.navx;
+	//DriveTrain driveSUB = Robot.driveSUB;
+	//NavX navX = Robot.navx;
 	public AutoTurnFlat(double angleInput, double direction) {
 		this.finalAngSeg = angleInput;
 		this.direction = direction;
@@ -24,7 +24,7 @@ public class AutoTurnFlat extends Command{
 	}
 	
 	protected void execute() {
-		driveSUB.autoTurnFlat(this.direction);
+		Robot.driveSUB.autoTurnFlat(this.direction);
 
 		//System.out.println("Flat");
 //		//System.out.print("count: ");
@@ -35,7 +35,7 @@ public class AutoTurnFlat extends Command{
 	}
 	
 	protected boolean isFinished() {
-		if (Math.abs(navX.grabValues()) > this.finalAngSeg) {
+		if (Math.abs(Robot.navx.grabValues()) > this.finalAngSeg) {
 			return true;
 		} else {
 			return false;

@@ -11,7 +11,7 @@ public class TurnAuto extends CommandGroup {
 	
 	double accelFactor, decelFactor, flatFactor,totalAngle;
 	double accelAngleTrue, flatAngleTrue, decelAngleTrue;
-	NavX navX = Robot.navx;
+	//NavX navX = Robot.navx;
 	public TurnAuto (double angle, double direction) {
 		this.accelFactor = 0.10;
 		this.flatFactor = 0.05;
@@ -34,7 +34,7 @@ public class TurnAuto extends CommandGroup {
 		this.decelTime = 30;
 		this.flatTime = this.totalTime - this.accelTime - this.decelTime;
 		*/
-		navX.reset();
+		Robot.navx.reset();
 		//this.angle = angle;
 //		this.accelTime = this.totalTime/3;
 //		this.decelTime = this.totalTime/3;
@@ -43,7 +43,7 @@ public class TurnAuto extends CommandGroup {
 		//System.out.println("flat " + this.flatAngleTrue);
 		//System.out.println("decel " + this.decelAngleTrue);
 		//System.out.println("TURN AUTO START");
-		navX.reset();
+		Robot.navx.reset();
 
 		addSequential (new AutoTurnAcc(this.accelAngleTrue, this.direction));	
 		//NavX.reset();

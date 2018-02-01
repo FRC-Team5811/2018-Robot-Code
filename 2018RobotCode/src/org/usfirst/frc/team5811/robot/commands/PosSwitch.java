@@ -6,7 +6,7 @@ import org.usfirst.frc.team5811.robot.subsystems.Pivot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class PosSwitch extends Command {
-	Pivot pivot = Robot.pivot;
+	//Pivot pivot = Robot.pivot;
 	double angle = 80;
 	boolean complete;
 	int state = 2;
@@ -15,7 +15,7 @@ public class PosSwitch extends Command {
 	}
 	
 	protected void execute() {
-		this.complete = pivot.changeAngle(angle, 0);
+		this.complete = Robot.pivot.changeAngle(angle, 0);
 	}
 	
 	protected boolean isFinished() {

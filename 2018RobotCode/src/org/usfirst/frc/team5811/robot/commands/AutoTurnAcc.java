@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoTurnAcc extends Command{
 	double currentAngle;
 	double finalAngSeg,direction;
-	DriveTrain driveSUB = Robot.driveSUB;
-	NavX navX = Robot.navx;
+	//DriveTrain driveSUB = Robot.driveSUB;
+	//NavX navX = Robot.navx;
 	
 	public AutoTurnAcc(double angleInput, double direction) {
 		
@@ -29,7 +29,7 @@ public class AutoTurnAcc extends Command{
 	
 	protected void execute() {
 //		currentAngle = NavX.grabValues();
-		driveSUB.autoTurnAcc(this.finalAngSeg, Math.abs(navX.grabValues()), this.direction);
+		Robot.driveSUB.autoTurnAcc(this.finalAngSeg, Math.abs(Robot.navx.grabValues()), this.direction);
 		//System.out.println("Accelerating");
 		////System.out.print("count: ");
 		////System.out.println(count);
@@ -41,7 +41,7 @@ public class AutoTurnAcc extends Command{
 	
 	protected boolean isFinished() {
 //		//System.out.println("Calling isFinished");
-		if (Math.abs(navX.grabValues()) > this.finalAngSeg) {
+		if (Math.abs(Robot.navx.grabValues()) > this.finalAngSeg) {
 			return true;
 		} else {
 			

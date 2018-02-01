@@ -6,9 +6,9 @@ import org.usfirst.frc.team5811.robot.subsystems.Ramp;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class RampExtend extends Command {
-	Ramp ramp = Robot.ramp;
+	//Ramp ramp = Robot.ramp;
 	public RampExtend() {
-		ramp.extend();
+		Robot.ramp.extend();
 	}
 	
 	protected boolean isFinished() {

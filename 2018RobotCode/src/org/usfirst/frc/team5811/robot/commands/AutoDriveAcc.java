@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoDriveAcc extends Command{
 	double duration,direction;
-	DriveTrain driveSUB = Robot.driveSUB;
-	Encoders encoders = Robot.encoders;
+	//DriveTrain driveSUB = Robot.driveSUB;
+	//Encoders encoders = Robot.encoders;
 	public AutoDriveAcc(double durationInput, double direction) {
 		
 		this.duration = durationInput;
@@ -26,7 +26,7 @@ public class AutoDriveAcc extends Command{
 	
 	protected void execute() {
 		////System.out.println("does this work?");
-		driveSUB.autoDriveAcc(this.duration, Math.abs(encoders.getRightVal()), direction);
+		Robot.driveSUB.autoDriveAcc(this.duration, Math.abs(Robot.encoders.getRightVal()), direction);
 		//System.out.println("Accelerating");
 		//System.out.print("duration: ");
 		//System.out.println(duration);
@@ -36,7 +36,7 @@ public class AutoDriveAcc extends Command{
 	
 	protected boolean isFinished() {
 //		//System.out.println("Calling isFinished");
-		if (Math.abs(encoders.getRightVal()) > this.duration) {
+		if (Math.abs(Robot.encoders.getRightVal()) > this.duration) {
 			return true;
 		} else {
 			return false;

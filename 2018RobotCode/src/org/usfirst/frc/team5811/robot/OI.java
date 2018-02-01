@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
 public class OI {
-	Joystick joy1 = new Joystick(0);
+	public Joystick joy1 = new Joystick(0);
 	JoystickButton a = new JoystickButton(joy1, 2);
 	JoystickButton b = new JoystickButton(joy1, 3);
 	AxisButton leftJoyY = new AxisButton(joy1, 1);
@@ -24,12 +24,13 @@ public class OI {
 	AxisButton rightJoyX = new AxisButton(joy1, 2);
 	AxisButton righttrigger = new AxisButton(joy1,4);
 	
-	 Joystick joy2 = new Joystick(1);
+	Joystick joy2 = new Joystick(1);
 	JoystickButton aManip = new JoystickButton(joy2, 2);
 	JoystickButton bManip = new JoystickButton(joy2, 3);
 	JoystickButton yManip = new JoystickButton(joy2, 4);
 	JoystickButton xManip = new JoystickButton(joy2, 1);
 	
+
 	
 	public OI() {
 	
@@ -48,9 +49,7 @@ public class OI {
 	
 		
 		
-		
-		
-		
+			
 		//bManip.whenPressed(new HaltIntake());
 		
 	}
@@ -67,4 +66,7 @@ public class OI {
 	public double getRightX(){
 		return joy1.getRawAxis(2);
 	}
+
+
+	
 }

@@ -6,7 +6,7 @@ import org.usfirst.frc.team5811.robot.subsystems.Pivot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class PosStore extends Command {
-	Pivot pivot = Robot.pivot;
+	//Pivot pivot = Robot.pivot;
 	double angle = 150;
 	boolean complete;
 	int state = 4;
@@ -15,7 +15,7 @@ public class PosStore extends Command {
 	}
 	
 	protected void execute() {
-		this.complete = pivot.changeAngle(this.angle, this.state);
+		this.complete = Robot.pivot.changeAngle(this.angle, this.state);
 	}
 	
 	protected boolean isFinished() {

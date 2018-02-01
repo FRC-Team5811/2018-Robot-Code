@@ -6,10 +6,10 @@ import org.usfirst.frc.team5811.robot.subsystems.NavX;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class GrabNavX extends Command {
-	NavX navX = Robot.navx;
+	//NavX navX = Robot.navx;
 	protected void execute(){
 		
-		navX.grabValues();
+		Robot.navx.grabValues();
 	}
 	protected boolean isFinished() {
 		

@@ -6,12 +6,12 @@ import org.usfirst.frc.team5811.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeInward extends Command {
-	Intake intake = Robot.intake;
+//	Intake intake = Robot.intake;
 	protected void execute(){
-		intake.intakeIn();
+		Robot.intake.intakeIn();
 	}
 	protected void end(){
-		intake.halt();
+		Robot.intake.halt();
 	}
 	protected void interrupted(){
 		end();

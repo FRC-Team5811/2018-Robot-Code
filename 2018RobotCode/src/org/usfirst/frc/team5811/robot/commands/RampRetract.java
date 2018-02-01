@@ -7,9 +7,9 @@ import org.usfirst.frc.team5811.robot.subsystems.Ramp;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class RampRetract extends Command {
-	Ramp ramp = Robot.ramp;
+	//Ramp ramp = Robot.ramp;
 	public RampRetract() {
-		ramp.retract();
+		Robot.ramp.retract();
 	}
 	
 	protected boolean isFinished() {

@@ -18,6 +18,7 @@ import org.usfirst.frc.team5811.robot.commands.DriveAuto;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.Encoders;
 import org.usfirst.frc.team5811.robot.subsystems.Intake;
+import org.usfirst.frc.team5811.robot.subsystems.Joysticks;
 import org.usfirst.frc.team5811.robot.subsystems.LEDS;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
 import org.usfirst.frc.team5811.robot.subsystems.Pivot;
@@ -35,6 +36,7 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	public static Pivot pivot;
 	public static Ramp ramp;
+	public static Joysticks joysticks;
 	public static OI oi;
 	//hi
 
@@ -42,7 +44,10 @@ public class Robot extends IterativeRobot {
 
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
-	public Robot(){
+
+//
+	@Override
+	public void robotInit() {
 		oi = new OI();
 		driveSUB = new DriveTrain();
 		ledsub = new LEDS();
@@ -51,11 +56,8 @@ public class Robot extends IterativeRobot {
 		intake = new Intake();
 		pivot = new Pivot();
 		ramp = new Ramp();
-	}
-//
-	@Override
-	public void robotInit() {
-		
+		joysticks = new Joysticks();
+	
 		SmartDashboard.putData("Auto mode", chooser);
 		
 //		chooser.addDefault("Drive Straight", new DriveAuto(100, 100, 100)); 

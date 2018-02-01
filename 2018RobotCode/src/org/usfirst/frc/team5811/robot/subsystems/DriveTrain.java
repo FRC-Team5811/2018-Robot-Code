@@ -20,7 +20,7 @@ public class DriveTrain extends Subsystem {
 	
 	  //PowerDistributionPanel pdp = RobotMap.PDP;
 	
-	NavX navX = Robot.navx;
+	  NavX navX = Robot.navx;
 	
 	  float rotationPos = 0;
 	
@@ -33,10 +33,10 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void arcadeDrive(double turn, double throttle) {
-		motor0.set(throttle + turn);
-		motor1.set(throttle + turn);
-		motor2.set(-(throttle - turn));
-		motor3.set(-(throttle - turn));
+		//motor0.set(throttle + turn);
+		//motor1.set(throttle + turn);
+		//motor2.set(-(throttle - turn));
+		//motor3.set(-(throttle - turn));
 		////System.out.println(pdp.getCurrent(0)+ "   "+pdp.getCurrent(1)+ "   "+pdp.getCurrent(2)+ "   "+pdp.getCurrent(3));
 		
 		

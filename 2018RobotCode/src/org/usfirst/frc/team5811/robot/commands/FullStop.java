@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class FullStop extends Command {
 	int count;
 	int duration;
-	DriveTrain driveSUB = Robot.driveSUB;
+	//DriveTrain driveSUB = Robot.driveSUB;
 	public FullStop(int duration) {
 		this.duration = duration;
 	}
@@ -18,7 +18,7 @@ public class FullStop extends Command {
 	}
 	
 	protected void execute() {
-		driveSUB.fullStop();
+		Robot.driveSUB.fullStop();
 		count ++;
 	}
 

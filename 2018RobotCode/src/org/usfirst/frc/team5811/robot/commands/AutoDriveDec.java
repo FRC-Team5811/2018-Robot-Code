@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoDriveDec extends Command{
 	double duration, direction;
-	DriveTrain driveSUB = Robot.driveSUB;
-	Encoders encoders = Robot.encoders;
+	//DriveTrain driveSUB = Robot.driveSUB;
+	//Encoders encoders = Robot.encoders;
 	public AutoDriveDec(double duration, double direction) {
 		this.duration = duration;
 		this.direction = direction;
@@ -23,7 +23,7 @@ public class AutoDriveDec extends Command{
 	}
 	
 	protected void execute() {
-		driveSUB.autoDriveDec(duration, Math.abs(encoders.getRightVal()), direction);
+		Robot.driveSUB.autoDriveDec(duration, Math.abs(Robot.encoders.getRightVal()), direction);
 		//System.out.println("Deccelerating");
 		//System.out.print("duration: ");
 		//System.out.println(duration);
@@ -32,7 +32,7 @@ public class AutoDriveDec extends Command{
 	}
 	
 	protected boolean isFinished() {
-		if (Math.abs(encoders.getRightVal()) > this.duration) {
+		if (Math.abs(Robot.encoders.getRightVal()) > this.duration) {
 			return true;
 		} else {
 			return false;

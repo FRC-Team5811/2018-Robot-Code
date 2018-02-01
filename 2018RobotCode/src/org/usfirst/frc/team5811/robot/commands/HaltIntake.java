@@ -6,13 +6,13 @@ import org.usfirst.frc.team5811.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class HaltIntake extends Command {
-	Intake intake = Robot.intake;
+	//Intake intake = Robot.intake;
 	protected void initialize()
 	{
 		//Intake.halt();
 	}
 	protected void execute(){
-		intake.halt();
+		Robot.intake.halt();
 	}
 	
 	protected boolean isFinished() {
