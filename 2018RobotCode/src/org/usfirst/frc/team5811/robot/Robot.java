@@ -18,7 +18,6 @@ import org.usfirst.frc.team5811.robot.commands.DriveAuto;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.Encoders;
 import org.usfirst.frc.team5811.robot.subsystems.Intake;
-import org.usfirst.frc.team5811.robot.subsystems.Joysticks;
 import org.usfirst.frc.team5811.robot.subsystems.LEDS;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
 import org.usfirst.frc.team5811.robot.subsystems.Pivot;
@@ -36,7 +35,6 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	public static Pivot pivot;
 	public static Ramp ramp;
-	public static Joysticks joysticks;
 	public static OI oi;
 	//hi
 
@@ -56,7 +54,6 @@ public class Robot extends IterativeRobot {
 		intake = new Intake();
 		pivot = new Pivot();
 		ramp = new Ramp();
-		joysticks = new Joysticks();
 	
 		SmartDashboard.putData("Auto mode", chooser);
 		
@@ -82,7 +79,7 @@ public class Robot extends IterativeRobot {
 		 
 		navx.reset();
 		encoders.reset();
-		chooser.addDefault("Drive Straight", new AutonomousTestRoutine(100000,1,90,1));
+		chooser.addDefault("Drive Straight", new AutonomousTestRoutine(100,1,90,1));
 		
 		autonomousCommand = chooser.getSelected();
 		if (autonomousCommand != null)
@@ -107,8 +104,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		
-		System.out.println("Motor0: " + RobotMap.motor0.get());
-		System.out.println("Motor1: " + RobotMap.motor1.get());
+		
 
 	}
 
