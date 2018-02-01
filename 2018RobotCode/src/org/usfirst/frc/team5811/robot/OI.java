@@ -5,6 +5,7 @@ import org.usfirst.frc.team5811.robot.commands.GrabNavX;
 import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
 import org.usfirst.frc.team5811.robot.commands.PosDown;
+import org.usfirst.frc.team5811.robot.commands.RampExtend;
 import org.usfirst.frc.team5811.robot.commands.ledOFF;
 import org.usfirst.frc.team5811.robot.commands.testCommand;
 import org.usfirst.frc.team5811.robot.commands.SmartShoot;
@@ -30,6 +31,7 @@ public class OI {
 	JoystickButton bManip = new JoystickButton(joy2, 3);
 	JoystickButton yManip = new JoystickButton(joy2, 4);
 	JoystickButton xManip = new JoystickButton(joy2, 1);
+	ComboButton RLbumpers = new ComboButton(joy2, 5, 6);
 	
 
 	
@@ -47,6 +49,8 @@ public class OI {
 		
 		
 		aManip.whenPressed(new IntakeInward());
+		yManip.whileHeld(new SmartShoot());
+		RLbumpers.whenPressed(new RampExtend());
 	
 		
 		

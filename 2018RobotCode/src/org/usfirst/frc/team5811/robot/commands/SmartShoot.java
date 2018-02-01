@@ -16,6 +16,12 @@ public class SmartShoot extends Command {
 	protected void execute(){
 		Robot.intake.outtake(state);
 	}
+	protected void end(){
+		Robot.intake.halt();
+	}
+	protected void interrupted(){
+		end();
+	}
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
 		return false;
