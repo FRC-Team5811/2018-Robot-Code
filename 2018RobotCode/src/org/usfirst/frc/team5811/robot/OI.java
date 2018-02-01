@@ -46,7 +46,7 @@ public class OI {
 		//b.whenPressed(new GrabNavX());
 		
 		
-		aManip.whenPressed(new testCommand());
+		aManip.whenPressed(new IntakeInward());
 	
 		
 		

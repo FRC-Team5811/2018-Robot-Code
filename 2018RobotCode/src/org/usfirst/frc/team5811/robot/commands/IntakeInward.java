@@ -6,7 +6,7 @@ import org.usfirst.frc.team5811.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeInward extends Command {
-//	Intake intake = Robot.intake;
+
 	protected void execute(){
 		Robot.intake.intakeIn();
 	}
