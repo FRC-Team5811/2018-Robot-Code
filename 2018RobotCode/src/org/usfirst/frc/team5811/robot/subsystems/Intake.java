@@ -16,8 +16,8 @@ public class Intake extends Subsystem{
 		
 	}
 	public void intakeIn(){
-		leftMotor.set(1);
-		rightMotor.set(1);
+		leftMotor.set(-1);
+		rightMotor.set(-1);
 	}
 	public void halt(){
 		leftMotor.set(0);

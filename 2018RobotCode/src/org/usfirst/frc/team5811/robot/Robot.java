@@ -43,9 +43,7 @@ public class Robot extends IterativeRobot {
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
-//
-	@Override
-	public void robotInit() {
+	public Robot(){
 		oi = new OI();
 		driveSUB = new DriveTrain();
 		ledsub = new LEDS();
@@ -54,6 +52,10 @@ public class Robot extends IterativeRobot {
 		intake = new Intake();
 		pivot = new Pivot();
 		ramp = new Ramp();
+	}
+	@Override
+	public void robotInit() {
+	
 	
 		SmartDashboard.putData("Auto mode", chooser);
 		
@@ -79,12 +81,12 @@ public class Robot extends IterativeRobot {
 		 
 		navx.reset();
 		encoders.reset();
-		chooser.addDefault("Drive Straight", new AutonomousTestRoutine(1000,1,90,1));
+		chooser.addDefault("Drive Straight", new AutonomousTestRoutine(10000,1,90,1));
 		
 		autonomousCommand = chooser.getSelected();
-		if (autonomousCommand != null)
+		if (autonomousCommand != null){
 			autonomousCommand.start();
-	
+		}
 	}
 
 	

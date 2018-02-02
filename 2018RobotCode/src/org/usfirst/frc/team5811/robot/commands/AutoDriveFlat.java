@@ -11,8 +11,11 @@ public class AutoDriveFlat extends Command{
 	//DriveTrain driveSUB = Robot.driveSUB;
 	//Encoders encoders = Robot.encoders;
 	public AutoDriveFlat(double duration, double direction) {
+		requires(Robot.driveSUB);
 		this.duration = duration;
 		this.direction = direction;
+		System.out.println("This be running");
+
 		//input duration length here, not sure how to do it yet.
 		//Automatically assign values through group
 	}
@@ -23,6 +26,8 @@ public class AutoDriveFlat extends Command{
 	
 	protected void execute() {
 		Robot.driveSUB.autoDriveFlat(this.direction);
+		System.out.println("This be not running");
+
 		//System.out.println("Flat");
 		//System.out.print("duration: ");
 		//System.out.println(duration);
@@ -31,6 +36,8 @@ public class AutoDriveFlat extends Command{
 	}
 	
 	protected boolean isFinished() {
+		System.out.println("This be very not running");
+
 		if (Math.abs(Robot.encoders.getRightVal()) > this.duration) {
 			return true;
 		} else {

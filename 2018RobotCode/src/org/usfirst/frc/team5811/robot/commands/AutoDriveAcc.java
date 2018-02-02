@@ -11,23 +11,26 @@ public class AutoDriveAcc extends Command{
 	//DriveTrain driveSUB = Robot.driveSUB;
 	//Encoders encoders = Robot.encoders;
 	public AutoDriveAcc(double durationInput, double direction) {
-		
+
 		this.duration = durationInput;
 		this.direction = direction;
 		
 		//input duration length here, not sure how to do it yet.
 		//Automatically assign values through group
+		initialize();
 	}
-	
+	 
 	protected void intialize() {
 		//System.out.println("Initialized.");
-	
+		System.out.println("This be running");
+		execute();
 	}
 	
 	protected void execute() {
 		////System.out.println("does this work?");
-		Robot.driveSUB.autoDriveAcc(this.duration, Math.abs(Robot.encoders.getRightVal()), direction);
-		//System.out.println("Accelerating");
+		
+		Robot.driveSUB.autoDriveAcc(this.duration, Math.abs(Robot.encoders.getRightVal()), this.direction);
+		System.out.println("Accelerating");
 		//System.out.print("duration: ");
 		//System.out.println(duration);
 		////System.out.println(Math.abs(Encoders.getRightVal()));

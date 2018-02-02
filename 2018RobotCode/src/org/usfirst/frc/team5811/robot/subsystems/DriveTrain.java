@@ -56,7 +56,7 @@ public class DriveTrain extends Subsystem {
 	
 	public void autoDriveAcc(double durationAccel, double i,double direction) {
 		double motorCorrect = errorCorrect(currentAngle);
-		//System.out.println("Motor sped: "+((direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect));
+		System.out.println("Motor sped: "+((direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect));
 		motor0.set((direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect);
 		motor1.set((direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect);
 		motor2.set((-direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect);

@@ -7,7 +7,6 @@ import org.usfirst.frc.team5811.robot.commands.IntakeInward;
 import org.usfirst.frc.team5811.robot.commands.PosDown;
 import org.usfirst.frc.team5811.robot.commands.RampExtend;
 import org.usfirst.frc.team5811.robot.commands.ledOFF;
-import org.usfirst.frc.team5811.robot.commands.testCommand;
 import org.usfirst.frc.team5811.robot.commands.SmartShoot;
 import org.usfirst.frc.team5811.robot.commands.ledCOLOR;
 
@@ -48,7 +47,7 @@ public class OI {
 		//b.whenPressed(new GrabNavX());
 		
 		
-		aManip.whenPressed(new IntakeInward());
+		aManip.whileHeld(new IntakeInward());
 		yManip.whileHeld(new SmartShoot());
 		RLbumpers.whenPressed(new RampExtend());
 	

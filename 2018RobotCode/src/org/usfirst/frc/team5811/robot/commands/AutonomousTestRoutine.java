@@ -19,8 +19,8 @@ public class AutonomousTestRoutine extends CommandGroup {
 		*/
 		Robot.navx.reset();
 		Robot.encoders.reset();
-		
-		addSequential(new DriveAuto(driveTime1, driveDirection1));
+		addSequential(new AutoDriveFlat(10000,1));
+		//addSequential(new DriveAuto(driveTime1, driveDirection1));
 //	NavX.reset();
 //		Encoders.reset();
 //		addSequential(new FullStop(1));
