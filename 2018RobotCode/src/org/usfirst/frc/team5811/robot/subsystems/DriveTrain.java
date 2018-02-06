@@ -24,33 +24,35 @@ public class DriveTrain extends Subsystem {
 	
 	  float rotationPos = 0;
 	
-	  float correctionStrength = 7;	
-	  double magicNumber = 25;
-	  double currentAngle;
+	
+	  double magicNumber = 50;
+	  public double currentAngle;
 
 	public void initDefaultCommand() {
 		
 	}
 
 	public void arcadeDrive(double turn, double throttle) {
-		motor0.set(throttle + turn);
-		motor1.set(throttle + turn);
-		motor2.set(-(throttle - turn));
-		motor3.set(-(throttle - turn));
+		motor0.set(-(throttle - turn));
+		motor1.set(-(throttle - turn));
+		motor2.set(throttle + turn);
+		motor3.set(throttle + turn);
+		
 		////System.out.println(pdp.getCurrent(0)+ "   "+pdp.getCurrent(1)+ "   "+pdp.getCurrent(2)+ "   "+pdp.getCurrent(3));
 		
 		
 	}
-	public   void setCurrentAngle() {
+	public void setCurrentAngle() {
 		currentAngle = Robot.navx.grabValues();
+		System.out.println("SET CURRENT ANGLE: " + currentAngle);
 		//System.out.println("desired angle: " + currentAngle);
 	}
 	
-	public   double errorCorrect(double desiredAng) {
+	public double errorCorrect(double desiredAng) {
 		double error = Robot.navx.grabValues() - desiredAng;
-		////System.out.println("error: " + error);
+		System.out.println("error: " + error);
 		double motorDelta = error/magicNumber;
-		////System.out.println("motor delta: " + motorDelta);
+		System.out.println("motor delta: " + motorDelta);
 		return motorDelta;
 	}
 	
@@ -65,7 +67,7 @@ public class DriveTrain extends Subsystem {
 	}
 	public void autoDriveDec(double durationDecel, double i, double direction){
 		double motorCorrect = errorCorrect(currentAngle);
-		//System.out.println("Motor sped: "+(direction*(1-(i/(durationDecel*0.5))*0.5f)-motorCorrect));
+		System.out.println("Motor sped: "+(direction*(1-(i/(durationDecel*0.5))*0.5f)-motorCorrect));
 		motor0.set(direction*(1-(i/(durationDecel)+0.25)*0.5f) - motorCorrect + 0.23);
 		motor1.set(direction*(1-(i/(durationDecel)+0.25)*0.5f) - motorCorrect + 0.23);
 		motor2.set(-direction*(1-(i/(durationDecel)+0.25)*0.5f) - motorCorrect-0.23);
@@ -73,7 +75,7 @@ public class DriveTrain extends Subsystem {
 	}
 	public void autoDriveFlat(double direction){
 		double motorCorrect = errorCorrect(currentAngle);
-		//System.out.println("Motor sped: "+((direction*1)-motorCorrect));
+		System.out.println("Motor sped: "+((direction*1)-motorCorrect));
 		motor0.set((direction*1) - motorCorrect);
 		motor1.set((direction*1) - motorCorrect);
 		motor2.set((direction*-1) - motorCorrect);

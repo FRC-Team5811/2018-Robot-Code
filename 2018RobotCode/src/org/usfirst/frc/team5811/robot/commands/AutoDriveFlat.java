@@ -28,15 +28,15 @@ public class AutoDriveFlat extends Command{
 		Robot.driveSUB.autoDriveFlat(this.direction);
 		System.out.println("This be not running");
 
-		//System.out.println("Flat");
+		System.out.println("Flat");
 		//System.out.print("duration: ");
 		//System.out.println(duration);
-		////System.out.println(Math.abs(Encoders.getRightVal()));
+		System.out.println(Math.abs(Robot.encoders.getRightVal()));
 
 	}
 	
 	protected boolean isFinished() {
-		System.out.println("This be very not running");
+		//System.out.println("This be very not running");
 
 		if (Math.abs(Robot.encoders.getRightVal()) > this.duration) {
 			return true;

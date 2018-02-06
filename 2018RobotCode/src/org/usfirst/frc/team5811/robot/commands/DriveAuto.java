@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5811.robot.commands;
 
+import org.usfirst.frc.team5811.robot.Robot;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
 
@@ -10,9 +11,11 @@ public class DriveAuto extends CommandGroup {
 	double accelFactor, decelFactor, flatFactor, totalDistance;
 	double accelDistanceTrue, flatDistanceTrue, decelDistanceTrue;
 	public DriveAuto (double totalTime, double direction) {
-		this.accelFactor = 0.20;
-		this.flatFactor = 0.20;
-		this.decelFactor = 0.6;
+		System.out.println("goes all the way here");
+
+		this.accelFactor = 0.05;
+		this.flatFactor = 0.05;
+		this.decelFactor = 0.9;
 
 		this.totalDistance = totalTime;
 		
@@ -26,10 +29,14 @@ public class DriveAuto extends CommandGroup {
 		
 		
 		this.direction = direction;
-
+		addSequential (new SetCurrentAngle());
 		addSequential(new AutoDriveAcc(this.accelDistanceTrue, this.direction));	
 		addSequential(new AutoDriveFlat(this.flatDistanceTrue, this.direction));
      	addSequential(new AutoDriveDec(this.decelDistanceTrue, this.direction));
+     	
+
+     	Robot.navx.reset();
+		Robot.encoders.reset();
      	
 		
 

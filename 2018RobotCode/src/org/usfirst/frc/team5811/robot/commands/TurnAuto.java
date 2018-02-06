@@ -44,14 +44,17 @@ public class TurnAuto extends CommandGroup {
 		//System.out.println("decel " + this.decelAngleTrue);
 		//System.out.println("TURN AUTO START");
 		Robot.navx.reset();
-
+		
 		addSequential (new AutoTurnAcc(this.accelAngleTrue, this.direction));	
 		//NavX.reset();
 		addSequential (new AutoTurnFlat(this.flatAngleTrue, this.direction));
 		//NavX.reset();
      	addSequential (new AutoTurnDec(this.decelAngleTrue, this.direction));
+     	
      	//NavX.reset();
 		//System.out.println("TURN AUTO STOP");
+     	Robot.navx.reset();
+		Robot.encoders.reset();
 
 	}
 	

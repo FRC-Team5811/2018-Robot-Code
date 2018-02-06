@@ -24,15 +24,17 @@ public class AutoDriveDec extends Command{
 	
 	protected void execute() {
 		Robot.driveSUB.autoDriveDec(duration, Math.abs(Robot.encoders.getRightVal()), direction);
-		//System.out.println("Deccelerating");
+		System.out.println("Deccelerating");
 		//System.out.print("duration: ");
 		//System.out.println(duration);
-		////System.out.println(Math.abs(Encoders.getRightVal()));
+		System.out.println(Math.abs(Robot.encoders.getRightVal()));
 
 	}
 	
 	protected boolean isFinished() {
 		if (Math.abs(Robot.encoders.getRightVal()) > this.duration) {
+			Robot.encoders.reset();
+			Robot.navx.reset();
 			return true;
 		} else {
 			return false;

@@ -44,6 +44,8 @@ public class AutoTurnDec extends Command{
 	
 	protected boolean isFinished() {
 		if (Math.abs(Robot.navx.grabValues())> this.finalAngSeg) {
+			Robot.navx.reset();
+			Robot.encoders.reset();
 			return true;
 		} else {
 			return false;

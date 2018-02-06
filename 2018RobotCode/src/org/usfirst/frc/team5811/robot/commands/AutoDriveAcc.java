@@ -17,13 +17,13 @@ public class AutoDriveAcc extends Command{
 		
 		//input duration length here, not sure how to do it yet.
 		//Automatically assign values through group
-		initialize();
+		//initialize();
 	}
 	 
 	protected void intialize() {
 		//System.out.println("Initialized.");
 		System.out.println("This be running");
-		execute();
+		//execute();
 	}
 	
 	protected void execute() {
@@ -33,7 +33,7 @@ public class AutoDriveAcc extends Command{
 		System.out.println("Accelerating");
 		//System.out.print("duration: ");
 		//System.out.println(duration);
-		////System.out.println(Math.abs(Encoders.getRightVal()));
+		System.out.println(Math.abs(Robot.encoders.getRightVal()));
 	}
 	
 	

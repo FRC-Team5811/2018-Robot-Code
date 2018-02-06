@@ -22,7 +22,7 @@ public class Encoders extends Subsystem {
 		////System.out.println("right fright");
 		return driveL.get();
 	}
-	public  void reset(){
+	public void reset(){
 		driveR.reset();
 		driveL.reset();
 	}

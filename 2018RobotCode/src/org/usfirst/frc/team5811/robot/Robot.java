@@ -79,10 +79,18 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		 
-		navx.reset();
-		encoders.reset();
-		chooser.addDefault("Drive Straight", new AutonomousTestRoutine(10000,1,90,1));
-		
+//		navx.reset();
+//		encoders.reset();
+//		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+//		System.out.println(gameData);
+//		if (gameData.charAt(0) == 'L') {
+//			System.out.println("Left");
+		chooser.addDefault("Drive Left", new AutonomousTestRoutine(3000,0.7,45,-.7, 5000, 0.7, 20, .7, 4000, .7));  
+//		} 
+//		if (gameData.charAt(0) == 'R') {
+//			chooser.addObject("Drive Right", new AutonomousTestRoutine(3000,0.5,45,.7,7000,-0.7, 20, -.7, 4000, .7));  
+//		}
+//		
 		autonomousCommand = chooser.getSelected();
 		if (autonomousCommand != null){
 			autonomousCommand.start();
@@ -105,7 +113,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		
+		System.out.println(navx.grabValues());
 		
 
 	}
