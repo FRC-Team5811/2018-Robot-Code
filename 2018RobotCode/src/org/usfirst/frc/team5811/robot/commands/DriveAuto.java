@@ -13,9 +13,9 @@ public class DriveAuto extends CommandGroup {
 	public DriveAuto (double totalTime, double direction) {
 		System.out.println("goes all the way here");
 
-		this.accelFactor = 0.05;
-		this.flatFactor = 0.05;
-		this.decelFactor = 0.9;
+		this.accelFactor = 0.1;
+		this.flatFactor = 0.6;
+		this.decelFactor = 0.3;
 
 		this.totalDistance = totalTime;
 		

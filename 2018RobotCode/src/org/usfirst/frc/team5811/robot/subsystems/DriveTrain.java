@@ -25,7 +25,7 @@ public class DriveTrain extends Subsystem {
 	  float rotationPos = 0;
 	
 	
-	  double magicNumber = 50;
+	  double magicNumber = 12;
 	  public double currentAngle;
 
 	public void initDefaultCommand() {
@@ -59,21 +59,23 @@ public class DriveTrain extends Subsystem {
 	public void autoDriveAcc(double durationAccel, double i,double direction) {
 		double motorCorrect = errorCorrect(currentAngle);
 		System.out.println("Motor sped: "+((direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect));
-		motor0.set((direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect);
-		motor1.set((direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect);
-		motor2.set((-direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect);
-		motor3.set((-direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect);
+		motor0.set((direction*(i/(durationAccel)+0.3)*0.5f) - motorCorrect);
+		motor1.set((direction*(i/(durationAccel)+0.3)*0.5f) - motorCorrect);
+		motor2.set((-direction*(i/(durationAccel)+0.3)*0.5f) - motorCorrect);
+		motor3.set((-direction*(i/(durationAccel)+0.3)*0.5f) - motorCorrect);
 		
 	}
 	public void autoDriveDec(double durationDecel, double i, double direction){
 		double motorCorrect = errorCorrect(currentAngle);
+		magicNumber -= .1;
 		System.out.println("Motor sped: "+(direction*(1-(i/(durationDecel*0.5))*0.5f)-motorCorrect));
-		motor0.set(direction*(1-(i/(durationDecel)+0.25)*0.5f) - motorCorrect + 0.23);
-		motor1.set(direction*(1-(i/(durationDecel)+0.25)*0.5f) - motorCorrect + 0.23);
-		motor2.set(-direction*(1-(i/(durationDecel)+0.25)*0.5f) - motorCorrect-0.23);
-		motor3.set(-direction*(1-(i/(durationDecel)+0.25)*0.5f) - motorCorrect-0.23);
+		motor0.set(direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect );
+		motor1.set(direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect );
+		motor2.set(-direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect);
+		motor3.set(-direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect);
 	}
 	public void autoDriveFlat(double direction){
+		magicNumber += .1;
 		double motorCorrect = errorCorrect(currentAngle);
 		System.out.println("Motor sped: "+((direction*1)-motorCorrect));
 		motor0.set((direction*1) - motorCorrect);

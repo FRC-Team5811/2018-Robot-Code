@@ -13,7 +13,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5811.robot.commands.AutoDriveAcc;
-import org.usfirst.frc.team5811.robot.commands.AutonomousTestRoutine;
+import org.usfirst.frc.team5811.robot.commands.SwitchLeftAuto;
+import org.usfirst.frc.team5811.robot.commands.SwitchRightAuto;
 import org.usfirst.frc.team5811.robot.commands.DriveAuto;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.Encoders;
@@ -37,6 +38,8 @@ public class Robot extends IterativeRobot {
 	public static Ramp ramp;
 	public static OI oi;
 	//hi
+	
+	String gamedata;
 
 	Command autonomousCommand;
 
@@ -58,6 +61,7 @@ public class Robot extends IterativeRobot {
 	
 	
 		SmartDashboard.putData("Auto mode", chooser);
+		gamedata = DriverStation.getInstance().getGameSpecificMessage();
 		
 //		chooser.addDefault("Drive Straight", new DriveAuto(100, 100, 100)); 
 		//chooser.addObject("Drive", new DriveAuto(1,1,1));
@@ -79,18 +83,16 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		 
-//		navx.reset();
-//		encoders.reset();
-//		String gameData = DriverStation.getInstance().getGameSpecificMessage();
-//		System.out.println(gameData);
-//		if (gameData.charAt(0) == 'L') {
-//			System.out.println("Left");
-		chooser.addDefault("Drive Left", new AutonomousTestRoutine(3000,0.7,45,-.7, 5000, 0.7, 20, .7, 4000, .7));  
-//		} 
-//		if (gameData.charAt(0) == 'R') {
-//			chooser.addObject("Drive Right", new AutonomousTestRoutine(3000,0.5,45,.7,7000,-0.7, 20, -.7, 4000, .7));  
-//		}
-//		
+		navx.reset();
+		encoders.reset();
+		if(gamedata.charAt(1) == 'L'){
+			chooser.addDefault("Drive Straight", new SwitchLeftAuto(3000,0.6,45,-0.9, 4500, 0.6, 20, .9, 7000, .6 ));
+		}else if(gamedata.charAt(1) == 'R'){
+			chooser.addDefault("Drive Straight", new SwitchRightAuto(3000,0.7,33,0.8, 8000, 0.5, 27, -.9, 6000, .5 ));
+		}
+		
+		
+		
 		autonomousCommand = chooser.getSelected();
 		if (autonomousCommand != null){
 			autonomousCommand.start();

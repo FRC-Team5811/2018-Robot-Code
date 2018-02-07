@@ -25,6 +25,7 @@ public class AutoTurnFlat extends Command{
 	
 	protected void execute() {
 		Robot.driveSUB.autoTurnFlat(this.direction);
+		System.out.println("Angle: "+ Math.abs(Robot.navx.grabValues()));
 
 		//System.out.println("Flat");
 //		//System.out.print("count: ");
