@@ -22,7 +22,7 @@ public class AutoTurnAcc extends Command{
 	}
 	
 	protected void intialize() {
-		//System.out.println("Initialized.");
+		////System.out.println("Initialized.");
 	
 	
 	}
@@ -31,17 +31,17 @@ public class AutoTurnAcc extends Command{
 //		currentAngle = NavX.grabValues();
 		Robot.driveSUB.autoTurnAcc(this.finalAngSeg, Math.abs(Robot.navx.grabValues()), this.direction);
 	
-		System.out.println("Angle: "+ Math.abs(Robot.navx.grabValues()));
+		//System.out.println("Angle: "+ Math.abs(Robot.navx.grabValues()));
 		////System.out.print("count: ");
-		////System.out.println(count);
+		//////System.out.println(count);
 		////System.out.print("finalAngSeg: ");
-		////System.out.println(finalAngSeg);
-		//System.out.println("ANGLE: "+Math.abs(NavX.grabValues()));
+		//////System.out.println(finalAngSeg);
+		////System.out.println("ANGLE: "+Math.abs(NavX.grabValues()));
 	}
 	
 	
 	protected boolean isFinished() {
-//		//System.out.println("Calling isFinished");
+//		////System.out.println("Calling isFinished");
 		if (Math.abs(Robot.navx.grabValues()) > this.finalAngSeg) {
 			return true;
 		} else {

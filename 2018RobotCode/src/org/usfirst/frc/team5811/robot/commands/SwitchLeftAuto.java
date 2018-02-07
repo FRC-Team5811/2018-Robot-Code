@@ -18,7 +18,7 @@ public class SwitchLeftAuto extends CommandGroup {
 		this.driveDirection1 = driveDirection1;
 		this.turnDirection1 = turnDirection1;
 		*/
-		System.out.println("goes all the way here");
+		//System.out.println("goes all the way here");
 		Robot.navx.reset();
 		Robot.encoders.reset();
 		

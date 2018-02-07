@@ -38,7 +38,7 @@ public class TurnAuto extends CommandGroup {
      	addSequential (new AutoTurnDec(this.decelAngleTrue, this.direction));
      	
      	//NavX.reset();
-		//System.out.println("TURN AUTO STOP");
+		////System.out.println("TURN AUTO STOP");
      	Robot.navx.reset();
 		Robot.encoders.reset();
 

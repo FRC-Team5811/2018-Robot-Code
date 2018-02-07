@@ -11,7 +11,7 @@ public class DriveAuto extends CommandGroup {
 	double accelFactor, decelFactor, flatFactor, totalDistance;
 	double accelDistanceTrue, flatDistanceTrue, decelDistanceTrue;
 	public DriveAuto (double totalTime, double direction) {
-		System.out.println("goes all the way here");
+		//System.out.println("goes all the way here");
 
 		this.accelFactor = 0.1;
 		this.flatFactor = 0.6;

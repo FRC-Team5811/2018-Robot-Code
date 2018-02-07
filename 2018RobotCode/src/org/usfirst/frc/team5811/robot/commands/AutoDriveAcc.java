@@ -21,24 +21,24 @@ public class AutoDriveAcc extends Command{
 	}
 	 
 	protected void intialize() {
-		//System.out.println("Initialized.");
-		System.out.println("This be running");
+		////System.out.println("Initialized.");
+		////System.out.println("This be running");
 		//execute();
 	}
 	
 	protected void execute() {
-		////System.out.println("does this work?");
+		//////System.out.println("does this work?");
 		
 		Robot.driveSUB.autoDriveAcc(this.duration, Math.abs(Robot.encoders.getRightVal()), this.direction);
-		System.out.println("Accelerating");
+		////System.out.println("Accelerating");
 		//System.out.print("duration: ");
-		//System.out.println(duration);
-		System.out.println(Math.abs(Robot.encoders.getRightVal()));
+		////System.out.println(duration);
+		////System.out.println(Math.abs(Robot.encoders.getRightVal()));
 	}
 	
 	
 	protected boolean isFinished() {
-//		//System.out.println("Calling isFinished");
+//		////System.out.println("Calling isFinished");
 		if (Math.abs(Robot.encoders.getRightVal()) > this.duration) {
 			return true;
 		} else {

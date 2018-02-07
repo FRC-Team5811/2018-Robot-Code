@@ -25,14 +25,14 @@ public class AutoTurnFlat extends Command{
 	
 	protected void execute() {
 		Robot.driveSUB.autoTurnFlat(this.direction);
-		System.out.println("Angle: "+ Math.abs(Robot.navx.grabValues()));
+		////System.out.println("Angle: "+ Math.abs(Robot.navx.grabValues()));
 
-		//System.out.println("Flat");
+		////System.out.println("Flat");
 //		//System.out.print("count: ");
-	//	//System.out.println(count);
+	//	////System.out.println(count);
 //		//System.out.print("finalAngSeg: ");
-	//	//System.out.println(finalAngSeg);
-		//System.out.println("ANGLE: "+NavX.grabValues());
+	//	////System.out.println(finalAngSeg);
+		////System.out.println("ANGLE: "+NavX.grabValues());
 	}
 	
 	protected boolean isFinished() {

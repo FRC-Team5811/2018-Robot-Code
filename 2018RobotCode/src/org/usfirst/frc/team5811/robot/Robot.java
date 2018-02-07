@@ -85,10 +85,12 @@ public class Robot extends IterativeRobot {
 		 
 		navx.reset();
 		encoders.reset();
-		if(gamedata.charAt(1) == 'L'){
-			chooser.addDefault("Drive Straight", new SwitchLeftAuto(3000,0.6,45,-0.9, 4500, 0.6, 20, .9, 7000, .6 ));
-		}else if(gamedata.charAt(1) == 'R'){
-			chooser.addDefault("Drive Straight", new SwitchRightAuto(3000,0.7,33,0.8, 8000, 0.5, 27, -.9, 6000, .5 ));
+		if(gamedata.charAt(0) == 'L'){
+			////System.out.println(gamedata.charAt(1));
+			chooser.addDefault("Drive Straight", new SwitchLeftAuto(3000,0.45,38,-0.9, 4000, 0.45, 35, .9, 7000, .45 ));
+		}else if(gamedata.charAt(0) == 'R'){
+			////System.out.println(gamedata.charAt(1));
+			chooser.addDefault("Drive Straight", new SwitchRightAuto(3000,0.45,33,0.8, 8000, 0.45, 27, -.9, 6000, .45 ));
 		}
 		
 		
@@ -115,7 +117,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		System.out.println(navx.grabValues());
+		////System.out.println(navx.grabValues());
 		
 
 	}

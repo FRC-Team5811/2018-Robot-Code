@@ -32,16 +32,16 @@ public class AutoTurnDec extends Command{
 	
 	protected void execute() {
 		Robot.driveSUB.autoTurnDec(this.finalAngSeg, Math.abs(Robot.navx.grabValues()), direction);
-		System.out.println("Angle: "+ Math.abs(Robot.navx.grabValues()));
+		////System.out.println("Angle: "+ Math.abs(Robot.navx.grabValues()));
 
 		//error = (float) (rotationPos - NavX.grabValues());
 		//count -=1;
-		//System.out.println("Deccelerating");
+		////System.out.println("Deccelerating");
 //		//System.out.print("count: ");
-//		//System.out.println(count);
+//		////System.out.println(count);
 //		//System.out.print("duration: ");
-//		//System.out.println(finalAngSeg);
-		//System.out.println("ANGLE: "+Math.abs(NavX.grabValues()));
+//		////System.out.println(finalAngSeg);
+		////System.out.println("ANGLE: "+Math.abs(NavX.grabValues()));
 	}
 	
 	protected boolean isFinished() {

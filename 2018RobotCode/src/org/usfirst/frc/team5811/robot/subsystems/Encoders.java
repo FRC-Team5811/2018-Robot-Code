@@ -15,11 +15,11 @@ public class Encoders extends Subsystem {
 	}
 	
 	public  double getRightVal() {
-		//System.out.println("Encoder val: "+driveR.get());
+		////System.out.println("Encoder val: "+driveR.get());
 		return driveR.get();
 	}
 	public  double getLeftVal() {
-		////System.out.println("right fright");
+		//////System.out.println("right fright");
 		return driveL.get();
 	}
 	public void reset(){

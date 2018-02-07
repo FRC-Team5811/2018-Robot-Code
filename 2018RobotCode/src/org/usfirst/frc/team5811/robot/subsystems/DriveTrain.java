@@ -25,7 +25,7 @@ public class DriveTrain extends Subsystem {
 	  float rotationPos = 0;
 	
 	
-	  double magicNumber = 12;
+	  double magicNumber = 20;
 	  public double currentAngle;
 
 	public void initDefaultCommand() {
@@ -38,37 +38,42 @@ public class DriveTrain extends Subsystem {
 		motor2.set(throttle + turn);
 		motor3.set(throttle + turn);
 		
-		////System.out.println(pdp.getCurrent(0)+ "   "+pdp.getCurrent(1)+ "   "+pdp.getCurrent(2)+ "   "+pdp.getCurrent(3));
+		//////System.out.println(pdp.getCurrent(0)+ "   "+pdp.getCurrent(1)+ "   "+pdp.getCurrent(2)+ "   "+pdp.getCurrent(3));
 		
 		
 	}
 	public void setCurrentAngle() {
 		currentAngle = Robot.navx.grabValues();
-		System.out.println("SET CURRENT ANGLE: " + currentAngle);
-		//System.out.println("desired angle: " + currentAngle);
+		//System.out.println("SET CURRENT ANGLE: " + currentAngle);
+		////System.out.println("desired angle: " + currentAngle);
 	}
 	
 	public double errorCorrect(double desiredAng) {
 		double error = Robot.navx.grabValues() - desiredAng;
-		System.out.println("error: " + error);
+		System.out.print(Math.abs(error) + "\t      ");
 		double motorDelta = error/magicNumber;
-		System.out.println("motor delta: " + motorDelta);
+		//System.out.println("motor delta: " + motorDelta);
 		return motorDelta;
 	}
 	
 	public void autoDriveAcc(double durationAccel, double i,double direction) {
 		double motorCorrect = errorCorrect(currentAngle);
-		System.out.println("Motor sped: "+((direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect));
-		motor0.set((direction*(i/(durationAccel)+0.3)*0.5f) - motorCorrect);
-		motor1.set((direction*(i/(durationAccel)+0.3)*0.5f) - motorCorrect);
-		motor2.set((-direction*(i/(durationAccel)+0.3)*0.5f) - motorCorrect);
-		motor3.set((-direction*(i/(durationAccel)+0.3)*0.5f) - motorCorrect);
+		
+		//System.out.println("Motor sped: "+((direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect));
+		System.out.println(((direction*(i/(durationAccel)+0.3)) - motorCorrect) +"\t    " +((direction*(i/(durationAccel)+0.3)) - motorCorrect)+
+				"\t" + ((-direction*(i/(durationAccel)+0.3)) - motorCorrect)+"\t     " + ((-direction*(i/(durationAccel)+0.3)) - motorCorrect));
+		motor0.set((direction*(i/(durationAccel)+0.3)) - motorCorrect);
+		motor1.set((direction*(i/(durationAccel)+0.3)) - motorCorrect);
+		motor2.set((-direction*(i/(durationAccel)+0.3)) - motorCorrect);
+		motor3.set((-direction*(i/(durationAccel)+0.3)) - motorCorrect);
 		
 	}
 	public void autoDriveDec(double durationDecel, double i, double direction){
 		double motorCorrect = errorCorrect(currentAngle);
 		magicNumber -= .1;
-		System.out.println("Motor sped: "+(direction*(1-(i/(durationDecel*0.5))*0.5f)-motorCorrect));
+		System.out.println((direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect) +"\t    " +(direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect)+
+				"\t" + (-direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect)+"\t    " + (-direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect));
+		//System.out.println("Motor sped: "+(direction*(1-(i/(durationDecel*0.5))*0.5f)-motorCorrect));
 		motor0.set(direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect );
 		motor1.set(direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect );
 		motor2.set(-direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect);
@@ -77,14 +82,16 @@ public class DriveTrain extends Subsystem {
 	public void autoDriveFlat(double direction){
 		magicNumber += .1;
 		double motorCorrect = errorCorrect(currentAngle);
-		System.out.println("Motor sped: "+((direction*1)-motorCorrect));
+		System.out.println(((direction*1) - motorCorrect) +"\t     " +((direction*1) - motorCorrect)+
+				"\t" + ((direction*-1) - motorCorrect)+"\t      " + ((direction*-1) - motorCorrect));
+		//System.out.println("Motor sped: "+((direction*1)-motorCorrect));
 		motor0.set((direction*1) - motorCorrect);
 		motor1.set((direction*1) - motorCorrect);
 		motor2.set((direction*-1) - motorCorrect);
 		motor3.set((direction*-1) - motorCorrect);
 	}
 	public void fullStop() {
-		//System.out.println(0);
+		////System.out.println(0);
 		motor0.set(0);
 		motor1.set(0);
 		motor2.set(0);
@@ -93,7 +100,7 @@ public class DriveTrain extends Subsystem {
 	}
 	public void autoTurnAcc(double finalAngle, double currentAngle, double direction) {
 		
-		//System.out.println(direction*(currentAngle/finalAngle + 0.2));
+		////System.out.println(direction*(currentAngle/finalAngle + 0.2));
 //		motor0.set(direction*(i/(durationAccel*0.5))*0.5f);
 //		motor1.set(direction*(i/(durationAccel*0.5))*0.5f);
 //		motor2.set(direction*(i/(durationAccel*0.5))*0.5f);
@@ -107,7 +114,7 @@ public class DriveTrain extends Subsystem {
 		
 	}
 	public void autoTurnDec(double finalAngle, double currentAngle, double direction){
-		//System.out.println(direction*(1-(currentAngle/finalAngle + 0.2)));
+		////System.out.println(direction*(1-(currentAngle/finalAngle + 0.2)));
 //		motor0.set(direction*(i/(durationDecel*0.5))*0.5f);
 //		motor1.set(direction*(i/(durationDecel*0.5))*0.5f);
 //		motor2.set(direction*(i/(durationDecel*0.5))*0.5f);
@@ -119,7 +126,7 @@ public class DriveTrain extends Subsystem {
 	}
 	public void autoTurnFlat(double direction){
 		//direction = 0.2;
-		//System.out.println(direction*1);
+		////System.out.println(direction*1);
 		motor0.set(direction*1);
 		motor1.set(direction*1);
 		motor2.set(direction*1);
