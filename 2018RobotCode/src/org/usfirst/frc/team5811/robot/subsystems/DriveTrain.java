@@ -25,9 +25,17 @@ public class DriveTrain extends Subsystem {
 	  float rotationPos = 0;
 	
 	
-	  double magicNumber = 20;
+	  double kp = 20; //first year programmer is using correct variables instead of "magic numbers"
+	  double previousAngle;
+	  double kd = 0;
+	  double dTerm, pTerm;
 	  public double currentAngle;
-
+	  
+	  public void navXReset(){   //reseting angle storing variables
+		  previousAngle = 0;
+		  currentAngle = 0;
+	  }
+	  
 	public void initDefaultCommand() {
 		
 	}
@@ -43,7 +51,8 @@ public class DriveTrain extends Subsystem {
 		
 	}
 	public void setCurrentAngle() {
-		currentAngle = Robot.navx.grabValues();
+		previousAngle = currentAngle; //setting previous angle
+		currentAngle = Robot.navx.grabValues(); //getting current angle
 		//System.out.println("SET CURRENT ANGLE: " + currentAngle);
 		////System.out.println("desired angle: " + currentAngle);
 	}
@@ -51,9 +60,12 @@ public class DriveTrain extends Subsystem {
 	public double errorCorrect(double desiredAng) {
 		double error = Robot.navx.grabValues() - desiredAng;
 		System.out.print(Math.abs(error) + "\t      ");
-		double motorDelta = error/magicNumber;
+		pTerm = error/kp;
+		dTerm = kd*(previousAngle - currentAngle);
 		//System.out.println("motor delta: " + motorDelta);
-		return motorDelta;
+		return pTerm+dTerm;
+		
+	   
 	}
 	
 	public void autoDriveAcc(double durationAccel, double i,double direction) {
@@ -70,7 +82,7 @@ public class DriveTrain extends Subsystem {
 	}
 	public void autoDriveDec(double durationDecel, double i, double direction){
 		double motorCorrect = errorCorrect(currentAngle);
-		magicNumber -= .1;
+		//kp -= .1;
 		System.out.println((direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect) +"\t    " +(direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect)+
 				"\t" + (-direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect)+"\t    " + (-direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect));
 		//System.out.println("Motor sped: "+(direction*(1-(i/(durationDecel*0.5))*0.5f)-motorCorrect));
@@ -80,7 +92,7 @@ public class DriveTrain extends Subsystem {
 		motor3.set(-direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect);
 	}
 	public void autoDriveFlat(double direction){
-		magicNumber += .1;
+		//kp += .1;
 		double motorCorrect = errorCorrect(currentAngle);
 		System.out.println(((direction*1) - motorCorrect) +"\t     " +((direction*1) - motorCorrect)+
 				"\t" + ((direction*-1) - motorCorrect)+"\t      " + ((direction*-1) - motorCorrect));
