@@ -30,6 +30,7 @@ public class TurnAuto extends CommandGroup {
 		
 		
 		Robot.navx.reset();
+		Robot.driveSUB.navXReset();
 		
 		addSequential (new AutoTurnAcc(this.accelAngleTrue, this.direction));	
 		//NavX.reset();

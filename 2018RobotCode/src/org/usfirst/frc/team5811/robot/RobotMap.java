@@ -2,6 +2,7 @@ package org.usfirst.frc.team5811.robot;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -21,10 +22,13 @@ public class RobotMap {
 	public static Victor motor5 = new Victor(5);
 	public static Victor motor6 = new Victor(6);
 	public static Victor motor7 = new Victor(7);
+
+	public static AnalogInput ai = new AnalogInput(0);
+	
 	
 	//public static PowerDistributionPanel PDP = new PowerDistributionPanel();
 	
-	public static Potentiometer pivot = new AnalogPotentiometer(7, 360, 150);
+	public static Potentiometer pivot =new AnalogPotentiometer(ai,360,30);
 	
 	//public static DoubleSolenoid rampRelease = new DoubleSolenoid(0, 1);
 	

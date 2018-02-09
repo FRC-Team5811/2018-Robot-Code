@@ -3,6 +3,7 @@ package org.usfirst.frc.team5811.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
@@ -42,8 +43,12 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	//hi
 	
+
+	
 	
 	String gamedata;
+	
+	char readData;
 
 	Command autonomousCommand;
 
@@ -63,9 +68,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 	
-	
+
+		
 		SmartDashboard.putData("Auto mode", chooser);
+		//gamedata = null;
 		gamedata = DriverStation.getInstance().getGameSpecificMessage();
+		
+		readData = gamedata.charAt(0);
 		
 //		chooser.addDefault("Drive Straight", new DriveAuto(100, 100, 100)); 
 		//chooser.addObject("Drive", new DriveAuto(1,1,1));
@@ -93,16 +102,17 @@ public class Robot extends IterativeRobot {
 		navx.reset(); //reseting navx hardware
 		driveSUB.navXReset(); //reseting  angle storing variables
 		encoders.reset();
-		if(gamedata.charAt(0) == 'L'){
+		if(readData == 'L'){
 			////System.out.println(gamedata.charAt(1));
-			chooser.addDefault("Drive Straight", new SwitchLeftAuto(3000,0.45,38,-0.9, 4000, 0.45, 38, .9, 6500, .45 ));
-		}else if(gamedata.charAt(0) == 'R'){
+			chooser.addDefault("Drive Straight Left", new SwitchLeftAuto(3000,0.45,38,-0.9, 4000, 0.45, 38, .9, 6500, .45 ));
+		}else if(readData == 'R'){
 			////System.out.println(gamedata.charAt(1));
-			chooser.addDefault("Drive Straight", new SwitchRightAuto(3000,0.45,33,0.8, 8000, 0.45, 33, -.9, 6000, .45 ));
+			chooser.addDefault("Drive Straight Right", new SwitchRightAuto(3000,0.45,40,0.8, 8000, 0.45, 33, -.9, 6000, .45 ));
 		}
 		
-		
-		
+		readData = 'D';
+		driveSUB.navXReset();
+		encoders.reset();
 		autonomousCommand = chooser.getSelected();
 		if (autonomousCommand != null){
 			autonomousCommand.start();
@@ -125,6 +135,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+		
+		
 		////System.out.println(navx.grabValues());
 		
 

@@ -16,6 +16,7 @@ public class PosExchange extends Command {
 	
 	protected void execute() {
 		this.complete = Robot.pivot.changeAngle(this.angle, this.state);
+		
 	}
 	
 	protected boolean isFinished() {
