@@ -13,7 +13,7 @@ public class SmartShoot extends Command {
 	public SmartShoot(){
 		setInterruptible(true);
 	//	requires(Robot.intake);
-		this.start();
+		//this.start();
 	}
 	protected void initialize(){
 		 state = Robot.pivot.getState();

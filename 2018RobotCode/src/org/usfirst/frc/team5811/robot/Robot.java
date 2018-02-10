@@ -22,6 +22,10 @@ import org.usfirst.frc.team5811.robot.commands.CenterAutoMaster;
 import org.usfirst.frc.team5811.robot.commands.TestAuto;
 import org.usfirst.frc.team5811.robot.commands.TurnAuto;
 import org.usfirst.frc.team5811.robot.commands.DriveAuto;
+import org.usfirst.frc.team5811.robot.commands.HaltIntake;
+import org.usfirst.frc.team5811.robot.commands.IntakeInward;
+import org.usfirst.frc.team5811.robot.commands.RampExtend;
+import org.usfirst.frc.team5811.robot.commands.SmartShoot;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.Encoders;
 import org.usfirst.frc.team5811.robot.subsystems.Intake;
@@ -72,8 +76,11 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putData("Auto mode", chooser);
 		chooser.addDefault("Center Auto", new CenterAutoMaster());
-		
-		
+//		
+//		OI.aManip.whenPressed(new IntakeInward());
+//		OI.bManip.whenPressed(new HaltIntake());
+//		OI.yManip.whileHeld(new SmartShoot());
+//		OI.RLbumpers.whenPressed(new RampExtend());
 		
 		
 		//gamedata = null;
@@ -139,9 +146,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		
-		
-		
+
 		//System.out.println(navx.grabValues());
 		
 
