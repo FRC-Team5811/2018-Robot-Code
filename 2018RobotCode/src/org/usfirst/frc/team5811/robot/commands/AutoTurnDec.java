@@ -33,7 +33,9 @@ public class AutoTurnDec extends Command{
 	protected void execute() {
 		Robot.driveSUB.autoTurnDec(this.finalAngSeg, Math.abs(Robot.navx.grabValues()), direction);
 		////System.out.println("Angle: "+ Math.abs(Robot.navx.grabValues()));
-
+        System.out.println("decellerating"); 
+		
+		
 		//error = (float) (rotationPos - NavX.grabValues());
 		//count -=1;
 		////System.out.println("Deccelerating");
@@ -46,7 +48,7 @@ public class AutoTurnDec extends Command{
 	
 	protected boolean isFinished() {
 		if (Math.abs(Robot.navx.grabValues())> this.finalAngSeg) {
-			Robot.navx.reset();
+			Robot.navx.reset();  //commented these out to test the autoAngleCorrect method
 			Robot.encoders.reset();
 			return true;
 		} else {

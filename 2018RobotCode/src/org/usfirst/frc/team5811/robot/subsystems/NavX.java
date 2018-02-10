@@ -12,8 +12,7 @@ import org.usfirst.frc.team5811.robot.RobotMap;
 public class NavX extends Subsystem {
 	
 	public static AHRS navX = RobotMap.navx;
-	@Override
-	protected void initDefaultCommand() {
+	public NavX(){
 		try {
 			navX = new AHRS(I2C.Port.kMXP);
 			////System.out.println("NavX instantiated");
@@ -23,6 +22,10 @@ public class NavX extends Subsystem {
 			////System.out.println("NavX instantiation error");
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
+	}
+	@Override
+	protected void initDefaultCommand() {
+
 		
 	}
 	public float grabValues(){

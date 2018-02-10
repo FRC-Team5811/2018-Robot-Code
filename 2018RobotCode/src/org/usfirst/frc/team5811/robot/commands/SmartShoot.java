@@ -10,6 +10,11 @@ public class SmartShoot extends Command {
 	int state;
 	//Intake intake = Robot.intake;
 	//Pivot pivot = Robot.pivot;
+	public SmartShoot(){
+		setInterruptible(true);
+	//	requires(Robot.intake);
+		this.start();
+	}
 	protected void initialize(){
 		 state = Robot.pivot.getState();
 	}

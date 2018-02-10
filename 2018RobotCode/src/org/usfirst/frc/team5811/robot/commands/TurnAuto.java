@@ -13,7 +13,7 @@ public class TurnAuto extends CommandGroup {
 	double accelAngleTrue, flatAngleTrue, decelAngleTrue;
 	//NavX navX = Robot.navx;
 	public TurnAuto (double angle, double direction) {
-		this.accelFactor = 0.20;
+		this.accelFactor = 0.20; //Split the angle of the turn up into proportions of accel, flat, decel
 		this.flatFactor = 0.3;
 		this.decelFactor = 0.50;
 		this.direction = direction;
@@ -26,11 +26,10 @@ public class TurnAuto extends CommandGroup {
 		
 		this.accelAngleTrue = this.accelAngle;
 		this.flatAngleTrue = this.accelAngle + this.flatAngle;
-		this.decelAngleTrue = this.accelAngle + this.flatAngle + this.decelAngle;
+		this.decelAngleTrue = this.accelAngle + this.flatAngle + this.decelAngle; //Isn't this just "angle"?
 		
 		
-		Robot.navx.reset();
-		Robot.driveSUB.navXReset();
+		Robot.driveSUB.fullReset();
 		
 		addSequential (new AutoTurnAcc(this.accelAngleTrue, this.direction));	
 		//NavX.reset();
@@ -38,10 +37,10 @@ public class TurnAuto extends CommandGroup {
 		//NavX.reset();
      	addSequential (new AutoTurnDec(this.decelAngleTrue, this.direction));
      	
+     	//addSequential (new AutoAngleCorrect(this.decelAngleTrue));
      	//NavX.reset();
 		////System.out.println("TURN AUTO STOP");
-     	Robot.navx.reset();
-		Robot.encoders.reset();
+     	Robot.driveSUB.fullReset();
 
 	}
 	

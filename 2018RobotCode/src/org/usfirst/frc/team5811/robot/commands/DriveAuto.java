@@ -35,9 +35,8 @@ public class DriveAuto extends CommandGroup {
      	addSequential(new AutoDriveDec(this.decelDistanceTrue, this.direction));
      	
 
-      	Robot.navx.reset(); //resetting navx hardware
-		Robot.encoders.reset(); //resetting encoder hardware
-		Robot.driveSUB.navXReset();// reseting angle holding variables
+      	//resetting encoder hardware
+		Robot.driveSUB.fullReset();// reseting angle holding variables
      	
 		
 

@@ -17,8 +17,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5811.robot.commands.AutoDriveAcc;
-import org.usfirst.frc.team5811.robot.commands.SwitchLeftAuto;
-import org.usfirst.frc.team5811.robot.commands.SwitchRightAuto;
+import org.usfirst.frc.team5811.robot.commands.CenterAutoMaster;
+
+import org.usfirst.frc.team5811.robot.commands.TestAuto;
+import org.usfirst.frc.team5811.robot.commands.TurnAuto;
 import org.usfirst.frc.team5811.robot.commands.DriveAuto;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.Encoders;
@@ -55,7 +57,10 @@ public class Robot extends IterativeRobot {
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
-	public Robot(){
+
+	@Override
+	public void robotInit() {
+	
 		oi = new OI();
 		driveSUB = new DriveTrain();
 		ledsub = new LEDS();
@@ -64,17 +69,16 @@ public class Robot extends IterativeRobot {
 		intake = new Intake();
 		pivot = new Pivot();
 		ramp = new Ramp();
-	}
-	@Override
-	public void robotInit() {
-	
-
 		
 		SmartDashboard.putData("Auto mode", chooser);
-		//gamedata = null;
-		gamedata = DriverStation.getInstance().getGameSpecificMessage();
+		chooser.addDefault("Center Auto", new CenterAutoMaster());
 		
-		readData = gamedata.charAt(0);
+		
+		
+		
+		//gamedata = null;
+		
+		
 		
 //		chooser.addDefault("Drive Straight", new DriveAuto(100, 100, 100)); 
 		//chooser.addObject("Drive", new DriveAuto(1,1,1));
@@ -95,39 +99,39 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-
-		
-		
 		
 		navx.reset(); //reseting navx hardware
-		driveSUB.navXReset(); //reseting  angle storing variables
+		driveSUB.fullReset(); //reseting  angle storing variables
 		encoders.reset();
-		if(readData == 'L'){
-			////System.out.println(gamedata.charAt(1));
-			chooser.addDefault("Drive Straight Left", new SwitchLeftAuto(3000,0.45,38,-0.9, 4000, 0.45, 38, .9, 6500, .45 ));
-		}else if(readData == 'R'){
-			////System.out.println(gamedata.charAt(1));
-			chooser.addDefault("Drive Straight Right", new SwitchRightAuto(3000,0.45,40,0.8, 8000, 0.45, 33, -.9, 6000, .45 ));
-		}
 		
-		readData = 'D';
-		driveSUB.navXReset();
-		encoders.reset();
+		
+		
+		
+		//chooser.addObject("Test auto routine", new TestAuto());
+//		chooser.addDefault("Test", new TurnAuto(40, 0.7));
+		
+		
 		autonomousCommand = chooser.getSelected();
+		
+		
 		if (autonomousCommand != null){
 			autonomousCommand.start();
 		}
+		
 	}
 
 	
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
+		System.out.println("Navx: " + navx.grabValues());
+		System.out.println("Encoder Val: "+encoders.getRightVal());
 	}
 
 	@Override
 	public void teleopInit() {
-	
+		//System.out.println("Navx: " + navx.grabValues());
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
@@ -138,7 +142,7 @@ public class Robot extends IterativeRobot {
 		
 		
 		
-		////System.out.println(navx.grabValues());
+		//System.out.println(navx.grabValues());
 		
 
 	}

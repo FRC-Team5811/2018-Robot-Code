@@ -12,8 +12,7 @@ public class Pivot extends Subsystem {
 	
 	 Potentiometer pivot = RobotMap.pivot;
 	 Victor motor6 = RobotMap.motor6;
-	 Victor motor7 = RobotMap.motor7;
-	 double tolerance = 20; //how close to target is acceptable, in degrees
+	 double tolerance = 1; //how close to target is acceptable, in degrees
 	 int state = 0; //position state of arm
 	 double difference; 
 	 double proportionDist = 30; 
@@ -29,7 +28,6 @@ public class Pivot extends Subsystem {
 	}
 	public  void setMotor(double speed) {
 		motor6.set(speed);
-		motor7.set(speed);
 	}
 	public boolean changeAngle(double angle, int stateIn) {
 		state = stateIn;

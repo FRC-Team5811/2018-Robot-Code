@@ -6,7 +6,16 @@ import org.usfirst.frc.team5811.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeInward extends Command {
-
+	public IntakeInward(){
+		//requires(Robot.intake);
+		setInterruptible(true);
+		this.start();
+		
+	}
+	protected void initialize(){
+		
+	}
+	
 	protected void execute(){
 		Robot.intake.intakeIn();
 	}
@@ -16,10 +25,13 @@ public class IntakeInward extends Command {
 	protected void interrupted(){
 		end();
 	}
+	public void cancel(){
+		
+	}
 	
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 

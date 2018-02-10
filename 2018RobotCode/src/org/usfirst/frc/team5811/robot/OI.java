@@ -49,7 +49,8 @@ public class OI {
 		//b.whenPressed(new GrabNavX());
 		
 		
-		aManip.whileHeld(new PosSwitchReverse());
+		aManip.whenPressed(new IntakeInward());
+		bManip.whenPressed(new HaltIntake());
 		yManip.whileHeld(new SmartShoot());
 		RLbumpers.whenPressed(new RampExtend());
 	

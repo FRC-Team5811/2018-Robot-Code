@@ -7,14 +7,24 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class HaltIntake extends Command {
 	//Intake intake = Robot.intake;
+	public HaltIntake(){
+		setInterruptible(true);
+		//requires(Robot.intake);
+		this.start();
+	}
 	protected void initialize()
 	{
-		//Intake.halt();
+	
 	}
 	protected void execute(){
 		Robot.intake.halt();
 	}
-	
+/*	protected void interrupted(){
+		end();
+	}
+	protected void end(){
+		Robot.intake.halt();
+	} */
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
 		return false;

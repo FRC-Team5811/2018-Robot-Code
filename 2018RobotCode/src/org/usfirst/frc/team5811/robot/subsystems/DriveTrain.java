@@ -25,15 +25,26 @@ public class DriveTrain extends Subsystem {
 	  float rotationPos = 0;
 	
 	
-	  double kp = 20; //first year programmer is using correct variables instead of "magic numbers"
-	  double previousAngle;
-	  double kd = 0;
-	  double dTerm, pTerm;
+	  double kp = 20;  //first year programmer is using correct variables instead of "magic numbers"
+	  double ki = .002; //integral gain for AutoAngleCorrect
+	  double kd = 0;   //derivative gain for straight driving, currently not implemented
+	  double pTerm, dTerm;
 	  public double currentAngle;
-	  
-	  public void navXReset(){   //reseting angle storing variables
+	  double previousAngle;
+	  double angleError; //used in autoAngleCorrect
+	  double sumOfErrors; //used in autoAngleCorrect
+	  double rateOfChange; //used in autoAngleCorrect
+	  double angleTolerance = 1; //used in autoAngleCorrect
+	  double rotationRateTolerance = 1; //used in autoAngleCorrect
+	  	  
+	  public void fullReset(){   //reseting angle storing variables
 		  previousAngle = 0;
 		  currentAngle = 0;
+		  angleError = 0;
+		  sumOfErrors = 0;
+		  rateOfChange = 0;
+		  Robot.navx.reset();
+		  Robot.encoders.reset();
 	  }
 	  
 	public void initDefaultCommand() {
@@ -50,16 +61,17 @@ public class DriveTrain extends Subsystem {
 		
 		
 	}
-	public void setCurrentAngle() {
+	public double setCurrentAngle() {
 		previousAngle = currentAngle; //setting previous angle
 		currentAngle = Robot.navx.grabValues(); //getting current angle
+		return currentAngle;
 		//System.out.println("SET CURRENT ANGLE: " + currentAngle);
 		////System.out.println("desired angle: " + currentAngle);
 	}
 	
 	public double errorCorrect(double desiredAng) {
 		double error = Robot.navx.grabValues() - desiredAng;
-		System.out.print(Math.abs(error) + "\t      ");
+//		System.out.print(Math.abs(error) + "\t      ");
 		pTerm = error/kp;
 		dTerm = kd*(previousAngle - currentAngle);
 		//System.out.println("motor delta: " + motorDelta);
@@ -72,8 +84,8 @@ public class DriveTrain extends Subsystem {
 		double motorCorrect = errorCorrect(currentAngle);
 		
 		//System.out.println("Motor sped: "+((direction*(i/(durationAccel)+0.2)*0.5f) - motorCorrect));
-		System.out.println(((direction*(i/(durationAccel)+0.3)) - motorCorrect) +"\t    " +((direction*(i/(durationAccel)+0.3)) - motorCorrect)+
-				"\t" + ((-direction*(i/(durationAccel)+0.3)) - motorCorrect)+"\t     " + ((-direction*(i/(durationAccel)+0.3)) - motorCorrect));
+//		System.out.println(((direction*(i/(durationAccel)+0.3)) - motorCorrect) +"\t    " +((direction*(i/(durationAccel)+0.3)) - motorCorrect)+
+//				"\t" + ((-direction*(i/(durationAccel)+0.3)) - motorCorrect)+"\t     " + ((-direction*(i/(durationAccel)+0.3)) - motorCorrect));
 		motor0.set((direction*(i/(durationAccel)+0.3)) - motorCorrect);
 		motor1.set((direction*(i/(durationAccel)+0.3)) - motorCorrect);
 		motor2.set((-direction*(i/(durationAccel)+0.3)) - motorCorrect);
@@ -83,8 +95,8 @@ public class DriveTrain extends Subsystem {
 	public void autoDriveDec(double durationDecel, double i, double direction){
 		double motorCorrect = errorCorrect(currentAngle);
 		//kp -= .1;
-		System.out.println((direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect) +"\t    " +(direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect)+
-				"\t" + (-direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect)+"\t    " + (-direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect));
+//		System.out.println((direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect) +"\t    " +(direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect)+
+//				"\t" + (-direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect)+"\t    " + (-direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect));
 		//System.out.println("Motor sped: "+(direction*(1-(i/(durationDecel*0.5))*0.5f)-motorCorrect));
 		motor0.set(direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect );
 		motor1.set(direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect );
@@ -94,8 +106,8 @@ public class DriveTrain extends Subsystem {
 	public void autoDriveFlat(double direction){
 		//kp += .1;
 		double motorCorrect = errorCorrect(currentAngle);
-		System.out.println(((direction*1) - motorCorrect) +"\t     " +((direction*1) - motorCorrect)+
-				"\t" + ((direction*-1) - motorCorrect)+"\t      " + ((direction*-1) - motorCorrect));
+//		System.out.println(((direction*1) - motorCorrect) +"\t     " +((direction*1) - motorCorrect)+
+//				"\t" + ((direction*-1) - motorCorrect)+"\t      " + ((direction*-1) - motorCorrect));
 		//System.out.println("Motor sped: "+((direction*1)-motorCorrect));
 		motor0.set((direction*1) - motorCorrect);
 		motor1.set((direction*1) - motorCorrect);
@@ -131,11 +143,38 @@ public class DriveTrain extends Subsystem {
 //		motor1.set(direction*(i/(durationDecel*0.5))*0.5f);
 //		motor2.set(direction*(i/(durationDecel*0.5))*0.5f);
 //		motor3.set(direction*(i/(durationDecel*0.5))*0.5f);
-		motor0.set(direction*(1-(currentAngle/finalAngle)+0.2) * 0.4);
+		motor0.set(direction*(1-(currentAngle/finalAngle)+0.2)* 0.4);
 		motor1.set(direction*(1-(currentAngle/finalAngle)+0.2)* 0.4);
 		motor2.set(direction*(1-(currentAngle/finalAngle)+0.2)* 0.4);
 		motor3.set(direction*(1-(currentAngle/finalAngle)+0.2)* 0.4);
 	}
+	
+	public boolean angleCorrect(double finalAngle, double currentAngle){
+		angleError = finalAngle - currentAngle; 
+		sumOfErrors += angleError;
+		rateOfChange = currentAngle - previousAngle;
+		
+		if(sumOfErrors>100){
+			sumOfErrors = 100;
+		}else if(sumOfErrors < -100){
+			sumOfErrors = -100;
+		}
+		
+		motor0.set(-ki*sumOfErrors);
+		motor1.set(-ki*sumOfErrors);
+		motor2.set(-ki*sumOfErrors);
+		motor3.set(-ki*sumOfErrors);
+		System.out.println(ki*sumOfErrors); 
+		System.out.println("Error " + angleError); 
+		
+		if(currentAngle <= finalAngle+angleTolerance && currentAngle >= finalAngle-angleTolerance && rateOfChange < rotationRateTolerance){
+			System.out.println("CONDITION SATISFIED");
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	public void autoTurnFlat(double direction){
 		//direction = 0.2;
 		////System.out.println(direction*1);
