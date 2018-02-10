@@ -25,7 +25,7 @@ public class DriveTrain extends Subsystem {
 	  float rotationPos = 0;
 	
 	
-	  double kp = 20;  //first year programmer is using correct variables instead of "magic numbers"
+	  double kmagicnumberp = 22;  //first year programmer is using correct variables instead of "magic numbers"
 	  double ki = .002; //integral gain for AutoAngleCorrect
 	  double kd = 0;   //derivative gain for straight driving, currently not implemented
 	  double pTerm, dTerm;
@@ -50,12 +50,18 @@ public class DriveTrain extends Subsystem {
 	public void initDefaultCommand() {
 		
 	}
+	public double getRight() {
+		return motor2.get();
+	}
+	public double getLeft() {
+		return motor0.get();
+	}
 
 	public void arcadeDrive(double turn, double throttle) {
-		motor0.set(-(throttle - turn));
-		motor1.set(-(throttle - turn));
-		motor2.set(throttle + turn);
-		motor3.set(throttle + turn);
+		motor0.set(-(throttle - (0.5*turn)));
+		motor1.set(-(throttle - (0.5*turn)));
+		motor2.set(throttle + (0.5*turn));
+		motor3.set(throttle + (0.5*turn));
 		
 		//////System.out.println(pdp.getCurrent(0)+ "   "+pdp.getCurrent(1)+ "   "+pdp.getCurrent(2)+ "   "+pdp.getCurrent(3));
 		
@@ -72,7 +78,7 @@ public class DriveTrain extends Subsystem {
 	public double errorCorrect(double desiredAng) {
 		double error = Robot.navx.grabValues() - desiredAng;
 //		System.out.print(Math.abs(error) + "\t      ");
-		pTerm = error/kp;
+		pTerm = error/kmagicnumberp;
 		dTerm = kd*(previousAngle - currentAngle);
 		//System.out.println("motor delta: " + motorDelta);
 		return pTerm+dTerm;

@@ -26,13 +26,13 @@ public class OI {
 	AxisButton rightJoyY = new AxisButton(joy1, 3);
 	AxisButton rightJoyX = new AxisButton(joy1, 2);
 	AxisButton righttrigger = new AxisButton(joy1,4);
-	
-	Joystick joy2 = new Joystick(1);
-	JoystickButton aManip = new JoystickButton(joy2, 2);
-	JoystickButton bManip = new JoystickButton(joy2, 3);
-	JoystickButton yManip = new JoystickButton(joy2, 4);
-	JoystickButton xManip = new JoystickButton(joy2, 1);
-	ComboButton RLbumpers = new ComboButton(joy2, 5, 6);
+//	
+//	Joystick joy2 = new Joystick(1);
+//	JoystickButton aManip = new JoystickButton(joy2, 2);
+//	JoystickButton bManip = new JoystickButton(joy2, 3);
+//	JoystickButton yManip = new JoystickButton(joy2, 4);
+//	JoystickButton xManip = new JoystickButton(joy2, 1);
+//	ComboButton RLbumpers = new ComboButton(joy2, 5, 6);
 	
 
 	
@@ -47,13 +47,13 @@ public class OI {
 		a.whileHeld(new ledCOLOR());
 		b.whileHeld(new ledOFF());
 		//b.whenPressed(new GrabNavX());
-		
-		
-		aManip.whenPressed(new IntakeInward());
-		bManip.whenPressed(new HaltIntake());
-		yManip.whileHeld(new SmartShoot());
-		RLbumpers.whenPressed(new RampExtend());
-	
+//		
+//		
+//		aManip.whenPressed(new IntakeInward());
+//		bManip.whenPressed(new HaltIntake());
+//		yManip.whileHeld(new SmartShoot());
+//		RLbumpers.whenPressed(new RampExtend());
+//	
 		
 		
 			

@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5811.robot.commands.AutoDriveAcc;
+import org.usfirst.frc.team5811.robot.commands.AutoLeft;
+import org.usfirst.frc.team5811.robot.commands.AutoRight;
 import org.usfirst.frc.team5811.robot.commands.CenterAutoMaster;
 
 import org.usfirst.frc.team5811.robot.commands.TestAuto;
@@ -72,6 +74,9 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putData("Auto mode", chooser);
 		chooser.addDefault("Center Auto", new CenterAutoMaster());
+		chooser.addObject("Left Auto", new AutoLeft());
+		chooser.addObject("Right Auto", new AutoRight());
+		chooser.addObject("Test Auto" , new TestAuto());
 		
 		
 		
@@ -125,8 +130,14 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		
-		System.out.println("Navx: " + navx.grabValues());
-		System.out.println("Encoder Val: "+encoders.getRightVal());
+		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal());
+		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal());
+		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
+		SmartDashboard.putNumber("Right Motors: ", driveSUB.getRight());
+		SmartDashboard.putNumber("Left Motors: ", driveSUB.getLeft());
+		SmartDashboard.putNumber("Error: ", driveSUB.getRight());
+		SmartDashboard.putNumber("Motor Delta: ", driveSUB.getLeft());
+
 	}
 
 	@Override
@@ -139,10 +150,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal());
+		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal());
+		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
 		
-		
-		
-		//System.out.println(navx.grabValues());
 		
 
 	}
