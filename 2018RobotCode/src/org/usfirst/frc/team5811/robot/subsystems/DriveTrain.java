@@ -17,8 +17,8 @@ public class DriveTrain extends Subsystem {
 	  Victor motor1 = RobotMap.motor1;
 	  Victor motor2 = RobotMap.motor2;
 	  Victor motor3 = RobotMap.motor3;
+	  PowerDistributionPanel pdp = RobotMap.PDP;
 	
-	  //PowerDistributionPanel pdp = RobotMap.PDP;
 	
 	  //NavX navX = Robot.navx;
 	
@@ -192,5 +192,10 @@ public class DriveTrain extends Subsystem {
 		motor2.set(direction*1);
 		motor3.set(direction*1);
 	}
-	
+	public double monitorCurrent4(){
+		return pdp.getCurrent(15);
+	}
+	public double monitorCurrent5(){
+		return pdp.getCurrent(14);
+	}
 }

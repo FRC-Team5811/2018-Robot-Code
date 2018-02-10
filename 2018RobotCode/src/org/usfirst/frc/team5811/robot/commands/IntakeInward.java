@@ -35,6 +35,13 @@ public class IntakeInward extends Command {
 	
 	@Override
 	protected boolean isFinished() {
+		
+		if(Robot.driveSUB.monitorCurrent4() > 30){
+			return true;
+		}
+		if(Robot.driveSUB.monitorCurrent5() > 30){
+			return true;
+		}
 		// TODO Auto-generated method stub
 		return false;
 	}

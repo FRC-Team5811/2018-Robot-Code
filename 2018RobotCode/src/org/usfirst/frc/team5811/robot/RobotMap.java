@@ -26,7 +26,7 @@ public class RobotMap {
 	public static AnalogInput ai = new AnalogInput(0);
 	
 	
-	//public static PowerDistributionPanel PDP = new PowerDistributionPanel();
+	public static PowerDistributionPanel PDP = new PowerDistributionPanel();
 	
 	public static Potentiometer pivot =new AnalogPotentiometer(ai,360,30);
 	
