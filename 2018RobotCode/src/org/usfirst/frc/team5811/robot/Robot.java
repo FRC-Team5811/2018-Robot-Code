@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5811.robot.commands.AutoDriveAcc;
+import org.usfirst.frc.team5811.robot.commands.AutoLeft;
+import org.usfirst.frc.team5811.robot.commands.AutoRight;
 import org.usfirst.frc.team5811.robot.commands.CenterAutoMaster;
 
 import org.usfirst.frc.team5811.robot.commands.TestAuto;

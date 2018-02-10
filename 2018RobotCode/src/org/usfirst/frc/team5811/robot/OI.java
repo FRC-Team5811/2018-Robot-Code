@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5811.robot;
 
 import org.usfirst.frc.team5811.robot.commands.ArcadeDrive;
+import org.usfirst.frc.team5811.robot.commands.ArcadeSpeedMod;
 import org.usfirst.frc.team5811.robot.commands.GrabNavX;
 import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
@@ -52,7 +53,8 @@ public class OI {
 		leftJoyX.whileHeld(new ArcadeDrive());
 		rightJoyY.whileHeld(new ArcadeDrive());
 		a.whileHeld(new ledCOLOR());
-		b.whileHeld(new ledOFF());
+		b.toggleWhenPressed(new ArcadeSpeedMod());
+		
 
 		
 		//b.whenPressed(new GrabNavX());

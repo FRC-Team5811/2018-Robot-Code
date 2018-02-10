@@ -36,6 +36,7 @@ public class DriveTrain extends Subsystem {
 	  double rateOfChange; //used in autoAngleCorrect
 	  double angleTolerance = 1; //used in autoAngleCorrect
 	  double rotationRateTolerance = 1; //used in autoAngleCorrect
+	  double arcadeSpeedModifier = 1;
 	  	  
 	  public void fullReset(){   //reseting angle storing variables
 		  previousAngle = 0;
@@ -56,12 +57,14 @@ public class DriveTrain extends Subsystem {
 	public double getLeft() {
 		return motor0.get();
 	}
-
+	public void changeSpeed(double speed) {
+		arcadeSpeedModifier = speed;
+	}
 	public void arcadeDrive(double turn, double throttle) {
-		motor0.set(-(throttle - (0.5*turn)));
-		motor1.set(-(throttle - (0.5*turn)));
-		motor2.set(throttle + (0.5*turn));
-		motor3.set(throttle + (0.5*turn));
+		motor0.set(arcadeSpeedModifier*(-(throttle - turn)));
+		motor1.set(arcadeSpeedModifier*(-(throttle - turn)));
+		motor2.set(arcadeSpeedModifier*(throttle + turn));
+		motor3.set(arcadeSpeedModifier*(throttle + turn));
 		
 		//////System.out.println(pdp.getCurrent(0)+ "   "+pdp.getCurrent(1)+ "   "+pdp.getCurrent(2)+ "   "+pdp.getCurrent(3));
 		
