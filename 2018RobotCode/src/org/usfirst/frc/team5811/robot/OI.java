@@ -64,7 +64,7 @@ public class OI {
 //		bManip.whenPressed(new HaltIntake());
 //		yManip.whileHeld(new SmartShoot());
 //		RLbumpers.whenPressed(new RampExtend());
-//	
+	
 		
 		
 		yManip.whileHeld(new SmartShoot());

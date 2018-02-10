@@ -66,7 +66,7 @@ public class DriveTrain extends Subsystem {
 		motor2.set(arcadeSpeedModifier*(throttle + turn));
 		motor3.set(arcadeSpeedModifier*(throttle + turn));
 		
-		//////System.out.println(pdp.getCurrent(0)+ "   "+pdp.getCurrent(1)+ "   "+pdp.getCurrent(2)+ "   "+pdp.getCurrent(3));
+		////System.out.println(pdp.getCurrent(0)+ "   "+pdp.getCurrent(1)+ "   "+pdp.getCurrent(2)+ "   "+pdp.getCurrent(3));
 		
 		
 	}
