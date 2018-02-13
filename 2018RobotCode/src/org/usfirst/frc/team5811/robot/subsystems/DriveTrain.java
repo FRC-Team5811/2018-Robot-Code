@@ -25,7 +25,7 @@ public class DriveTrain extends Subsystem {
 	  float rotationPos = 0;
 	
 	
-	  double kmagicnumberp = 22;  //first year programmer is using correct variables instead of "magic numbers"
+	  double kmagicnumberp = 20;  //first year programmer is using correct variables instead of "magic numbers"
 	  double ki = .002; //integral gain for AutoAngleCorrect
 	  double kd = 0;   //derivative gain for straight driving, currently not implemented
 	  double pTerm, dTerm;

@@ -36,5 +36,5 @@ public class RobotMap {
 	public static AHRS navx;
 
 	public static Encoder driveEncL = new Encoder(0,1, true, Encoder.EncodingType.k4X);
-	public static Encoder driveEncR = new Encoder(2,3, false, Encoder.EncodingType.k4X);
+	public static Encoder driveEncR = new Encoder(4,5, false, Encoder.EncodingType.k4X);
 }

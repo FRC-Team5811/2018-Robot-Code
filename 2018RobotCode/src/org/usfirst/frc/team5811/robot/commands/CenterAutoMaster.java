@@ -18,7 +18,7 @@ public class CenterAutoMaster extends CommandGroup {
 	double driveDirection1Left = 0.45;
 	double turnAngle1Left = 38;
 	double turnDirection1Left = -0.9;
-	double DT2Left = 6000;
+	double DT2Left = 7500;
 	double DD2Left = 0.45;
 	double TA2Left = 38;
 	double TD2Left = 0.9;

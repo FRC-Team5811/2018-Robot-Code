@@ -50,7 +50,7 @@ public class Robot extends IterativeRobot {
 	public static Ramp ramp;
 	public static OI oi;
 	//hi
-	
+	double autoSelecter;
 
 	
 	
@@ -77,12 +77,11 @@ public class Robot extends IterativeRobot {
 		ramp = new Ramp();
 		
 		SmartDashboard.putData("Auto mode", chooser);
-		chooser.addDefault("Center Auto", new CenterAutoMaster());
-
-		chooser.addObject("Left Auto", new AutoLeft());
+		chooser.addObject("Center Auto", new CenterAutoMaster());
+		chooser.addDefault("Left Auto", new AutoLeft());
 		chooser.addObject("Right Auto", new AutoRight());
 		chooser.addObject("Test Auto" , new TestAuto());
-		
+//		
 		
 		//gamedata = null;
 		
@@ -112,13 +111,19 @@ public class Robot extends IterativeRobot {
 		driveSUB.fullReset(); //reseting  angle storing variables
 		encoders.reset();
 		
-		
-		
-		
-		//chooser.addObject("Test auto routine", new TestAuto());
-//		chooser.addDefault("Test", new TurnAuto(40, 0.7));
-		
-		
+//		autoSelecter = SmartDashboard.getNumber("DB/Slider 0", 0.5);
+//		System.out.print(autoSelecter);
+//
+//		
+//		
+//		//chooser.addObject("Test auto routine", new TestAuto());
+////		chooser.addDefault("Test", new TurnAuto(40, 0.7));
+//		
+//		if(autoSelecter == 0.0 ){
+//			autonomousCommand = (Command)new AutoLeft();
+//		} else if(autoSelecter == 1.0 ){
+//			autonomousCommand = (Command)new AutoRight();
+//		}
 		autonomousCommand = chooser.getSelected();
 		
 		
