@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RampRetract extends Command {
 	//Ramp ramp = Robot.ramp;
 	public RampRetract() {
+	}
+	
+	protected void intialize() {
 		Robot.ramp.retract();
 	}
 	

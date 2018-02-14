@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class PivotManual extends Command {
 
     public PivotManual() {
-       requires(Robot.pivot);
     }
 
     // Called just before this Command runs the first time

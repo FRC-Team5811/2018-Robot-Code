@@ -161,6 +161,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal());
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal());
 		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
+		SmartDashboard.putNumber("POV: ", oi.joy1.getPOV());
+
 
 		//System.out.println(navx.grabValues());
 		
