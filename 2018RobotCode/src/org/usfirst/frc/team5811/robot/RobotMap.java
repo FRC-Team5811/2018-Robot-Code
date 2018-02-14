@@ -30,7 +30,8 @@ public class RobotMap {
 	
 	public static Potentiometer pivot =new AnalogPotentiometer(ai,360,30);
 	
-	//public static DoubleSolenoid rampRelease = new DoubleSolenoid(0, 1);
+	public static DoubleSolenoid rampRelease = new DoubleSolenoid(0, 1);
+	public static DoubleSolenoid intakeArms = new DoubleSolenoid(2, 3);
 	
 	public static I2C arduino = new I2C(I2C.Port.kMXP, 58);
 	public static AHRS navx;

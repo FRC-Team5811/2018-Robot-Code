@@ -47,6 +47,9 @@ public class Pivot extends Subsystem {
 		
 		
 	}
+	public void manual(double speed) {
+		motor6.set(0.5*speed);
+	}
 	
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub

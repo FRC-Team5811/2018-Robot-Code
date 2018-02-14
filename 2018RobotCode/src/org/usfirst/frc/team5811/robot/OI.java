@@ -5,6 +5,7 @@ import org.usfirst.frc.team5811.robot.commands.ArcadeSpeedMod;
 import org.usfirst.frc.team5811.robot.commands.GrabNavX;
 import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
+import org.usfirst.frc.team5811.robot.commands.PivotManual;
 import org.usfirst.frc.team5811.robot.commands.PosDown;
 import org.usfirst.frc.team5811.robot.commands.PosExchange;
 import org.usfirst.frc.team5811.robot.commands.PosSwitchReverse;
@@ -41,6 +42,7 @@ public class OI {
 	static JoystickButton yManip = new JoystickButton(joy2, 4);
 	JoystickButton xManip = new JoystickButton(joy2, 1);
 	static ComboButton RLbumpers = new ComboButton(joy2, 5, 6);
+	AxisButton manipLeftJoyY = new AxisButton(joy2, 1);
 	
 
 	
@@ -54,6 +56,7 @@ public class OI {
 		rightJoyY.whileHeld(new ArcadeDrive());
 		a.whileHeld(new ledCOLOR());
 		b.toggleWhenPressed(new ArcadeSpeedMod());
+		
 		
 
 		
@@ -70,6 +73,7 @@ public class OI {
 		yManip.whileHeld(new SmartShoot());
 		RLbumpers.whenPressed(new RampExtend());
 		aManip.toggleWhenPressed(new IntakeInward());
+		manipLeftJoyY.whileHeld(new PivotManual());
 		
 		
 		
@@ -89,6 +93,9 @@ public class OI {
 	}
 	public double getRightX(){
 		return joy1.getRawAxis(2);
+	}
+	public double getManipLeftY() {
+		return joy2.getRawAxis(1);
 	}
 
 

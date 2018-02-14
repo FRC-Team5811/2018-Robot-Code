@@ -2,6 +2,7 @@ package org.usfirst.frc.team5811.robot.subsystems;
 
 import org.usfirst.frc.team5811.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -9,6 +10,7 @@ public class Intake extends Subsystem{
 	
 	 Victor leftMotor = RobotMap.motor4;
 	 Victor rightMotor = RobotMap.motor5;
+	 DoubleSolenoid arms = RobotMap.intakeArms;
 	
 	@Override
 	protected void initDefaultCommand() {
@@ -37,6 +39,12 @@ public class Intake extends Subsystem{
 				rightMotor.set(0.5);
 		
 		}
+	}
+	public void armsClose() {
+		arms.set(DoubleSolenoid.Value.kForward);
+	}
+	public void armsOpen() {
+		arms.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 }
