@@ -5,6 +5,7 @@ import org.usfirst.frc.team5811.robot.commands.ArcadeSpeedMod;
 import org.usfirst.frc.team5811.robot.commands.GrabNavX;
 import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
+import org.usfirst.frc.team5811.robot.commands.IntakeToggle;
 import org.usfirst.frc.team5811.robot.commands.PivotManual;
 import org.usfirst.frc.team5811.robot.commands.PosDown;
 import org.usfirst.frc.team5811.robot.commands.PosExchange;
@@ -69,7 +70,7 @@ public class OI {
 //		RLbumpers.whenPressed(new RampExtend());
 	
 		
-		
+		xManip.toggleWhenPressed(new IntakeToggle());;
 		yManip.whileHeld(new SmartShoot());
 		RLbumpers.whenPressed(new RampExtend());
 		aManip.toggleWhenPressed(new IntakeInward());
