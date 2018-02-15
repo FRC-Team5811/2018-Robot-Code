@@ -34,7 +34,6 @@ public class DriveTrain extends Subsystem {
 	  }
 
 	  Compressor cp = RobotMap.cp;
-
 	
 	
 	  //NavX navX = Robot.navx;
@@ -71,7 +70,8 @@ public class DriveTrain extends Subsystem {
 	}
 	public void setCP(boolean setter) {
 		cp.setClosedLoopControl(setter);
-		cp.clearAllPCMStickyFaults();
+
+		cp.clearAllPCMStickyFaults();//
 	}
 	public void initDefaultCommand() {
 		

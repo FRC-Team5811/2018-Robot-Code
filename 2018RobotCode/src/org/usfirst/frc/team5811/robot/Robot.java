@@ -168,7 +168,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("POV: ", oi.joy1.getPOV());
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
 		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
-		Robot.driveSUB.setCP(false);
+		Robot.driveSUB.setCP(true);//
 		
 
 		//System.out.println(navx.grabValues());

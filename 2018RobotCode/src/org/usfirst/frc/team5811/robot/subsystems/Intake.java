@@ -17,6 +17,7 @@ public class Intake extends Subsystem{
 	public static final int currentThreshold = 30;
 	public boolean leftOff;
 	public boolean rightOff;
+
 	
 	@Override
 	protected void initDefaultCommand() {
@@ -26,18 +27,21 @@ public class Intake extends Subsystem{
 
 	public void intakeRightIn(){
 		rightMotor.set(-1);
-}
+	}
+	
 	public void intakeIn(){
 		leftMotor.set(-0.65);
 		rightMotor.set(-0.65);
-//of https://github.com/FRC-Team5811/2018-Robot-Code.git
 	}
+	
 	public void intakeLeftIn(){
 		leftMotor.set(-1);
 	}
+	
 	public void haltRight(){
 		rightMotor.set(0);
 	}
+	
 	public void haltLeft(){
 		leftMotor.set(0);
 	}
