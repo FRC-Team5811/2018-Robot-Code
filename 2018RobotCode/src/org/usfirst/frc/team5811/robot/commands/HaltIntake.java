@@ -17,7 +17,8 @@ public class HaltIntake extends Command {
 		
 	}
 	protected void execute(){
-		Robot.intake.halt();
+		Robot.intake.haltLeft();
+		Robot.intake.haltRight();
 		
 	}
 	protected void interrupted(){

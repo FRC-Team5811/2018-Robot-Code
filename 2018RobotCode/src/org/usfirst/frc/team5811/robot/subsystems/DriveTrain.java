@@ -1,8 +1,12 @@
 package org.usfirst.frc.team5811.robot.subsystems;
+package org.usfirst.frc.team5811.robot;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 import org.usfirst.frc.team5811.robot.Robot;
 import org.usfirst.frc.team5811.robot.RobotMap;
@@ -18,6 +22,14 @@ public class DriveTrain extends Subsystem {
 	  Victor motor2 = RobotMap.motor2;
 	  Victor motor3 = RobotMap.motor3;
 	  PowerDistributionPanel pdp = RobotMap.PDP;
+	//  int angleOfTurn;
+	  
+	  
+	  NetworkTable table;
+		
+	  public DriveTrain(){
+			table = NetworkTable.getTable("SmartDashboard");
+	  }
 	
 	
 	  //NavX navX = Robot.navx;
@@ -59,6 +71,7 @@ public class DriveTrain extends Subsystem {
 	}
 	public void changeSpeed(double speed) {
 		arcadeSpeedModifier = speed;
+		System.out.println(arcadeSpeedModifier);
 	}
 	public void arcadeDrive(double turn, double throttle) {
 		motor0.set(arcadeSpeedModifier*(-(throttle - turn)));
@@ -181,6 +194,55 @@ public class DriveTrain extends Subsystem {
 			return true;
 		}else{
 			return false;
+		}
+	}
+	public void Vision_go_Cube(){
+		double cX = table.getNumber("cX", 0.0);
+		double cY = table.getNumber("cY", 0.0);
+		
+		System.out.println("cX: ");
+		System.out.println(cX);
+		
+		if (cX == 0.0 || cY == 0.0){
+			System.out.println("No Cube Detected!!!!!");
+			motor0.set(0);
+		}
+		else{
+			System.out.println("Cube Detected!!!!!");
+			
+			if(cX > 40 && cX < 60){
+				//go straight
+			}
+			else if(cX <= 40){
+				double angleOfTurn = (50 - cX) * 0.6;
+				System.out.print("turn right: ");
+				System.out.print(angleOfTurn);
+				System.out.println("degrees");
+				
+				double angleInitial = Math.abs(Robot.navx.grabValues());
+				double angleFinal = Math.abs(Robot.navx.grabValues() + angleOfTurn);
+				
+				Robot.driveSUB.arcadeDrive(angleOfTurn, throttle);/////////////////
+				
+				motor0.set(0.2);
+				
+				
+				//go straight
+			}
+			else{
+				double angleOfTurn = (50 - cX) * 0.6;
+				System.out.print("turn left: ");
+				System.out.print(angleOfTurn);
+				System.out.println("degrees");
+				
+				double angleInitial = Math.abs(Robot.navx.grabValues());
+				double angleFinal = Math.abs(Robot.navx.grabValues() + angleOfTurn);
+				
+				Robot.driveSUB.arcadeDrive(angleOfTurn, throttle);///////////////////////
+				
+				motor0.set(0.2);
+				//go straight 
+			}
 		}
 	}
 	

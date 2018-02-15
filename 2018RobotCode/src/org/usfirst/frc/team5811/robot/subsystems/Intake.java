@@ -10,19 +10,30 @@ public class Intake extends Subsystem{
 	 Victor leftMotor = RobotMap.motor4;
 	 Victor rightMotor = RobotMap.motor5;
 	
+	public int cyclesOn = 0;
+	public static final int intSpikeWait = 25;
+	public static final int currentThreshold = 30;
+	public boolean leftOff;
+	public boolean rightOff;
+	
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
 		
 	}
-	public void intakeIn(){
-		leftMotor.set(-1);
+	public void intakeRightIn(){
 		rightMotor.set(-1);
 	}
-	public void halt(){
-		leftMotor.set(0);
+	public void intakeLeftIn(){
+		leftMotor.set(-1);
+	}
+	public void haltRight(){
 		rightMotor.set(0);
 	}
+	public void haltLeft(){
+		leftMotor.set(0);
+	}
+	
 	public void outtake(int position){
 		position = 1;
 		switch(position){

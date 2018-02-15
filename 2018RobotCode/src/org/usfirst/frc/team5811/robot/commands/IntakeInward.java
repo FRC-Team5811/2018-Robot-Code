@@ -17,33 +17,52 @@ public class IntakeInward extends Command {
 	}
 	@Override
 	protected void initialize(){
-
 	}
+	
 	@Override
 	protected void execute(){
-		Robot.intake.intakeIn();
+		
+		Robot.intake.cyclesOn++;
+		
+		if(Robot.intake.cyclesOn > Intake.intSpikeWait && Robot.driveSUB.monitorCurrent4() > Intake.currentThreshold){  //Would be nice to make PDP its own subsystem
+			Robot.intake.leftOff = true; 
+			Robot.intake.haltLeft();
+		}else if(!Robot.intake.leftOff){
+			Robot.intake.intakeLeftIn();
+		}
+		if (Robot.intake.cyclesOn > Intake.intSpikeWait && Robot.driveSUB.monitorCurrent5() > Intake.currentThreshold){
+			Robot.intake.rightOff = true; 
+			Robot.intake.haltRight();
+		}else if(!Robot.intake.rightOff){
+			Robot.intake.intakeRightIn();
+		}
+		
+		//Alternate version waits for both to have too high a current and then shut off both sides together
+		
 	}
 	
  	protected void end(){
-		Robot.intake.halt();
+		Robot.intake.haltLeft();
+		Robot.intake.haltRight();
+		Robot.intake.cyclesOn = 0;
 	}
 	
 	protected void interrupted(){
-
 		end();
 	} 
 	
 	@Override
 	protected boolean isFinished() {
 		
-		if(Robot.driveSUB.monitorCurrent4() > 30){
-			return true;
+		if(Robot.intake.leftOff && Robot.intake.rightOff){
+			Robot.intake.leftOff = false; //reset variables
+			Robot.intake.rightOff = false;
+			end(); //not so sure, but think this is correct
+			return true; 
+		}else{
+			return false; 
 		}
-		if(Robot.driveSUB.monitorCurrent5() > 30){
-			return true;
-		}
-		// TODO Auto-generated method stub
-		return false;
+	
 	}
 	
 
