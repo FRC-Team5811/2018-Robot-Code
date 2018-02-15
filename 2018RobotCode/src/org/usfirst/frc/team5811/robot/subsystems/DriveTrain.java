@@ -56,7 +56,7 @@ public class DriveTrain extends Subsystem {
 	}
 	public void setCP(boolean setter) {
 		cp.setClosedLoopControl(setter);
-		cp.clearAllPCMStickyFaults();
+		cp.clearAllPCMStickyFaults();//
 	}
 	public void initDefaultCommand() {
 		
