@@ -8,7 +8,10 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RampExtend extends Command {
 	//Ramp ramp = Robot.ramp;
 	public RampExtend() {
-		//Robot.ramp.extend();
+	}
+	
+	protected void initialize() {
+		Robot.ramp.extend();
 	}
 	
 	protected boolean isFinished() {

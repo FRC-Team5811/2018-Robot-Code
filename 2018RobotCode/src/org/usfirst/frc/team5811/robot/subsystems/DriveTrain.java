@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5811.robot.subsystems;
-package org.usfirst.frc.team5811.robot;
 
+
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -22,6 +23,7 @@ public class DriveTrain extends Subsystem {
 	  Victor motor2 = RobotMap.motor2;
 	  Victor motor3 = RobotMap.motor3;
 	  PowerDistributionPanel pdp = RobotMap.PDP;
+
 	//  int angleOfTurn;
 	  
 	  
@@ -30,6 +32,9 @@ public class DriveTrain extends Subsystem {
 	  public DriveTrain(){
 			table = NetworkTable.getTable("SmartDashboard");
 	  }
+
+	  Compressor cp = RobotMap.cp;
+
 	
 	
 	  //NavX navX = Robot.navx;
@@ -60,6 +65,14 @@ public class DriveTrain extends Subsystem {
 		  Robot.encoders.reset();
 	  }
 	  
+	public boolean checkCP() {
+		cp.setClosedLoopControl(false);
+		return cp.enabled();
+	}
+	public void setCP(boolean setter) {
+		cp.setClosedLoopControl(setter);
+		cp.clearAllPCMStickyFaults();
+	}
 	public void initDefaultCommand() {
 		
 	}
@@ -222,7 +235,7 @@ public class DriveTrain extends Subsystem {
 				double angleInitial = Math.abs(Robot.navx.grabValues());
 				double angleFinal = Math.abs(Robot.navx.grabValues() + angleOfTurn);
 				
-				Robot.driveSUB.arcadeDrive(angleOfTurn, throttle);/////////////////
+				//Robot.driveSUB.arcadeDrive(angleOfTurn, throttle);/////////////////
 				
 				motor0.set(0.2);
 				
@@ -238,7 +251,7 @@ public class DriveTrain extends Subsystem {
 				double angleInitial = Math.abs(Robot.navx.grabValues());
 				double angleFinal = Math.abs(Robot.navx.grabValues() + angleOfTurn);
 				
-				Robot.driveSUB.arcadeDrive(angleOfTurn, throttle);///////////////////////
+				//Robot.driveSUB.arcadeDrive(angleOfTurn, throttle);///////////////////////
 				
 				motor0.set(0.2);
 				//go straight 
@@ -259,5 +272,8 @@ public class DriveTrain extends Subsystem {
 	}
 	public double monitorCurrent5(){
 		return pdp.getCurrent(14);
+	}
+	public double monitorCurrent6() {
+		return pdp.getCurrent(13);
 	}
 }

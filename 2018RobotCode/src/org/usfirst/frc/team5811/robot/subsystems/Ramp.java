@@ -6,16 +6,17 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Ramp extends Subsystem {
-	//DoubleSolenoid rampRelease = RobotMap.rampRelease;
+	DoubleSolenoid rampRelease = RobotMap.rampRelease;
+	
 	public Ramp() {
 		
 	}
 	
 	public void extend() {
-		//rampRelease.set(DoubleSolenoid.Value.kForward);
+		rampRelease.set(DoubleSolenoid.Value.kForward);
 	}
 	public void retract() {
-		//rampRelease.set(DoubleSolenoid.Value.kReverse);
+		rampRelease.set(DoubleSolenoid.Value.kReverse);
 	}
 
 	protected void initDefaultCommand() {
