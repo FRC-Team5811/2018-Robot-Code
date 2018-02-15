@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5811.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -18,6 +19,7 @@ public class DriveTrain extends Subsystem {
 	  Victor motor2 = RobotMap.motor2;
 	  Victor motor3 = RobotMap.motor3;
 	  PowerDistributionPanel pdp = RobotMap.PDP;
+	  Compressor cp = RobotMap.cp;
 	
 	
 	  //NavX navX = Robot.navx;
@@ -48,6 +50,14 @@ public class DriveTrain extends Subsystem {
 		  Robot.encoders.reset();
 	  }
 	  
+	public boolean checkCP() {
+		cp.setClosedLoopControl(false);
+		return cp.enabled();
+	}
+	public void setCP(boolean setter) {
+		cp.setClosedLoopControl(setter);
+		cp.clearAllPCMStickyFaults();
+	}
 	public void initDefaultCommand() {
 		
 	}
@@ -197,5 +207,8 @@ public class DriveTrain extends Subsystem {
 	}
 	public double monitorCurrent5(){
 		return pdp.getCurrent(14);
+	}
+	public double monitorCurrent6() {
+		return pdp.getCurrent(13);
 	}
 }

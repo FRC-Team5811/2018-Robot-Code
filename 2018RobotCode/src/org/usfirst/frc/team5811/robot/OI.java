@@ -38,12 +38,12 @@ public class OI {
 //	ComboButton RLbumpers = new ComboButton(joy2, 5, 6);
 	
 	
-	static Joystick joy2 = new Joystick(1);
-	static JoystickButton aManip = new JoystickButton(joy2, 2);
-	static JoystickButton bManip = new JoystickButton(joy2, 3);
-	static JoystickButton yManip = new JoystickButton(joy2, 4);
+	public Joystick joy2 = new Joystick(1);
+	JoystickButton aManip = new JoystickButton(joy2, 2);
+	 JoystickButton bManip = new JoystickButton(joy2, 3);
+	 JoystickButton yManip = new JoystickButton(joy2, 4);
 	JoystickButton xManip = new JoystickButton(joy2, 1);
-	static ComboButton RLbumpers = new ComboButton(joy2, 5, 6);
+	 ComboButton RLbumpers = new ComboButton(joy2, 5, 6);
 	AxisButton manipLeftJoyY = new AxisButton(joy2, 1);
 	
 	int dPadVals = joy1.getPOV();
@@ -73,7 +73,8 @@ public class OI {
 //		RLbumpers.whenPressed(new RampExtend());
 	
 		
-		xManip.toggleWhenPressed(new IntakeToggle());;
+		xManip.toggleWhenPressed(new IntakeInward());
+		bManip.toggleWhenPressed(new PivotManual());
 		yManip.whileHeld(new SmartShoot());
 		RLbumpers.whenPressed(new RampExtend()); //FIX COMBO BUTTONS
 		aManip.toggleWhenPressed(new RampExtend());

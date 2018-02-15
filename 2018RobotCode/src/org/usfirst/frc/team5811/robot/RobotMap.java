@@ -4,6 +4,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
@@ -25,6 +26,7 @@ public class RobotMap {
 
 	public static AnalogInput ai = new AnalogInput(0);
 	
+	public static Compressor cp = new Compressor(0);
 	
 	public static PowerDistributionPanel PDP = new PowerDistributionPanel();
 	

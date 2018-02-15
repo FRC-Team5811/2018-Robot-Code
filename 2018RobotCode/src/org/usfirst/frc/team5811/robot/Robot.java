@@ -5,6 +5,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
@@ -59,7 +60,7 @@ public class Robot extends IterativeRobot {
 	char readData;
 
 	Command autonomousCommand;
-
+	//Compressor compressor;
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -85,8 +86,9 @@ public class Robot extends IterativeRobot {
 		
 		//gamedata = null;
 		
-		
-		
+		//compressor = new Compressor(0);
+		//compressor.setClosedLoopControl(false);
+	
 //		chooser.addDefault("Drive Straight", new DriveAuto(100, 100, 100)); 
 		//chooser.addObject("Drive", new DriveAuto(1,1,1));
 		//UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
@@ -145,6 +147,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Left Motors: ", driveSUB.getLeft());
 		SmartDashboard.putNumber("Error: ", driveSUB.getRight());
 		SmartDashboard.putNumber("Motor Delta: ", driveSUB.getLeft());
+		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
 
 	}
 
@@ -158,11 +161,15 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		//compressor.setClosedLoopControl(true);
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal());
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal());
 		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
 		SmartDashboard.putNumber("POV: ", oi.joy1.getPOV());
-
+		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
+		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
+		Robot.driveSUB.setCP(false);
+		
 
 		//System.out.println(navx.grabValues());
 		
