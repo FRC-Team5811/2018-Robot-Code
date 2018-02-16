@@ -17,7 +17,17 @@ public class Pivot extends Subsystem {
 	 double difference; 
 	 double proportionDist = 30; 
 	 double antiGravHat = -.05;
-	 double antiGravScale = 20;
+	 /*         _______
+	  *        [__   __]
+	  *           | |
+	  *           | |
+	  *           | |
+	  *           | |
+	  *           |_|
+	  * 
+	  */
+	 
+	 double antiGravScale = 100;
 		
 	
 	public  double getAngle() {
@@ -49,11 +59,10 @@ public class Pivot extends Subsystem {
 		
 	}
 	public void manual(double input) {
-		
 		double antiGrav;
 		antiGrav = 0;
 		if (input < antiGravHat) {
-			antiGrav = (-(1/input))/antiGrav;
+			antiGrav = (-(1/input))/antiGravScale;
 		}
 		pivotMotor.set((0.5*input)+antiGrav);
 
