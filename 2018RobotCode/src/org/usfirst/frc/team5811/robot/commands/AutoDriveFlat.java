@@ -38,7 +38,7 @@ public class AutoDriveFlat extends Command{
 	protected boolean isFinished() {
 		////System.out.println("This be very not running");
 
-		if (Math.abs(Robot.encoders.getRightVal()) > this.duration) {
+		if (Math.abs(Robot.encoders.getLeftVal()) > this.duration) {
 			return true;
 		} else {
 			return false;

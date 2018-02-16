@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 public class Pivot extends Subsystem {
 	
 	 Potentiometer pivot = RobotMap.pivot;
-	 Victor motor6 = RobotMap.motor6;
+	 Victor pivotMotor = RobotMap.motor1;
 	 double tolerance = 1; //how close to target is acceptable, in degrees
 	 int state = 0; //position state of arm
 	 double difference; 
@@ -27,7 +27,7 @@ public class Pivot extends Subsystem {
 		return state;
 	}
 	public  void setMotor(double speed) {
-		motor6.set(speed);
+		pivotMotor.set(speed);
 	}
 	public boolean changeAngle(double angle, int stateIn) {
 		state = stateIn;
@@ -48,7 +48,7 @@ public class Pivot extends Subsystem {
 		
 	}
 	public void manual(double speed) {
-		motor6.set(0.5*speed);
+		pivotMotor.set(0.5*speed);
 	}
 	
 	protected void initDefaultCommand() {

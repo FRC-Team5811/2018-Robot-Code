@@ -82,6 +82,13 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Left Auto", new AutoLeft());
 		chooser.addObject("Right Auto", new AutoRight());
 		chooser.addObject("Test Auto" , new TestAuto());
+		
+		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal());
+		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal());
+		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
+		SmartDashboard.putNumber("POV: ", oi.joy1.getPOV());
+		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
+		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
 //		
 		
 		//gamedata = null;

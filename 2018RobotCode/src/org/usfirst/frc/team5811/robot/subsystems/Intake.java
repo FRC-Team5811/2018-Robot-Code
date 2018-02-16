@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Intake extends Subsystem{
 	
-	 Victor leftMotor = RobotMap.motor4;
-	 Victor rightMotor = RobotMap.motor5;
+	 Victor leftMotor = RobotMap.motor0;
+	 Victor rightMotor = RobotMap.motor4;
 	 DoubleSolenoid arms = RobotMap.intakeArms;
 	
 	public int cyclesOn = 0;

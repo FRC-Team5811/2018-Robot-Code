@@ -29,7 +29,7 @@ public class AutoDriveAcc extends Command{
 	protected void execute() {
 		//////System.out.println("does this work?");
 		
-		Robot.driveSUB.autoDriveAcc(this.duration, Math.abs(Robot.encoders.getRightVal()), this.direction);
+		Robot.driveSUB.autoDriveAcc(this.duration, Math.abs(Robot.encoders.getLeftVal()), this.direction);
 		////System.out.println("Accelerating");
 		//System.out.print("duration: ");
 		////System.out.println(duration);
@@ -39,7 +39,7 @@ public class AutoDriveAcc extends Command{
 	
 	protected boolean isFinished() {
 //		////System.out.println("Calling isFinished");
-		if (Math.abs(Robot.encoders.getRightVal()) > this.duration) {
+		if (Math.abs(Robot.encoders.getLeftVal()) > this.duration) {
 			return true;
 		} else {
 			return false;

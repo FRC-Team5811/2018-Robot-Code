@@ -23,7 +23,7 @@ public class AutoDriveDec extends Command{
 	}
 	
 	protected void execute() {
-		Robot.driveSUB.autoDriveDec(duration, Math.abs(Robot.encoders.getRightVal()), direction);
+		Robot.driveSUB.autoDriveDec(duration, Math.abs(Robot.encoders.getLeftVal()), direction);
 		//System.out.println("Deccelerating");
 		//System.out.print("duration: ");
 		////System.out.println(duration);
@@ -32,7 +32,7 @@ public class AutoDriveDec extends Command{
 	}
 	
 	protected boolean isFinished() {
-		if (Math.abs(Robot.encoders.getRightVal()) > this.duration) {
+		if (Math.abs(Robot.encoders.getLeftVal()) > this.duration) {
 			Robot.encoders.reset();
 			Robot.navx.reset();
 			return true;
