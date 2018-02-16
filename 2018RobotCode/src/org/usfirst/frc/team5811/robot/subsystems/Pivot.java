@@ -16,7 +16,8 @@ public class Pivot extends Subsystem {
 	 int state = 0; //position state of arm
 	 double difference; 
 	 double proportionDist = 30; 
-		
+	 double antiGravHat = -.05;
+	 double antiGravScale = 20;
 		
 	
 	public  double getAngle() {
@@ -47,8 +48,15 @@ public class Pivot extends Subsystem {
 		
 		
 	}
-	public void manual(double speed) {
-		pivotMotor.set(0.5*speed);
+	public void manual(double input) {
+		
+		double antiGrav;
+		antiGrav = 0;
+		if (input < antiGravHat) {
+			antiGrav = (-(1/input))/antiGrav;
+		}
+		pivotMotor.set((0.5*input)+antiGrav);
+
 	}
 	
 	protected void initDefaultCommand() {
