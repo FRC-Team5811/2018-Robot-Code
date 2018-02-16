@@ -89,6 +89,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("POV: ", oi.joy1.getPOV());
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
 		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
+		SmartDashboard.putNumber("Pot: ", Robot.pivot.getAngle());
 //		
 		
 		//gamedata = null;
@@ -175,6 +176,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("POV: ", oi.joy1.getPOV());
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
 		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
+		SmartDashboard.putNumber("Pot: ", Robot.pivot.getAngle());
 		Robot.driveSUB.setCP(true);//
 		
 

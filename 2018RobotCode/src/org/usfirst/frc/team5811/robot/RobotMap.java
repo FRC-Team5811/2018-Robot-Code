@@ -30,7 +30,7 @@ public class RobotMap {
 	
 	public static PowerDistributionPanel PDP = new PowerDistributionPanel();
 	
-	public static Potentiometer pivot =new AnalogPotentiometer(ai,360,30);
+	public static Potentiometer pivot =new AnalogPotentiometer(ai,3600,0);
 	
 	public static DoubleSolenoid rampRelease = new DoubleSolenoid(0, 1);
 	public static DoubleSolenoid intakeArms = new DoubleSolenoid(2, 3);
