@@ -257,7 +257,7 @@ public class DriveTrain extends Subsystem {
 				rightMotor2.set(((angleInitial/angleFinal)+0.3));
 				
 				
-				
+				//
 				//go straight
 			}
 			else{
