@@ -213,8 +213,8 @@ public class DriveTrain extends Subsystem {
 		double cX = table.getNumber("cX", 0.0);
 		double cY = table.getNumber("cY", 0.0);
 		
-		System.out.println("cX: ");
-		System.out.println(cX);
+		System.out.println("cX: "+cX);
+		System.out.println("In seek mode");
 		
 		boolean HasCube = false;
 		

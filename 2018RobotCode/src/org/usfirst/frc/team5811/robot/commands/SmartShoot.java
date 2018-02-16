@@ -22,7 +22,8 @@ public class SmartShoot extends Command {
 		Robot.intake.outtake(state);
 	}
 	protected void end(){
-		Robot.intake.halt();
+		Robot.intake.haltLeft();
+		Robot.intake.haltRight();
 	}
 	protected void interrupted(){
 		end();

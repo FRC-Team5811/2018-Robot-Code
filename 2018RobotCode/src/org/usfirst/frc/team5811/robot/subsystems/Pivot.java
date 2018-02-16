@@ -27,7 +27,7 @@ public class Pivot extends Subsystem {
 	  * 
 	  */
 	 
-	 double antiGravScale = 100;
+	 double antiGravScale = 50;
 		
 	
 	public  double getAngle() {
