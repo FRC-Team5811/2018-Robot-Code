@@ -229,13 +229,18 @@ public class DriveTrain extends Subsystem {
 		System.out.println("cX: "+cX);
 		//System.out.println("In seek mode");
 		
-		boolean HasCube = false;
+		double HasCube = table.getNumber("HasTheCube", 0.0);
 		
-		if (HasCube) {
+		if (HasCube == 0) {
+			leftMotor1.set(0);
+			leftMotor2.set(0);
+			rightMotor1.set(0);
+			rightMotor2.set(0);
+			Robot.intake.armsClose();
 			
 		}else {
 			
-		
+			Robot.intake.armsOpen();
 		
 		if (cX == 0.0 || cY == 0.0){
 			//System.out.println("No Cube Detected!!!!!");
