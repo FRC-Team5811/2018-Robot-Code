@@ -231,7 +231,7 @@ public class DriveTrain extends Subsystem {
 		
 		double HasCube = table.getNumber("HasTheCube", 0.0);
 		
-		if (HasCube == 0) {
+		if (HasCube == 1) {
 			leftMotor1.set(0);
 			leftMotor2.set(0);
 			rightMotor1.set(0);
