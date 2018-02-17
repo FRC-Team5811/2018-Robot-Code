@@ -27,10 +27,13 @@ public class Secret extends Command {
     		System.out.println("[DOWN] Search the body");
     		if (Robot.oi.getPov() == 0) {
     			magicCounter = 1;
- 
+    		} else if (Robot.oi.getPov() == 1) {
+    			magicCounter = 2;
     		}
 		} else if (magicCounter == 1) {
-			
+			System.out.println("You found a ");
+			System.out.println("[UP] Look around");
+    		System.out.println("[] Search the body");
 		}
     }
 

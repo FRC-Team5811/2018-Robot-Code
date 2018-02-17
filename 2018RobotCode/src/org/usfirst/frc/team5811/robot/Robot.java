@@ -177,6 +177,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		
 		intake.armsClose();
 
 		//System.out.println("Navx: " + navx.grabValues());

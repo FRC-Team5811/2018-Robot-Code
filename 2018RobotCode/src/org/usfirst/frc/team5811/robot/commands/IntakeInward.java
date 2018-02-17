@@ -23,7 +23,7 @@ public class IntakeInward extends Command {
 	protected void execute(){
 		
 		Robot.intake.cyclesOn++;
-		
+		Robot.ledsub.colorInward();
 		if(Robot.intake.cyclesOn > Intake.intSpikeWait && Robot.driveSUB.monitorCurrent4() > Intake.currentThreshold){  //Would be nice to make PDP its own subsystem
 			Robot.intake.leftOff = true;  
 			System.out.println("current spike left" + Robot.driveSUB.monitorCurrent4());
@@ -47,6 +47,7 @@ public class IntakeInward extends Command {
 		Robot.intake.haltLeft();
 		Robot.intake.haltRight();
 		Robot.intake.cyclesOn = 0;
+		Robot.ledsub.off();
 	}
 	
 	protected void interrupted(){

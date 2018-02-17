@@ -36,5 +36,22 @@ public class LEDS extends Subsystem {
 			////System.out.println("sent");
 		}
 	}
-
+	public void patternTest() {
+		toSend[0] = 6;
+		if(LEDArduino.writeBulk(toSend)){
+			System.out.println("Didn't send");
+		}
+		else{
+			System.out.println("Sent");
+		}
+	}
+	public void colorInward(){
+		toSend[0] = 4;
+		if(LEDArduino.writeBulk(toSend)){
+			System.out.println("Didn't send");
+		}
+		else{
+			System.out.println("Sent");
+		}
+	}
 }

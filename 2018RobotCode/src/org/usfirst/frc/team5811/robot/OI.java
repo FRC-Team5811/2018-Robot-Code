@@ -11,10 +11,10 @@ import org.usfirst.frc.team5811.robot.commands.PosDown;
 import org.usfirst.frc.team5811.robot.commands.PosStore;
 import org.usfirst.frc.team5811.robot.commands.PosSwitch;
 import org.usfirst.frc.team5811.robot.commands.RampExtend;
-import org.usfirst.frc.team5811.robot.commands.ledOFF;
+
 import org.usfirst.frc.team5811.robot.commands.SmartShoot;
 import org.usfirst.frc.team5811.robot.commands.VisionCube;
-import org.usfirst.frc.team5811.robot.commands.ledCOLOR;
+
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
