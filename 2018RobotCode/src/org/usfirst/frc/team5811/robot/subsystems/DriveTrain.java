@@ -301,7 +301,7 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void autoTurnFlat(double direction){
-		//direction = 0.2;
+		//direction = 0.20;
 		////System.out.println(direction*1);
 		leftMotor1.set(direction*1);
 		leftMotor2.set(direction*1);
