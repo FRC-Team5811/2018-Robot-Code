@@ -237,6 +237,7 @@ public class DriveTrain extends Subsystem {
 			rightMotor1.set(0);
 			rightMotor2.set(0);
 			Robot.intake.armsClose();
+			Robot.ledsub.flash();
 			
 		}else {
 			

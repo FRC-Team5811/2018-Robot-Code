@@ -51,6 +51,7 @@ public class IntakeInward extends Command {
 	}
 	
 	protected void interrupted(){
+		Robot.ledsub.flash();
 		end();
 	} 
 	

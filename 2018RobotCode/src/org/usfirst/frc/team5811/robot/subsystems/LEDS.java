@@ -54,4 +54,13 @@ public class LEDS extends Subsystem {
 			System.out.println("Sent");
 		}
 	}
+	public void flash(){
+		toSend[0] = 5;
+		if(LEDArduino.writeBulk(toSend)){
+			System.out.println("Didn't send");
+		}
+		else{
+			System.out.println("Sent");
+		}
+	}
 }
