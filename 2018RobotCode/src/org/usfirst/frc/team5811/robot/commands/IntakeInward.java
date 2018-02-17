@@ -25,13 +25,15 @@ public class IntakeInward extends Command {
 		Robot.intake.cyclesOn++;
 		
 		if(Robot.intake.cyclesOn > Intake.intSpikeWait && Robot.driveSUB.monitorCurrent4() > Intake.currentThreshold){  //Would be nice to make PDP its own subsystem
-			Robot.intake.leftOff = true; 
+			Robot.intake.leftOff = true;  
+			System.out.println("current spike left" + Robot.driveSUB.monitorCurrent4());
 			Robot.intake.haltLeft();
 		}else if(!Robot.intake.leftOff){
 			Robot.intake.intakeLeftIn();
 		}
 		if (Robot.intake.cyclesOn > Intake.intSpikeWait && Robot.driveSUB.monitorCurrent5() > Intake.currentThreshold){
 			Robot.intake.rightOff = true; 
+			System.out.println("current spike right" + Robot.driveSUB.monitorCurrent5());
 			Robot.intake.haltRight();
 		}else if(!Robot.intake.rightOff){
 			Robot.intake.intakeRightIn();
