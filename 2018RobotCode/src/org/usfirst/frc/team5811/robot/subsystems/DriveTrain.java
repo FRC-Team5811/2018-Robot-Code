@@ -53,6 +53,8 @@ public class DriveTrain extends Subsystem {
 	  double angleTolerance = 1; //used in autoAngleCorrect
 	  double rotationRateTolerance = 1; //used in autoAngleCorrect
 	  double arcadeSpeedModifier = 1;
+	  double minVisionVal = 30;
+	  double maxVisionVal = 70;
 	  	  
 	  public void fullReset(){   //reseting angle storing variables
 		  previousAngle = 0;
@@ -234,14 +236,14 @@ public class DriveTrain extends Subsystem {
 		else{
 			System.out.println("Cube Detected!!!!!");
 			
-			if(cX > 40 && cX < 60){
+			if(cX > minVisionVal && cX < maxVisionVal){
 				
 				leftMotor1.set(0.5);
 				leftMotor2.set(0.5);
 				rightMotor1.set(-0.5);
 				rightMotor2.set(-0.5);
 			}
-			else if(cX <= 40){
+			else if(cX <= minVisionVal){
 				double angleOfTurn = (50 - cX) * 0.6;
 				System.out.print("turn right: ");
 				System.out.print(angleOfTurn);
@@ -251,10 +253,10 @@ public class DriveTrain extends Subsystem {
 				double angleFinal = Math.abs(Robot.navx.grabValues() + angleOfTurn);
 				
 				
-				leftMotor1.set((angleInitial/angleFinal)+0.3);
-				leftMotor2.set((angleInitial/angleFinal)+0.3);
-				rightMotor1.set(((angleInitial/angleFinal)+0.3));
-				rightMotor2.set(((angleInitial/angleFinal)+0.3));
+				leftMotor1.set(-((angleInitial/angleFinal)+0.3));
+				leftMotor2.set(-((angleInitial/angleFinal)+0.3));
+				rightMotor1.set(-((angleInitial/angleFinal)+0.3));
+				rightMotor2.set(-((angleInitial/angleFinal)+0.3));
 				
 				
 				//
@@ -271,10 +273,10 @@ public class DriveTrain extends Subsystem {
 				
 				
 				
-				leftMotor1.set(-((angleInitial/angleFinal)-0.3));
-				leftMotor2.set(-((angleInitial/angleFinal)-0.3));
-				rightMotor1.set(-(angleInitial/angleFinal)-0.3);
-				rightMotor2.set(-(angleInitial/angleFinal)-0.3);
+				leftMotor1.set(+((angleInitial/angleFinal)+0.3));
+				leftMotor2.set(+((angleInitial/angleFinal)+0.3));
+				rightMotor1.set(+((angleInitial/angleFinal)+0.3));
+				rightMotor2.set(+((angleInitial/angleFinal)+0.3));
 				//go straight 
 			}
 		}
