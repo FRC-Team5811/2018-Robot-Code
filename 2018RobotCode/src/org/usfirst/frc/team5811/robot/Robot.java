@@ -102,6 +102,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
 		SmartDashboard.putNumber("Pivot motor speed: ", Robot.pivot.getMotor());
 		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());
+		
+		intake.armsClose();
 //		
 		
 		//gamedata = null;
@@ -128,7 +130,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		
+		intake.armsClose();
 		navx.reset(); //reseting navx hardware
 		driveSUB.fullReset(); //reseting  angle storing variables
 		encoders.reset();
@@ -175,6 +177,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		intake.armsClose();
+
 		//System.out.println("Navx: " + navx.grabValues());
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
