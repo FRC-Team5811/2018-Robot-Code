@@ -25,6 +25,8 @@ import org.usfirst.frc.team5811.robot.commands.CenterAutoMaster;
 import org.usfirst.frc.team5811.robot.commands.TestAuto;
 import org.usfirst.frc.team5811.robot.commands.TurnAuto;
 import org.usfirst.frc.team5811.robot.commands.DriveAuto;
+import org.usfirst.frc.team5811.robot.commands.GoNoGoAutoMasterLeft;
+import org.usfirst.frc.team5811.robot.commands.GoNoGoAutoMasterRight;
 import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
 import org.usfirst.frc.team5811.robot.commands.RampExtend;
@@ -78,10 +80,12 @@ public class Robot extends IterativeRobot {
 		ramp = new Ramp();
 		
 		SmartDashboard.putData("Auto mode", chooser);
-		chooser.addObject("Center Auto", new CenterAutoMaster());
-		chooser.addDefault("Left Auto", new AutoLeft());
-		chooser.addObject("Right Auto", new AutoRight());
-		chooser.addObject("Test Auto" , new TestAuto());
+		chooser.addObject("Center Auto choosing auto", new CenterAutoMaster());
+		chooser.addDefault("Left Auto DO NOT USE", new AutoLeft());
+		chooser.addObject("Right Auto DO NOT USE", new AutoRight());
+		chooser.addObject("Test Auto DO NOT USE" , new TestAuto());
+		chooser.addObject("Go No Go Right", new GoNoGoAutoMasterRight());
+		chooser.addObject("Go No Go Left", new GoNoGoAutoMasterLeft());
 		
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal());
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal());
@@ -89,7 +93,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("POV: ", oi.joy1.getPOV());
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
 		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
-		SmartDashboard.putNumber("Pot: ", Robot.pivot.getAngle());
+		SmartDashboard.putNumber("Potentiometer Value: ", Robot.pivot.getAngle());
+		SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
+		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
 //		
 		
 		//gamedata = null;
@@ -156,6 +162,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Error: ", driveSUB.getRight());
 		SmartDashboard.putNumber("Motor Delta: ", driveSUB.getLeft());
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
+		SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
+		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
 
 	}
 
@@ -177,6 +185,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
 		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
 		SmartDashboard.putNumber("Pot: ", Robot.pivot.getAngle());
+		SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
+		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
 		Robot.driveSUB.setCP(true);//
 		
 

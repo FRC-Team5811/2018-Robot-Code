@@ -211,12 +211,23 @@ public class DriveTrain extends Subsystem {
 			return false;
 		}
 	}
+	public double returnCX() {
+		return table.getNumber("cX", 0.0);
+	}
+	public boolean detectsCube() {
+		double cX = table.getNumber("cX", 0.0);
+		if(cX == 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
 	public void Vision_go_Cube(){
 		double cX = table.getNumber("cX", 0.0);
 		double cY = table.getNumber("cY", 0.0);
 		
 		System.out.println("cX: "+cX);
-		System.out.println("In seek mode");
+		//System.out.println("In seek mode");
 		
 		boolean HasCube = false;
 		
@@ -227,14 +238,14 @@ public class DriveTrain extends Subsystem {
 		
 		
 		if (cX == 0.0 || cY == 0.0){
-			System.out.println("No Cube Detected!!!!!");
+			//System.out.println("No Cube Detected!!!!!");
 			leftMotor1.set(0);
 			leftMotor2.set(0);
 			rightMotor1.set(0);
 			rightMotor2.set(0);
 		}
 		else{
-			System.out.println("Cube Detected!!!!!");
+			//System.out.println("Cube Detected!!!!!");
 			
 			if(cX > minVisionVal && cX < maxVisionVal){
 				
