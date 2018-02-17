@@ -16,7 +16,7 @@ public class ArcadeSpeedMod extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSUB.changeSpeed(0.25);
+    	Robot.driveSUB.changeSpeed(0.3);
     	Robot.ledsub.color();
     }
 

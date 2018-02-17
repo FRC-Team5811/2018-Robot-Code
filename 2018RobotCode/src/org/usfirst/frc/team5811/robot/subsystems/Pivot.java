@@ -36,8 +36,8 @@ public class Pivot extends Subsystem {
 	double backPosTolerance = -5; 
 	
 	double switchHoldingPower = 0.25;
-	double switchFullPower = -0.4;
-	double switchDownPower = -0.4;
+	double switchFullPower = -0.5;
+	double switchDownPower = -0.5;
 	
 	public double getAngle() {
 		return pivot.get();
@@ -130,7 +130,7 @@ public class Pivot extends Subsystem {
 		if (input < antiGravHat) {
 			antiGrav = (-(1/input))/antiGravScale;
 		}
-		pivotMotor.set((0.5*input)+antiGrav);
+		pivotMotor.set((0.6*input)+antiGrav);
 
 	}
 	

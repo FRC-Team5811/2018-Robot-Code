@@ -203,6 +203,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
 		SmartDashboard.putNumber("Pivot motor speed: ", Robot.pivot.getMotor());
 		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());
+		SmartDashboard.putNumber("Intake Right Current: ", Robot.driveSUB.monitorCurrentIntakeRight());
+		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
 		
 		new CompOn();//
 		

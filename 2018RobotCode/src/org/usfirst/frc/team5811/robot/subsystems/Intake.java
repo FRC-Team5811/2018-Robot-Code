@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem{
 	
 	 Victor leftMotor = RobotMap.motor0;
-	 Victor rightMotor = RobotMap.motor4;
+	 Victor rightMotor = RobotMap.motor5;
 	 DoubleSolenoid arms = RobotMap.intakeArms;
 	
 	public int cyclesOn = 0;
 	public static final int intSpikeWait = 25;
-	public static final int currentThreshold = 10;
+	public static final int currentThreshold = 20;
 	public boolean leftOff;
 	public boolean rightOff;
 
