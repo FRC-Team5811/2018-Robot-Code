@@ -67,13 +67,13 @@ public class DriveTrain extends Subsystem {
 	  }
 	  
 	public boolean checkCP() {
-		cp.setClosedLoopControl(false);
+		//cp.setClosedLoopControl(true);
 		return cp.enabled();
 	}
-	public void setCP(boolean setter) {
-		cp.setClosedLoopControl(setter);
+	public void setCP() {
+		cp.setClosedLoopControl(true);
 
-		cp.clearAllPCMStickyFaults();//
+		//cp.clearAllPCMStickyFaults();//
 	}
 	public void initDefaultCommand() {
 		

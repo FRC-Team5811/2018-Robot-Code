@@ -15,15 +15,15 @@ public class PosDown extends Command {
 	}
 	
 	protected void execute() {
-		this.complete = Robot.pivot.changeAngle(this.angle, this.state);
+		this.complete = Robot.pivot.moveToDown(-Robot.pivot.getAngle());
 	}
 	
 	protected boolean isFinished() {
-		if (this.complete) {
-			return true;
-		} else {
-			return false;
-		}
+		return this.complete;
+	}
+	
+	protected void end() {
+		Robot.pivot.setMotor(0);
 	}
 	
 }

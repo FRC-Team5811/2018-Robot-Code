@@ -2,8 +2,10 @@ package org.usfirst.frc.team5811.robot;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -30,13 +32,15 @@ public class RobotMap {
 	
 	public static PowerDistributionPanel PDP = new PowerDistributionPanel();
 	
-	public static Potentiometer pivot =new AnalogPotentiometer(ai,3600,0);
+	public static Potentiometer pivot =new AnalogPotentiometer(ai,3600,-137);
 	
-	public static DoubleSolenoid rampRelease = new DoubleSolenoid(0, 1);
-	public static DoubleSolenoid intakeArms = new DoubleSolenoid(2, 3);
+	public static DoubleSolenoid rampRelease = new DoubleSolenoid(2, 3);
+	public static DoubleSolenoid intakeArms = new DoubleSolenoid(0, 1);
 	
 	public static I2C arduino = new I2C(I2C.Port.kMXP, 58);
 	public static AHRS navx;
+	
+	public static UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 
 	public static Encoder driveEncL = new Encoder(0,1, true, Encoder.EncodingType.k4X);
 	public static Encoder driveEncR = new Encoder(2,3, false, Encoder.EncodingType.k4X);

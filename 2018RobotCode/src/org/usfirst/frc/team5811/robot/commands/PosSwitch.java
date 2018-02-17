@@ -15,15 +15,11 @@ public class PosSwitch extends Command {
 	}
 	
 	protected void execute() {
-		this.complete = Robot.pivot.changeAngle(angle, 0);
+		this.complete = Robot.pivot.moveToSwitch(-Robot.pivot.getAngle());
 	}
 	
 	protected boolean isFinished() {
-		if (this.complete) {
-			return true;
-		} else {
-			return false;
-		}
+		return this.complete;
 	}
 	
 }

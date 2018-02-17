@@ -16,11 +16,11 @@ public class CenterAutoMaster extends CommandGroup {
 	int waitTime = 35;
 	double driveTime1Left = 3000;
 	double driveDirection1Left = 0.45;
-	double turnAngle1Left = 38;
+	double turnAngle1Left = 45;
 	double turnDirection1Left = -0.9;
 	double DT2Left = 7500;
 	double DD2Left = 0.45;
-	double TA2Left = 38;
+	double TA2Left = 45; 
 	double TD2Left = 0.9;
 	double DT3Left = 5000;
 	double DD3Left = 0.45;

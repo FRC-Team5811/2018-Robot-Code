@@ -8,8 +8,8 @@ import org.usfirst.frc.team5811.robot.commands.IntakeInward;
 import org.usfirst.frc.team5811.robot.commands.IntakeToggle;
 import org.usfirst.frc.team5811.robot.commands.PivotManual;
 import org.usfirst.frc.team5811.robot.commands.PosDown;
-import org.usfirst.frc.team5811.robot.commands.PosExchange;
-import org.usfirst.frc.team5811.robot.commands.PosSwitchReverse;
+import org.usfirst.frc.team5811.robot.commands.PosStore;
+import org.usfirst.frc.team5811.robot.commands.PosSwitch;
 import org.usfirst.frc.team5811.robot.commands.RampExtend;
 import org.usfirst.frc.team5811.robot.commands.ledOFF;
 import org.usfirst.frc.team5811.robot.commands.SmartShoot;
@@ -41,12 +41,16 @@ public class OI {
 	
 	public Joystick joy2 = new Joystick(1);
 	JoystickButton aManip = new JoystickButton(joy2, 2);
-	 JoystickButton bManip = new JoystickButton(joy2, 3);
-	 JoystickButton yManip = new JoystickButton(joy2, 4);
+	JoystickButton bManip = new JoystickButton(joy2, 3);
+	JoystickButton yManip = new JoystickButton(joy2, 4);
 	JoystickButton xManip = new JoystickButton(joy2, 1);
-	 ComboButton RLbumpers = new ComboButton(joy2, 5, 6);
+	ComboButton RLbumpers = new ComboButton(joy2, 5, 6);
 	AxisButton manipLeftJoyY = new AxisButton(joy2, 1);
-	
+	DPadButton manipDPUp = new DPadButton(joy2, 0);
+	DPadButton manipDRight = new DPadButton(joy2, 90);
+	DPadButton manipDDown = new DPadButton(joy2, 180);
+	DPadButton manipDLeft = new DPadButton(joy2, 270);
+
 	int dPadVals = joy1.getPOV();
 
 	
@@ -75,13 +79,15 @@ public class OI {
 	
 		
 		xManip.toggleWhenPressed(new IntakeInward());
-		bManip.toggleWhenPressed(new PivotManual());
+		//bManip.toggleWhenPressed(new PivotManual());
 		yManip.whileHeld(new SmartShoot());
 		RLbumpers.whenPressed(new RampExtend()); //FIX COMBO BUTTONS
 		aManip.toggleWhenPressed(new IntakeToggle());
 		manipLeftJoyY.whileHeld(new PivotManual());
-		
-		
+		manipDPUp.toggleWhenPressed(new PosStore());
+		manipDRight.toggleWhenPressed(new PosSwitch());
+		manipDDown.toggleWhenPressed(new PosDown());
+		manipDLeft.toggleWhenPressed(new PosSwitch());
 		
 			
 		//bManip.whenPressed(new HaltIntake());
@@ -102,6 +108,9 @@ public class OI {
 	}
 	public double getManipLeftY() {
 		return joy2.getRawAxis(1);
+	}
+	public int getPov() {
+		return joy2.getPOV();
 	}
 
 

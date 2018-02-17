@@ -14,7 +14,7 @@ public class Intake extends Subsystem{
 	
 	public int cyclesOn = 0;
 	public static final int intSpikeWait = 25;
-	public static final int currentThreshold = 30;
+	public static final int currentThreshold = 25;
 	public boolean leftOff;
 	public boolean rightOff;
 
