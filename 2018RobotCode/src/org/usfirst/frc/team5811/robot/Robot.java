@@ -30,6 +30,7 @@ import org.usfirst.frc.team5811.robot.commands.GoNoGoAutoMasterRight;
 import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
 import org.usfirst.frc.team5811.robot.commands.RampExtend;
+import org.usfirst.frc.team5811.robot.commands.SafetyAuto;
 import org.usfirst.frc.team5811.robot.commands.SmartShoot;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.Encoders;
@@ -88,6 +89,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Test Auto DO NOT USE" , new TestAuto());
 		chooser.addObject("Go No Go Right", new GoNoGoAutoMasterRight());
 		chooser.addObject("Go No Go Left", new GoNoGoAutoMasterLeft());
+		chooser.addObject("SAFETY AUTO", new SafetyAuto());
 		
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal());
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal());
