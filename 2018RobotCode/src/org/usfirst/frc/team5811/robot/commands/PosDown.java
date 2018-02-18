@@ -11,7 +11,7 @@ public class PosDown extends Command {
 	boolean complete;
 	int state = 0;
 	public PosDown() {
-		
+//		requires(Robot.pivot);
 	}
 	
 	protected void execute() {
@@ -24,6 +24,10 @@ public class PosDown extends Command {
 	
 	protected void end() {
 		Robot.pivot.setMotor(0);
+	}
+	
+	protected void interrupted() {
+		end();
 	}
 	
 }

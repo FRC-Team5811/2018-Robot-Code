@@ -11,7 +11,7 @@ public class PosStore extends Command {
 	boolean complete;
 	int state = 4;
 	public PosStore() {
-		
+//		requires(Robot.pivot);
 	}
 	
 	protected void execute() {
@@ -24,5 +24,8 @@ public class PosStore extends Command {
 	
 	protected void end() {
 		Robot.pivot.setMotor(0);
+	}
+	protected void interrupted() {
+		end();
 	}
 }

@@ -55,6 +55,7 @@ public class DriveTrain extends Subsystem {
 	  double arcadeSpeedModifier = 1;
 	  double minVisionVal = 30;
 	  double maxVisionVal = 70;
+	  double visionTurnMult = 0.4;
 	  	  
 	  public void fullReset(){   //reseting angle storing variables
 		  previousAngle = 0;
@@ -222,7 +223,7 @@ public class DriveTrain extends Subsystem {
 			return true;
 		}
 	}
-	public void Vision_go_Cube(){
+	public boolean Vision_go_Cube(){
 		double cX = table.getNumber("cX", 0.0);
 		double cY = table.getNumber("cY", 0.0);
 		
@@ -238,65 +239,73 @@ public class DriveTrain extends Subsystem {
 			rightMotor2.set(0);
 			Robot.intake.armsClose();
 			Robot.ledsub.flash();
+			Robot.intake.haltRight();
+			Robot.intake.haltLeft();
+			return true;
 			
 		}else {
+				Robot.intake.intakeRightIn();
+				Robot.intake.intakeLeftIn();
+				Robot.intake.armsOpen();
+				
 			
-			Robot.intake.armsOpen();
-		
-		if (cX == 0.0 || cY == 0.0){
-			//System.out.println("No Cube Detected!!!!!");
-			leftMotor1.set(0);
-			leftMotor2.set(0);
-			rightMotor1.set(0);
-			rightMotor2.set(0);
-		}
-		else{
-			//System.out.println("Cube Detected!!!!!");
-			
-			if(cX > minVisionVal && cX < maxVisionVal){
+			if (cX == 0.0 || cY == 0.0){
+				//System.out.println("No Cube Detected!!!!!");
+				leftMotor1.set(0);
+				leftMotor2.set(0);
+				rightMotor1.set(0);
+				rightMotor2.set(0);
 				
-				leftMotor1.set(0.5);
-				leftMotor2.set(0.5);
-				rightMotor1.set(-0.5);
-				rightMotor2.set(-0.5);
-			}
-			else if(cX <= minVisionVal){
-				double angleOfTurn = (50 - cX) * 0.6;
-				System.out.print("turn right: ");
-				System.out.print(angleOfTurn);
-				System.out.println("degrees");
-				
-				double angleInitial = Math.abs(Robot.navx.grabValues());
-				double angleFinal = Math.abs(Robot.navx.grabValues() + angleOfTurn);
-				
-				
-				leftMotor1.set(-((angleInitial/angleFinal)+0.3));
-				leftMotor2.set(-((angleInitial/angleFinal)+0.3));
-				rightMotor1.set(-((angleInitial/angleFinal)+0.3));
-				rightMotor2.set(-((angleInitial/angleFinal)+0.3));
-				
-				
-				//
-				//go straight
 			}
 			else{
-				double angleOfTurn = (50 - cX) * 0.6;
-				System.out.print("turn left: ");
-				System.out.print(angleOfTurn);
-				System.out.println("degrees");
+				//System.out.println("Cube Detected!!!!!");
 				
-				double angleInitial = Math.abs(Robot.navx.grabValues());
-				double angleFinal = Math.abs(Robot.navx.grabValues() - angleOfTurn);
-				
-				
-				
-				leftMotor1.set(+((angleInitial/angleFinal)+0.3));
-				leftMotor2.set(+((angleInitial/angleFinal)+0.3));
-				rightMotor1.set(+((angleInitial/angleFinal)+0.3));
-				rightMotor2.set(+((angleInitial/angleFinal)+0.3));
-				//go straight 
-			}
-		}
+					if(cX > minVisionVal && cX < maxVisionVal){
+						
+						leftMotor1.set(0.5);
+						leftMotor2.set(0.5);
+						rightMotor1.set(-0.5);
+						rightMotor2.set(-0.5);
+					}
+					else if(cX <= minVisionVal){
+						double angleOfTurn = (50 - cX) * 0.6;
+						System.out.print("turn right: ");
+						System.out.print(angleOfTurn);
+						System.out.println("degrees");
+						
+						double angleInitial = Math.abs(Robot.navx.grabValues());
+						double angleFinal = Math.abs(Robot.navx.grabValues() + angleOfTurn);
+						
+						
+						leftMotor1.set(visionTurnMult*(-((angleInitial/angleFinal)+0.3)));
+						leftMotor2.set(visionTurnMult*(-((angleInitial/angleFinal)+0.3)));
+						rightMotor1.set(visionTurnMult*(-((angleInitial/angleFinal)+0.3)));
+						rightMotor2.set(visionTurnMult*(-((angleInitial/angleFinal)+0.3)));
+						
+						
+						//
+						//go straight
+					}
+					else{
+						double angleOfTurn = (50 - cX) * 0.6;
+						System.out.print("turn left: ");
+						System.out.print(angleOfTurn);
+						System.out.println("degrees");
+						
+						double angleInitial = Math.abs(Robot.navx.grabValues());
+						double angleFinal = Math.abs(Robot.navx.grabValues() - angleOfTurn);
+						
+						
+						
+						leftMotor1.set(visionTurnMult*(+((angleInitial/angleFinal)+0.3)));
+						leftMotor2.set(visionTurnMult*(+((angleInitial/angleFinal)+0.3)));
+						rightMotor1.set(visionTurnMult*(+((angleInitial/angleFinal)+0.3)));
+						rightMotor2.set(visionTurnMult*(+((angleInitial/angleFinal)+0.3)));
+						//go straight 
+					}
+					
+				}
+			return false;
 		}
 	}
 	

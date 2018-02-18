@@ -11,7 +11,7 @@ public class PosSwitch extends Command {
 	boolean complete;
 	int state = 2;
 	public PosSwitch() {
-		
+		requires(Robot.pivot);
 	}
 	
 	protected void execute() {
@@ -19,7 +19,10 @@ public class PosSwitch extends Command {
 	}
 	
 	protected boolean isFinished() {
+		
 		return this.complete;
 	}
+	
+	
 	
 }

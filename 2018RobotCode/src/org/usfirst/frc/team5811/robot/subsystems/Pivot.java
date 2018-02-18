@@ -24,20 +24,24 @@ public class Pivot extends Subsystem {
 	
 	double downAngle = 0;    //Find based on potentiometer offset
 	double downTransitionAngle = 45; 
-	double switchAngle = 80;  //Find based on potentiometer offset
-	double backAngle = 130;    //Find based on potentiometer offset
-	double backTransitionAngle = 120; 
+	double switchAngle = 60;  //Find based on potentiometer offset
+	double backAngle = 120;    //Find based on potentiometer offset
+	double backTransitionAngle = 110; 
 	
 	double kpDown = .01; //plan to do increase
 	double kpUp= .01; //plan to do increase
 	
 	double downPosTolerance = 10; 
-	double switchPosTolerance = -3;
-	double backPosTolerance = -5; 
+	double switchPosTolerance = 3;
+	double backPosTolerance = 5; 
 	
-	double switchHoldingPower = 0.25;
-	double switchFullPower = -0.5;
-	double switchDownPower = -0.5;
+	double switchHoldingPower = 0.3;
+	double switchFullPower = -0.75;
+	double switchDownPower = -0.75;
+	
+	public Pivot() {
+		
+	}
 	
 	public double getAngle() {
 		return pivot.get();
@@ -48,7 +52,7 @@ public class Pivot extends Subsystem {
 	public  int getState() {
 		return state;
 	}
-	public  void setMotor(double speed) {
+	public void setMotor(double speed) {
 		pivotMotor.set(speed);
 	}
 	public double getMotor() {
@@ -99,7 +103,7 @@ public class Pivot extends Subsystem {
 	}
 	
 	public boolean moveToBack(double currentPos) {
-		
+		Robot.intake.armsClose();
 		if(currentPos<backTransitionAngle) {
 			pivotMotor.set(switchFullPower*(kpUp*(backTransitionAngle-currentPos)));
 		} else {
@@ -111,7 +115,7 @@ public class Pivot extends Subsystem {
 	}
 	
 	public boolean moveToSwitch(double currentPos) {
-		
+		Robot.intake.armsClose();
 		if(currentPos<switchAngle-switchPosTolerance) {
 			pivotMotor.set(switchFullPower*(switchHoldingPower+kpUp*(switchAngle-currentPos)));
 		} else if(currentPos>switchAngle+switchPosTolerance){
@@ -120,11 +124,14 @@ public class Pivot extends Subsystem {
 			pivotMotor.set(switchFullPower*(switchHoldingPower));
 		}
 		
-		return (currentPos < switchAngle-switchPosTolerance && currentPos > switchAngle+switchPosTolerance);
+		return (currentPos > switchAngle-switchPosTolerance && currentPos < switchAngle+switchPosTolerance);
 		
 	}
 	
 	public void manual(double input) {
+		if(input > Math.abs(0.1)) {
+			Robot.intake.armsClose();
+		}
 		double antiGrav;
 		antiGrav = 0;
 		if (input < antiGravHat) {

@@ -25,12 +25,14 @@ public class VisionCube extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.driveSUB.Vision_go_Cube();
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.driveSUB.fullStop();
+    	Robot.intake.haltRight();
+    	Robot.intake.haltLeft();
     }
 
     // Called when another command which requires one or more of the same

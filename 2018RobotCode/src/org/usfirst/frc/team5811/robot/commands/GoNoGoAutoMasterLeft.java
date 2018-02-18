@@ -14,7 +14,7 @@ public class GoNoGoAutoMasterLeft extends CommandGroup {
 	char firstLetter;
 	int waitTime = 35;
 	double driveTime1Right = 10000;
-	double DD1R = 0.7;
+	double DD1R = -0.7;
     public GoNoGoAutoMasterLeft() {
    
     	requires(Robot.driveSUB);

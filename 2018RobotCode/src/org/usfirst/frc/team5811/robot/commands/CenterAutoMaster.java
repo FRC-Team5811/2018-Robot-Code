@@ -15,26 +15,26 @@ public class CenterAutoMaster extends CommandGroup {
 	char firstLetter;
 	int waitTime = 35;
 	double driveTime1Left = 3000;
-	double driveDirection1Left = 0.45;
+	double driveDirection1Left = -0.45;
 	double turnAngle1Left = 45;
-	double turnDirection1Left = -0.9;
+	double turnDirection1Left = 0.9;
 	double DT2Left = 7500;
-	double DD2Left = 0.45;
+	double DD2Left = -0.45;
 	double TA2Left = 45; 
-	double TD2Left = 0.9;
+	double TD2Left = -0.9;
 	double DT3Left = 5000;
-	double DD3Left = 0.45;
+	double DD3Left = -0.45;
 	
 	double driveTime1Right = 3000;
-	double driveDirection1Right = 0.45;
+	double driveDirection1Right = -0.45;
 	double turnAngle1Right = 40;
-	double turnDirection1Right = 0.8;
+	double turnDirection1Right = -0.8;
 	double DT2Right = 8000;
-	double DD2Right = 0.45;
+	double DD2Right = -0.45;
 	double TA2Right = 33;
-	double TD2Right = -0.9;
+	double TD2Right = 0.9;
 	double DT3Right = 3000;
-	double DD3Right = 0.45;
+	double DD3Right = -0.45;
 	
     public CenterAutoMaster() {
     	
@@ -71,6 +71,7 @@ public class CenterAutoMaster extends CommandGroup {
     		
     		addSequential(new DriveAuto(DT3Left, DD3Left));
     		addSequential(new FullStop(waitTime));
+    		addSequential(new SmartShoot(), 1);
     		
     		
     		System.out.println("lean l");
@@ -96,6 +97,7 @@ public class CenterAutoMaster extends CommandGroup {
     		
     		addSequential(new DriveAuto(DT3Right, DD3Right));
     		addSequential(new FullStop(waitTime));
+    		addSequential(new SmartShoot(), 1);
     		
 
     	}

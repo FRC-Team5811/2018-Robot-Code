@@ -27,6 +27,7 @@ import org.usfirst.frc.team5811.robot.commands.TurnAuto;
 import org.usfirst.frc.team5811.robot.commands.DriveAuto;
 import org.usfirst.frc.team5811.robot.commands.GoNoGoAutoMasterLeft;
 import org.usfirst.frc.team5811.robot.commands.GoNoGoAutoMasterRight;
+import org.usfirst.frc.team5811.robot.commands.GoNoGoTest;
 import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
 import org.usfirst.frc.team5811.robot.commands.RampExtend;
@@ -72,7 +73,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 	
-		oi = new OI();
 		driveSUB = new DriveTrain();
 		ledsub = new LEDS();
 		navx = new NavX();
@@ -81,6 +81,8 @@ public class Robot extends IterativeRobot {
 		pivot = new Pivot();
 		ramp = new Ramp();
 		camera = new Camera();
+		oi = new OI();
+
 		
 		SmartDashboard.putData("Auto mode", chooser);
 		chooser.addObject("Center Auto choosing auto", new CenterAutoMaster());
@@ -90,6 +92,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Go No Go Right", new GoNoGoAutoMasterRight());
 		chooser.addObject("Go No Go Left", new GoNoGoAutoMasterLeft());
 		chooser.addObject("SAFETY AUTO", new SafetyAuto());
+		chooser.addObject("Go no go test", new GoNoGoTest());
 		
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal());
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal());
@@ -168,13 +171,16 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal());
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal());
 		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
-		SmartDashboard.putNumber("Right Motors: ", driveSUB.getRight());
-		SmartDashboard.putNumber("Left Motors: ", driveSUB.getLeft());
-		SmartDashboard.putNumber("Error: ", driveSUB.getRight());
-		SmartDashboard.putNumber("Motor Delta: ", driveSUB.getLeft());
+		SmartDashboard.putNumber("POV: ", oi.joy1.getPOV());
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
+		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
+		SmartDashboard.putNumber("Potentiometer Value: ", Robot.pivot.getAngle());
 		SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
 		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
+		SmartDashboard.putNumber("Pivot motor speed: ", Robot.pivot.getMotor());
+		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());
+		SmartDashboard.putNumber("Intake Right Current: ", Robot.driveSUB.monitorCurrentIntakeRight());
+		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
 
 	}
 

@@ -8,15 +8,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoRight extends CommandGroup {
 	int waitTime = 35;
 	double driveTime1Right = 3000;
-	double driveDirection1Right = 0.45;
+	double driveDirection1Right = -0.45;
 	double turnAngle1Right = 40;
-	double turnDirection1Right = 0.8;
+	double turnDirection1Right = -0.8;
 	double DT2Right = 8000;
-	double DD2Right = 0.45;
+	double DD2Right = -0.45;
 	double TA2Right = 33;
-	double TD2Right = -0.9;
+	double TD2Right = 0.9;
 	double DT3Right = 3000;
-	double DD3Right = 0.45;
+	double DD3Right = -0.45;
 	
 	public AutoRight() {
 		requires(Robot.driveSUB);
@@ -43,5 +43,6 @@ public class AutoRight extends CommandGroup {
 		
 		addSequential(new DriveAuto(DT3Right, DD3Right));
 		addSequential(new FullStop(waitTime));
+		addSequential(new SmartShoot(), 1);
 	}
 }

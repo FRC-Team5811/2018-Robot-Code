@@ -42,7 +42,7 @@ public class Intake extends Subsystem{
 	}
 	
 	public void outtake(int position){
-		position = 1;
+		position = 0;
 		switch(position){
 			case 0: //switch
  				leftMotor.set(-0.75);
