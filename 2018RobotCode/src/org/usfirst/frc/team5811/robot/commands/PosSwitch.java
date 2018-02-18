@@ -24,6 +24,7 @@ public class PosSwitch extends Command {
 	
 	protected void end() {
 		Robot.pivot.setMotor(0);
+		System.out.println("ENDING SWITCH");
 	}
 	protected void interrupted() {
 		end();

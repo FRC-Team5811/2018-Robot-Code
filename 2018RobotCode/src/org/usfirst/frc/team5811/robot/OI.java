@@ -89,7 +89,6 @@ public class OI {
 		manipDRight.toggleWhenPressed(new PosSwitch());
 		manipDDown.toggleWhenPressed(new PosDown());
 		manipDLeft.toggleWhenPressed(new PosSwitch());
-		
 			
 		//bManip.whenPressed(new HaltIntake());
 		
