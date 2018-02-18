@@ -12,6 +12,7 @@ public class PosStore extends Command {
 	int state = 4;
 	public PosStore() {
 		requires(Robot.pivot);
+		setInterruptible(true);
 	}
 	
 	protected void execute() {

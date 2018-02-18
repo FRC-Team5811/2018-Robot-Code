@@ -23,7 +23,7 @@ public class AutoLeft extends CommandGroup {
 		requires(Robot.navx);
 		requires(Robot.encoders);
 	
-		
+		addSequential(new FullAutoReset());
 		addSequential(new DriveAuto(driveTime1Left, driveDirection1Left));
 		System.out.println("First move");
 		addSequential(new FullStop(waitTime));
@@ -45,7 +45,7 @@ public class AutoLeft extends CommandGroup {
 		
 	
 		
-		addSequential(new DriveAuto(DT3Left, DD3Left));
+		addSequential(new DriveAuto(DT3Left, DD3Left), 3);
 		addSequential(new FullStop(waitTime));
 		addSequential(new SmartShoot(), 1);
 		

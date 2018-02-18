@@ -23,7 +23,7 @@ public class AutoRight extends CommandGroup {
 		requires(Robot.navx);
 		requires(Robot.encoders);
 		
-
+		addSequential(new FullAutoReset());
 		addSequential(new DriveAuto(driveTime1Right, driveDirection1Right));
 		System.out.println("First move");
 		addSequential(new FullStop(waitTime));
@@ -41,7 +41,7 @@ public class AutoRight extends CommandGroup {
 		addSequential(new FullStop(waitTime));
 
 		
-		addSequential(new DriveAuto(DT3Right, DD3Right));
+		addSequential(new DriveAuto(DT3Right, DD3Right),3);
 		addSequential(new FullStop(waitTime));
 		addSequential(new SmartShoot(), 1);
 	}

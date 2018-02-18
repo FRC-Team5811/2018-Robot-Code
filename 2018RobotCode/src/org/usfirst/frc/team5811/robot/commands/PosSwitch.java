@@ -12,6 +12,7 @@ public class PosSwitch extends Command {
 	int state = 2;
 	public PosSwitch() {
 		requires(Robot.pivot);
+		setInterruptible(true);
 	}
 	
 	protected void execute() {

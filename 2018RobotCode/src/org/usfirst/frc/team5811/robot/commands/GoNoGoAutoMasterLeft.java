@@ -24,11 +24,11 @@ public class GoNoGoAutoMasterLeft extends CommandGroup {
 		firstLetter = gameData.charAt(0);
 		System.out.println(firstLetter);
 		if(firstLetter == 'R') {
-			addSequential(new DriveAuto(driveTime1Right, DD1R));
+			addSequential(new DriveAuto(driveTime1Right, DD1R),5);
 			addSequential(new FullStop(waitTime));
 		}
 		if(firstLetter == 'L') {
-			addSequential(new DriveAuto(driveTime1Right, DD1R));
+			addSequential(new DriveAuto(driveTime1Right, DD1R),5);
 			addSequential(new FullStop(waitTime));
 			addSequential(new SmartShoot(), 1);
 			//Add pivot and launch commands here

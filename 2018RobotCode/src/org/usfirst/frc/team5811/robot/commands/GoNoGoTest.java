@@ -20,8 +20,8 @@ public class GoNoGoTest extends CommandGroup {
         requires(Robot.driveSUB);
         requires(Robot.navx);
         requires(Robot.encoders);
-     
-    	addSequential(new DriveAuto(driveTime1Right, DD1R));
+        addSequential(new FullAutoReset());
+    	addSequential(new DriveAuto(driveTime1Right, DD1R), 5);
     	addSequential(new FullStop(waitTime));
     	addSequential(new SmartShoot(), 1);
     			//Add pivot and launch commands here

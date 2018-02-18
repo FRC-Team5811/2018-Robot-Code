@@ -12,6 +12,7 @@ public class PosDown extends Command {
 	int state = 0;
 	public PosDown() {
 		requires(Robot.pivot);
+		setInterruptible(true);
 	}
 	
 	protected void execute() {

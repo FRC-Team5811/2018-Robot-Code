@@ -45,11 +45,11 @@ public class CenterAutoMaster extends CommandGroup {
 		firstLetter = gameData.charAt(0);
 		System.out.println(firstLetter);
     	if(firstLetter == 'L'){
-    		System.out.println("YEE");
+    		//System.out.println("YEE");
     	
-    		
+    		addSequential(new FullAutoReset());
     		addSequential(new DriveAuto(driveTime1Left, driveDirection1Left));
-    		System.out.println("First move");
+    		//System.out.println("First move");
     		addSequential(new FullStop(waitTime));
     		
     	
@@ -69,7 +69,7 @@ public class CenterAutoMaster extends CommandGroup {
     		
     	
     		
-    		addSequential(new DriveAuto(DT3Left, DD3Left));
+    		addSequential(new DriveAuto(DT3Left, DD3Left),3);
     		addSequential(new FullStop(waitTime));
     		addSequential(new SmartShoot(), 1);
     		
@@ -77,9 +77,9 @@ public class CenterAutoMaster extends CommandGroup {
     		System.out.println("lean l");
     	} else if(firstLetter == 'R'){
     	
-    		
+    		addSequential(new FullAutoReset());
     		addSequential(new DriveAuto(driveTime1Right, driveDirection1Right));
-    		System.out.println("First move");
+    		//System.out.println("First move");
     		addSequential(new FullStop(waitTime));
   
     		
@@ -95,7 +95,7 @@ public class CenterAutoMaster extends CommandGroup {
     		addSequential(new FullStop(waitTime));
   
     		
-    		addSequential(new DriveAuto(DT3Right, DD3Right));
+    		addSequential(new DriveAuto(DT3Right, DD3Right), 3);
     		addSequential(new FullStop(waitTime));
     		addSequential(new SmartShoot(), 1);
     		
