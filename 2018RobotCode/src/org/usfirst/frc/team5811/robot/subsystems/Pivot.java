@@ -47,7 +47,6 @@ public class Pivot extends Subsystem {
 		return pivot.get();
 	}
 	
-
 	
 	public  int getState() {
 		return state;

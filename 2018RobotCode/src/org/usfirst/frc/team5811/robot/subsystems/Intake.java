@@ -13,8 +13,10 @@ public class Intake extends Subsystem{
 	 DoubleSolenoid arms = RobotMap.intakeArms;
 	
 	public int cyclesOn = 0;
+	public int cyclesSpike = 0;
 	public static final int intSpikeWait = 25;
 	public static final int currentThreshold = 20;
+	public static final int timeout = 15; // how many cycles it waits to turn off after current spike is reached
 	public boolean leftOff;
 	public boolean rightOff;
 

@@ -19,7 +19,7 @@ public class PosSwitch extends Command {
 	}
 	
 	protected boolean isFinished() {
-		return false;
+		return this.complete;
 	}
 	
 	protected void end() {

@@ -8,47 +8,52 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeInward extends Command {
-	public IntakeInward(){
+	int cyclesOn, cyclesSpike;
+	double currentLeft, currentRight;
+	boolean intakeOff;
 
-		//requires(Robot.intake);
+	public IntakeInward(){
+		requires(Robot.intake);
 		setInterruptible(true);
-		//this.start();
 		
 	}
 	@Override
 	protected void initialize(){
+		cyclesOn = 0;
+		cyclesSpike = 0;
+		intakeOff = false;
+		Robot.intake.intakeLeftIn();
+		Robot.intake.intakeRightIn();
 	}
 	
 	@Override
 	protected void execute(){
-		Robot.intake.intakeRightIn();
-		Robot.intake.intakeLeftIn();
-//		Robot.intake.cyclesOn++;
-//		Robot.ledsub.colorInward();
-//		if(Robot.intake.cyclesOn > Intake.intSpikeWait && Robot.driveSUB.monitorCurrentIntakeLeft() > Intake.currentThreshold){  //Would be nice to make PDP its own subsystem
-//			Robot.intake.leftOff = true;  
-//			System.out.println("current spike left" + Robot.driveSUB.monitorCurrentIntakeLeft());
-//			Robot.intake.haltLeft();
-//		}else if(!Robot.intake.leftOff){
-//			Robot.intake.intakeLeftIn();
-//		}
-//		if (Robot.intake.cyclesOn > Intake.intSpikeWait && Robot.driveSUB.monitorCurrentIntakeRight() > Intake.currentThreshold){
-//			Robot.intake.rightOff = true; 
-//			System.out.println("current spike right" + Robot.driveSUB.monitorCurrentIntakeRight());
-//			Robot.intake.haltRight();
-//		}else if(!Robot.intake.rightOff){
-//			Robot.intake.intakeRightIn();
-//		}
+		currentLeft = Robot.driveSUB.monitorCurrentIntakeLeft();
+		currentRight = Robot.driveSUB.monitorCurrentIntakeRight();
 		
-		//Alternate version waits for both to have too high a current and then shut off both sides together
+		Robot.ledsub.colorInward();
+		System.out.println("cycles " + cyclesOn);
+		cyclesOn++;
 		
+		if (cyclesOn > Intake.intSpikeWait) {
+			if (currentLeft > Intake.currentThreshold || currentRight > Intake.currentThreshold) {
+				cyclesSpike++;
+				if (cyclesSpike > Intake.timeout) {
+					Robot.intake.haltLeft();
+					Robot.intake.haltRight();
+					intakeOff = true;
+				}
+			} else if (!intakeOff) {
+				Robot.intake.intakeLeftIn();
+				Robot.intake.intakeRightIn();
+			}
+		}
 	}
 	
  	protected void end(){
+		Robot.ledsub.off();
 		Robot.intake.haltLeft();
 		Robot.intake.haltRight();
-		Robot.intake.cyclesOn = 0;
-		Robot.ledsub.off();
 	}
 	
 	protected void interrupted(){
@@ -58,16 +63,7 @@ public class IntakeInward extends Command {
 	
 	@Override
 	protected boolean isFinished() {
-		
-		if(Robot.intake.leftOff && Robot.intake.rightOff){
-			Robot.intake.leftOff = false; //reset variables
-			Robot.intake.rightOff = false;
-			end(); //not so sure, but think this is correct
-			return true; 
-		}else{
-			return false; 
-		}
-	
+		return intakeOff;
 	}
 	
 }
