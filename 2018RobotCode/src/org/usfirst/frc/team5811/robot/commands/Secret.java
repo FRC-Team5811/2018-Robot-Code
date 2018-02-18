@@ -29,7 +29,7 @@ public class Secret extends Command {
     protected void execute() {
     	past = present;
     	present = Robot.oi.getPov();
-    	if (past == 0) {
+    	if (past == -1) {
 			if (magicCounter == 0){
 		    	System.out.println("*BAM* the body hit the floor, but who was the murderer?");
 	    		System.out.println("[UP] Look around");

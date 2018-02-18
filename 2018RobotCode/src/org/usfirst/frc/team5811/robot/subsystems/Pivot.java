@@ -95,7 +95,7 @@ public class Pivot extends Subsystem {
 		if(currentPos>downTransitionAngle) {
 			pivotMotor.set(switchDownPower*(-kpDown*(currentPos-downTransitionAngle)));
 		} else {
-			pivotMotor.set(switchDownPower*(kpUp*(currentPos-downTransitionAngle)));
+			pivotMotor.set(switchDownPower*(kpUp*(currentPos-downAngle)));
 		}
 		
 		return (currentPos < downAngle+downPosTolerance);

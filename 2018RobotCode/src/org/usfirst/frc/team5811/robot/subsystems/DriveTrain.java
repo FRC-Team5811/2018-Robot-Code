@@ -56,6 +56,7 @@ public class DriveTrain extends Subsystem {
 	  double minVisionVal = 30;
 	  double maxVisionVal = 70;
 	  double visionTurnMult = 0.4;
+	  double turnMax = 0.95;
 	  	  
 	  public void fullReset(){   //reseting angle storing variables
 		  previousAngle = 0;
@@ -90,10 +91,10 @@ public class DriveTrain extends Subsystem {
 		System.out.println(arcadeSpeedModifier);
 	}
 	public void arcadeDrive(double turn, double throttle) {
-		leftMotor1.set(arcadeSpeedModifier*(-(throttle - turn)));
-		leftMotor2.set(arcadeSpeedModifier*(-(throttle - turn)));
-		rightMotor1.set(arcadeSpeedModifier*(throttle + turn));
-		rightMotor2.set(arcadeSpeedModifier*(throttle + turn));
+		leftMotor1.set(arcadeSpeedModifier*(-(throttle - (turnMax * turn))));
+		leftMotor2.set(arcadeSpeedModifier*(-(throttle - (turnMax * turn))));
+		rightMotor1.set(arcadeSpeedModifier*(throttle + (turnMax * turn)));
+		rightMotor2.set(arcadeSpeedModifier*(throttle + (turnMax * turn)));
 		
 		////System.out.println(pdp.getCurrent(0)+ "   "+pdp.getCurrent(1)+ "   "+pdp.getCurrent(2)+ "   "+pdp.getCurrent(3));
 		
