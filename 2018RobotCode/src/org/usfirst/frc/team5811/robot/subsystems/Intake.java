@@ -30,7 +30,7 @@ public class Intake extends Subsystem{
 	}
 	
 	public void intakeLeftIn(){
-		leftMotor.set(-0.5);
+		leftMotor.set(0.5);
 	}
 	
 	public void haltRight(){
@@ -45,13 +45,13 @@ public class Intake extends Subsystem{
 		position = 1;
 		switch(position){
 			case 0: //switch
- 				leftMotor.set(0.75);
+ 				leftMotor.set(-0.75);
 				rightMotor.set(0.75);
 			case 1: //backswitch
-				leftMotor.set(1);
+				leftMotor.set(-1);
 				rightMotor.set(1);
 			case 2: //Exchange
-				leftMotor.set(0.5);
+				leftMotor.set(-0.5);
 				rightMotor.set(0.5);
 		
 		}
