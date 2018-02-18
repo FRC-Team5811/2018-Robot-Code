@@ -13,7 +13,7 @@ public class GoNoGoAutoMasterLeft extends CommandGroup {
  	String gameData;
 	char firstLetter;
 	int waitTime = 35;
-	double driveTime1Right = 10000;
+	double driveTime1Right = 8500;
 	double DD1R = -0.7;
     public GoNoGoAutoMasterLeft() {
    

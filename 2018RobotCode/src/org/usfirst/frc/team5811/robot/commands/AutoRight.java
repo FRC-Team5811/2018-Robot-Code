@@ -10,11 +10,11 @@ public class AutoRight extends CommandGroup {
 	double driveTime1Right = 3000;
 	double driveDirection1Right = -0.45;
 	double turnAngle1Right = 40;
-	double turnDirection1Right = -0.8;
+	double turnDirection1Right = 0.8;
 	double DT2Right = 8000;
 	double DD2Right = -0.45;
-	double TA2Right = 33;
-	double TD2Right = 0.9;
+	double TA2Right = 40;
+	double TD2Right = -0.9;
 	double DT3Right = 3000;
 	double DD3Right = -0.45;
 	
