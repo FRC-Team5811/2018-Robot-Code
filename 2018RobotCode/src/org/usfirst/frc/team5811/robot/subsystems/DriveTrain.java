@@ -52,7 +52,10 @@ public class DriveTrain extends Subsystem {
 	  double rateOfChange; //used in autoAngleCorrect
 	  double angleTolerance = 1; //used in autoAngleCorrect
 	  double rotationRateTolerance = 1; //used in autoAngleCorrect
+	  
 	  double arcadeSpeedModifier = 1;
+	  double arcadeTurnModifier = 1;
+	  
 	  double minVisionVal = 30;
 	  double maxVisionVal = 70;
 	  double visionTurnMult = 0.4;
@@ -86,15 +89,15 @@ public class DriveTrain extends Subsystem {
 	public double getLeft() {
 		return leftMotor1.get();
 	}
-	public void changeSpeed(double speed) {
+	public void changeSpeed(double speed, double turn) {
 		arcadeSpeedModifier = speed;
-		System.out.println(arcadeSpeedModifier);
+		arcadeTurnModifier = turn;
 	}
 	public void arcadeDrive(double turn, double throttle) {
-		leftMotor1.set(arcadeSpeedModifier*(-(throttle - (turnMax * turn))));
-		leftMotor2.set(arcadeSpeedModifier*(-(throttle - (turnMax * turn))));
-		rightMotor1.set(arcadeSpeedModifier*(throttle + (turnMax * turn)));
-		rightMotor2.set(arcadeSpeedModifier*(throttle + (turnMax * turn)));
+		leftMotor1.set(-((arcadeSpeedModifier * throttle) - (arcadeTurnModifier * turnMax * turn)));
+		leftMotor2.set(-((arcadeSpeedModifier * throttle) - (arcadeTurnModifier * turnMax * turn)));
+		rightMotor1.set((arcadeSpeedModifier * throttle) + (arcadeTurnModifier * turnMax * turn));
+		rightMotor2.set((arcadeSpeedModifier * throttle) + (arcadeTurnModifier * turnMax * turn));
 		
 		////System.out.println(pdp.getCurrent(0)+ "   "+pdp.getCurrent(1)+ "   "+pdp.getCurrent(2)+ "   "+pdp.getCurrent(3));
 		
