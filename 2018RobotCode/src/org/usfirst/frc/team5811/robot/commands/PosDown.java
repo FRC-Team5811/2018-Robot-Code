@@ -11,7 +11,7 @@ public class PosDown extends Command {
 	boolean complete;
 	int state = 0;
 	public PosDown() {
-//		requires(Robot.pivot);
+		requires(Robot.pivot);
 	}
 	
 	protected void execute() {

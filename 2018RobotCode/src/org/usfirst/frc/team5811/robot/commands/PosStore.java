@@ -11,7 +11,7 @@ public class PosStore extends Command {
 	boolean complete;
 	int state = 4;
 	public PosStore() {
-//		requires(Robot.pivot);
+		requires(Robot.pivot);
 	}
 	
 	protected void execute() {
