@@ -33,7 +33,7 @@ public class GoNoGoAutoMasterRight extends CommandGroup {
 		
 		}
 		if(firstLetter == 'R') {
-			addSequential(new SmartShoot(), 1);
+			addSequential(new SmartShoot(Robot.driveSUB.autoShootPower), 1);
 			//Add pivot and launch commands here
 		}
     }

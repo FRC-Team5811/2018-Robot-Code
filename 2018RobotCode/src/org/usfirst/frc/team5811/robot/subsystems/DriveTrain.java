@@ -23,6 +23,8 @@ public class DriveTrain extends Subsystem {
 	  Victor rightMotor1 = RobotMap.motor6;
 	  Victor rightMotor2 = RobotMap.motor7;
 	  PowerDistributionPanel pdp = RobotMap.PDP;
+	  
+	  public double autoShootPower = 0.75; 
 
 	//  int angleOfTurn;
 	  

@@ -43,20 +43,9 @@ public class Intake extends Subsystem{
 		leftMotor.set(0);
 	}
 	
-	public void outtake(int position){
-		position = 0;
-		switch(position){
-			case 0: //switch
- 				leftMotor.set(-0.75);
-				rightMotor.set(0.75);
-			case 1: //backswitch
-				leftMotor.set(-1);
-				rightMotor.set(1);
-			case 2: //Exchange
-				leftMotor.set(-0.5);
-				rightMotor.set(0.5);
-		
-		}
+	public void outtake(double power){
+		leftMotor.set(-power);
+		rightMotor.set(power);
 	}
 	public void armsClose() {
 		arms.set(DoubleSolenoid.Value.kForward);

@@ -23,7 +23,7 @@ public class GoNoGoTest extends CommandGroup {
         addSequential(new FullAutoReset());
     	addSequential(new DriveAuto(driveTime1Right, DD1R), 5);
     	addSequential(new FullStop(waitTime));
-    	addSequential(new SmartShoot(), 1);
+    	addSequential(new SmartShoot(Robot.driveSUB.autoShootPower), 1);
     			//Add pivot and launch commands here
     	
         

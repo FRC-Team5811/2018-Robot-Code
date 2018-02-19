@@ -8,18 +8,20 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class SmartShoot extends Command {
 	int state;
+	double power;
 	//Intake intake = Robot.intake;
 	//Pivot pivot = Robot.pivot;
-	public SmartShoot(){
+	public SmartShoot(double power){
 		setInterruptible(true);
 	//	requires(Robot.intake);
 		//this.start();
+		this.power = power;
 	}
 	protected void initialize(){
 		 state = Robot.pivot.getState();
 	}
 	protected void execute(){
-		Robot.intake.outtake(state);
+		Robot.intake.outtake(this.power);
 	}
 	protected void end(){
 		Robot.intake.haltLeft();

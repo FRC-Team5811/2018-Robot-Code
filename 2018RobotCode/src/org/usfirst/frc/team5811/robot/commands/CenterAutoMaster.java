@@ -57,9 +57,6 @@ public class CenterAutoMaster extends CommandGroup {
     		
     		//System.out.println("First move");
     		
-    		
-    	
-    		
     		addSequential(new TurnAuto(turnAngle1Left, turnDirection1Left));
     		addSequential(new FullStop(waitTime));
     		
