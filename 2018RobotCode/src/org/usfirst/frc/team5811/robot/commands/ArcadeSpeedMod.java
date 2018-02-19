@@ -27,6 +27,7 @@ public class ArcadeSpeedMod extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.ledsub.off();
     	Robot.driveSUB.changeSpeed(1, 1);
     	System.out.println("End");
     }

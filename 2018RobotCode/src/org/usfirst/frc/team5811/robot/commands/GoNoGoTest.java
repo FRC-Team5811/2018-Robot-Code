@@ -14,13 +14,13 @@ public class GoNoGoTest extends CommandGroup {
      	String gameData;
     	char firstLetter;
     	int waitTime = 35;
-    	double driveTime1Right = 8500;
-    	double DD1R = -0.7;
+    	double driveTime1Right = 4000;
+    	double DD1R = -0.6;
        
         requires(Robot.driveSUB);
         requires(Robot.navx);
         requires(Robot.encoders);
-        addSequential(new FullAutoReset());
+        
     	addSequential(new DriveAuto(driveTime1Right, DD1R), 5);
     	addSequential(new FullStop(waitTime));
     	addSequential(new SmartShoot(Robot.driveSUB.autoShootPower), 1);

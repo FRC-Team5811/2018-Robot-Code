@@ -29,6 +29,7 @@ public class DriveAuto extends CommandGroup {
 		
 		
 		this.direction = direction;
+		Robot.driveSUB.fullReset();
 		addSequential (new SetCurrentAngle());
 		addSequential(new AutoDriveAcc(this.accelDistanceTrue, this.direction));	
 		addSequential(new AutoDriveFlat(this.flatDistanceTrue, this.direction));
@@ -36,7 +37,7 @@ public class DriveAuto extends CommandGroup {
      	
 
       	//resetting encoder hardware
-		Robot.driveSUB.fullReset();// reseting angle holding variables
+		// reseting angle holding variables
      	
 		
 

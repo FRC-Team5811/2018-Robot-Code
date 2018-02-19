@@ -17,9 +17,9 @@ public class FullAutoReset extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		Robot.navx.reset(); //reseting navx hardware
+		//Robot.navx.reset(); //reseting navx hardware
 		Robot.driveSUB.fullReset(); //reseting  angle storing variables
-		Robot.encoders.reset();
+		//Robot.encoders.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run

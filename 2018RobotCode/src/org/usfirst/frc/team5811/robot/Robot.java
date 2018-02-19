@@ -186,6 +186,9 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		navx.reset(); //reseting navx hardware
+		driveSUB.fullReset(); //reseting  angle storing variables
+		encoders.reset();
 		
 		intake.armsClose();
 
