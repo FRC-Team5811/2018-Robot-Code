@@ -41,16 +41,22 @@ public class CenterAutoMaster extends CommandGroup {
     	requires(Robot.driveSUB);
     	requires(Robot.navx);
     	requires(Robot.encoders);
-    	gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	addSequential(new FullAutoReset());
+		addSequential(new DriveAuto(driveTime1Left, driveDirection1Left));
+		addSequential(new FullStop(waitTime));
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		while(gameData.length() == 0) {
+			gameData = DriverStation.getInstance().getGameSpecificMessage();
+			//waiting for letter
+		}
 		firstLetter = gameData.charAt(0);
-		System.out.println(firstLetter);
+		//System.out.println(firstLetter);
     	if(firstLetter == 'L'){
     		//System.out.println("YEE");
     	
-    		addSequential(new FullAutoReset());
-    		addSequential(new DriveAuto(driveTime1Left, driveDirection1Left));
+    		
     		//System.out.println("First move");
-    		addSequential(new FullStop(waitTime));
+    		
     		
     	
     		
@@ -77,11 +83,11 @@ public class CenterAutoMaster extends CommandGroup {
     		System.out.println("lean l");
     	} else if(firstLetter == 'R'){
     	
-    		addSequential(new FullAutoReset());
-    		addSequential(new DriveAuto(driveTime1Right, driveDirection1Right));
-    		//System.out.println("First move");
-    		addSequential(new FullStop(waitTime));
-  
+//    		addSequential(new FullAutoReset());
+//    		addSequential(new DriveAuto(driveTime1Right, driveDirection1Right));
+//    		//System.out.println("First move");
+//    		addSequential(new FullStop(waitTime));
+//  
     		
     		addSequential(new TurnAuto(turnAngle1Right, turnDirection1Right));
     		addSequential(new FullStop(waitTime));

@@ -19,18 +19,20 @@ public class GoNoGoAutoMasterRight extends CommandGroup {
     	requires(Robot.driveSUB);
     	requires(Robot.navx);
     	requires(Robot.encoders);
+    	addSequential(new FullAutoReset());
+		addSequential(new DriveAuto(driveTime1Right, DD1R), 5);
+		addSequential(new FullStop(waitTime));
     	gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	while(gameData.length() == 0) {
+    		gameData = DriverStation.getInstance().getGameSpecificMessage();
+			//waiting for letter
+		}
 		firstLetter = gameData.charAt(0);
 		System.out.println(firstLetter);
 		if(firstLetter == 'L') {
-			addSequential(new FullAutoReset());
-			addSequential(new DriveAuto(driveTime1Right, DD1R), 5);
-			addSequential(new FullStop(waitTime));
+		
 		}
 		if(firstLetter == 'R') {
-			addSequential(new FullAutoReset());
-			addSequential(new DriveAuto(driveTime1Right, DD1R), 5);
-			addSequential(new FullStop(waitTime));
 			addSequential(new SmartShoot(), 1);
 			//Add pivot and launch commands here
 		}
