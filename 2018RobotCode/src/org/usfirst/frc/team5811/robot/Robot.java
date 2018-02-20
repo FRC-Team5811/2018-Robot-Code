@@ -20,9 +20,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5811.robot.commands.AutoDriveAcc;
 import org.usfirst.frc.team5811.robot.commands.AutoLeft;
 import org.usfirst.frc.team5811.robot.commands.AutoRight;
+import org.usfirst.frc.team5811.robot.commands.CenterAutoChooser;
+import org.usfirst.frc.team5811.robot.commands.CenterAutoChooserGroup;
 import org.usfirst.frc.team5811.robot.commands.CenterAutoMaster;
 import org.usfirst.frc.team5811.robot.commands.CompOn;
-import org.usfirst.frc.team5811.robot.commands.TestAuto;
+
 import org.usfirst.frc.team5811.robot.commands.TurnAuto;
 import org.usfirst.frc.team5811.robot.commands.DriveAuto;
 import org.usfirst.frc.team5811.robot.commands.GoNoGoAutoMasterLeft;
@@ -30,6 +32,7 @@ import org.usfirst.frc.team5811.robot.commands.GoNoGoAutoMasterRight;
 import org.usfirst.frc.team5811.robot.commands.GoNoGoTest;
 import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
+import org.usfirst.frc.team5811.robot.commands.LineCrossAuto;
 import org.usfirst.frc.team5811.robot.commands.RampExtend;
 import org.usfirst.frc.team5811.robot.commands.SafetyAuto;
 import org.usfirst.frc.team5811.robot.commands.SmartShoot;
@@ -57,12 +60,14 @@ public class Robot extends IterativeRobot {
 	public static Camera camera;
 	//hi
 	double autoSelecter;
+	
+	double autoNumber;
 
 	
 	
-	String gamedata;
+	public static String gameData;
 	
-	char readData;
+	char firstLetter;
 
 	Command autonomousCommand;
 	//Compressor compressor;
@@ -82,17 +87,23 @@ public class Robot extends IterativeRobot {
 		ramp = new Ramp();
 		camera = new Camera();
 		oi = new OI();
-
 		
-		SmartDashboard.putData("Auto mode", chooser);
-		chooser.addObject("Center Auto choosing auto", new CenterAutoMaster());
-		chooser.addDefault("Left Auto DO NOT USE", new AutoLeft());
-		chooser.addObject("Right Auto DO NOT USE", new AutoRight());
-		chooser.addObject("Test Auto DO NOT USE" , new TestAuto());
-		chooser.addObject("Go No Go Right", new GoNoGoAutoMasterRight());
-		chooser.addObject("Go No Go Left", new GoNoGoAutoMasterLeft());
-		chooser.addObject("SAFETY AUTO", new SafetyAuto());
-		chooser.addObject("Go no go test", new GoNoGoTest());
+		//SmartDashboard.getNumber("Auto Number", 0.0);
+		autoNumber = SmartDashboard.getNumber("DB/Slider 0", 0.0);
+//		
+//		
+//		SmartDashboard.putData("Auto mode", chooser);
+//		
+//		chooser.addObject("Line Cross Auto", new LineCrossAuto());
+//		chooser.addDefault("Center Auto choosing auto", new CenterAutoChooser());
+////		chooser.addObject("Go No Go Right", new GoNoGoAutoMasterRight());
+////		chooser.addObject("Go No Go Left", new GoNoGoAutoMasterLeft());
+//		chooser.addObject("SAFETY AUTO", new SafetyAuto());
+//		chooser.addObject("Left Auto DO NOT USE", new AutoLeft());
+//		chooser.addObject("Right Auto DO NOT USE", new AutoRight());
+//		chooser.addObject("Test Auto DO NOT USE" , new TestAuto());
+//		chooser.addObject("Go no go test DO NOT USE", new GoNoGoTest());
+//		System.out.print("I'm not slow?");
 		
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal());
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal());
@@ -125,11 +136,22 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void disabledInit() {
-
+//		gameData = DriverStation.getInstance().getGameSpecificMessage();
+//		while(gameData == null) {
+//			gameData = DriverStation.getInstance().getGameSpecificMessage();
+//			//waiting for letter
+//		}
+		
 	}
 
 	@Override
 	public void disabledPeriodic() {
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if(gameData == null) {
+			gameData = DriverStation.getInstance().getGameSpecificMessage();
+			//waiting for letter
+		}
+		//System.out.println("Game data string:" + gameData);
 		Scheduler.getInstance().run();
 	}
 
@@ -154,12 +176,60 @@ public class Robot extends IterativeRobot {
 //		} else if(autoSelecter == 1.0 ){
 //			autonomousCommand = (Command)new AutoRight();
 //		}
-		autonomousCommand = chooser.getSelected();
 		
 		
+		while(gameData == null || gameData == "") {
+			gameData = DriverStation.getInstance().getGameSpecificMessage();
+		}
+		
+		firstLetter = Robot.gameData.charAt(0);
+		if(autoNumber == 0.0) { //Center Auto
+			if(firstLetter == 'L') {
+				autonomousCommand = new AutoLeft();
+			} else if(firstLetter == 'R'){
+				autonomousCommand = new AutoRight();
+			}
+		} else if(autoNumber == 0.5){ //Left Auto
+			if(firstLetter == 'L') {
+				autonomousCommand = new GoNoGoTest();
+			} else if(firstLetter == 'R'){
+				autonomousCommand = new LineCrossAuto(); // need
+			}
+			
+		} else if(autoNumber == 1.0){ //Right Auto
+			if(firstLetter == 'R') {
+				autonomousCommand = new GoNoGoTest();
+			} else if(firstLetter == 'L'){
+				autonomousCommand = new LineCrossAuto(); // need
+			}
+			
+		} else if(autoNumber == 1.5){ //Left Auto
+			
+		} else if(autoNumber == 2.0){ //Left Auto
+			
+		} else if(autoNumber == 2.5){ //Left Auto
+			
+		} else if(autoNumber == 3.0){ //Left Auto
+			
+		} else if(autoNumber == 3.5){ //Left Auto
+			
+		} else if(autoNumber == 4.0){ //Left Auto
+			
+		} else if(autoNumber == 4.5){ //Left Auto
+			
+		} else if(autoNumber == 5.0){ //Left Auto
+			
+		} else { // Default
+			autonomousCommand = new LineCrossAuto();
+		}
+		
+		
+//		autonomousCommand = chooser.getSelected();
+//		
 		if (autonomousCommand != null){
 			autonomousCommand.start();
 		}
+		
 		
 	}
 

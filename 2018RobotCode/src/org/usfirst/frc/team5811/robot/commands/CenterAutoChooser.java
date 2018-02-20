@@ -1,30 +1,24 @@
 package org.usfirst.frc.team5811.robot.commands;
 
-import org.usfirst.frc.team5811.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class FullAutoReset extends Command {
+public class CenterAutoChooser extends Command {
 
-    public FullAutoReset() {
-    	requires(Robot.navx);
-		requires(Robot.encoders);
-		requires(Robot.driveSUB);
+    public CenterAutoChooser() {
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		//Robot.navx.reset(); //reseting navx hardware
-		Robot.driveSUB.fullReset(); //reseting  angle storing variables
-		//Robot.encoders.reset();
+    	new CenterAutoMaster();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("running full auto intake");
+    	
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

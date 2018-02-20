@@ -11,11 +11,19 @@ public class RampExtend extends Command {
 	}
 	
 	protected void initialize() {
+		
+	}
+	protected void execute() {
 		Robot.ramp.extend();
 	}
-	
+	protected void interrupted() {
+		end();
+	}
+	protected void end() {
+		Robot.ramp.retract();
+	}
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 }

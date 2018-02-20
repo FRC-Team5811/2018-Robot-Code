@@ -13,15 +13,15 @@ public class NavX extends Subsystem {
 	
 	public static AHRS navX = RobotMap.navx;
 	public NavX(){
-		try {
-			navX = new AHRS(I2C.Port.kMXP);
-			////System.out.println("NavX instantiated");
-			//ahrs = new AHRS(I2C.Port.kMXP); //WE WILL NEED I2C IN THE FUTURE.
-			// RIGHT NOW WE WILL STICK WITH USB
-		} catch (RuntimeException ex) {
-			////System.out.println("NavX instantiation error");
-			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
-		}
+//		try {
+//			navX = new AHRS(I2C.Port.kMXP);
+//			////System.out.println("NavX instantiated");
+//			//ahrs = new AHRS(I2C.Port.kMXP); //WE WILL NEED I2C IN THE FUTURE.
+//			// RIGHT NOW WE WILL STICK WITH USB
+//		} catch (RuntimeException ex) {
+//			////System.out.println("NavX instantiation error");
+//			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+//		}
 	}
 	@Override
 	protected void initDefaultCommand() {

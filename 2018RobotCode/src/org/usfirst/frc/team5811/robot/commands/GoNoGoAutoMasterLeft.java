@@ -22,7 +22,8 @@ public class GoNoGoAutoMasterLeft extends CommandGroup {
     	requires(Robot.encoders);
     	addSequential(new DriveAuto(driveTime1Right, DD1R),5);
 		addSequential(new FullStop(waitTime));
-    	gameData = DriverStation.getInstance().getGameSpecificMessage();
+		
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
     	while(gameData.length() == 0) {
     		gameData = DriverStation.getInstance().getGameSpecificMessage();
 			//waiting for letter

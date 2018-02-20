@@ -22,7 +22,7 @@ public class CenterAutoMaster extends CommandGroup {
 	double DD2Left = -0.45;
 	double TA2Left = 45; 
 	double TD2Left = 0.9;
-	double DT3Left = 3000;
+	double DT3Left = 3200;
 	double DD3Left = -0.45;
 	
 	double driveTime1Right = 3000;
@@ -33,7 +33,7 @@ public class CenterAutoMaster extends CommandGroup {
 	double DD2Right = -0.45;
 	double TA2Right = 40;
 	double TD2Right = -0.9;
-	double DT3Right = 3000;
+	double DT3Right = 3200;
 	double DD3Right = -0.45;
 	
     public CenterAutoMaster() {
@@ -44,13 +44,9 @@ public class CenterAutoMaster extends CommandGroup {
     	addSequential(new FullAutoReset());
 		addSequential(new DriveAuto(driveTime1Left, driveDirection1Left));
 		addSequential(new FullStop(waitTime));
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		while(gameData.length() == 0) {
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
-			//waiting for letter
-		}
-		firstLetter = gameData.charAt(0);
-		//System.out.println(firstLetter);
+		
+		firstLetter = Robot.gameData.charAt(0);
+		System.out.println(firstLetter);
     	if(firstLetter == 'L'){
     		//System.out.println("YEE");
     	
