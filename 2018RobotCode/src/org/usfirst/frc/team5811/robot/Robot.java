@@ -96,8 +96,8 @@ public class Robot extends IterativeRobot {
 //		
 //		chooser.addObject("Line Cross Auto", new LineCrossAuto());
 //		chooser.addDefault("Center Auto choosing auto", new CenterAutoChooser());
-////		chooser.addObject("Go No Go Right", new GoNoGoAutoMasterRight());
-////		chooser.addObject("Go No Go Left", new GoNoGoAutoMasterLeft());
+//		chooser.addObject("Go No Go Right", new GoNoGoAutoMasterRight());
+//		chooser.addObject("Go No Go Left", new GoNoGoAutoMasterLeft());
 //		chooser.addObject("SAFETY AUTO", new SafetyAuto());
 //		chooser.addObject("Left Auto DO NOT USE", new AutoLeft());
 //		chooser.addObject("Right Auto DO NOT USE", new AutoRight());
@@ -120,15 +120,14 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
 		
 	
-		intake.armsClose();
-//		
+		intake.armsClose();	
 		
 		//gamedata = null;
 		
 		//compressor = new Compressor(0);
 		//compressor.setClosedLoopControl(false);
 	
-//		chooser.addDefault("Drive Straight", new DriveAuto(100, 100, 100)); 
+		//chooser.addDefault("Drive Straight", new DriveAuto(100, 100, 100)); 
 		//chooser.addObject("Drive", new DriveAuto(1,1,1));
 		//UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 

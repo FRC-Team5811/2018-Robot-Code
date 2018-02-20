@@ -11,6 +11,7 @@ public class IntakeInward extends Command {
 	int cyclesOn, cyclesSpike;
 	double currentLeft, currentRight;
 	boolean intakeOff;
+	Command command;
 
 	public IntakeInward(){
 		requires(Robot.intake);
@@ -38,14 +39,17 @@ public class IntakeInward extends Command {
 		if (cyclesOn > Intake.intSpikeWait) {
 			if (currentLeft > Intake.currentThreshold || currentRight > Intake.currentThreshold) {
 				cyclesSpike++;
-				if (cyclesSpike > Intake.timeout) {
-					Robot.intake.haltLeft();
-					Robot.intake.haltRight();
-					intakeOff = true;
-				}
+				
 			} else if (!intakeOff) {
 				Robot.intake.intakeLeftIn();
 				Robot.intake.intakeRightIn();
+			}
+			if (cyclesSpike > Intake.timeout) {
+				Robot.intake.haltLeft();
+				Robot.intake.haltRight();
+				//command = new PosExchange(); //not working yet
+				//command.start();
+				intakeOff = true;
 			}
 		}
 	}

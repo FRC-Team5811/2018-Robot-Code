@@ -27,6 +27,7 @@ public class Pivot extends Subsystem {
 	double switchAngle = 60;  //Find based on potentiometer offset
 	double backAngle = 120;    //Find based on potentiometer offset
 	double backTransitionAngle = 110; 
+	double exchangeAngle = 5;
 	
 	double kpDown = .01; //plan to do increase
 	double kpUp= .01; //plan to do increase
@@ -34,8 +35,10 @@ public class Pivot extends Subsystem {
 	double downPosTolerance = 10; 
 	double switchPosTolerance = 3;
 	double backPosTolerance = 5; 
+	double exchangePosTolerance = 1;
 	
 	double switchHoldingPower = 0.3;
+	double exchangeHoldingPower = 0.47;
 	double switchFullPower = -0.75;
 	double switchDownPower = -0.75;
 	
@@ -124,6 +127,17 @@ public class Pivot extends Subsystem {
 		}
 		
 		return (currentPos > switchAngle-switchPosTolerance && currentPos < switchAngle+switchPosTolerance);
+		
+	}
+	
+	public void moveToExchange(double currentPos) {
+		if (currentPos < exchangeAngle - exchangePosTolerance) {
+			pivotMotor.set(switchFullPower*(exchangeHoldingPower+kpUp*(exchangeAngle-currentPos)));
+		} else if (currentPos > exchangeAngle + exchangePosTolerance) {
+			pivotMotor.set(switchFullPower*(kpDown*(switchAngle-currentPos)));
+		} else {
+			pivotMotor.set(switchFullPower*(switchHoldingPower));
+		}
 		
 	}
 	
