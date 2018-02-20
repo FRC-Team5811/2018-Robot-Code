@@ -14,9 +14,9 @@ public class Intake extends Subsystem{
 	
 	public int cyclesOn = 0;
 	public int cyclesSpike = 0;
-	public static final int intSpikeWait = 50;
-	public static final int currentThreshold = 20;
-	public static final int timeout = 15; // how many cycles it waits to turn off after current spike is reached
+	public static final int intSpikeWait = 50;      //increased this initial wait because left intake would not run when arms were closed 
+	public static final int currentThreshold = 20;  //cutoff current in amps
+	public static final int timeout = 15;           // how many cycles it waits to turn off after current spike is reached
 	public boolean leftOff;
 	public boolean rightOff;
 

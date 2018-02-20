@@ -20,19 +20,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5811.robot.commands.AutoDriveAcc;
 import org.usfirst.frc.team5811.robot.commands.AutoLeft;
 import org.usfirst.frc.team5811.robot.commands.AutoRight;
-import org.usfirst.frc.team5811.robot.commands.CenterAutoChooser;
-import org.usfirst.frc.team5811.robot.commands.CenterAutoChooserGroup;
-import org.usfirst.frc.team5811.robot.commands.CenterAutoMaster;
+
 import org.usfirst.frc.team5811.robot.commands.CompOn;
 
 import org.usfirst.frc.team5811.robot.commands.TurnAuto;
 import org.usfirst.frc.team5811.robot.commands.DriveAuto;
-import org.usfirst.frc.team5811.robot.commands.GoNoGoAutoMasterLeft;
-import org.usfirst.frc.team5811.robot.commands.GoNoGoAutoMasterRight;
+
 import org.usfirst.frc.team5811.robot.commands.GoNoGoTest;
 import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
 import org.usfirst.frc.team5811.robot.commands.LineCrossAuto;
+import org.usfirst.frc.team5811.robot.commands.OutsideSwitchLeftAuto;
+import org.usfirst.frc.team5811.robot.commands.OutsideSwitchLeftAutoExtended;
+import org.usfirst.frc.team5811.robot.commands.OutsideSwitchRightAuto;
+import org.usfirst.frc.team5811.robot.commands.OutsideSwitchrightAutoExtended;
 import org.usfirst.frc.team5811.robot.commands.RampExtend;
 import org.usfirst.frc.team5811.robot.commands.SafetyAuto;
 import org.usfirst.frc.team5811.robot.commands.SmartShoot;
@@ -68,6 +69,7 @@ public class Robot extends IterativeRobot {
 	public static String gameData;
 	
 	char firstLetter;
+	char secondLetter;
 
 	Command autonomousCommand;
 	//Compressor compressor;
@@ -182,6 +184,7 @@ public class Robot extends IterativeRobot {
 		}
 		
 		firstLetter = Robot.gameData.charAt(0);
+		secondLetter = Robot.gameData.charAt(1);
 		if(autoNumber == 0.0) { //Center Auto
 			if(firstLetter == 'L') {
 				autonomousCommand = new AutoLeft();
@@ -190,7 +193,7 @@ public class Robot extends IterativeRobot {
 			}
 		} else if(autoNumber == 0.5){ //Left Auto
 			if(firstLetter == 'L') {
-				autonomousCommand = new GoNoGoTest();
+				autonomousCommand = new LineCrossAuto();
 			} else if(firstLetter == 'R'){
 				autonomousCommand = new LineCrossAuto(); // need
 			}
@@ -202,11 +205,29 @@ public class Robot extends IterativeRobot {
 				autonomousCommand = new LineCrossAuto(); // need
 			}
 			
-		} else if(autoNumber == 1.5){ //Left Auto
-			
-		} else if(autoNumber == 2.0){ //Left Auto
-			
-		} else if(autoNumber == 2.5){ //Left Auto
+		} else if(autoNumber == 1.5){ //Corner 
+			if(firstLetter == 'R') {
+				autonomousCommand = new OutsideSwitchRightAuto();
+			} else if(firstLetter == 'L'){
+				autonomousCommand = new OutsideSwitchLeftAuto(); // need
+			}
+		} else if(autoNumber == 2.0){ //extended right
+			if(firstLetter == 'R' && secondLetter == 'L') {
+				autonomousCommand = new OutsideSwitchRightAuto();
+			} else if (firstLetter == 'R' && secondLetter == 'R') {
+				autonomousCommand = new OutsideSwitchrightAutoExtended();
+			} else if (firstLetter == 'L' && secondLetter == 'L') {
+				autonomousCommand = new LineCrossAuto();
+			}
+				
+		} else if(autoNumber == 2.5){ //extended Left
+			if(firstLetter == 'L' && secondLetter == 'R') {
+				autonomousCommand = new OutsideSwitchLeftAuto();
+			} else if (firstLetter == 'L' && secondLetter == 'L') {
+				autonomousCommand = new OutsideSwitchLeftAutoExtended();
+			} else if (firstLetter == 'R' && secondLetter == 'R') {
+				autonomousCommand = new LineCrossAuto();
+			}
 			
 		} else if(autoNumber == 3.0){ //Left Auto
 			
