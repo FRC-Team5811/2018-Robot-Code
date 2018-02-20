@@ -112,7 +112,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
 		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
 		SmartDashboard.putNumber("Potentiometer Value: ", Robot.pivot.getAngle());
-		SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
+		//SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
 		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
 		SmartDashboard.putNumber("Pivot motor speed: ", Robot.pivot.getMotor());
 		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());
@@ -147,7 +147,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if(gameData == null) {
+		if(gameData == null || gameData == "") {
 			gameData = DriverStation.getInstance().getGameSpecificMessage();
 			//waiting for letter
 		}
@@ -245,7 +245,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
 		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
 		SmartDashboard.putNumber("Potentiometer Value: ", Robot.pivot.getAngle());
-		SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
+		//SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
 		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
 		SmartDashboard.putNumber("Pivot motor speed: ", Robot.pivot.getMotor());
 		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());
@@ -278,7 +278,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
 		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
 		SmartDashboard.putNumber("Potentiometer Value: ", -Robot.pivot.getAngle());
-		SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
+		//SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
 		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
 		SmartDashboard.putNumber("Pivot motor speed: ", Robot.pivot.getMotor());
 		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());
