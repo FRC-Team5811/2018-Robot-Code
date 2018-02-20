@@ -57,6 +57,8 @@ public class Robot extends IterativeRobot {
 	public static Camera camera;
 	//hi
 	double autoSelecter;
+	String gameData;
+	char firstLetter;
 
 	
 	
@@ -155,6 +157,17 @@ public class Robot extends IterativeRobot {
 //			autonomousCommand = (Command)new AutoRight();
 //		}
 		autonomousCommand = chooser.getSelected();
+		if(chooser.getSelected() == (Command)new CenterAutoMaster()){
+			gameData = DriverStation.getInstance().getGameSpecificMessage();
+			while(gameData.length() == 0) {
+				gameData = DriverStation.getInstance().getGameSpecificMessage();
+				//waiting for letter
+			}
+		}
+				pick side with while 
+					if L
+						run autoRight
+					
 		
 		
 		if (autonomousCommand != null){
