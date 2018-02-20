@@ -33,8 +33,7 @@ public class AutoDriveDec extends Command{
 	
 	protected boolean isFinished() {
 		if (Math.abs(Robot.encoders.getLeftVal()) > this.duration) {
-			Robot.encoders.reset();
-			Robot.navx.reset();
+
 			return true;
 		} else {
 			return false;

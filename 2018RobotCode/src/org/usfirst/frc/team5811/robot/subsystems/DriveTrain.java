@@ -24,7 +24,7 @@ public class DriveTrain extends Subsystem {
 	  Victor rightMotor2 = RobotMap.motor7;
 	  PowerDistributionPanel pdp = RobotMap.PDP;
 	  
-	  public double autoShootPower = 0.75; 
+	  public double autoShootPower = 0.6; 
 
 	//  int angleOfTurn;
 	  
@@ -96,6 +96,12 @@ public class DriveTrain extends Subsystem {
 		arcadeTurnModifier = turn;
 	}
 	public void arcadeDrive(double turn, double throttle) {
+		if(throttle >= .02) { //forward?
+			turn = -turn;
+		}
+		if(throttle < .02) { //reverse?
+			turn = turn;
+		}
 		leftMotor1.set(-((arcadeSpeedModifier * throttle) - (arcadeTurnModifier * turnMax * turn)));
 		leftMotor2.set(-((arcadeSpeedModifier * throttle) - (arcadeTurnModifier * turnMax * turn)));
 		rightMotor1.set((arcadeSpeedModifier * throttle) + (arcadeTurnModifier * turnMax * turn));
@@ -121,7 +127,7 @@ public class DriveTrain extends Subsystem {
 		//System.out.println("motor delta: " + motorDelta);
 		return pTerm+dTerm;
 		
-	   
+	    
 	}
 	
 	public void autoDriveAcc(double durationAccel, double i,double direction) {
@@ -173,10 +179,10 @@ public class DriveTrain extends Subsystem {
 //		motor1.set(direction*(i/(durationAccel*0.5))*0.5f);
 //		leftMotor1.set(direction*(i/(durationAccel*0.5))*0.5f);
 //		leftMotor2.set(direction*(i/(durationAccel*0.5))*0.5f);
-		leftMotor1.set(direction*(currentAngle/finalAngle + 0.3)* 0.5);
-		leftMotor2.set(direction*(currentAngle/finalAngle + 0.3)* 0.5);
-		rightMotor1.set(direction*(currentAngle/finalAngle + 0.3)* 0.5);
-		rightMotor2.set(direction*(currentAngle/finalAngle + 0.3)* 0.5);
+		leftMotor1.set(direction*(currentAngle/finalAngle + 0.3)* 0.65);
+		leftMotor2.set(direction*(currentAngle/finalAngle + 0.3)* 0.65);
+		rightMotor1.set(direction*(currentAngle/finalAngle + 0.3)* 0.65);
+		rightMotor2.set(direction*(currentAngle/finalAngle + 0.3)* 0.65);
 
 	
 		
@@ -332,4 +338,10 @@ public class DriveTrain extends Subsystem {
 	public double monitorCurrent6() {
 		return pdp.getCurrent(13);
 	}
+	
+	
+	
+	
+	
+	
 }

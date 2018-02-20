@@ -38,7 +38,7 @@ public class RobotMap {
 	public static DoubleSolenoid intakeArms = new DoubleSolenoid(0, 1);
 	
 	public static I2C arduino = new I2C(I2C.Port.kMXP, 58);
-	public static AHRS navx;
+	public static AHRS navx = new AHRS(I2C.Port.kMXP);
 	
 	public static UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 

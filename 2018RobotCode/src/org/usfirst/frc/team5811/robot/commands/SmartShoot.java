@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class SmartShoot extends Command {
 	int state;
 	double power;
+	 
 	//Intake intake = Robot.intake;
 	//Pivot pivot = Robot.pivot;
 	public SmartShoot(double power){
@@ -26,6 +27,8 @@ public class SmartShoot extends Command {
 	protected void end(){
 		Robot.intake.haltLeft();
 		Robot.intake.haltRight();
+		Command endCommand = new PosDown();
+		endCommand.start();
 	}
 	protected void interrupted(){
 		end();

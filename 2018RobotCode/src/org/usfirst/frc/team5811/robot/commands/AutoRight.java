@@ -43,6 +43,6 @@ public class AutoRight extends CommandGroup {
 		
 		addSequential(new DriveAuto(DT3Right, DD3Right),3);
 		addSequential(new FullStop(waitTime));
-		addSequential(new SmartShoot(), 1);
+		addSequential(new SmartShoot(Robot.driveSUB.autoShootPower), 1);
 	}
 }

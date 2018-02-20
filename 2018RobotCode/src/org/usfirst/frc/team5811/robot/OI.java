@@ -11,7 +11,7 @@ import org.usfirst.frc.team5811.robot.commands.PosDown;
 import org.usfirst.frc.team5811.robot.commands.PosStore;
 import org.usfirst.frc.team5811.robot.commands.PosSwitch;
 import org.usfirst.frc.team5811.robot.commands.RampExtend;
-import org.usfirst.frc.team5811.robot.commands.Secret;
+
 import org.usfirst.frc.team5811.robot.commands.SmartShoot;
 import org.usfirst.frc.team5811.robot.commands.VisionCube;
 
@@ -80,9 +80,9 @@ public class OI {
 		
 		xManip.toggleWhenPressed(new IntakeInward());
 		//bManip.toggleWhenPressed(new PivotManual());
-		yManip.whileHeld(new SmartShoot(0.75));
-		RLbumpers.whenPressed(new RampExtend()); //FIX COMBO BUTTONS
-		bManip.toggleWhenPressed(new Secret());
+		yManip.whileHeld(new SmartShoot(0.60));
+		RLbumpers.toggleWhenPressed(new RampExtend()); //FIX COMBO BUTTONS
+
 		aManip.toggleWhenPressed(new IntakeToggle());
 		manipLeftJoyY.whileHeld(new PivotManual());
 		manipDPUp.toggleWhenPressed(new PosStore());

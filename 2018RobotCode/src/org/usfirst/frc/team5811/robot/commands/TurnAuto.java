@@ -40,7 +40,7 @@ public class TurnAuto extends CommandGroup {
      	//addSequential (new AutoAngleCorrect(this.decelAngleTrue));
      	//NavX.reset();
 		////System.out.println("TURN AUTO STOP");
-     	Robot.driveSUB.fullReset();
+     	
 
 	}
 	
