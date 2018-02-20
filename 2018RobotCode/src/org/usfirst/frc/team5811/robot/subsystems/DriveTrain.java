@@ -330,19 +330,13 @@ public class DriveTrain extends Subsystem {
 		rightMotor2.set(direction*1);
 	}
 	public double monitorCurrentIntakeRight(){
-		//TODO
-		return 1.0;
-		//return pdp.getCurrent(14);
+		return pdp.getCurrent(14);
 	}
 	public double monitorCurrentIntakeLeft(){
-		//TODO
-		return 1.0;
-		//return pdp.getCurrent(0);
+		return pdp.getCurrent(0);
 	}
 	public double monitorCurrent6() {
-		//TODO
-		return 1.0;
-		//return pdp.getCurrent(13);
+		return pdp.getCurrent(13);
 	}
 	
 	
