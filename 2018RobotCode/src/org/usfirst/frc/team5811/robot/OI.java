@@ -2,6 +2,7 @@ package org.usfirst.frc.team5811.robot;
 
 import org.usfirst.frc.team5811.robot.commands.ArcadeDrive;
 import org.usfirst.frc.team5811.robot.commands.ArcadeSpeedMod;
+import org.usfirst.frc.team5811.robot.commands.AutoRampDeploy;
 import org.usfirst.frc.team5811.robot.commands.GrabNavX;
 import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
@@ -81,7 +82,7 @@ public class OI {
 		xManip.toggleWhenPressed(new IntakeInward());
 		//bManip.toggleWhenPressed(new PivotManual());
 		yManip.whileHeld(new SmartShoot(0.60));
-		RLbumpers.toggleWhenPressed(new RampExtend()); //FIX COMBO BUTTONS
+		RLbumpers.toggleWhenPressed(new AutoRampDeploy()); //FIX COMBO BUTTONS
 
 		aManip.toggleWhenPressed(new IntakeToggle());
 		manipLeftJoyY.whileHeld(new PivotManual());

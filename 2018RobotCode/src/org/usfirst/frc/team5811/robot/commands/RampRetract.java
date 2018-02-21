@@ -12,7 +12,7 @@ public class RampRetract extends Command {
 	}
 	
 	protected void intialize() {
-		Robot.ramp.retract();
+		Robot.ramp.extend();
 	}
 	
 	protected boolean isFinished() {

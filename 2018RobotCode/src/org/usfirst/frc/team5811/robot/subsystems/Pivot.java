@@ -42,6 +42,8 @@ public class Pivot extends Subsystem {
 	double switchFullPower = -0.75;
 	double switchDownPower = -0.75;
 	
+
+	
 	public Pivot() {
 		
 	}
@@ -54,6 +56,7 @@ public class Pivot extends Subsystem {
 	public  int getState() {
 		return state;
 	}
+
 	public void setMotor(double speed) {
 		pivotMotor.set(speed);
 	}

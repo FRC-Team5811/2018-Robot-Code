@@ -14,9 +14,9 @@ public class OutsideSwitchrightAutoExtended extends CommandGroup {
     	double driveTime1Right = 10000;
     	double DD1R = -0.6;
     	double TA1 = 90;
-    	double TD1 = -0.9;
+    	double TD1 = 0.9;
     	double TA2 = 90;
-    	double TD2 = 0.9;
+    	double TD2 = -0.9;
     	double DTR2 = 5000;
     	double DDR2 = -0.6;
        
