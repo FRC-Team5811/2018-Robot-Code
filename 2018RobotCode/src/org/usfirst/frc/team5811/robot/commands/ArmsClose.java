@@ -12,11 +12,12 @@ public class ArmsClose extends Command {
     public ArmsClose() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.arms);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intake.armsClose();
+    	Robot.arms.close();
     }
 
     // Called repeatedly when this Command is scheduled to run

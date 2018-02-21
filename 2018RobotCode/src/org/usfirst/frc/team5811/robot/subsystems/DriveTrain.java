@@ -249,7 +249,7 @@ public class DriveTrain extends Subsystem {
 			leftMotor2.set(0);
 			rightMotor1.set(0);
 			rightMotor2.set(0);
-			Robot.intake.armsClose();
+			Robot.arms.close();
 			Robot.ledsub.flash();
 			Robot.intake.haltRight();
 			Robot.intake.haltLeft();
@@ -258,7 +258,7 @@ public class DriveTrain extends Subsystem {
 		}else {
 				Robot.intake.intakeRightIn();
 				Robot.intake.intakeLeftIn();
-				Robot.intake.armsOpen();
+				Robot.arms.open();
 				
 			
 			if (cX == 0.0 || cY == 0.0){

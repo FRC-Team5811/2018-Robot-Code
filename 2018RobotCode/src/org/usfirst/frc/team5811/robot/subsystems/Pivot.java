@@ -109,7 +109,7 @@ public class Pivot extends Subsystem {
 	}
 	
 	public boolean moveToBack(double currentPos) {
-		Robot.intake.armsClose();
+		Robot.arms.close();
 		if(currentPos<backTransitionAngle) {
 			pivotMotor.set(switchFullPower*(kpUp*(backTransitionAngle-currentPos)));
 		} else {
@@ -121,7 +121,7 @@ public class Pivot extends Subsystem {
 	}
 	
 	public boolean moveToSwitch(double currentPos) {
-		Robot.intake.armsClose();
+		Robot.arms.close();
 		if(currentPos<switchAngle-switchPosTolerance) {
 			pivotMotor.set(switchFullPower*(switchHoldingPower+kpUp*(switchAngle-currentPos)));
 		} else if(currentPos>switchAngle+switchPosTolerance){
@@ -147,7 +147,7 @@ public class Pivot extends Subsystem {
 	
 	public void manual(double input) {
 		if(input > Math.abs(0.1)) {
-			Robot.intake.armsClose();
+			Robot.arms.close();
 		}
 		double antiGrav;
 		antiGrav = 0;

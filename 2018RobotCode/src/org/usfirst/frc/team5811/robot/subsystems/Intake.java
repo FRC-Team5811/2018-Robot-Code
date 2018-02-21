@@ -10,7 +10,6 @@ public class Intake extends Subsystem{
 	
 	 Victor leftMotor = RobotMap.motor0;
 	 Victor rightMotor = RobotMap.motor5;
-	 DoubleSolenoid arms = RobotMap.intakeArms;
 	
 	public int cyclesOn = 0;
 	public int cyclesSpike = 0;
@@ -47,13 +46,6 @@ public class Intake extends Subsystem{
 		leftMotor.set(-power);
 		rightMotor.set(power);
 	}
-	public void armsClose() {
-		arms.set(DoubleSolenoid.Value.kForward);
-		//System.out.print("Right motor power" + rightMotor.get());  //Left intake would shut off when the arms are in... resolved by increasing the wait for a initial current spike...
-		//System.out.println("    Left motor power" + leftMotor.get());
-	}
-	public void armsOpen() {
-		arms.set(DoubleSolenoid.Value.kReverse);
-	}
+	
 	
 }

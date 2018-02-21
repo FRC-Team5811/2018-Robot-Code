@@ -6,7 +6,7 @@ import org.usfirst.frc.team5811.robot.commands.AutoRampDeploy;
 import org.usfirst.frc.team5811.robot.commands.GrabNavX;
 import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
-import org.usfirst.frc.team5811.robot.commands.IntakeToggle;
+import org.usfirst.frc.team5811.robot.commands.ArmsToggle;
 import org.usfirst.frc.team5811.robot.commands.PivotManual;
 import org.usfirst.frc.team5811.robot.commands.PosDown;
 import org.usfirst.frc.team5811.robot.commands.PosStore;
@@ -84,7 +84,7 @@ public class OI {
 		yManip.whileHeld(new SmartShoot(0.50));
 		RLbumpers.toggleWhenPressed(new AutoRampDeploy()); //FIX COMBO BUTTONS
 
-		aManip.toggleWhenPressed(new IntakeToggle());
+		aManip.toggleWhenPressed(new ArmsToggle());
 		manipLeftJoyY.whileHeld(new PivotManual());
 		manipDPUp.toggleWhenPressed(new PosStore());
 		manipDRight.toggleWhenPressed(new PosSwitch());

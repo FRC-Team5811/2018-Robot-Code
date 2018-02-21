@@ -44,6 +44,7 @@ import org.usfirst.frc.team5811.robot.subsystems.LEDS;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
 import org.usfirst.frc.team5811.robot.subsystems.Pivot;
 import org.usfirst.frc.team5811.robot.subsystems.Ramp;
+import org.usfirst.frc.team5811.robot.subsystems.Arms;
 import org.usfirst.frc.team5811.robot.subsystems.Camera;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -59,6 +60,7 @@ public class Robot extends IterativeRobot {
 	public static Ramp ramp;
 	public static OI oi;
 	public static Camera camera;
+	public static Arms arms;
 	//hi
 	double autoSelecter;
 	
@@ -87,6 +89,9 @@ public class Robot extends IterativeRobot {
 		pivot = new Pivot();
 		ramp = new Ramp();
 		camera = new Camera();
+		arms = new Arms();
+
+		
 		oi = new OI();
 		
 		//SmartDashboard.getNumber("Auto Number", 0.0);
@@ -120,7 +125,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
 		
 	
-		intake.armsClose();	
+		arms.close();	
 		
 		//gamedata = null;
 		
@@ -157,7 +162,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		intake.armsClose();
+		arms.close();
 		navx.reset(); //reseting navx hardware
 		driveSUB.fullReset(); //reseting  angle storing variables
 		encoders.reset();
@@ -294,7 +299,7 @@ public class Robot extends IterativeRobot {
 		driveSUB.fullReset(); //reseting  angle storing variables
 		encoders.reset();
 		
-		intake.armsClose();
+		arms.close();
 
 		//System.out.println("Navx: " + navx.grabValues());
 		if (autonomousCommand != null)
