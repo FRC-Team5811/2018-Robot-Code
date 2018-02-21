@@ -23,7 +23,7 @@ public class Pivot extends Subsystem {
 	double antiGravScale = 50;
 	
 	double downAngle = 0;    //Find based on potentiometer offset
-	double downTransitionAngle = 45; 
+	double downTransitionAngle = 10; 
 	double switchAngle = 60;  //Find based on potentiometer offset
 	double backAngle = 120;    //Find based on potentiometer offset
 	double backTransitionAngle = 110; 

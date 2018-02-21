@@ -90,7 +90,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		//SmartDashboard.getNumber("Auto Number", 0.0);
-		autoNumber = SmartDashboard.getNumber("DB/Slider 0", 0.0);
 //		
 //		
 //		SmartDashboard.putData("Auto mode", chooser);
@@ -162,6 +161,9 @@ public class Robot extends IterativeRobot {
 		navx.reset(); //reseting navx hardware
 		driveSUB.fullReset(); //reseting  angle storing variables
 		encoders.reset();
+		
+		autoNumber = SmartDashboard.getNumber("DB/Slider 0", 0.0);
+
 		
 //		autoSelecter = SmartDashboard.getNumber("DB/Slider 0", 0.5);
 //		System.out.print(autoSelecter);

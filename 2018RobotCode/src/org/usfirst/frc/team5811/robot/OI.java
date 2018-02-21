@@ -81,7 +81,7 @@ public class OI {
 		
 		xManip.toggleWhenPressed(new IntakeInward());
 		//bManip.toggleWhenPressed(new PivotManual());
-		yManip.whileHeld(new SmartShoot(0.60));
+		yManip.whileHeld(new SmartShoot(0.50));
 		RLbumpers.toggleWhenPressed(new AutoRampDeploy()); //FIX COMBO BUTTONS
 
 		aManip.toggleWhenPressed(new IntakeToggle());

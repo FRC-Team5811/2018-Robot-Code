@@ -27,8 +27,7 @@ public class SmartShoot extends Command {
 	protected void end(){
 		Robot.intake.haltLeft();
 		Robot.intake.haltRight();
-		Command endCommand = new PosDown();
-		endCommand.start();
+		
 	}
 	protected void interrupted(){
 		end();
