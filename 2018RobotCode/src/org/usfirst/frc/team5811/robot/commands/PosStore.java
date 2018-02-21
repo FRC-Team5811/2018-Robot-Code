@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class PosStore extends Command {
 	//Pivot pivot = Robot.pivot;
 	double angle = 150;
-	boolean complete;
+	boolean complete = false;
 	int state = 4;
 	public PosStore() {
 		requires(Robot.pivot);
@@ -28,6 +28,5 @@ public class PosStore extends Command {
 		System.out.println("ENDING STORE");
 	}
 	protected void interrupted() {
-		end();
 	}
 }

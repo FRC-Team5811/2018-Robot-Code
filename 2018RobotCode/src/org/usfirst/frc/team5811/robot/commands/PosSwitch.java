@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class PosSwitch extends Command {
 	//Pivot pivot = Robot.pivot;
 	double angle = 80;
-	boolean complete;
+	boolean complete = false;
 	int state = 2;
 	public PosSwitch() {
 		requires(Robot.pivot);
@@ -19,7 +19,7 @@ public class PosSwitch extends Command {
 	}
 	
 	protected boolean isFinished() {
-		return this.complete;
+		return false;
 	}
 	
 	protected void end() {
@@ -27,7 +27,6 @@ public class PosSwitch extends Command {
 		System.out.println("ENDING SWITCH");
 	}
 	protected void interrupted() {
-		end();
 	}
 
 }

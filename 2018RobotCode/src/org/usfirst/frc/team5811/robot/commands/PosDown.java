@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class PosDown extends Command {
 	//Pivot pivot = Robot.pivot;
 	double angle = 0;
-	boolean complete;
+	boolean complete =false;
 	int state = 0;
 	public PosDown() {
 		requires(Robot.pivot);
@@ -28,7 +28,7 @@ public class PosDown extends Command {
 		System.out.println("ENDING DOWN");
 	}
 	protected void interrupted() {
-		end();
+
 	}
 
 	

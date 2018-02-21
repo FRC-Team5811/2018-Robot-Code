@@ -23,7 +23,7 @@ public class Pivot extends Subsystem {
 	double antiGravScale = 50;
 	
 	double downAngle = 0;    //Find based on potentiometer offset
-	double downTransitionAngle = 10; 
+	double downTransitionAngle = 15; 
 	double switchAngle = 60;  //Find based on potentiometer offset
 	double backAngle = 120;    //Find based on potentiometer offset
 	double backTransitionAngle = 110; 
@@ -31,6 +31,7 @@ public class Pivot extends Subsystem {
 	
 	double kpDown = .01; //plan to do increase
 	double kpUp= .01; //plan to do increase
+	double kpUpIntake = .05;
 	
 	double downPosTolerance = 10; 
 	double switchPosTolerance = 3;
@@ -100,7 +101,7 @@ public class Pivot extends Subsystem {
 		if(currentPos>downTransitionAngle) {
 			pivotMotor.set(switchDownPower*(-kpDown*(currentPos-downTransitionAngle)));
 		} else {
-			pivotMotor.set(switchDownPower*(kpUp*(currentPos-downAngle)));
+			pivotMotor.set(switchDownPower*(kpUpIntake*(currentPos-downAngle)));
 		}
 		
 		return (currentPos < downAngle+downPosTolerance);
