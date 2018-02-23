@@ -27,22 +27,24 @@ public class RobotMap {
 	public static Victor motor7 = new Victor(7);
 
 	public static AnalogInput ai = new AnalogInput(0);
-	
+
 	public static Compressor cp = new Compressor(0);
-	
+
 	public static PowerDistributionPanel PDP = new PowerDistributionPanel();
-	
-	public static Potentiometer pivot =new AnalogPotentiometer(ai,3600,-137);
-	
+
+	public static Potentiometer pivot = new AnalogPotentiometer(ai, 3600, -137);
+
 	public static DoubleSolenoid rampRelease = new DoubleSolenoid(2, 3);
 	public static DoubleSolenoid intakeArms = new DoubleSolenoid(0, 1);
-	
+
 	public static I2C arduino = new I2C(I2C.Port.kMXP, 58);
 	public static AHRS navx = new AHRS(I2C.Port.kMXP);
-	
+
 	public static UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	public static UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture();
 
-	public static Encoder driveEncL = new Encoder(0,1, true, Encoder.EncodingType.k4X);
-	public static Encoder driveEncR = new Encoder(2,3, false, Encoder.EncodingType.k4X); //false because the booleans have to be reverse direction
+	public static Encoder driveEncL = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
+	public static Encoder driveEncR = new Encoder(2, 3, false, Encoder.EncodingType.k4X); // false because the booleans
+																							// have to be reverse
+																							// direction
 }

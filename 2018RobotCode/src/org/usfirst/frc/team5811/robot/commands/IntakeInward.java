@@ -12,54 +12,58 @@ public class IntakeInward extends Command {
 	int cyclesOn, cyclesSpike;
 	double currentLeft, currentRight;
 	Command command;
-	
-	public IntakeInward(){
+
+	public IntakeInward() {
 		requires(Robot.intake);
 		setInterruptible(true);
-		
+
 	}
+
 	@Override
-	protected void initialize(){
+	protected void initialize() {
 		cyclesOn = 0;
 		cyclesSpike = 0;
 		Robot.intake.intakeLeftIn();
 		Robot.intake.intakeRightIn();
 	}
-	
+
 	@Override
-	protected void execute(){
-		currentLeft = Robot.driveSUB.monitorCurrentIntakeLeft();   //update current readings for intake motors
+	protected void execute() {
+		currentLeft = Robot.driveSUB.monitorCurrentIntakeLeft(); // update current readings for intake motors
 		currentRight = Robot.driveSUB.monitorCurrentIntakeRight();
-		
-		Robot.ledsub.colorInward();   //LEDs rainbow while intaking
-		System.out.println("cycles " + cyclesOn); 
-		cyclesOn++; //increment the cycles that the intake has been running
-		
-		if (cyclesOn > Intake.intSpikeWait) { //if the intake has been on long enough to avoid the initial spike
-			if (currentLeft > Intake.currentThreshold || currentRight > Intake.currentThreshold) { //if one of the motors is drawing too much current
-				cyclesSpike++; 
+
+		Robot.ledsub.colorInward(); // LEDs rainbow while intaking
+		System.out.println("cycles " + cyclesOn);
+		cyclesOn++; // increment the cycles that the intake has been running
+
+		if (cyclesOn > Intake.intSpikeWait) { // if the intake has been on long enough to avoid the initial spike
+			if (currentLeft > Intake.currentThreshold || currentRight > Intake.currentThreshold) { // if one of the
+																									// motors is drawing
+																									// too much current
+				cyclesSpike++;
 			} else {
 				Robot.intake.intakeLeftIn();
 				Robot.intake.intakeRightIn();
 			}
-			
+
 		}
 	}
-	
- 	protected void end(){
+
+	protected void end() {
 		Robot.ledsub.off();
 		Robot.intake.haltLeft();
 		Robot.intake.haltRight();
 		Robot.ledsub.flash();
-		
-		//command = new PosExchange();   //not working yet too annoying when we didn't have a cube and the intake raised itself up too high. 
-		//command.start();               //A sensor to detect possession of a cube could solve this
-		
+
+		// command = new PosExchange(); //not working yet too annoying when we didn't
+		// have a cube and the intake raised itself up too high.
+		// command.start(); //A sensor to detect possession of a cube could solve this
+
 	}
-	
-	protected void interrupted(){
-	} 
-	
+
+	protected void interrupted() {
+	}
+
 	@Override
 	protected boolean isFinished() {
 		return (cyclesSpike > Intake.timeout);

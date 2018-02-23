@@ -7,14 +7,14 @@ import org.usfirst.frc.team5811.robot.subsystems.Ramp;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class RampRetract extends Command {
-	//Ramp ramp = Robot.ramp;
+	// Ramp ramp = Robot.ramp;
 	public RampRetract() {
 	}
-	
+
 	protected void intialize() {
 		Robot.ramp.extend();
 	}
-	
+
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
 		return true;

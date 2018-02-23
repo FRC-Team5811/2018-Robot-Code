@@ -10,21 +10,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 
-
-	
 public class Camera extends Subsystem {
 	UsbCamera camera = RobotMap.camera;
 	UsbCamera camera2 = RobotMap.camera2;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
 
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
-    public void camOn() {
-    	camera = CameraServer.getInstance().startAutomaticCapture();
-    	camera2 = CameraServer.getInstance().startAutomaticCapture();
-    }
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+	}
+
+	public void camOn() {
+		camera = CameraServer.getInstance().startAutomaticCapture();
+		camera2 = CameraServer.getInstance().startAutomaticCapture();
+	}
 }
-

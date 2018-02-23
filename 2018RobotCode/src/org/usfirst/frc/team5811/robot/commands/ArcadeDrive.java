@@ -8,21 +8,20 @@ import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ArcadeDrive extends Command {
-	//DriveTrain driveSUB = Robot.driveSUB;
-	//Joysticks joysticks = Robot.joysticks;
-	//OI oi = Robot.oi;
+	// DriveTrain driveSUB = Robot.driveSUB;
+	// Joysticks joysticks = Robot.joysticks;
+	// OI oi = Robot.oi;
 	protected void execute() {
-	
-		Robot.driveSUB.arcadeDrive(Robot.oi.getRightX(),Robot.oi.getLeftY());
-		
-		////System.out.println("Throttle " + Robot.oi.getLeftY());
-		////System.out.println("Turn " + Robot.oi.getRightX());
+
+		Robot.driveSUB.arcadeDrive(Robot.oi.getRightX(), Robot.oi.getLeftY());
+
+		//// System.out.println("Throttle " + Robot.oi.getLeftY());
+		//// System.out.println("Turn " + Robot.oi.getRightX());
 
 	}
 
-	
 	protected boolean isFinished() {
-		
+
 		return false;
 	}
 

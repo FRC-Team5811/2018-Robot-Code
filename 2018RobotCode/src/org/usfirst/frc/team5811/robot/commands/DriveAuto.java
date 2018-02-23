@@ -8,40 +8,35 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class DriveAuto extends CommandGroup {
 	double accelDistance, flatDistance, decelDistance, direction;
-	double accelFactor, decelFactor, flatFactor, totalDistance;
+	double accelFactor, decelFactor, flatFactor, totalPulses;
 	double accelDistanceTrue, flatDistanceTrue, decelDistanceTrue;
-	public DriveAuto (double totalTime, double direction) {
-		//System.out.println("goes all the way here");
+
+	public DriveAuto(double totalInches, double direction) {
+		// System.out.println("goes all the way here");
 
 		this.accelFactor = 0.1;
 		this.flatFactor = 0.6;
 		this.decelFactor = 0.3;
+		this.totalPulses = totalInches*Robot.driveSUB.inchToPulse;// total pulses is equal to an amount of inches multiplied by a constant
 
-		this.totalDistance = totalTime;
-		
-		this.accelDistance = this.totalDistance * this.accelFactor;
-		this.flatDistance = this.totalDistance * this.flatFactor;
-		this.decelDistance = this.totalDistance * this.decelFactor;
-		
+		this.accelDistance = this.totalPulses * this.accelFactor;
+		this.flatDistance = this.totalPulses * this.flatFactor;
+		this.decelDistance = this.totalPulses * this.decelFactor;
+
 		this.accelDistanceTrue = this.accelDistance;
 		this.flatDistanceTrue = this.accelDistance + this.flatDistance;
 		this.decelDistanceTrue = this.accelDistance + this.flatDistance + this.decelDistance;
-		
-		
+
 		this.direction = direction;
 		Robot.driveSUB.fullReset();
-		addSequential (new SetCurrentAngle());
-		addSequential(new AutoDriveAcc(this.accelDistanceTrue, this.direction));	
+		addSequential(new SetCurrentAngle());
+		addSequential(new AutoDriveAcc(this.accelDistanceTrue, this.direction));
 		addSequential(new AutoDriveFlat(this.flatDistanceTrue, this.direction));
-     	addSequential(new AutoDriveDec(this.decelDistanceTrue, this.direction));
-     	
+		addSequential(new AutoDriveDec(this.decelDistanceTrue, this.direction));
 
-      	//resetting encoder hardware
+		// resetting encoder hardware
 		// reseting angle holding variables
-     	
-		
 
 	}
-	
 
 }

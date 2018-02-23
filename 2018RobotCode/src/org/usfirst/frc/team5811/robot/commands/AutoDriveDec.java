@@ -6,31 +6,32 @@ import org.usfirst.frc.team5811.robot.subsystems.Encoders;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutoDriveDec extends Command{
+public class AutoDriveDec extends Command {
 	double duration, direction;
-	//DriveTrain driveSUB = Robot.driveSUB;
-	//Encoders encoders = Robot.encoders;
+
+	// DriveTrain driveSUB = Robot.driveSUB;
+	// Encoders encoders = Robot.encoders;
 	public AutoDriveDec(double duration, double direction) {
 		this.duration = duration;
 		this.direction = direction;
-		//input duration length here, not sure how to do it yet.
-		//Automatically assign values through group
+		// input duration length here, not sure how to do it yet.
+		// Automatically assign values through group
 	}
-	
+
 	protected void intialize() {
-//		count = this.duration;
-	
-	}
-	
-	protected void execute() {
-		Robot.driveSUB.autoDriveDec(duration, Math.abs(Robot.encoders.getLeftVal()), direction);
-		//System.out.println("Deccelerating");
-		//System.out.print("duration: ");
-		////System.out.println(duration);
-		//System.out.println(Math.abs(Robot.encoders.getRightVal()));
+		// count = this.duration;
 
 	}
-	
+
+	protected void execute() {
+		Robot.driveSUB.autoDriveDec(duration, Math.abs(Robot.encoders.getLeftVal()), direction);
+		// System.out.println("Deccelerating");
+		// System.out.print("duration: ");
+		//// System.out.println(duration);
+		// System.out.println(Math.abs(Robot.encoders.getRightVal()));
+
+	}
+
 	protected boolean isFinished() {
 		if (Math.abs(Robot.encoders.getLeftVal()) > this.duration) {
 

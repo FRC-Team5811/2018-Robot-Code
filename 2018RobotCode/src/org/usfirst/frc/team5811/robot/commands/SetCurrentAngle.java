@@ -8,6 +8,7 @@ public class SetCurrentAngle extends Command {
 	protected void initialize() {
 		Robot.driveSUB.setCurrentAngle();
 	}
+
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub

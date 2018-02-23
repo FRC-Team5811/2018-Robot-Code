@@ -16,11 +16,9 @@ import org.usfirst.frc.team5811.robot.commands.RampExtend;
 import org.usfirst.frc.team5811.robot.commands.SmartShoot;
 import org.usfirst.frc.team5811.robot.commands.VisionCube;
 
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
 
 public class OI {
 	public Joystick joy1 = new Joystick(0);
@@ -30,16 +28,15 @@ public class OI {
 	AxisButton leftJoyX = new AxisButton(joy1, 0);
 	AxisButton rightJoyY = new AxisButton(joy1, 3);
 	AxisButton rightJoyX = new AxisButton(joy1, 2);
-	AxisButton righttrigger = new AxisButton(joy1,4);
-//	
-//	Joystick joy2 = new Joystick(1);
-//	JoystickButton aManip = new JoystickButton(joy2, 2);
-//	JoystickButton bManip = new JoystickButton(joy2, 3);
-//	JoystickButton yManip = new JoystickButton(joy2, 4);
-//	JoystickButton xManip = new JoystickButton(joy2, 1);
-//	ComboButton RLbumpers = new ComboButton(joy2, 5, 6);
-	
-	
+	AxisButton righttrigger = new AxisButton(joy1, 4);
+	//
+	// Joystick joy2 = new Joystick(1);
+	// JoystickButton aManip = new JoystickButton(joy2, 2);
+	// JoystickButton bManip = new JoystickButton(joy2, 3);
+	// JoystickButton yManip = new JoystickButton(joy2, 4);
+	// JoystickButton xManip = new JoystickButton(joy2, 1);
+	// ComboButton RLbumpers = new ComboButton(joy2, 5, 6);
+
 	public Joystick joy2 = new Joystick(1);
 	JoystickButton aManip = new JoystickButton(joy2, 2);
 	JoystickButton bManip = new JoystickButton(joy2, 3);
@@ -54,35 +51,28 @@ public class OI {
 
 	int dPadVals = joy1.getPOV();
 
-	
-	
 	public OI() {
-	
-		
-	//	righttrigger.whileHeld(new GrabNavX());
+
+		// righttrigger.whileHeld(new GrabNavX());
 		leftJoyY.whileHeld(new ArcadeDrive());
 		rightJoyX.whileHeld(new ArcadeDrive());
 		leftJoyX.whileHeld(new ArcadeDrive());
 		rightJoyY.whileHeld(new ArcadeDrive());
 		a.toggleWhenPressed(new VisionCube());
 		b.toggleWhenPressed(new ArcadeSpeedMod());
-		
-		
 
-		
-		//b.whenPressed(new GrabNavX());
-//		
-//		
-//		aManip.whenPressed(new IntakeInward());
-//		bManip.whenPressed(new HaltIntake());
-//		yManip.whileHeld(new SmartShoot());
-//		RLbumpers.whenPressed(new RampExtend());
-	
-		
+		// b.whenPressed(new GrabNavX());
+		//
+		//
+		// aManip.whenPressed(new IntakeInward());
+		// bManip.whenPressed(new HaltIntake());
+		// yManip.whileHeld(new SmartShoot());
+		// RLbumpers.whenPressed(new RampExtend());
+
 		xManip.toggleWhenPressed(new IntakeInward());
-		//bManip.toggleWhenPressed(new PivotManual());
+		// bManip.toggleWhenPressed(new PivotManual());
 		yManip.whileHeld(new SmartShoot(0.50));
-		RLbumpers.toggleWhenPressed(new AutoRampDeploy()); //FIX COMBO BUTTONS
+		RLbumpers.toggleWhenPressed(new AutoRampDeploy()); // FIX COMBO BUTTONS
 
 		aManip.toggleWhenPressed(new ArmsToggle());
 		manipLeftJoyY.whileHeld(new PivotManual());
@@ -90,29 +80,33 @@ public class OI {
 		manipDRight.toggleWhenPressed(new PosSwitch());
 		manipDDown.toggleWhenPressed(new PosDown());
 		manipDLeft.toggleWhenPressed(new PosSwitch());
-			
-		//bManip.whenPressed(new HaltIntake());
-		
+
+		// bManip.whenPressed(new HaltIntake());
+
 	}
-	
+
 	public double getLeftY() {
 		return joy1.getRawAxis(1);
 	}
+
 	public double getRightY() {
 		return joy1.getRawAxis(3);
 	}
-	public double getLeftX(){
+
+	public double getLeftX() {
 		return joy1.getRawAxis(0);
 	}
-	public double getRightX(){
+
+	public double getRightX() {
 		return joy1.getRawAxis(2);
 	}
+
 	public double getManipLeftY() {
 		return joy2.getRawAxis(1);
 	}
+
 	public int getPov() {
 		return joy2.getPOV();
 	}
-
 
 }

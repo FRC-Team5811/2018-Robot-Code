@@ -9,29 +9,34 @@ import edu.wpi.first.wpilibj.command.Command;
 public class SmartShoot extends Command {
 	int state;
 	double power;
-	 
-	//Intake intake = Robot.intake;
-	//Pivot pivot = Robot.pivot;
-	public SmartShoot(double power){
-		setInterruptible(true);//TODO wtfbbq
+
+	// Intake intake = Robot.intake;
+	// Pivot pivot = Robot.pivot;
+	public SmartShoot(double power) {
+		setInterruptible(true);// TODO wtfbbq
 		requires(Robot.intake);
-		//this.start();
+		// this.start();
 		this.power = power;
 	}
-	protected void initialize(){
-		 state = Robot.pivot.getState();
+
+	protected void initialize() {
+		state = Robot.pivot.getState();
 	}
-	protected void execute(){
+
+	protected void execute() {
 		Robot.intake.outtake(this.power);
 	}
-	protected void end(){
+
+	protected void end() {
 		Robot.intake.haltLeft();
 		Robot.intake.haltRight();
-		
+
 	}
-	protected void interrupted(){
+
+	protected void interrupted() {
 		end();
 	}
+
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
 		return false;
