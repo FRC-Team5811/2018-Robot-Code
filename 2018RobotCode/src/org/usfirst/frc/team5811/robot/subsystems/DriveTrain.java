@@ -312,10 +312,10 @@ public class DriveTrain extends Subsystem {
 					double angleInitial = Math.abs(Robot.navx.grabValues());
 					double angleFinal = Math.abs(Robot.navx.grabValues() + angleOfTurn);
 
-					leftMotor1.set(visionTurnMult * (-((angleInitial / angleFinal) + 0.3)));
-					leftMotor2.set(visionTurnMult * (-((angleInitial / angleFinal) + 0.3)));
-					rightMotor1.set(visionTurnMult * (-((angleInitial / angleFinal) + 0.3)));
-					rightMotor2.set(visionTurnMult * (-((angleInitial / angleFinal) + 0.3)));
+					leftMotor1.set(visionTurnMult * (((angleInitial / angleFinal) + 0.3)));
+					leftMotor2.set(visionTurnMult * (((angleInitial / angleFinal) + 0.3)));
+					rightMotor1.set(visionTurnMult * (((angleInitial / angleFinal) + 0.3)));
+					rightMotor2.set(visionTurnMult * (((angleInitial / angleFinal) + 0.3)));
 
 					//
 					// go straight
@@ -328,10 +328,10 @@ public class DriveTrain extends Subsystem {
 					double angleInitial = Math.abs(Robot.navx.grabValues());
 					double angleFinal = Math.abs(Robot.navx.grabValues() - angleOfTurn);
 
-					leftMotor1.set(visionTurnMult * (+((angleInitial / angleFinal) + 0.3)));
-					leftMotor2.set(visionTurnMult * (+((angleInitial / angleFinal) + 0.3)));
-					rightMotor1.set(visionTurnMult * (+((angleInitial / angleFinal) + 0.3)));
-					rightMotor2.set(visionTurnMult * (+((angleInitial / angleFinal) + 0.3)));
+					leftMotor1.set(visionTurnMult * (-((angleInitial / angleFinal) - 0.3)));
+					leftMotor2.set(visionTurnMult * (-((angleInitial / angleFinal) - 0.3)));
+					rightMotor1.set(visionTurnMult * (-((angleInitial / angleFinal) - 0.3)));
+					rightMotor2.set(visionTurnMult * (-((angleInitial / angleFinal) - 0.3)));
 					// go straight
 				}
 

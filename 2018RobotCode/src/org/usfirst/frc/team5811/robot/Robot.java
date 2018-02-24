@@ -22,7 +22,8 @@ import org.usfirst.frc.team5811.robot.commands.AutoLeft;
 import org.usfirst.frc.team5811.robot.commands.AutoRight;
 
 import org.usfirst.frc.team5811.robot.commands.CompOn;
-
+import org.usfirst.frc.team5811.robot.commands.DoubleCubeAutoLeft;
+import org.usfirst.frc.team5811.robot.commands.DoubleCubeAutoRight;
 import org.usfirst.frc.team5811.robot.commands.TurnAuto;
 import org.usfirst.frc.team5811.robot.commands.DriveAuto;
 
@@ -113,7 +114,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
 		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
 		SmartDashboard.putNumber("Potentiometer Value: ", Robot.pivot.getAngle());
-		// SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
+		SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
 		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
 		SmartDashboard.putNumber("Pivot motor speed: ", Robot.pivot.getMotor());
 		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());
@@ -243,7 +244,11 @@ public class Robot extends IterativeRobot {
 			}
 
 		} else if (autoNumber == 3.0) { // Left Auto
-
+			if(firstLetter == 'L') {
+				autonomousCommand = new DoubleCubeAutoLeft();
+			}else if(firstLetter == 'R') {
+				autonomousCommand =new DoubleCubeAutoRight();
+			}
 		} else if (autoNumber == 3.5) { // Left Auto
 
 		} else if (autoNumber == 4.0) { // Left Auto
@@ -275,7 +280,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
 		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
 		SmartDashboard.putNumber("Potentiometer Value: ", Robot.pivot.getAngle());
-		// SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
+		SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
 		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
 		SmartDashboard.putNumber("Pivot motor speed: ", Robot.pivot.getMotor());
 		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());
@@ -311,7 +316,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
 		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
 		SmartDashboard.putNumber("Potentiometer Value: ", -Robot.pivot.getAngle());
-		// SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
+		SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
 		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
 		SmartDashboard.putNumber("Pivot motor speed: ", Robot.pivot.getMotor());
 		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());

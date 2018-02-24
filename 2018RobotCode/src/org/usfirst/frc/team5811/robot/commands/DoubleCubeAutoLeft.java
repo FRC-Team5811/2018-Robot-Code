@@ -7,14 +7,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class OutsideSwitchLeftAutoExtended extends CommandGroup {
+public class DoubleCubeAutoLeft extends CommandGroup {
 
-	public OutsideSwitchLeftAutoExtended() {
+    public DoubleCubeAutoLeft() {
 		int waitTime = 35;
 		double driveTime1Right = 122;
 		double driveTime2Right = 7;
 		double driveTime3Right = 7;
-		double driveTime4Right = 46;//was 10000 pulses, now inches
+		double driveTime4Right = 75;//was 10000 pulses, now inches
 		double DD1R = -0.6;
 		double DD2R = -0.6;
 		double DD3R = 0.6;
@@ -25,6 +25,9 @@ public class OutsideSwitchLeftAutoExtended extends CommandGroup {
 		double TD2 = -0.9;
 //		double DTR2 = 46; //was 5000 pulses, now inches
 //		double DDR2 = -0.6;
+		
+		double turnAngle3 = 30;
+		double turnDirection3 = -0.9;
 
 		requires(Robot.driveSUB);
 		requires(Robot.navx);
@@ -50,5 +53,21 @@ public class OutsideSwitchLeftAutoExtended extends CommandGroup {
 
 		addSequential(new DriveAuto(driveTime4Right, DD4R), 7);
 		addSequential(new FullStop(waitTime));
-	}
+		
+		addSequential(new TurnAuto(turnAngle3, turnDirection3));
+		addSequential(new FullStop(waitTime));
+		
+		addSequential(new PosDown());
+		addSequential(new FullStop(waitTime));
+		
+		addSequential(new VisionCube(), 5);
+		addSequential(new FullStop(waitTime));
+		
+		addSequential(new PosSwitch());
+		addSequential(new FullStop(waitTime));
+		
+		addSequential(new SmartShoot(Robot.driveSUB.autoShootPower), 1);
+		addSequential(new FullStop(waitTime));
+		
+    }
 }
