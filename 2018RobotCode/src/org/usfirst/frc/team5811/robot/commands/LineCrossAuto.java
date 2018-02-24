@@ -11,7 +11,7 @@ public class LineCrossAuto extends CommandGroup {
 
 	public LineCrossAuto() {
 		int waitTime = 35;
-		double driveTime1Right = 78.233; //originally 8500 pulses converted to 78.233
+		double driveTime1Right = 85; //originally 8500 pulses converted to 78.233
 		double DD1R = -0.6;
 		requires(Robot.driveSUB);
 		requires(Robot.navx);

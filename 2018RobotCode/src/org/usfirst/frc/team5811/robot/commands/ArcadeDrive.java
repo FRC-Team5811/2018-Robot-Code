@@ -24,5 +24,13 @@ public class ArcadeDrive extends Command {
 
 		return false;
 	}
+	
+	protected void end() {
+		Robot.driveSUB.motorReset();
+	}
+	
+	protected void interrupted() {
+		end();
+	}
 
 }

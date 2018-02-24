@@ -26,7 +26,9 @@ public class DriveAuto extends CommandGroup {
 		this.accelDistanceTrue = this.accelDistance;
 		this.flatDistanceTrue = this.accelDistance + this.flatDistance;
 		this.decelDistanceTrue = this.accelDistance + this.flatDistance + this.decelDistance;
-
+		
+		//System.out.println(this.accelDistance + this.flatDistanceTrue + this.decelDistanceTrue);
+		
 		this.direction = direction;
 		Robot.driveSUB.fullReset();
 		addSequential(new SetCurrentAngle());

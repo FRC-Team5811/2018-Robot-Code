@@ -106,8 +106,8 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("Go no go test DO NOT USE", new GoNoGoTest());
 		// System.out.print("I'm not slow?");
 
-		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal());
-		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal());
+		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
+		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);
 		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
 		SmartDashboard.putNumber("POV: ", oi.joy1.getPOV());
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
@@ -151,8 +151,11 @@ public class Robot extends IterativeRobot {
 			gameData = DriverStation.getInstance().getGameSpecificMessage();
 			// waiting for letter
 		}
+		//autoNumber = SmartDashboard.getNumber("DB/Slider 0", 0.0);
 		// System.out.println("Game data string:" + gameData);
 		Scheduler.getInstance().run();
+		autoNumber = SmartDashboard.getNumber("Auto Selection: ", 0.0);
+		
 	}
 
 	@Override
@@ -162,8 +165,7 @@ public class Robot extends IterativeRobot {
 		driveSUB.fullReset(); // reseting angle storing variables
 		encoders.reset();
 
-		autoNumber = SmartDashboard.getNumber("DB/Slider 0", 0.0);
-
+		
 		// autoSelecter = SmartDashboard.getNumber("DB/Slider 0", 0.5);
 		// System.out.print(autoSelecter);
 		//
@@ -266,8 +268,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 
-		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal());
-		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal());
+		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
+		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);
 		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
 		SmartDashboard.putNumber("POV: ", oi.joy1.getPOV());
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
@@ -279,7 +281,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());
 		SmartDashboard.putNumber("Intake Right Current: ", Robot.driveSUB.monitorCurrentIntakeRight());
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
-		
+		SmartDashboard.putNumber("Auto Selection: ", autoNumber);
+
 	}
 
 	@Override
@@ -287,9 +290,11 @@ public class Robot extends IterativeRobot {
 		navx.reset(); // reseting navx hardware
 		driveSUB.fullReset(); // reseting angle storing variables
 		encoders.reset();
-
+		
 		arms.close();
-
+		
+		driveSUB.motorReset();
+		
 		// System.out.println("Navx: " + navx.grabValues());
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
@@ -299,8 +304,8 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		// compressor.setClosedLoopControl(true);
-		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal());
-		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal());
+		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
+		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);
 		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
 		SmartDashboard.putNumber("POV: ", oi.joy2.getPOV());
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());

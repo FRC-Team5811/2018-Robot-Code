@@ -70,6 +70,13 @@ public class DriveTrain extends Subsystem {
 		Robot.navx.reset();
 		Robot.encoders.reset();
 	}
+	
+	public void motorReset() {
+		leftMotor1.set(0);
+		leftMotor2.set(0);
+		rightMotor1.set(0);
+		rightMotor2.set(0);
+	}
 
 	public boolean checkCP() {
 		// cp.setClosedLoopControl(true);
