@@ -40,7 +40,7 @@ public class DoubleCubeAutoRight extends CommandGroup {
 		addSequential(new DriveAuto(driveTime2Right, DD2R), 2);
 		addSequential(new FullStop(waitTime));
 
-		addSequential(new SmartShoot(Robot.driveSUB.autoShootPower), 1);
+		addSequential(new SmartShoot(), 1);
 		addSequential(new FullStop(waitTime));
 		
 		addSequential(new DriveAuto(driveTime3Right, DD3R), 2);
@@ -64,7 +64,7 @@ public class DoubleCubeAutoRight extends CommandGroup {
 		addSequential(new PosSwitch());
 		addSequential(new FullStop(waitTime));
 		
-		addSequential(new SmartShoot(Robot.driveSUB.autoShootPower), 1);
+		addSequential(new SmartShoot(), 1);
 		addSequential(new FullStop(waitTime));
     }
 }

@@ -24,8 +24,8 @@ public class Pivot extends Subsystem {
 
 	double downAngle = 0; // Find based on potentiometer offset
 	double downTransitionAngle = 15;
-	double switchAngle = 60; // Find based on potentiometer offset
-	double backAngle = 120; // Find based on potentiometer offset
+	public double switchAngle = 60; // Find based on potentiometer offset
+	public double backAngle = 120; // Find based on potentiometer offset
 	double backTransitionAngle = 110;
 	double exchangeAngle = 5;
 
@@ -33,9 +33,9 @@ public class Pivot extends Subsystem {
 	double kpUp = .01; // plan to do increase
 	double kpUpIntake = .05;
 
-	double downPosTolerance = 10;
-	double switchPosTolerance = 3;
-	double backPosTolerance = 5;
+	public double downPosTolerance = 10;
+	public double switchPosTolerance = 3;
+	public double backPosTolerance = 5;
 	double exchangePosTolerance = 1;
 
 	double switchHoldingPower = 0.3;

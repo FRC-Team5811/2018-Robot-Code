@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5811.robot.subsystems;
 
+import org.usfirst.frc.team5811.robot.Robot;
 import org.usfirst.frc.team5811.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -42,9 +43,27 @@ public class Intake extends Subsystem {
 		leftMotor.set(0);
 	}
 
-	public void outtake(double power) {
-		leftMotor.set(-power);
-		rightMotor.set(power);
+	public void outtake() {
+		if (Robot.pivot.getAngle() > Robot.pivot.backAngle - Robot.pivot.backPosTolerance ) { //power for back shoot
+			leftMotor.set(-.35);
+			rightMotor.set(.35);
+		} else if (Robot.pivot.getAngle() > Robot.pivot.downAngle - Robot.pivot.downPosTolerance) { //power for down shoot
+			leftMotor.set(-.5);
+			rightMotor.set(.5);
+		} else if(Robot.pivot.getAngle() > Robot.pivot.switchAngle - Robot.pivot.switchPosTolerance || Robot.pivot.getAngle() > Robot.pivot.switchAngle + Robot.pivot.switchPosTolerance) {
+			leftMotor.set(-.6);
+			rightMotor.set(.6);
+		}
+		//leftMotor.set(-power);
+		//rightMotor.set(power);
+	}
+	public void spinOuttakeRight() {
+		leftMotor.set(-.85);
+		rightMotor.set(.25);
+	}
+	public void spinOuttakeLeft() {
+		leftMotor.set(-.25);
+		rightMotor.set(.85);
 	}
 
 }

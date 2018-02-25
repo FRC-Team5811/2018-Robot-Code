@@ -12,11 +12,11 @@ public class SmartShoot extends Command {
 
 	// Intake intake = Robot.intake;
 	// Pivot pivot = Robot.pivot;
-	public SmartShoot(double power) {
+	public SmartShoot() {
 		setInterruptible(true);// TODO wtfbbq
 		requires(Robot.intake);
 		// this.start();
-		this.power = power;
+		//this.power = power;
 	}
 
 	protected void initialize() {
@@ -24,7 +24,7 @@ public class SmartShoot extends Command {
 	}
 
 	protected void execute() {
-		Robot.intake.outtake(this.power);
+		Robot.intake.outtake();
 	}
 
 	protected void end() {

@@ -3,6 +3,8 @@ package org.usfirst.frc.team5811.robot;
 import org.usfirst.frc.team5811.robot.commands.ArcadeDrive;
 import org.usfirst.frc.team5811.robot.commands.ArcadeSpeedMod;
 import org.usfirst.frc.team5811.robot.commands.AutoRampDeploy;
+import org.usfirst.frc.team5811.robot.commands.CurveOuttakeLeft;
+import org.usfirst.frc.team5811.robot.commands.CurveOuttakeRight;
 import org.usfirst.frc.team5811.robot.commands.GrabNavX;
 import org.usfirst.frc.team5811.robot.commands.HaltIntake;
 import org.usfirst.frc.team5811.robot.commands.IntakeInward;
@@ -29,6 +31,11 @@ public class OI {
 	AxisButton rightJoyY = new AxisButton(joy1, 3);
 	AxisButton rightJoyX = new AxisButton(joy1, 2);
 	AxisButton righttrigger = new AxisButton(joy1, 4);
+	DPadButton DPUp = new DPadButton(joy1, 0);
+	DPadButton DRight = new DPadButton(joy1, 90);
+	DPadButton DDown = new DPadButton(joy1, 180);
+	DPadButton DLeft = new DPadButton(joy1, 270);
+
 	//
 	// Joystick joy2 = new Joystick(1);
 	// JoystickButton aManip = new JoystickButton(joy2, 2);
@@ -60,6 +67,11 @@ public class OI {
 		rightJoyY.whileHeld(new ArcadeDrive());
 		a.toggleWhenPressed(new VisionCube());
 		b.toggleWhenPressed(new ArcadeSpeedMod());
+		
+		DRight.whileHeld(new CurveOuttakeRight());
+		DLeft.whileHeld(new CurveOuttakeLeft());
+		//DDown.toggleWhenPressed(new HaltIntake());
+
 
 		// b.whenPressed(new GrabNavX());
 		//
@@ -71,7 +83,7 @@ public class OI {
 
 		xManip.toggleWhenPressed(new IntakeInward());
 		// bManip.toggleWhenPressed(new PivotManual());
-		yManip.whileHeld(new SmartShoot(0.50));
+		yManip.whileHeld(new SmartShoot());
 		RLbumpers.toggleWhenPressed(new AutoRampDeploy()); // FIX COMBO BUTTONS
 
 		aManip.toggleWhenPressed(new ArmsToggle());
