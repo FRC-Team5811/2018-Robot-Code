@@ -243,13 +243,18 @@ public class Robot extends IterativeRobot {
 				autonomousCommand = new LineCrossAuto();
 			}
 
-		} else if (autoNumber == 3.0) { // Left Auto
+		} else if (autoNumber == 3.0) { // Double Cube Left
 			if(firstLetter == 'L') {
 				autonomousCommand = new DoubleCubeAutoLeft();
 			}else if(firstLetter == 'R') {
-				autonomousCommand =new DoubleCubeAutoRight();
+				autonomousCommand = new LineCrossAuto();
 			}
-		} else if (autoNumber == 3.5) { // Left Auto
+		} else if (autoNumber == 3.5) { // Double Cube Right
+			if(firstLetter == 'R') {
+				autonomousCommand = new DoubleCubeAutoRight();
+			}else if(firstLetter == 'L') {
+				autonomousCommand = new LineCrossAuto();
+			}
 
 		} else if (autoNumber == 4.0) { // Left Auto
 
