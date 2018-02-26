@@ -20,6 +20,10 @@ public class Intake extends Subsystem {
 	public static final int timeout = 15; // how many cycles it waits to turn off after current spike is reached
 	public boolean leftOff;
 	public boolean rightOff;
+	
+	double backShotPower = 0.35;
+	double exchangeShotPower = 0.5;
+	double switchShotPower = 0.6;
 
 	@Override
 	protected void initDefaultCommand() {
@@ -45,14 +49,14 @@ public class Intake extends Subsystem {
 
 	public void outtake() {
 		if (Robot.pivot.getAngle() > Robot.pivot.backAngle - Robot.pivot.backPosTolerance ) { //power for back shoot
-			leftMotor.set(-.35);
-			rightMotor.set(.35);
+			leftMotor.set(-backShotPower);
+			rightMotor.set(backShotPower);
 		} else if (Robot.pivot.getAngle() > Robot.pivot.downAngle - Robot.pivot.downPosTolerance) { //power for down shoot
-			leftMotor.set(-.5);
-			rightMotor.set(.5);
+			leftMotor.set(-exchangeShotPower);
+			rightMotor.set(exchangeShotPower);
 		} else if(Robot.pivot.getAngle() > Robot.pivot.switchAngle - Robot.pivot.switchPosTolerance || Robot.pivot.getAngle() > Robot.pivot.switchAngle + Robot.pivot.switchPosTolerance) {
-			leftMotor.set(-.6);
-			rightMotor.set(.6);
+			leftMotor.set(-switchShotPower);
+			rightMotor.set(switchShotPower);
 		}
 		//leftMotor.set(-power);
 		//rightMotor.set(power);
