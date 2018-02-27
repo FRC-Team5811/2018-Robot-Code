@@ -213,7 +213,7 @@ public class Robot extends IterativeRobot {
 			}
 		} else if (autoNumber == 0.5) { // Left Auto
 			if (firstLetter == 'L') {
-				autonomousCommand = new LineCrossAuto();
+				autonomousCommand = new GoNoGoTest();
 			} else if (firstLetter == 'R') {
 				autonomousCommand = new LineCrossAuto(); // need
 			}
@@ -233,7 +233,7 @@ public class Robot extends IterativeRobot {
 			}
 		} else if(autoNumber == 2.0) { //corner Left
 			if (firstLetter == 'L') {
-				autonomousCommand = new OutsideSwitchRightAuto();
+				autonomousCommand = new OutsideSwitchLeftAuto();
 			} else if (firstLetter == 'R') {
 				autonomousCommand = new LineCrossAuto(); // need
 			}
