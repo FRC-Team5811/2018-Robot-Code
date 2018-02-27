@@ -63,12 +63,12 @@ public class Intake extends Subsystem {
 		//rightMotor.set(power);
 	}
 	public void spinOuttakeRight() {
-		leftMotor.set(-.85);
-		rightMotor.set(.25);
-	}
-	public void spinOuttakeLeft() {
 		leftMotor.set(-.25);
 		rightMotor.set(.85);
+	}
+	public void spinOuttakeLeft() {
+		leftMotor.set(-.85);
+		rightMotor.set(.25);
 	}
 
 }

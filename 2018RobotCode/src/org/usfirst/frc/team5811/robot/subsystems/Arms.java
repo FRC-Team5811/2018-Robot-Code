@@ -33,4 +33,10 @@ public class Arms extends Subsystem {
 		armL.set(DoubleSolenoid.Value.kReverse);
 		armR.set(DoubleSolenoid.Value.kReverse);
 	}
+	public void openLeft() {
+		armL.set(DoubleSolenoid.Value.kForward);
+	}
+	public void openRight() {
+		armR.set(DoubleSolenoid.Value.kForward);
+	}
 }
