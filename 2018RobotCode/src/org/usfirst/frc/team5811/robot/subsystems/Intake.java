@@ -51,13 +51,14 @@ public class Intake extends Subsystem {
 		if (Robot.pivot.getAngle() > Robot.pivot.backAngle - Robot.pivot.backPosTolerance ) { //power for back shoot
 			leftMotor.set(-backShotPower);
 			rightMotor.set(backShotPower);
-		} else if (Robot.pivot.getAngle() > Robot.pivot.downAngle - Robot.pivot.downPosTolerance) { //power for down shoot
-			leftMotor.set(-exchangeShotPower);
-			rightMotor.set(exchangeShotPower);
-		} else if(Robot.pivot.getAngle() > Robot.pivot.switchAngle - Robot.pivot.switchPosTolerance || Robot.pivot.getAngle() > Robot.pivot.switchAngle + Robot.pivot.switchPosTolerance) {
+		} else if(Robot.pivot.getAngle() > Robot.pivot.switchAngle - Robot.pivot.switchPosTolerance && Robot.pivot.getAngle() < Robot.pivot.switchAngle + Robot.pivot.switchPosTolerance) {
 			leftMotor.set(-switchShotPower);
 			rightMotor.set(switchShotPower);
+		} else if (Robot.pivot.getAngle() < Robot.pivot.downAngle + Robot.pivot.downPosTolerance) { //power for down shoot
+			leftMotor.set(-exchangeShotPower);
+			rightMotor.set(exchangeShotPower);
 		}
+		
 		//leftMotor.set(-power);
 		//rightMotor.set(power);
 	}

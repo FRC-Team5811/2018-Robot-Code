@@ -62,6 +62,7 @@ public class IntakeInward extends Command {
 	}
 
 	protected void interrupted() {
+		end();
 	}
 
 	@Override

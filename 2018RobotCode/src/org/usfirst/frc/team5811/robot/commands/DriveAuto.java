@@ -35,7 +35,7 @@ public class DriveAuto extends CommandGroup {
 		addSequential(new AutoDriveAcc(this.accelDistanceTrue, this.direction));
 		addSequential(new AutoDriveFlat(this.flatDistanceTrue, this.direction));
 		addSequential(new AutoDriveDec(this.decelDistanceTrue, this.direction));
-
+		addSequential(new FullStop(5));
 		// resetting encoder hardware
 		// reseting angle holding variables
 

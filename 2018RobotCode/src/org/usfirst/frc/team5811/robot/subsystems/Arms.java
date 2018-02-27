@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Arms extends Subsystem {
-	DoubleSolenoid arms = RobotMap.intakeArms;
+	DoubleSolenoid armL = RobotMap.intakeArmsLeft;
+	DoubleSolenoid armR = RobotMap.intakeArmsRight;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -20,7 +21,8 @@ public class Arms extends Subsystem {
 	}
 
 	public void close() {
-		arms.set(DoubleSolenoid.Value.kForward);
+		armL.set(DoubleSolenoid.Value.kForward);
+		armR.set(DoubleSolenoid.Value.kForward);
 		// System.out.print("Right motor power" + rightMotor.get()); //Left intake would
 		// shut off when the arms are in... resolved by increasing the wait for a
 		// initial current spike...
@@ -28,6 +30,7 @@ public class Arms extends Subsystem {
 	}
 
 	public void open() {
-		arms.set(DoubleSolenoid.Value.kReverse);
+		armL.set(DoubleSolenoid.Value.kReverse);
+		armR.set(DoubleSolenoid.Value.kReverse);
 	}
 }

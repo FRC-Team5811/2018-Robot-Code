@@ -216,10 +216,10 @@ public class DriveTrain extends Subsystem {
 		// motor1.set(direction*(i/(durationDecel*0.5))*0.5f);
 		// leftMotor1.set(direction*(i/(durationDecel*0.5))*0.5f);
 		// leftMotor2.set(direction*(i/(durationDecel*0.5))*0.5f);
-		leftMotor1.set(direction * (1 - (currentAngle / finalAngle) + 0.2) * 0.4);
-		leftMotor2.set(direction * (1 - (currentAngle / finalAngle) + 0.2) * 0.4);
-		rightMotor1.set(direction * (1 - (currentAngle / finalAngle) + 0.2) * 0.4);
-		rightMotor2.set(direction * (1 - (currentAngle / finalAngle) + 0.2) * 0.4);
+		leftMotor1.set(direction * (1 - (currentAngle / finalAngle) + 0.2) * 0.6);
+		leftMotor2.set(direction * (1 - (currentAngle / finalAngle) + 0.2) * 0.6);
+		rightMotor1.set(direction * (1 - (currentAngle / finalAngle) + 0.2) * 0.6);
+		rightMotor2.set(direction * (1 - (currentAngle / finalAngle) + 0.2) * 0.6);
 	}
 
 	public boolean angleCorrect(double finalAngle, double currentAngle) {

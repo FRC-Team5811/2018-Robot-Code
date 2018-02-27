@@ -14,7 +14,7 @@ public class GoNoGoTest extends CommandGroup {
 		String gameData;
 		char firstLetter;
 		int waitTime = 35;
-		double driveTime1Right =  78.233; //originally 8500 pulses converted to 78.233
+		double driveTime1Right =  100.001; //originally 8500 pulses converted to 78.233
 		double DD1R = -0.55;
 
 		requires(Robot.driveSUB);

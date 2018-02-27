@@ -11,7 +11,7 @@ public class THREECubeAutoRight extends CommandGroup {
 
     public THREECubeAutoRight() {
 		int waitTime = 35;
-		double driveTime1Right =  78.233; //originally 8500 pulses converted to 78.233
+		double driveTime1Right =  100.001; //originally 8500 pulses converted to 78.233
 		double DD1R = -0.55;
 		
 		double turn1Angle = 90;
@@ -34,16 +34,21 @@ public class THREECubeAutoRight extends CommandGroup {
 		addSequential(new FullStop(waitTime));
 		addSequential(new SmartShoot(), 1);
 		addSequential(new FullStop(waitTime));
+		addSequential(new DriveAuto(12.5, 0.6));
 		addSequential(new PosDown());
 		addSequential(new TurnAuto(turn1Angle, turn1Direction));
-		addSequential(new VisionCube(), 3);
-		addSequential(new PosStore());
+		addSequential(new DriveAuto(20, 0.7),2);
+		addParallel(new IntakeInward());
+		//addSequential(new VisionCube(), 3);
+//		addSequential(new PosStore());
 		addSequential(new TurnAuto(turnAngle2, turnDirection2));
 		addSequential(new SmartShoot(), 1);
-		addSequential(new PosDown());
+//		addSequential(new PosDown());
 		addSequential(new TurnAuto(turnAngle3, turnDirection3));
-		addSequential(new VisionCube(), 3);
-		addSequential(new PosStore());
+		addSequential(new DriveAuto(5, 0.7),2);
+		addParallel(new IntakeInward());
+		//addSequential(new VisionCube(), 3);
+//		addSequential(new PosStore());
 		addSequential(new TurnAuto(turnAngle4, turnDirection4));
 		addSequential(new SmartShoot(), 1);
     }

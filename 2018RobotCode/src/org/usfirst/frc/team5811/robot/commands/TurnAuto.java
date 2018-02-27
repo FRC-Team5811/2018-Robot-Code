@@ -36,6 +36,7 @@ public class TurnAuto extends CommandGroup {
 		addSequential(new AutoTurnFlat(this.flatAngleTrue, this.direction));
 		// NavX.reset();
 		addSequential(new AutoTurnDec(this.decelAngleTrue, this.direction));
+		addSequential(new FullStop(5));
 
 		// addSequential (new AutoAngleCorrect(this.decelAngleTrue));
 		// NavX.reset();

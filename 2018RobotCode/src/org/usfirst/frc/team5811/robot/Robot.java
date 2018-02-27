@@ -38,6 +38,10 @@ import org.usfirst.frc.team5811.robot.commands.OutsideSwitchrightAutoExtended;
 import org.usfirst.frc.team5811.robot.commands.RampExtend;
 import org.usfirst.frc.team5811.robot.commands.SafetyAuto;
 import org.usfirst.frc.team5811.robot.commands.SmartShoot;
+import org.usfirst.frc.team5811.robot.commands.THREECubeAutoCenterLEFT;
+import org.usfirst.frc.team5811.robot.commands.THREECubeAutoCenterRIGHT;
+import org.usfirst.frc.team5811.robot.commands.THREECubeAutoLeft;
+import org.usfirst.frc.team5811.robot.commands.THREECubeAutoRight;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.Encoders;
 import org.usfirst.frc.team5811.robot.subsystems.Intake;
@@ -157,6 +161,8 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		autoNumber = SmartDashboard.getNumber("Auto Selection: ", 0.0);
 		
+		driveSUB.fullReset();
+		
 	}
 
 	@Override
@@ -219,13 +225,19 @@ public class Robot extends IterativeRobot {
 				autonomousCommand = new LineCrossAuto(); // need
 			}
 
-		} else if (autoNumber == 1.5) { // Corner
+		} else if (autoNumber == 1.5) { // Corner Right
 			if (firstLetter == 'R') {
 				autonomousCommand = new OutsideSwitchRightAuto();
 			} else if (firstLetter == 'L') {
-				autonomousCommand = new OutsideSwitchLeftAuto(); // need
+				autonomousCommand = new LineCrossAuto(); // need
 			}
-		} else if (autoNumber == 2.0) { // extended right
+		} else if(autoNumber == 2.0) { //corner Left
+			if (firstLetter == 'L') {
+				autonomousCommand = new OutsideSwitchRightAuto();
+			} else if (firstLetter == 'R') {
+				autonomousCommand = new LineCrossAuto(); // need
+			}
+		}else if (autoNumber == 2.5) { // extended right
 			if (firstLetter == 'R' && secondLetter == 'L') {
 				autonomousCommand = new OutsideSwitchRightAuto();
 			} else if (firstLetter == 'R' && secondLetter == 'R') {
@@ -234,7 +246,7 @@ public class Robot extends IterativeRobot {
 				autonomousCommand = new LineCrossAuto();
 			}
 
-		} else if (autoNumber == 2.5) { // extended Left
+		} else if (autoNumber == 3.0) { // extended Left
 			if (firstLetter == 'L' && secondLetter == 'R') {
 				autonomousCommand = new OutsideSwitchLeftAuto();
 			} else if (firstLetter == 'L' && secondLetter == 'L') {
@@ -243,24 +255,39 @@ public class Robot extends IterativeRobot {
 				autonomousCommand = new LineCrossAuto();
 			}
 
-		} else if (autoNumber == 3.0) { // Double Cube Left
+		} else if (autoNumber == 3.5) { // Double Cube Left
 			if(firstLetter == 'L') {
 				autonomousCommand = new DoubleCubeAutoLeft();
 			}else if(firstLetter == 'R') {
 				autonomousCommand = new LineCrossAuto();
 			}
-		} else if (autoNumber == 3.5) { // Double Cube Right
+		} else if (autoNumber == 4.0) { // Double Cube Right
 			if(firstLetter == 'R') {
 				autonomousCommand = new DoubleCubeAutoRight();
 			}else if(firstLetter == 'L') {
 				autonomousCommand = new LineCrossAuto();
 			}
 
-		} else if (autoNumber == 4.0) { // Left Auto
+		} else if (autoNumber == 4.5) { // Three Cube Auto Left
+			if(firstLetter == 'L') {
+				autonomousCommand = new THREECubeAutoLeft();
+			}else if(firstLetter == 'R') {
+				autonomousCommand = new LineCrossAuto();
+			}
+			
+		} else if (autoNumber == 5.0) { // Three Cube Auto Right
+			if(firstLetter == 'R') {
+				autonomousCommand = new THREECubeAutoRight();
+			}else if(firstLetter == 'L') {
+				autonomousCommand = new LineCrossAuto();
+			}
 
-		} else if (autoNumber == 4.5) { // Left Auto
-
-		} else if (autoNumber == 5.0) { // Left Auto
+		} else if (autoNumber == 5.5) { // Center choosing 3 cube
+			if(firstLetter == 'R') {
+				autonomousCommand = new THREECubeAutoCenterRIGHT();
+			}else if(firstLetter == 'L') {
+				autonomousCommand = new THREECubeAutoCenterLEFT();
+			}
 
 		} else { // Default
 			autonomousCommand = new LineCrossAuto();
