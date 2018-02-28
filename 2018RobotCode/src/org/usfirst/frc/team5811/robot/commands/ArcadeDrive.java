@@ -11,6 +11,12 @@ public class ArcadeDrive extends Command {
 	// DriveTrain driveSUB = Robot.driveSUB;
 	// Joysticks joysticks = Robot.joysticks;
 	// OI oi = Robot.oi;
+	public ArcadeDrive() {
+		requires(Robot.driveSUB);
+		setInterruptible(false);
+	}
+	
+	
 	protected void execute() {
 
 		Robot.driveSUB.arcadeDrive(Robot.oi.getRightX(), Robot.oi.getLeftY());

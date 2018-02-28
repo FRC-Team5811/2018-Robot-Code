@@ -159,7 +159,7 @@ public class Robot extends IterativeRobot {
 		//autoNumber = SmartDashboard.getNumber("DB/Slider 0", 0.0);
 		// System.out.println("Game data string:" + gameData);
 		Scheduler.getInstance().run();
-		autoNumber = SmartDashboard.getNumber("Auto Selection: ", 0.0);
+		autoNumber = SmartDashboard.getNumber("AUTO SELECTION USE THIS ONE: ", 0.0);
 		
 		driveSUB.fullReset();
 		
@@ -318,7 +318,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());
 		SmartDashboard.putNumber("Intake Right Current: ", Robot.driveSUB.monitorCurrentIntakeRight());
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
-		SmartDashboard.putNumber("Auto Selection: ", autoNumber);
+		SmartDashboard.putNumber("AUTO SELECTION USE THIS ONE: ", autoNumber);
 
 	}
 

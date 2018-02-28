@@ -12,6 +12,7 @@ public class VisionCube extends Command {
 	public VisionCube() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
+		requires(Robot.driveSUB);
 	}
 
 	// Called just before this Command runs the first time

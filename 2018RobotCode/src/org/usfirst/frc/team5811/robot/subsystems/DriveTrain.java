@@ -60,6 +60,9 @@ public class DriveTrain extends Subsystem {
 	double turnMax = 0.95;
 	
 	public double inchToPulse = 108.6497744841; //2048 pulses for every six pi (one inch is 108... pulses)
+	
+	public double currentThreshold = 20;
+	public int intSpikeWait = 50;
 
 	public void fullReset() { // reseting angle storing variables
 		previousAngle = 0;
@@ -265,18 +268,23 @@ public class DriveTrain extends Subsystem {
 	public boolean Vision_go_Cube() {
 		double cX = table.getNumber("cX", 0.0);
 		double cY = table.getNumber("cY", 0.0);
-
+		boolean MinArea = table.putNumber("MinArea", 800);
+		boolean threshold = table.putNumber("threshold", 50);
+		System.out.println("Threshold: " + threshold);
+		System.out.println("MinAreaSet: " + MinArea);
 		System.out.println("cX: " + cX);
 		// System.out.println("In seek mode");
 
 		double HasCube = table.getNumber("HasTheCube", 0.0);
+		
+		
 
 		if (HasCube == 1) {
 			leftMotor1.set(0);
 			leftMotor2.set(0);
 			rightMotor1.set(0);
 			rightMotor2.set(0);
-			Robot.arms.close();
+//			Robot.arms.close();
 			Robot.ledsub.flash();
 			Robot.intake.haltRight();
 			Robot.intake.haltLeft();
@@ -285,7 +293,7 @@ public class DriveTrain extends Subsystem {
 		} else {
 			Robot.intake.intakeRightIn();
 			Robot.intake.intakeLeftIn();
-			Robot.arms.open();
+//			Robot.arms.open();
 
 			if (cX == 0.0 || cY == 0.0) {
 				// System.out.println("No Cube Detected!!!!!");
@@ -304,7 +312,7 @@ public class DriveTrain extends Subsystem {
 					rightMotor1.set(-0.5);
 					rightMotor2.set(-0.5);
 				} else if (cX <= minVisionVal) {
-					double angleOfTurn = (50 - cX) * 0.6;
+					double angleOfTurn = (50 - cX) * 0.4;
 					System.out.print("turn right: ");
 					System.out.print(angleOfTurn);
 					System.out.println("degrees");
@@ -312,15 +320,15 @@ public class DriveTrain extends Subsystem {
 					double angleInitial = Math.abs(Robot.navx.grabValues());
 					double angleFinal = Math.abs(Robot.navx.grabValues() + angleOfTurn);
 
-					leftMotor1.set(visionTurnMult * (((angleInitial / angleFinal) + 0.3)));
-					leftMotor2.set(visionTurnMult * (((angleInitial / angleFinal) + 0.3)));
-					rightMotor1.set(visionTurnMult * (((angleInitial / angleFinal) + 0.3)));
-					rightMotor2.set(visionTurnMult * (((angleInitial / angleFinal) + 0.3)));
+					leftMotor1.set(visionTurnMult * (-((angleInitial / angleFinal) + 0.3)));
+					leftMotor2.set(visionTurnMult * (-((angleInitial / angleFinal) + 0.3)));
+					rightMotor1.set(visionTurnMult * (-((angleInitial / angleFinal) + 0.3)));
+					rightMotor2.set(visionTurnMult * (-((angleInitial / angleFinal) + 0.3)));
 
 					//
 					// go straight
 				} else {
-					double angleOfTurn = (50 - cX) * 0.6;
+					double angleOfTurn = (50 - cX) * 0.4;
 					System.out.print("turn left: ");
 					System.out.print(angleOfTurn);
 					System.out.println("degrees");
@@ -328,10 +336,10 @@ public class DriveTrain extends Subsystem {
 					double angleInitial = Math.abs(Robot.navx.grabValues());
 					double angleFinal = Math.abs(Robot.navx.grabValues() - angleOfTurn);
 
-					leftMotor1.set(visionTurnMult * (-((angleInitial / angleFinal) - 0.3)));
-					leftMotor2.set(visionTurnMult * (-((angleInitial / angleFinal) - 0.3)));
-					rightMotor1.set(visionTurnMult * (-((angleInitial / angleFinal) - 0.3)));
-					rightMotor2.set(visionTurnMult * (-((angleInitial / angleFinal) - 0.3)));
+					leftMotor1.set(visionTurnMult * (((angleInitial / angleFinal) - 0.3)));
+					leftMotor2.set(visionTurnMult * (((angleInitial / angleFinal) - 0.3)));
+					rightMotor1.set(visionTurnMult * (((angleInitial / angleFinal) - 0.3)));
+					rightMotor2.set(visionTurnMult * (((angleInitial / angleFinal) - 0.3)));
 					// go straight
 				}
 
@@ -359,6 +367,13 @@ public class DriveTrain extends Subsystem {
 
 	public double monitorCurrent6() {
 		return pdp.getCurrent(13);
+	}
+	
+	public double monitorCurrentDriveRight() {
+		return pdp.getCurrent(2);
+	}
+	public double monitorCurrentDriveLeft() {
+		return pdp.getCurrent(12);
 	}
 
 }

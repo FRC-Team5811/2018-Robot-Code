@@ -11,10 +11,10 @@ public class DoubleCubeAutoLeft extends CommandGroup {
 
     public DoubleCubeAutoLeft() {
 		int waitTime = 35;
-		double driveTime1Right = 122;
-		double driveTime2Right = 7;
-		double driveTime3Right = 7;
-		double driveTime4Right = 75;//was 10000 pulses, now inches
+		double driveTime1Right = 140;
+		double driveTime2Right = 12.2;
+		double driveTime3Right = 10;
+		double driveTime4Right = 90;//was 10000 pulses, now inches
 		double DD1R = -0.6;
 		double DD2R = -0.6;
 		double DD3R = 0.6;
@@ -26,7 +26,7 @@ public class DoubleCubeAutoLeft extends CommandGroup {
 //		double DTR2 = 46; //was 5000 pulses, now inches
 //		double DDR2 = -0.6;
 		
-		double turnAngle3 = 30;
+		double turnAngle3 = 45;
 		double turnDirection3 = -0.9;
 
 		requires(Robot.driveSUB);
@@ -60,7 +60,10 @@ public class DoubleCubeAutoLeft extends CommandGroup {
 		addSequential(new PosDown());
 		addSequential(new FullStop(waitTime));
 		
-		addSequential(new VisionCube(), 5);
+		addSequential(new DriveAuto(30, 0.7),2);
+		addParallel(new IntakeInward(), 1.5);
+		
+		//addSequential(new VisionCube(), 5);
 		addSequential(new FullStop(waitTime));
 		
 		addSequential(new PosSwitch());

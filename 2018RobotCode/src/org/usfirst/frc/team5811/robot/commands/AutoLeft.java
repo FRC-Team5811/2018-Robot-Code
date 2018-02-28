@@ -15,7 +15,7 @@ public class AutoLeft extends CommandGroup {
 	double DD2Left = -0.45;
 	double TA2Left = 40;
 	double TD2Left = 0.9;
-	double DT3Left = 39.6; //was 3000 pulses, now inches
+	double DT3Left = 45; //was 3000 pulses, now inches
 	double DD3Left = -0.45;
 
 	public AutoLeft() {
