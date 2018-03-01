@@ -25,6 +25,7 @@ import org.usfirst.frc.team5811.robot.commands.CompOn;
 import org.usfirst.frc.team5811.robot.commands.DoubleCubeAutoLeft;
 import org.usfirst.frc.team5811.robot.commands.DoubleCubeAutoRight;
 import org.usfirst.frc.team5811.robot.commands.TurnAuto;
+import org.usfirst.frc.team5811.robot.commands.VisionAuto;
 import org.usfirst.frc.team5811.robot.commands.DriveAuto;
 
 import org.usfirst.frc.team5811.robot.commands.GoNoGoTest;
@@ -289,7 +290,10 @@ public class Robot extends IterativeRobot {
 				autonomousCommand = new THREECubeAutoCenterLEFT();
 			}
 
-		} else { // Default
+		}else if(autoNumber == 99.0) {
+			autonomousCommand = new VisionAuto();
+		}
+		else { // Default
 			autonomousCommand = new LineCrossAuto();
 		}
 

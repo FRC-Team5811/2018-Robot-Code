@@ -41,14 +41,14 @@ public class THREECubeAutoLeft extends CommandGroup {
 		addSequential(new DriveAuto(20, 0.7),2);
 		addParallel(new IntakeInward(), 1.5);
 		//addSequential(new VisionCube(), 3);
-		//addSequential(new PosStore());
+		addSequential(new PosStore());
 		addSequential(new TurnAuto(turnAngle2, turnDirection2));
 		addSequential(new SmartShoot(), 1);
-		//addSequential(new PosDown());
+		addSequential(new PosDown());
 		addSequential(new TurnAuto(turnAngle3, turnDirection3));
 		addSequential(new DriveAuto(5, 0.7),2);
 		addParallel(new IntakeInward(), 1.5);
-		//addSequential(new VisionCube(), 3);
+		addSequential(new VisionCube(), 3);
 		//addSequential(new PosStore());
 		addSequential(new TurnAuto(turnAngle4, turnDirection4));
 		addSequential(new SmartShoot(), 1);

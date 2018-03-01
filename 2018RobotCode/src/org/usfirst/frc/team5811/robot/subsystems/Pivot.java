@@ -35,7 +35,7 @@ public class Pivot extends Subsystem {
 
 	public double downPosTolerance = 10;
 	public double switchPosTolerance = 3;
-	public double backPosTolerance = 5;
+	public double backPosTolerance = 10;
 	double exchangePosTolerance = 1;
 
 	double switchHoldingPower = 0.3;

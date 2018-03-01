@@ -14,7 +14,7 @@ public class DoubleCubeAutoRight extends CommandGroup {
 		double driveTime1Right = 140; //was 10000 pulses, now inches
 		double driveTime2Right = 12.2;
 		double driveTime3Right = 11;
-		double driveTime4Right = 90;
+		double driveTime4Right = 40;
 		double DD1R = -0.6;
 		double DD2R = -0.6;
 		double DD3R = 0.6;
