@@ -39,6 +39,7 @@ import org.usfirst.frc.team5811.robot.commands.OutsideSwitchrightAutoExtended;
 import org.usfirst.frc.team5811.robot.commands.RampExtend;
 import org.usfirst.frc.team5811.robot.commands.SafetyAuto;
 import org.usfirst.frc.team5811.robot.commands.SmartShoot;
+import org.usfirst.frc.team5811.robot.commands.StopPivot;
 import org.usfirst.frc.team5811.robot.commands.THREECubeAutoCenterLEFT;
 import org.usfirst.frc.team5811.robot.commands.THREECubeAutoCenterRIGHT;
 import org.usfirst.frc.team5811.robot.commands.THREECubeAutoLeft;
@@ -161,6 +162,21 @@ public class Robot extends IterativeRobot {
 		// System.out.println("Game data string:" + gameData);
 		Scheduler.getInstance().run();
 		autoNumber = SmartDashboard.getNumber("AUTO SELECTION USE THIS ONE: ", 0.0);
+		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
+		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);
+		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
+		SmartDashboard.putNumber("POV: ", oi.joy1.getPOV());
+		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
+		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
+		SmartDashboard.putNumber("Potentiometer Value: ", Robot.pivot.getAngle());
+		SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
+		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
+		SmartDashboard.putNumber("Pivot motor speed: ", Robot.pivot.getMotor());
+		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());
+		SmartDashboard.putNumber("Intake Right Current: ", Robot.driveSUB.monitorCurrentIntakeRight());
+		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
+		
+		System.out.println("AUTONUMBER: " + autoNumber);
 		
 		driveSUB.fullReset();
 		
@@ -292,6 +308,7 @@ public class Robot extends IterativeRobot {
 
 		}else if(autoNumber == 99.0) {
 			autonomousCommand = new VisionAuto();
+			
 		}
 		else { // Default
 			autonomousCommand = new LineCrossAuto();
@@ -323,6 +340,10 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Right Current: ", Robot.driveSUB.monitorCurrentIntakeRight());
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
 		SmartDashboard.putNumber("AUTO SELECTION USE THIS ONE: ", autoNumber);
+		
+		if (pivot.safety()) {
+			new StopPivot();
+		}
 
 	}
 
@@ -360,9 +381,12 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
 
 		new CompOn();//
+		System.out.println(Robot.driveSUB.returnCX());
 
 		// System.out.println(navx.grabValues());
-
+		if (pivot.safety()) {
+			new StopPivot();
+		}
 	}
 
 	@Override

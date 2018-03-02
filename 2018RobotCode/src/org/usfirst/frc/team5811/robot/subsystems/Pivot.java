@@ -6,6 +6,7 @@ import org.usfirst.frc.team5811.robot.commands.PivotHold;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
@@ -14,6 +15,8 @@ public class Pivot extends Subsystem {
 
 	Potentiometer pivot = RobotMap.pivot;
 	Victor pivotMotor = RobotMap.motor1;
+	PowerDistributionPanel pdp = RobotMap.PDP;
+	
 	double tolerance = 1; // how close to target is acceptable, in degrees
 	int state = 0; // position state of arm
 	public int goTo = 0;
@@ -22,16 +25,16 @@ public class Pivot extends Subsystem {
 	double antiGravHat = -.05;
 	double antiGravScale = 50;
 
-	double downAngle = 0; // Find based on potentiometer offset
-	double downTransitionAngle = 15;
+	double downAngle = 10; // Find based on potentiometer offset
+	double downTransitionAngle = 25;
 	public double switchAngle = 60; // Find based on potentiometer offset
-	public double backAngle = 120; // Find based on potentiometer offset
-	double backTransitionAngle = 110;
+	public double backAngle = 100; // Find based on potentiometer offset
+	double backTransitionAngle = 90;
 	double exchangeAngle = 5;
 
-	double kpDown = .01; // plan to do increase
-	double kpUp = .01; // plan to do increase
-	double kpUpIntake = .05;
+	double kpDown = .012; // plan to do increase
+	double kpUp = .012; // plan to do increase
+	double kpUpIntake = .012;
 
 	public double downPosTolerance = 10;
 	public double switchPosTolerance = 3;
@@ -42,7 +45,12 @@ public class Pivot extends Subsystem {
 	double exchangeHoldingPower = 0.47;
 	double switchFullPower = -0.75;
 	double switchDownPower = -0.75;
+	
+	double pastAngle;
+	double currentAngle;
+	double deltaAngle;
 
+	
 	public Pivot() {
 
 	}
@@ -96,7 +104,9 @@ public class Pivot extends Subsystem {
 	// }
 	//
 	public boolean moveToDown(double currentPos) {
-
+		pastAngle = currentAngle;
+		currentAngle = currentPos;
+		deltaAngle = pastAngle - currentAngle;
 		if (currentPos > downTransitionAngle) {
 			pivotMotor.set(switchDownPower * (-kpDown * (currentPos - downTransitionAngle)));
 		} else {
@@ -104,10 +114,12 @@ public class Pivot extends Subsystem {
 		}
 
 		return (currentPos < downAngle + downPosTolerance);
-
 	}
 
 	public boolean moveToBack(double currentPos) {
+		pastAngle = currentAngle;
+		currentAngle = currentPos;
+		deltaAngle = pastAngle - currentAngle;
 		Robot.arms.close();
 		if (currentPos < backTransitionAngle) {
 			pivotMotor.set(switchFullPower * (kpUp * (backTransitionAngle - currentPos)));
@@ -120,6 +132,9 @@ public class Pivot extends Subsystem {
 	}
 
 	public boolean moveToSwitch(double currentPos) {
+		pastAngle = currentAngle;
+		currentAngle = currentPos;
+		deltaAngle = pastAngle - currentAngle;
 		Robot.arms.close();
 		if (currentPos < switchAngle - switchPosTolerance) {
 			pivotMotor.set(switchFullPower * (switchHoldingPower + kpUp * (switchAngle - currentPos)));
@@ -134,6 +149,9 @@ public class Pivot extends Subsystem {
 	}
 
 	public void moveToExchange(double currentPos) {
+		pastAngle = currentAngle;
+		currentAngle = currentPos;
+		deltaAngle = pastAngle - currentAngle;
 		if (currentPos < exchangeAngle - exchangePosTolerance) {
 			pivotMotor.set(switchFullPower * (exchangeHoldingPower + kpUp * (exchangeAngle - currentPos)));
 		} else if (currentPos > exchangeAngle + exchangePosTolerance) {
@@ -156,7 +174,29 @@ public class Pivot extends Subsystem {
 		pivotMotor.set((0.6 * input) + antiGrav);
 
 	}
-
+	
+	public boolean safety() {
+		if (getMotor() < -0.2 || getMotor() > 0.2) {
+			if (deltaAngle > -0.03 && deltaAngle < 0.03) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			      return false;
+		} 
+		
+//		else if (currentPivot() > 619247) {
+//			return true;
+//		}
+	}
+	
+	public double currentPivot() {
+		return pdp.getCurrent(1);
+	}
+	
 	protected void initDefaultCommand() {
 		// setDefaultCommand(new PivotHold());
 

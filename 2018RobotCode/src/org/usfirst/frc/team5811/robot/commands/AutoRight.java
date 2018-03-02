@@ -13,7 +13,7 @@ public class AutoRight extends CommandGroup {
 	double turnDirection1Right = 0.8;
 	double DT2Right = 64.4; //was 7000 pulses, now inches
 	double DD2Right = -0.45;
-	double TA2Right = 40;
+	double TA2Right = 30;
 	double TD2Right = -0.9;
 	double DT3Right = 45; //was 3000 pulses, now inches
 	double DD3Right = -0.45;

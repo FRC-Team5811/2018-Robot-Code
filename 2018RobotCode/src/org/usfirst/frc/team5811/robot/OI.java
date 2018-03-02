@@ -68,8 +68,8 @@ public class OI {
 		a.toggleWhenPressed(new VisionCube());
 		b.toggleWhenPressed(new ArcadeSpeedMod());
 		
-		DRight.whileHeld(new CurveOuttakeRight());
-		DLeft.whileHeld(new CurveOuttakeLeft());
+//		DRight.whileHeld(new CurveOuttakeRight());
+//		DLeft.whileHeld(new CurveOuttakeLeft());
 		//DDown.toggleWhenPressed(new HaltIntake());
 
 
