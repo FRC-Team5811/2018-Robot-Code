@@ -381,7 +381,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
 
 		new CompOn();//
-		System.out.println(Robot.driveSUB.returnCX());
+	//	System.out.println(Robot.driveSUB.returnCX());
 
 		// System.out.println(navx.grabValues());
 		if (pivot.safety()) {

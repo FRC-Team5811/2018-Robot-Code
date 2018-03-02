@@ -57,7 +57,7 @@ public class DriveTrain extends Subsystem {
 	double minVisionVal = 30;
 	double maxVisionVal = 70;
 	double visionTurnMult = 0.4;
-	double turnMax = 0.95;
+	double turnMax = 0.9;
 	
 	public double inchToPulse = 108.6497744841; //2048 pulses for every six pi (one inch is 108... pulses)
 	
