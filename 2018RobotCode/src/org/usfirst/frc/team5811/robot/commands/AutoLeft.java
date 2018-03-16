@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutoLeft extends CommandGroup {
-	int waitTime = 35;
+	int waitTime = 1;
 	double driveTime1Left = 27.6; //was 3000 pulses, now inches
 	double driveDirection1Left = -0.45;
 	double turnAngle1Left = 45;
@@ -22,7 +22,7 @@ public class AutoLeft extends CommandGroup {
 		requires(Robot.driveSUB);
 		requires(Robot.navx);
 		requires(Robot.encoders);
-
+		System.out.println("randomness");
 		addSequential(new FullAutoReset());
 		addSequential(new DriveAuto(driveTime1Left, driveDirection1Left));
 		System.out.println("First move");
@@ -37,7 +37,7 @@ public class AutoLeft extends CommandGroup {
 		addSequential(new TurnAuto(TA2Left, TD2Left));
 		addSequential(new FullStop(waitTime));
 
-		addSequential(new DriveAuto(DT3Left, DD3Left), 4);
+		addSequential(new DriveAuto(DT3Left, DD3Left), 1.5);
 		addSequential(new FullStop(waitTime));
 		addSequential(new SmartShoot(), 1);
 

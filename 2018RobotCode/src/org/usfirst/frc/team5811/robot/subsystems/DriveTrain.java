@@ -143,7 +143,7 @@ public class DriveTrain extends Subsystem {
 
 	}
 
-	public void autoDriveAcc(double durationAccel, double i, double direction) {
+	public void autoDriveAcc(double durationAccel, double encoderDistance, double direction) {
 		double motorCorrect = errorCorrect(currentAngle);
 
 		// System.out.println("Motor sped: "+((direction*(i/(durationAccel)+0.2)*0.5f) -
@@ -152,14 +152,14 @@ public class DriveTrain extends Subsystem {
 		// " +((direction*(i/(durationAccel)+0.3)) - motorCorrect)+
 		// "\t" + ((-direction*(i/(durationAccel)+0.3)) - motorCorrect)+"\t " +
 		// ((-direction*(i/(durationAccel)+0.3)) - motorCorrect));
-		leftMotor1.set((direction * (i / (durationAccel) + 0.3)) - motorCorrect);
-		leftMotor2.set((direction * (i / (durationAccel) + 0.3)) - motorCorrect);
-		rightMotor1.set((-direction * (i / (durationAccel) + 0.3)) - motorCorrect);
-		rightMotor2.set((-direction * (i / (durationAccel) + 0.3)) - motorCorrect);
+		leftMotor1.set((direction * (encoderDistance / (durationAccel) + 0.3)) - motorCorrect);
+		leftMotor2.set((direction * (encoderDistance / (durationAccel) + 0.3)) - motorCorrect);
+		rightMotor1.set((-direction * (encoderDistance / (durationAccel) + 0.3)) - motorCorrect);
+		rightMotor2.set((-direction * (encoderDistance / (durationAccel) + 0.3)) - motorCorrect);
 
 	}
 
-	public void autoDriveDec(double durationDecel, double i, double direction) {
+	public void autoDriveDec(double durationDecel, double encoderDistance, double direction) {
 		double motorCorrect = errorCorrect(currentAngle);
 		// kp -= .1;
 		// System.out.println((direction*(1-(i/(durationDecel)+0.2)*0.5f) -
@@ -169,10 +169,10 @@ public class DriveTrain extends Subsystem {
 		// (-direction*(1-(i/(durationDecel)+0.2)*0.5f) - motorCorrect));
 		// System.out.println("Motor sped:
 		// "+(direction*(1-(i/(durationDecel*0.5))*0.5f)-motorCorrect));
-		leftMotor1.set(direction * (1 - (i / (durationDecel) + 0.2) * 0.5f) - motorCorrect);
-		leftMotor2.set(direction * (1 - (i / (durationDecel) + 0.2) * 0.5f) - motorCorrect);
-		rightMotor1.set(-direction * (1 - (i / (durationDecel) + 0.2) * 0.5f) - motorCorrect);
-		rightMotor2.set(-direction * (1 - (i / (durationDecel) + 0.2) * 0.5f) - motorCorrect);
+		leftMotor1.set(direction * (1 - (encoderDistance / (durationDecel) + 0.2) * 0.5f) - motorCorrect);
+		leftMotor2.set(direction * (1 - (encoderDistance / (durationDecel) + 0.2) * 0.5f) - motorCorrect);
+		rightMotor1.set(-direction * (1 - (encoderDistance / (durationDecel) + 0.2) * 0.5f) - motorCorrect);
+		rightMotor2.set(-direction * (1 - (encoderDistance / (durationDecel) + 0.2) * 0.5f) - motorCorrect);
 	}
 
 	public void autoDriveFlat(double direction) {

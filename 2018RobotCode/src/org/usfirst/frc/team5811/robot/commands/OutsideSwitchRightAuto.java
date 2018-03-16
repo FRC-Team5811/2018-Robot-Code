@@ -11,7 +11,7 @@ public class OutsideSwitchRightAuto extends CommandGroup {
 
 	public OutsideSwitchRightAuto() {
 		int waitTime = 25;
-		double driveTime1Right = 140; //was 10000 pulses, now inches
+		double driveTime1Right = 150; //was 10000 pulses, now inches
 		double driveTime2Right = 600;
 		double driveTime3Right = 18;
 		//double driveTime4Right = 46;

@@ -40,6 +40,7 @@ import org.usfirst.frc.team5811.robot.commands.RampExtend;
 import org.usfirst.frc.team5811.robot.commands.SafetyAuto;
 import org.usfirst.frc.team5811.robot.commands.SmartShoot;
 import org.usfirst.frc.team5811.robot.commands.StopPivot;
+import org.usfirst.frc.team5811.robot.commands.TESTAUTO;
 import org.usfirst.frc.team5811.robot.commands.THREECubeAutoCenterLEFT;
 import org.usfirst.frc.team5811.robot.commands.THREECubeAutoCenterRIGHT;
 import org.usfirst.frc.team5811.robot.commands.THREECubeAutoLeft;
@@ -160,7 +161,7 @@ public class Robot extends IterativeRobot {
 		}
 		//autoNumber = SmartDashboard.getNumber("DB/Slider 0", 0.0);
 		// System.out.println("Game data string:" + gameData);
-		Scheduler.getInstance().run();
+//		Scheduler.getInstance().run();
 		autoNumber = SmartDashboard.getNumber("AUTO SELECTION USE THIS ONE: ", 0.0);
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);
@@ -192,6 +193,7 @@ public class Robot extends IterativeRobot {
 		arms.close();
 		navx.reset(); // reseting navx hardware
 		driveSUB.fullReset(); // reseting angle storing variables
+		driveSUB.motorReset();
 		encoders.reset();
 
 		
@@ -221,9 +223,9 @@ public class Robot extends IterativeRobot {
 		// run autoRight
 		//
 
-		while (gameData == null || gameData == "") {
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
-		}
+//		while (gameData == null || gameData == "") {
+//			gameData = DriverStation.getInstance().getGameSpecificMessage();
+//		}
 
 		firstLetter = Robot.gameData.charAt(0);
 		secondLetter = Robot.gameData.charAt(1);
@@ -314,7 +316,10 @@ public class Robot extends IterativeRobot {
 		}else if(autoNumber == 99.0) {
 			autonomousCommand = new VisionAuto();
 			
+		} else if (autoNumber == -5) {
+			autonomousCommand = new TESTAUTO();
 		}
+		
 		else { // Default
 			autonomousCommand = new LineCrossAuto();
 			System.out.println("line cross");
@@ -332,7 +337,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousPeriodic() {
-		Scheduler.getInstance().run();
+//		Scheduler.getInstance().run();
 
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);
@@ -371,9 +376,14 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.cancel();
 	}
 
+	@Override 
+	public void robotPeriodic() { //Is this for real?
+		Scheduler.getInstance().run();
+	}
+	
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
+//		Scheduler.getInstance().run();
 		// compressor.setClosedLoopControl(true);
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);

@@ -10,17 +10,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class OutsideSwitchLeftAuto extends CommandGroup {
 
 	public OutsideSwitchLeftAuto() {
-		int waitTime = 35;
-		double driveTime1Right = 140;
+		int waitTime = 1;
+		double driveTime1Right = 150;
 		double driveTime2Right = 60;
 		double driveTime3Right = 18;
 		//was 10000 pulses, now in inches
-		double DD1R = -0.6;
+		double DD1R = -0.7;
 		double DD2R = -0.6;
 		double DD3R = 0.6;
-		double TA1 = 90;
+		double TA1 = 85;
 		double TD1 = 0.9;
-		double TA2 = 70;
+		double TA2 = 85;
 		double TD2 = -0.9;
 
 		requires(Robot.driveSUB);

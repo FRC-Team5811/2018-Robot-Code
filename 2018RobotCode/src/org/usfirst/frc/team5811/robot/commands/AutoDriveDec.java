@@ -42,7 +42,8 @@ public class AutoDriveDec extends Command {
 
 	protected boolean isFinished() {
 		if (Math.abs(Robot.encoders.getLeftVal()) > this.duration) {
-
+			Robot.navx.reset(); // commented these out to test the autoAngleCorrect method
+			Robot.encoders.reset();
 			return true;
 		} else {
 			return false;

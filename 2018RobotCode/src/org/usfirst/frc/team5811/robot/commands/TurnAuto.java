@@ -31,6 +31,8 @@ public class TurnAuto extends CommandGroup {
 
 		Robot.driveSUB.fullReset();
 //		addSequential(new ResetEverything());
+//		addSequential(new SetCurrentAngle());
+
 		addSequential(new AutoTurnAcc(this.accelAngleTrue, this.direction));
 		// NavX.reset();
 		addSequential(new AutoTurnFlat(this.flatAngleTrue, this.direction));
