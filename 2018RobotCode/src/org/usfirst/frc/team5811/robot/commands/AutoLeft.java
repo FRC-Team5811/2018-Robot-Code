@@ -11,11 +11,11 @@ public class AutoLeft extends CommandGroup {
 	double driveDirection1Left = -0.45;
 	double turnAngle1Left = 45;
 	double turnDirection1Left = -0.9;
-	double DT2Left = 69; //was 7500 pulses, now inches
+	double DT2Left = 79; //was 7500 pulses, now inches
 	double DD2Left = -0.45;
-	double TA2Left = 30;
+	double TA2Left = 35;
 	double TD2Left = 0.9;
-	double DT3Left = 45; //was 3000 pulses, now inches
+	double DT3Left = 100; //was 3000 pulses, now inches
 	double DD3Left = -0.45;
 
 	public AutoLeft() {
@@ -37,7 +37,7 @@ public class AutoLeft extends CommandGroup {
 		addSequential(new TurnAuto(TA2Left, TD2Left));
 		addSequential(new FullStop(waitTime));
 
-		addSequential(new DriveAuto(DT3Left, DD3Left), 3);
+		addSequential(new DriveAuto(DT3Left, DD3Left), 4);
 		addSequential(new FullStop(waitTime));
 		addSequential(new SmartShoot(), 1);
 

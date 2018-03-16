@@ -19,5 +19,6 @@ public class LineCrossAuto extends CommandGroup {
 
 		addSequential(new DriveAuto(driveTime1Right, DD1R), 5);
 		addSequential(new FullStop(waitTime));
+		System.out.println("end line cross");
 	}
 }

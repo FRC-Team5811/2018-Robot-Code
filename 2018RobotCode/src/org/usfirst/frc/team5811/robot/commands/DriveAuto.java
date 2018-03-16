@@ -31,11 +31,16 @@ public class DriveAuto extends CommandGroup {
 		
 		this.direction = direction;
 		Robot.driveSUB.fullReset();
+//		addSequential(new ResetEverything());
 		addSequential(new SetCurrentAngle());
 		addSequential(new AutoDriveAcc(this.accelDistanceTrue, this.direction));
 		addSequential(new AutoDriveFlat(this.flatDistanceTrue, this.direction));
 		addSequential(new AutoDriveDec(this.decelDistanceTrue, this.direction));
 		addSequential(new FullStop(5));
+		System.out.println("End drive auto");
+//		Robot.driveSUB.fullReset();
+//		addSequential(new ResetEverything());
+		
 		// resetting encoder hardware
 		// reseting angle holding variables
 

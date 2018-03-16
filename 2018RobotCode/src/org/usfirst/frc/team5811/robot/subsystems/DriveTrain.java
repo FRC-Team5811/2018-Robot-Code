@@ -70,8 +70,7 @@ public class DriveTrain extends Subsystem {
 		angleError = 0;
 		sumOfErrors = 0;
 		rateOfChange = 0;
-		Robot.navx.reset();
-		Robot.encoders.reset();
+		
 	}
 	
 	public void motorReset() {

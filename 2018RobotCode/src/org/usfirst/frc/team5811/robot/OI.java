@@ -17,6 +17,7 @@ import org.usfirst.frc.team5811.robot.commands.RampExtend;
 
 import org.usfirst.frc.team5811.robot.commands.SmartShoot;
 import org.usfirst.frc.team5811.robot.commands.VisionCube;
+import org.usfirst.frc.team5811.robot.commands.WeakShot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -65,7 +66,7 @@ public class OI {
 		rightJoyX.whileHeld(new ArcadeDrive());
 		leftJoyX.whileHeld(new ArcadeDrive());
 		rightJoyY.whileHeld(new ArcadeDrive());
-		a.toggleWhenPressed(new VisionCube());
+//		a.toggleWhenPressed(new VisionCube());
 		b.toggleWhenPressed(new ArcadeSpeedMod());
 		
 //		DRight.whileHeld(new CurveOuttakeRight());
@@ -82,7 +83,7 @@ public class OI {
 		// RLbumpers.whenPressed(new RampExtend());
 
 		xManip.toggleWhenPressed(new IntakeInward());
-		// bManip.toggleWhenPressed(new PivotManual());
+		bManip.whileHeld(new WeakShot());
 		yManip.whileHeld(new SmartShoot());
 		RLbumpers.toggleWhenPressed(new AutoRampDeploy()); // FIX COMBO BUTTONS
 

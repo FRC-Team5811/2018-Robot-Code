@@ -32,11 +32,11 @@ public class Intake extends Subsystem {
 	}
 
 	public void intakeRightIn() {
-		rightMotor.set(-0.5);
+		rightMotor.set(-0.7);
 	}
 
 	public void intakeLeftIn() {
-		leftMotor.set(0.5);
+		leftMotor.set(0.7);
 	}
 
 	public void haltRight() {
@@ -69,6 +69,11 @@ public class Intake extends Subsystem {
 	public void spinOuttakeLeft() {
 		leftMotor.set(-.85);
 		rightMotor.set(.25);
+	}
+	
+	public void weakShot() {
+		leftMotor.set(-0.3);
+		rightMotor.set(0.3);
 	}
 
 }

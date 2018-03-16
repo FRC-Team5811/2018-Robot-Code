@@ -180,6 +180,11 @@ public class Robot extends IterativeRobot {
 		
 		driveSUB.fullReset();
 		
+		if (navx.grabValues() < -200 || navx.grabValues() > 10) {
+			System.out.println("NAVX ERROR CHECK CONNECTION");
+		}
+		
+		
 	}
 
 	@Override
@@ -312,10 +317,13 @@ public class Robot extends IterativeRobot {
 		}
 		else { // Default
 			autonomousCommand = new LineCrossAuto();
+			System.out.println("line cross");
 		}
 
 		// autonomousCommand = chooser.getSelected();
 		//
+		
+		
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}
@@ -341,9 +349,10 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
 		SmartDashboard.putNumber("AUTO SELECTION USE THIS ONE: ", autoNumber);
 		
-		if (pivot.safety()) {
-			new StopPivot();
-		}
+//		if (pivot.safety()) {
+//			new StopPivot();
+//			System.out.println("PIVOT DISABLED");
+//		}
 
 	}
 
@@ -372,7 +381,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("POV: ", oi.joy2.getPOV());
 		SmartDashboard.putNumber("Pivot current: ", driveSUB.monitorCurrent6());
 		SmartDashboard.putBoolean("Is the compressor on???: ", Robot.driveSUB.checkCP());
-		SmartDashboard.putNumber("Potentiometer Value: ", -Robot.pivot.getAngle());
+		SmartDashboard.putNumber("Potentiometer Value: ", Robot.pivot.getAngle());
 		SmartDashboard.putNumber("Current CX value: ", Robot.driveSUB.returnCX());
 		SmartDashboard.putBoolean("Do we detect a cube?", Robot.driveSUB.detectsCube());
 		SmartDashboard.putNumber("Pivot motor speed: ", Robot.pivot.getMotor());
@@ -384,9 +393,10 @@ public class Robot extends IterativeRobot {
 	//	System.out.println(Robot.driveSUB.returnCX());
 
 		// System.out.println(navx.grabValues());
-		if (pivot.safety()) {
-			new StopPivot();
-		}
+//		if (pivot.safety()) {
+//			new StopPivot();
+//			System.out.println("PIVOT DISABLED");
+//		}
 	}
 
 	@Override

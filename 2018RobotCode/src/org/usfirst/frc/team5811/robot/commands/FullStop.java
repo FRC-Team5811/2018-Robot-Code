@@ -30,4 +30,8 @@ public class FullStop extends Command {
 			return false;
 		}
 	}
+	
+	protected void end() {
+		System.out.println("Finish full stop");
+	}
 }

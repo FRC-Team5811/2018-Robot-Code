@@ -27,7 +27,7 @@ public class Pivot extends Subsystem {
 
 	double downAngle = 10; // Find based on potentiometer offset
 	double downTransitionAngle = 25;
-	public double switchAngle = 60; // Find based on potentiometer offset
+	public double switchAngle = 50; // Find based on potentiometer offset
 	public double backAngle = 100; // Find based on potentiometer offset
 	double backTransitionAngle = 90;
 	double exchangeAngle = 5;

@@ -9,13 +9,13 @@ public class AutoRight extends CommandGroup {
 	int waitTime = 35;
 	double driveTime1Right = 27.6; //was 3000 pulses, now inches
 	double driveDirection1Right = -0.45;
-	double turnAngle1Right = 40;
+	double turnAngle1Right = 35;
 	double turnDirection1Right = 0.8;
-	double DT2Right = 64.4; //was 7000 pulses, now inches
+	double DT2Right = 74.4; //was 7000 pulses, now inches
 	double DD2Right = -0.45;
-	double TA2Right = 30;
+	double TA2Right = 40;
 	double TD2Right = -0.9;
-	double DT3Right = 45; //was 3000 pulses, now inches
+	double DT3Right = 100; //was 3000 pulses, now inches
 	double DD3Right = -0.45;
 
 	public AutoRight() {
@@ -37,7 +37,7 @@ public class AutoRight extends CommandGroup {
 		addSequential(new TurnAuto(TA2Right, TD2Right));
 		addSequential(new FullStop(waitTime));
 
-		addSequential(new DriveAuto(DT3Right, DD3Right), 3);
+		addSequential(new DriveAuto(DT3Right, DD3Right), 4);
 		addSequential(new FullStop(waitTime));
 		addSequential(new SmartShoot(), 1);
 	}

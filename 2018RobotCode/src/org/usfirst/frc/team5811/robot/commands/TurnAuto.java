@@ -30,14 +30,15 @@ public class TurnAuto extends CommandGroup {
 		this.decelAngleTrue = this.accelAngle + this.flatAngle + this.decelAngle; // Isn't this just "angle"?
 
 		Robot.driveSUB.fullReset();
-
+//		addSequential(new ResetEverything());
 		addSequential(new AutoTurnAcc(this.accelAngleTrue, this.direction));
 		// NavX.reset();
 		addSequential(new AutoTurnFlat(this.flatAngleTrue, this.direction));
 		// NavX.reset();
 		addSequential(new AutoTurnDec(this.decelAngleTrue, this.direction));
 		addSequential(new FullStop(5));
-
+//		addSequential(new ResetEverything());
+//		Robot.driveSUB.fullReset();
 		// addSequential (new AutoAngleCorrect(this.decelAngleTrue));
 		// NavX.reset();
 		//// System.out.println("TURN AUTO STOP");

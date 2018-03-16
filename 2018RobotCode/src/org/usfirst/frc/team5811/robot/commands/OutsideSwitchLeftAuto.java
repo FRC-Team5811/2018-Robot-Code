@@ -12,7 +12,7 @@ public class OutsideSwitchLeftAuto extends CommandGroup {
 	public OutsideSwitchLeftAuto() {
 		int waitTime = 35;
 		double driveTime1Right = 140;
-		double driveTime2Right = 18;
+		double driveTime2Right = 60;
 		double driveTime3Right = 18;
 		//was 10000 pulses, now in inches
 		double DD1R = -0.6;
@@ -33,7 +33,7 @@ public class OutsideSwitchLeftAuto extends CommandGroup {
 		addSequential(new TurnAuto(TA1, TD1), 3);
 		addSequential(new FullStop(waitTime));
 		
-		addSequential(new DriveAuto(driveTime2Right, DD2R), 2);
+		addSequential(new DriveAuto(driveTime2Right, DD2R), 3);
 		addSequential(new FullStop(waitTime));
 
 		addSequential(new SmartShoot(), 1);
