@@ -97,7 +97,9 @@ public class Robot extends IterativeRobot {
 		arms = new Arms();
 
 		oi = new OI();
-
+		
+		RobotMap.ultra.setAutomaticMode(true);
+		
 		// SmartDashboard.getNumber("Auto Number", 0.0);
 		//
 		//
@@ -181,9 +183,9 @@ public class Robot extends IterativeRobot {
 		
 		driveSUB.fullReset();
 		
-		if (navx.grabValues() < -200 || navx.grabValues() > 10) {
-			System.out.println("NAVX ERROR CHECK CONNECTION");
-		}
+//		if (RobotMap.pivot.get() < -200 || RobotMap.pivot.get() > 10) {
+//			System.out.println("POTENTIOMETER ERROR CHECK CONNECTION");
+//		}
 		
 		
 	}
@@ -400,6 +402,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
 
 		new CompOn();//
+		
+		System.out.println(RobotMap.ultra.getRangeInches());
+		
 	//	System.out.println(Robot.driveSUB.returnCX());
 
 		// System.out.println(navx.grabValues());

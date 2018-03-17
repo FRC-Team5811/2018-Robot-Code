@@ -7,12 +7,15 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 
@@ -27,6 +30,8 @@ public class RobotMap {
 	public static Victor motor7 = new Victor(7);
 
 	public static AnalogInput ai = new AnalogInput(0);
+	public static DigitalInput di1 = new DigitalInput(9);
+	public static DigitalOutput di2 = new DigitalOutput(8);
 
 	public static Compressor cp = new Compressor(0);
 
@@ -47,4 +52,5 @@ public class RobotMap {
 	public static Encoder driveEncR = new Encoder(2, 3, false, Encoder.EncodingType.k4X); // false because the booleans
 																							// have to be reverse
 																							// direction
+	public static Ultrasonic ultra = new Ultrasonic(di2, di1);
 }
