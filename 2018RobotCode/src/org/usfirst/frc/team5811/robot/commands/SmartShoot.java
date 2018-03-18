@@ -24,10 +24,12 @@ public class SmartShoot extends Command {
 	}
 
 	protected void execute() {
+		Robot.ledsub.shooting();
 		Robot.intake.outtake();
 	}
 
 	protected void end() {
+		Robot.ledsub.off();
 		Robot.intake.haltLeft();
 		Robot.intake.haltRight();
 

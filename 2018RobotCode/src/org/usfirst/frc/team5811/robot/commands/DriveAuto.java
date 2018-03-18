@@ -31,6 +31,7 @@ public class DriveAuto extends CommandGroup {
 		
 		this.direction = direction;
 		Robot.driveSUB.fullReset();
+		
 //		addSequential(new ResetEverything());
 		addSequential(new SetCurrentAngle());
 		addSequential(new AutoDriveAcc(this.accelDistanceTrue, this.direction));

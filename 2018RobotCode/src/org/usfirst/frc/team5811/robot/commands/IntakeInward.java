@@ -41,6 +41,11 @@ public class IntakeInward extends Command {
 																									// motors is drawing
 																									// too much current
 				cyclesSpike++;
+				if(cyclesSpike > Intake.timeout - 10) {
+					for(int i = 0; i < 200; i++) {
+						Robot.ledsub.flash();
+					}
+				}
 			} else {
 				Robot.intake.intakeLeftIn();
 				Robot.intake.intakeRightIn();
@@ -50,10 +55,12 @@ public class IntakeInward extends Command {
 	}
 
 	protected void end() {
-		Robot.ledsub.off();
+		
 		Robot.intake.haltLeft();
 		Robot.intake.haltRight();
-		Robot.ledsub.flash();
+	
+		
+		Robot.ledsub.off();
 
 		// command = new PosExchange(); //not working yet too annoying when we didn't
 		// have a cube and the intake raised itself up too high.
@@ -67,7 +74,9 @@ public class IntakeInward extends Command {
 
 	@Override
 	protected boolean isFinished() {
+
 		return (cyclesSpike > Intake.timeout);
+	
 	}
 
 }

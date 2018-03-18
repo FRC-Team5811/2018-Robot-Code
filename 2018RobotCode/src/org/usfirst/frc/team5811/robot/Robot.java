@@ -197,7 +197,7 @@ public class Robot extends IterativeRobot {
 		driveSUB.fullReset(); // reseting angle storing variables
 		driveSUB.motorReset();
 		encoders.reset();
-
+		
 		
 		// autoSelecter = SmartDashboard.getNumber("DB/Slider 0", 0.5);
 		// System.out.print(autoSelecter);
@@ -340,7 +340,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 //		Scheduler.getInstance().run();
-
+		Robot.ledsub.autoColor();
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);
 		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
@@ -400,7 +400,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());
 		SmartDashboard.putNumber("Intake Right Current: ", Robot.driveSUB.monitorCurrentIntakeRight());
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
-
+		Robot.ledsub.yellow();
 		new CompOn();//
 		
 		System.out.println(RobotMap.ultra.getRangeInches());

@@ -62,4 +62,28 @@ public class LEDS extends Subsystem {
 			System.out.println("Sent");
 		}
 	}
+	public void shooting() {
+		toSend[0] = 6;
+		if (LEDArduino.writeBulk(toSend)) {
+			System.out.println("Didn't send");
+		} else {
+			System.out.println("Sent");
+		}
+	}
+	public void autoColor() {
+		toSend[0] = 7;
+		if (LEDArduino.writeBulk(toSend)) {
+			System.out.println("Didn't send");
+		} else {
+			System.out.println("Sent");
+		}
+	}
+	public void yellow() {
+		toSend[0] = 8;
+		if (LEDArduino.writeBulk(toSend)) {
+			System.out.println("Didn't send");
+		} else {
+			System.out.println("Sent");
+		}
+	}
 }
