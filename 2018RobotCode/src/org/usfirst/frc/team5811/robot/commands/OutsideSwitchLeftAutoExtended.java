@@ -14,8 +14,8 @@ public class OutsideSwitchLeftAutoExtended extends CommandGroup {
 		double driveTime1Right = 150;
 		double driveTime2Right = 60;
 		double driveTime3Right = 30;
-		double driveTime4Right = 70;
-		double driveTime5Right = 5; //small inching
+		double driveTime4Right = 80;
+		double driveTime5Right = 8; //small inching
 		double driveTime6Right = 30;
 		//was 10000 pulses, now inches
 		double DD1R = -0.7;
@@ -60,9 +60,9 @@ public class OutsideSwitchLeftAutoExtended extends CommandGroup {
 
 		addSequential(new DriveAuto(driveTime4Right, DD4R), 7);
 		addSequential(new FullStop(waitTime));
-		
-		//addSequential(new PosDown());
 		addSequential(new OpenArms());
+		//addSequential(new PosDown());
+		
 		
 		
 		addSequential(new TurnAuto(TA3, TD3), 3);
@@ -73,7 +73,7 @@ public class OutsideSwitchLeftAutoExtended extends CommandGroup {
 		
 		addSequential(new FullStop(waitTime));
 		addSequential(new ArmsClose());
-		addParallel(new IntakeInward());
+		addParallel(new IntakeInward(), 2);
 		
 		//addSequential(new PosSwitch());
 		addSequential(new DriveAuto(driveTime6Right, DD6R), 1);

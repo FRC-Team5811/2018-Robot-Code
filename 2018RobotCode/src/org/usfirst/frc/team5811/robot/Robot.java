@@ -1,50 +1,19 @@
 
 package org.usfirst.frc.team5811.robot;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team5811.robot.commands.AutoDriveAcc;
 import org.usfirst.frc.team5811.robot.commands.AutoLeft;
+import org.usfirst.frc.team5811.robot.commands.AutoLeftSwitchExchange;
 import org.usfirst.frc.team5811.robot.commands.AutoRight;
-
+import org.usfirst.frc.team5811.robot.commands.AutoRightSwitchExchange;
 import org.usfirst.frc.team5811.robot.commands.CompOn;
-import org.usfirst.frc.team5811.robot.commands.DoubleCubeAutoLeft;
-import org.usfirst.frc.team5811.robot.commands.DoubleCubeAutoRight;
-import org.usfirst.frc.team5811.robot.commands.TurnAuto;
-import org.usfirst.frc.team5811.robot.commands.VisionAuto;
-import org.usfirst.frc.team5811.robot.commands.DriveAuto;
-
 import org.usfirst.frc.team5811.robot.commands.GoNoGoTest;
-import org.usfirst.frc.team5811.robot.commands.HaltIntake;
-import org.usfirst.frc.team5811.robot.commands.IntakeInward;
 import org.usfirst.frc.team5811.robot.commands.LineCrossAuto;
 import org.usfirst.frc.team5811.robot.commands.OutsideSwitchLeftAuto;
 import org.usfirst.frc.team5811.robot.commands.OutsideSwitchLeftAutoExtended;
 import org.usfirst.frc.team5811.robot.commands.OutsideSwitchRightAuto;
 import org.usfirst.frc.team5811.robot.commands.OutsideSwitchrightAutoExtended;
-import org.usfirst.frc.team5811.robot.commands.RampExtend;
-import org.usfirst.frc.team5811.robot.commands.SafetyAuto;
-import org.usfirst.frc.team5811.robot.commands.SmartShoot;
-import org.usfirst.frc.team5811.robot.commands.StopPivot;
-import org.usfirst.frc.team5811.robot.commands.TESTAUTO;
-import org.usfirst.frc.team5811.robot.commands.THREECubeAutoCenterLEFT;
-import org.usfirst.frc.team5811.robot.commands.THREECubeAutoCenterRIGHT;
-import org.usfirst.frc.team5811.robot.commands.THREECubeAutoLeft;
-import org.usfirst.frc.team5811.robot.commands.THREECubeAutoRight;
+import org.usfirst.frc.team5811.robot.subsystems.Arms;
+import org.usfirst.frc.team5811.robot.subsystems.Camera;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5811.robot.subsystems.Encoders;
 import org.usfirst.frc.team5811.robot.subsystems.Intake;
@@ -52,9 +21,13 @@ import org.usfirst.frc.team5811.robot.subsystems.LEDS;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
 import org.usfirst.frc.team5811.robot.subsystems.Pivot;
 import org.usfirst.frc.team5811.robot.subsystems.Ramp;
-import org.usfirst.frc.team5811.robot.subsystems.Arms;
-import org.usfirst.frc.team5811.robot.subsystems.Camera;
-import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
@@ -263,66 +236,30 @@ public class Robot extends IterativeRobot {
 			} else if (firstLetter == 'R') {
 				autonomousCommand = new LineCrossAuto(); // need
 			}
-		}else if (autoNumber == 2.5) { // extended right
-			if (firstLetter == 'R' && secondLetter == 'L') {
-				autonomousCommand = new OutsideSwitchRightAuto();
-			} else if (firstLetter == 'R' && secondLetter == 'R') {
-				autonomousCommand = new OutsideSwitchrightAutoExtended();
-			} else if (firstLetter == 'L' && secondLetter == 'L') {
-				autonomousCommand = new LineCrossAuto();
-			}
-
-		} else if (autoNumber == 3.0) { // extended Left
-			if (firstLetter == 'L' && secondLetter == 'R') {
-				autonomousCommand = new OutsideSwitchLeftAuto();
-			} else if (firstLetter == 'L' && secondLetter == 'L') {
-				autonomousCommand = new OutsideSwitchLeftAutoExtended();
-			} else if (firstLetter == 'R' && secondLetter == 'R') {
-				autonomousCommand = new LineCrossAuto();
-			}
-
-		} else if (autoNumber == 3.5) { // Double Cube Left
-			if(firstLetter == 'L') {
-				autonomousCommand = new DoubleCubeAutoLeft();
-			}else if(firstLetter == 'R') {
-				autonomousCommand = new LineCrossAuto();
-			}
-		} else if (autoNumber == 4.0) { // Double Cube Right
-			if(firstLetter == 'R') {
-				autonomousCommand = new DoubleCubeAutoRight();
-			}else if(firstLetter == 'L') {
-				autonomousCommand = new LineCrossAuto();
-			}
-
-		} else if (autoNumber == 4.5) { // Three Cube Auto Left
-			if(firstLetter == 'L') {
-				autonomousCommand = new THREECubeAutoLeft();
-			}else if(firstLetter == 'R') {
-				autonomousCommand = new LineCrossAuto();
-			}
-			
-		} else if (autoNumber == 5.0) { // Three Cube Auto Right
-			if(firstLetter == 'R') {
-				autonomousCommand = new THREECubeAutoRight();
-			}else if(firstLetter == 'L') {
-				autonomousCommand = new LineCrossAuto();
-			}
-
-		} else if (autoNumber == 5.5) { // Center choosing 3 cube
-			if(firstLetter == 'R') {
-				autonomousCommand = new THREECubeAutoCenterRIGHT();
-			}else if(firstLetter == 'L') {
-				autonomousCommand = new THREECubeAutoCenterLEFT();
-			}
-
-		}else if(autoNumber == 99.0) {
-			autonomousCommand = new VisionAuto();
-			
-		} else if (autoNumber == -5) {
-			autonomousCommand = new TESTAUTO();
-		}
+		}else if (autoNumber == 2.5) { // 2 cube corner right
 		
-		else { // Default
+			if (firstLetter == 'R') {
+				autonomousCommand = new OutsideSwitchrightAutoExtended();
+			} else if (firstLetter == 'L') {
+				autonomousCommand = new LineCrossAuto();
+			}
+		}
+		 else if (autoNumber == 3.0) { // 2 cube corner Left
+			if (firstLetter == 'L') {
+				autonomousCommand = new OutsideSwitchLeftAutoExtended();
+			} else if (firstLetter == 'R' ) {
+				autonomousCommand = new LineCrossAuto();
+			}
+		
+		}else if(autoNumber == 3.5) {
+			if (firstLetter == 'L') {
+				autonomousCommand = new AutoLeftSwitchExchange();
+			} else if (firstLetter == 'R' ) {
+				autonomousCommand = new AutoRightSwitchExchange();
+			}
+		}
+		 
+		 else { // Default
 			autonomousCommand = new LineCrossAuto();
 			System.out.println("line cross");
 		}
