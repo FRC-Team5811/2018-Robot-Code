@@ -258,7 +258,24 @@ public class Robot extends IterativeRobot {
 				autonomousCommand = new AutoRightSwitchExchange();
 			}
 		}
-		 
+		else if(autoNumber == 4.0) { //Beaksquad auto left
+			if(firstLetter == 'L' && secondLetter == 'L') {
+				autonomousCommand = new OutsideSwitchLeftAuto();
+			}else if(firstLetter == 'L'  && secondLetter == 'R') {
+				autonomousCommand = new OutsideSwitchLeftAutoExtended();
+			}else if(firstLetter == 'R') {
+				autonomousCommand = new LineCrossAuto();
+			}
+		}
+		else if(autoNumber == 4.5) { //Beaksquad auto left
+			if(firstLetter == 'R' && secondLetter == 'R') {
+				autonomousCommand = new OutsideSwitchRightAuto();
+			}else if(firstLetter == 'R'  && secondLetter == 'L') {
+				autonomousCommand = new OutsideSwitchrightAutoExtended();
+			}else if(firstLetter == 'L') {
+				autonomousCommand = new LineCrossAuto();
+			}
+		}
 		 else { // Default
 			autonomousCommand = new LineCrossAuto();
 			System.out.println("line cross");
