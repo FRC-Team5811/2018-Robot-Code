@@ -174,7 +174,12 @@ public class DriveTrain extends Subsystem {
 		rightMotor1.set(-direction * (1 - (encoderDistance / (durationDecel) + 0.2) * 0.5f) - motorCorrect);
 		rightMotor2.set(-direction * (1 - (encoderDistance / (durationDecel) + 0.2) * 0.5f) - motorCorrect);
 	}
-
+	public void justFreakingDrive(double speedDir) {
+		leftMotor1.set(speedDir);
+		leftMotor2.set(speedDir);
+		rightMotor1.set(speedDir);
+		rightMotor2.set(speedDir);
+	}
 	public void autoDriveFlat(double direction) {
 		// kp += .1;
 		double motorCorrect = errorCorrect(currentAngle);

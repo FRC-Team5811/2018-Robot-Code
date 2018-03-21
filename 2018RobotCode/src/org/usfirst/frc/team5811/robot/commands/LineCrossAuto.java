@@ -16,8 +16,8 @@ public class LineCrossAuto extends CommandGroup {
 		requires(Robot.driveSUB);
 		requires(Robot.navx);
 		requires(Robot.encoders);
-
-		addSequential(new DriveAuto(driveTime1Right, DD1R), 5);
+		addSequential(new TimedDrive(-0.7), 4);
+		//addSequential(new DriveAuto(driveTime1Right, DD1R), 5);
 		addSequential(new FullStop(waitTime));
 		System.out.println("end line cross");
 	}
