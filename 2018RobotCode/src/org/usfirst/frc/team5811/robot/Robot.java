@@ -129,11 +129,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void disabledPeriodic() {
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if (gameData == null || gameData == "") {
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
-			// waiting for letter
-		}
+		
 		RobotMap.PDP.clearStickyFaults();
 		Robot.ledsub.shooting();
 		//autoNumber = SmartDashboard.getNumber("DB/Slider 0", 0.0);
@@ -161,22 +157,24 @@ public class Robot extends IterativeRobot {
 //		if (RobotMap.pivot.get() < -200 || RobotMap.pivot.get() > 10) {
 //			System.out.println("POTENTIOMETER ERROR CHECK CONNECTION");
 //		}
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if (gameData == null || gameData == "") {
+			gameData = DriverStation.getInstance().getGameSpecificMessage();
+			// waiting for letter
+		}
 		
 		
 	}
 
 	@Override
 	public void autonomousInit() {
-		arms.close();
-		navx.reset(); // reseting navx hardware
+
 		driveSUB.fullReset(); // reseting angle storing variables
 		driveSUB.motorReset();
 		encoders.reset();
+		arms.close();
+		navx.reset(); // reseting navx hardware		
 		
-		
-		// autoSelecter = SmartDashboard.getNumber("DB/Slider 0", 0.5);
-		// System.out.print(autoSelecter);
-		//
 		//
 		//
 		// //chooser.addObject("Test auto routine", new TestAuto());
@@ -199,10 +197,10 @@ public class Robot extends IterativeRobot {
 		// if L
 		// run autoRight
 		//
-
-//		while (gameData == null || gameData == "") {
-//			gameData = DriverStation.getInstance().getGameSpecificMessage();
-//		}
+	
+	   while (gameData == null || gameData == "") {
+			gameData = DriverStation.getInstance().getGameSpecificMessage();
+		}
 
 		firstLetter = Robot.gameData.charAt(0);
 		secondLetter = Robot.gameData.charAt(1);
@@ -295,9 +293,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousPeriodic() {
-//		Scheduler.getInstance().run();
-//		Robot.ledsub.autoColor();
-		RobotMap.PDP.clearStickyFaults();
+    	Scheduler.getInstance().run();//why was this commented out?
+		RobotMap.PDP.clearStickyFaults();//why are we doing this system call every time?
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);
 		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
