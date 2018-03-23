@@ -24,14 +24,12 @@ import org.usfirst.frc.team5811.robot.subsystems.Ramp;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
-	double counter;
 
 	public static DriveTrain driveSUB;
 	public static LEDS ledsub;
@@ -169,12 +167,11 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-//		arms.close();
-//		navx.reset(); // reseting navx hardware
-//		driveSUB.fullReset(); // reseting angle storing variables
-//		driveSUB.motorReset();
-//		encoders.reset();
-		counter=0;
+		arms.close();
+		navx.reset(); // reseting navx hardware
+		driveSUB.fullReset(); // reseting angle storing variables
+		driveSUB.motorReset();
+		encoders.reset();
 		
 		
 		// autoSelecter = SmartDashboard.getNumber("DB/Slider 0", 0.5);
@@ -206,7 +203,7 @@ public class Robot extends IterativeRobot {
 //		while (gameData == null || gameData == "") {
 //			gameData = DriverStation.getInstance().getGameSpecificMessage();
 //		}
-/*
+
 		firstLetter = Robot.gameData.charAt(0);
 		secondLetter = Robot.gameData.charAt(1);
 		if (autoNumber == 0.0) { // Center Auto
@@ -291,11 +288,11 @@ public class Robot extends IterativeRobot {
 		
 		
 		if (autonomousCommand != null) {
-			//autonomousCommand.start();
+			autonomousCommand.start();
 		}
-	*/
+
 	}
-	
+
 	@Override
 	public void autonomousPeriodic() {
 //		Scheduler.getInstance().run();
@@ -316,14 +313,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
 		SmartDashboard.putNumber("AUTO SELECTION USE THIS ONE: ", autoNumber);
 		
-		
-		
-		if(counter < 5000) {
-			driveSUB.justFreakingDrive(-0.7);
-		}else {
-			 driveSUB.justFreakingDrive(0);
-		}
-		counter ++;
 //		if (pivot.safety()) {
 //			new StopPivot();
 //			System.out.println("PIVOT DISABLED");
