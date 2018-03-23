@@ -31,6 +31,7 @@ public class AutoDriveAcc extends Command {
 		////// System.out.println("does this work?");
 
 		Robot.driveSUB.autoDriveAcc(this.duration, Math.abs(Robot.encoders.getLeftVal()), this.direction);
+		Robot.ledsub.light_blue();
 
 		//// System.out.println("Accelerating");
 		// System.out.print("duration: ");

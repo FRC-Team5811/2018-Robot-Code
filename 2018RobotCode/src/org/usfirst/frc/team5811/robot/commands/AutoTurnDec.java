@@ -32,6 +32,7 @@ public class AutoTurnDec extends Command {
 
 	protected void execute() {
 		Robot.driveSUB.autoTurnDec(this.finalAngSeg, Math.abs(Robot.navx.grabValues()), direction);
+		Robot.ledsub.orange();
 		//// System.out.println("Angle: "+ Math.abs(Robot.navx.grabValues()));
 		// System.out.println("decellerating");
 

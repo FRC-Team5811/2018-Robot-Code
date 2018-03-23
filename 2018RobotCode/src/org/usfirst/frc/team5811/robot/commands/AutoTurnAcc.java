@@ -29,6 +29,7 @@ public class AutoTurnAcc extends Command {
 	protected void execute() {
 		// currentAngle = NavX.grabValues();
 		Robot.driveSUB.autoTurnAcc(this.finalAngSeg, Math.abs(Robot.navx.grabValues()), this.direction);
+		Robot.ledsub.light_blue();
 
 		// System.out.println("Angle: "+ Math.abs(Robot.navx.grabValues()));
 		//// System.out.print("count: ");

@@ -32,7 +32,7 @@ public class AutoDriveDec extends Command {
 
 
 		Robot.driveSUB.autoDriveDec(duration, Math.abs(Robot.encoders.getLeftVal()), direction);
-
+		Robot.ledsub.orange();
 		// System.out.println("Deccelerating");
 		// System.out.print("duration: ");
 		//// System.out.println(duration);

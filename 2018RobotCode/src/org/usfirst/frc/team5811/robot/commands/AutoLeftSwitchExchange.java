@@ -13,7 +13,7 @@ public class AutoLeftSwitchExchange extends CommandGroup {
 	double driveDirection1Left = -0.45;
 	double turnAngle1Left = 45;
 	double turnDirection1Left = -0.9;
-	double DT2Left = 79; //was 7500 pulses, now inches
+	double DT2Left = 74; //was 7500 pulses, now inches
 	double DD2Left = -0.45;
 	double TA2Left = 35;
 	double TD2Left = 0.9;
@@ -49,16 +49,16 @@ public class AutoLeftSwitchExchange extends CommandGroup {
 		addSequential(new DriveAuto(30, 0.9), 1.5);
 		addSequential(new FullStop(waitTime));
 		
-		addSequential(new TurnAuto(40, -1));
+		addSequential(new TurnAuto(40, -0.9));
 		addSequential(new FullStop(waitTime));
 		
-		addSequential(new DriveAuto(DT2Left, .9));
+		addSequential(new DriveAuto(DT2Left+12, .9));
 		addSequential(new FullStop(waitTime));
 		
 		addSequential(new TurnAuto(110, -0.9));
 		addSequential(new FullStop(waitTime));
 		addSequential(new OpenArms());
-		//addSequential(new PosDown());
+		addSequential(new PosDown());
 		addSequential(new DriveAuto(36, 0.5));
 		addSequential(new FullStop(waitTime));
 		
@@ -71,7 +71,7 @@ public class AutoLeftSwitchExchange extends CommandGroup {
 		addSequential(new DriveAuto(36, -0.7));
 		addSequential(new FullStop(waitTime));
 		
-		addSequential(new TurnAuto(-160, 0.9));
-		addSequential(new FullStop(waitTime));
+//		addSequential(new TurnAuto(-160, 0.9));
+//		addSequential(new FullStop(waitTime));
     }
 }

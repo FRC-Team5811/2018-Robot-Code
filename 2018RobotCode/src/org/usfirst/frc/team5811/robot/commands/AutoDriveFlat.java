@@ -27,6 +27,7 @@ public class AutoDriveFlat extends Command {
 
 	protected void execute() {
 		Robot.driveSUB.autoDriveFlat(this.direction);
+		Robot.ledsub.autoColor();
 		// System.out.println("This be not running");
 
 		// System.out.println("Flat");

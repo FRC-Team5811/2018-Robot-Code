@@ -115,6 +115,12 @@ public class DriveTrain extends Subsystem {
 		if (throttle < .02) { // reverse?
 			turn = turn;
 		}
+		if(arcadeSpeedModifier > 0.8) {
+			Robot.ledsub.blue();
+		}
+		if(arcadeSpeedModifier < 0.8 ) {
+			Robot.ledsub.color();
+		}
 		leftMotor1.set(-((arcadeSpeedModifier * throttle) - (arcadeTurnModifier * turnMax * turn)));
 		leftMotor2.set(-((arcadeSpeedModifier * throttle) - (arcadeTurnModifier * turnMax * turn)));
 		rightMotor1.set((arcadeSpeedModifier * throttle) + (arcadeTurnModifier * turnMax * turn));
@@ -177,8 +183,8 @@ public class DriveTrain extends Subsystem {
 	public void justFreakingDrive(double speedDir) {
 		leftMotor1.set(speedDir);
 		leftMotor2.set(speedDir);
-		rightMotor1.set(speedDir);
-		rightMotor2.set(speedDir);
+		rightMotor1.set(-speedDir);
+		rightMotor2.set(-speedDir);
 	}
 	public void autoDriveFlat(double direction) {
 		// kp += .1;

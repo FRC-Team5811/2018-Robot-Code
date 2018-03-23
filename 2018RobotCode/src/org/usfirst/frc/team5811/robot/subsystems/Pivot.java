@@ -33,7 +33,7 @@ public class Pivot extends Subsystem {
 	double exchangeAngle = 5;
 
 	double kpDown = .012; // plan to do increase
-	double kpUp = .012; // plan to do increase
+	double kpUp = .016; // plan to do increase
 	double kpUpIntake = .012;
 
 	public double downPosTolerance = 10;

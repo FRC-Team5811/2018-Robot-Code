@@ -11,7 +11,7 @@ public class AutoLeft extends CommandGroup {
 	double driveDirection1Left = -0.45;
 	double turnAngle1Left = 45;
 	double turnDirection1Left = -0.9;
-	double DT2Left = 79; //was 7500 pulses, now inches
+	double DT2Left = 74; //was 7500 pulses, now inches
 	double DD2Left = -0.45;
 	double TA2Left = 35;
 	double TD2Left = 0.9;

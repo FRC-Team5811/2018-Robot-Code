@@ -20,7 +20,7 @@ public class ArcadeDrive extends Command {
 	protected void execute() {
 
 		Robot.driveSUB.arcadeDrive(Robot.oi.getRightX(), Robot.oi.getLeftY());
-
+		
 		//// System.out.println("Throttle " + Robot.oi.getLeftY());
 		//// System.out.println("Turn " + Robot.oi.getRightX());
 

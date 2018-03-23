@@ -35,13 +35,16 @@ public class IntakeInward extends Command {
 		Robot.ledsub.colorInward(); // LEDs rainbow while intaking
 		System.out.println("cycles " + cyclesOn);
 		cyclesOn++; // increment the cycles that the intake has been running
-
+		
+		System.out.println(currentLeft + " " + currentRight);
+		
 		if (cyclesOn > Intake.intSpikeWait) { // if the intake has been on long enough to avoid the initial spike
 			if (currentLeft > Intake.currentThreshold || currentRight > Intake.currentThreshold) { // if one of the
 																									// motors is drawing
 																									// too much current
 				cyclesSpike++;
-				if(cyclesSpike > Intake.timeout - 10) {
+				System.out.println("current too high" + cyclesSpike);
+				if(cyclesSpike > Intake.timeout-1) {
 					for(int i = 0; i < 200; i++) {
 						Robot.ledsub.flash();
 					}

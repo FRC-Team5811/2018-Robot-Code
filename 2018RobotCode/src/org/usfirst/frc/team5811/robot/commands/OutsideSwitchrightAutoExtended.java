@@ -60,7 +60,7 @@ public class OutsideSwitchrightAutoExtended extends CommandGroup {
 		
 		
 		addSequential(new OpenArms());
-		//addSequential(new PosDown());
+		addSequential(new PosDown());
 		
 		addSequential(new TurnAuto(TA3, TD3), 3);
 		addSequential(new FullStop(waitTime));
@@ -72,10 +72,10 @@ public class OutsideSwitchrightAutoExtended extends CommandGroup {
 		addSequential(new ArmsClose());
 		addParallel(new IntakeInward(),2);
 		
-		//addSequential(new PosSwitch());
+		addSequential(new PosSwitch());
 		addSequential(new DriveAuto(driveTime6Right, DD6R), 1);
 		addSequential(new FullStop(waitTime));
 		addSequential(new SmartShoot(), 1);
-		//addSequential(new PosStore());
+		addSequential(new PosStore());
 	}
 }

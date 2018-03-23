@@ -61,7 +61,7 @@ public class OutsideSwitchLeftAutoExtended extends CommandGroup {
 		addSequential(new DriveAuto(driveTime4Right, DD4R), 7);
 		addSequential(new FullStop(waitTime));
 		addSequential(new OpenArms());
-		//addSequential(new PosDown());
+		addSequential(new PosDown());
 		
 		
 		
@@ -75,11 +75,11 @@ public class OutsideSwitchLeftAutoExtended extends CommandGroup {
 		addSequential(new ArmsClose());
 		addParallel(new IntakeInward(), 2);
 		
-		//addSequential(new PosSwitch());
+		addSequential(new PosSwitch());
 		addSequential(new DriveAuto(driveTime6Right, DD6R), 1);
 		addSequential(new FullStop(waitTime));
 		addSequential(new SmartShoot(), 1);
-		//addSequential(new PosStore());
+		addSequential(new PosStore());
 		
 	
 	}
