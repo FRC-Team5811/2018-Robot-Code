@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team5811.robot;
 
+import org.usfirst.frc.team5811.robot.commands.AutoDriveFlat;
 import org.usfirst.frc.team5811.robot.commands.AutoLeft;
 import org.usfirst.frc.team5811.robot.commands.AutoLeftSwitchExchange;
 import org.usfirst.frc.team5811.robot.commands.AutoRight;
@@ -46,12 +47,16 @@ public class Robot extends IterativeRobot {
 
 	double autoNumber;
 
-	public static String gameData;
+	public static String gameData= null;
 
 	char firstLetter;
 	char secondLetter;
 
 	Command autonomousCommand;
+	
+	double counterAuto;
+	boolean autoChosen;
+	boolean autoStarted;
 	// Compressor compressor;
 
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -150,22 +155,23 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Right Current: ", Robot.driveSUB.monitorCurrentIntakeRight());
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
 		
-		System.out.println("AUTONUMBER: " + autoNumber);
-		
+//		System.out.println("AUTONUMBER: " + autoNumber);
+//		System.out.println("gamedata" + DriverStation.getInstance().getGameSpecificMessage());
 		driveSUB.fullReset();
 		
 //		if (RobotMap.pivot.get() < -200 || RobotMap.pivot.get() > 10) {
 //			System.out.println("POTENTIOMETER ERROR CHECK CONNECTION");
 //		}
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if (gameData == null || gameData == "") {
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
-			// waiting for letter
-		}
+//		System.out.println("Disable periodic " + DriverStation.getInstance().getGameSpecificMessage());
+//		gameData = DriverStation.getInstance().getGameSpecificMessage();
+//		if (gameData == null || gameData == "") {
+//			gameData = DriverStation.getInstance().getGameSpecificMessage();
+//			// waiting for letter
+//		}
 		
 		
 	}
-
+	
 	@Override
 	public void autonomousInit() {
 
@@ -174,7 +180,11 @@ public class Robot extends IterativeRobot {
 		encoders.reset();
 		arms.close();
 		navx.reset(); // reseting navx hardware		
-		
+		Scheduler.getInstance().removeAll();
+		gameData = "";
+		counterAuto = 0;
+		autoChosen = false;
+		autoStarted = false;
 		//
 		//
 		// //chooser.addObject("Test auto routine", new TestAuto());
@@ -198,102 +208,155 @@ public class Robot extends IterativeRobot {
 		// run autoRight
 		//
 	
-	   while (gameData == null || gameData == "") {
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
-		}
+		//System.out.println("auto init " + DriverStation.getInstance().getGameSpecificMessage());
 
-		firstLetter = Robot.gameData.charAt(0);
-		secondLetter = Robot.gameData.charAt(1);
-		if (autoNumber == 0.0) { // Center Auto
-			if (firstLetter == 'L') {
-				autonomousCommand = new AutoLeft();
-			} else if (firstLetter == 'R') {
-				autonomousCommand = new AutoRight();
-			}
-		} else if (autoNumber == 0.5) { // Left Auto
-			if (firstLetter == 'L') {
-				autonomousCommand = new GoNoGoTest();
-			} else if (firstLetter == 'R') {
-				autonomousCommand = new LineCrossAuto(); // need
-			}
-
-		} else if (autoNumber == 1.0) { // Right Auto
-			if (firstLetter == 'R') {
-				autonomousCommand = new GoNoGoTest();
-			} else if (firstLetter == 'L') {
-				autonomousCommand = new LineCrossAuto(); // need
-			}
-
-		} else if (autoNumber == 1.5) { // Corner Right
-			if (firstLetter == 'R') {
-				autonomousCommand = new OutsideSwitchRightAuto();
-			} else if (firstLetter == 'L') {
-				autonomousCommand = new LineCrossAuto(); // need
-			}
-		} else if(autoNumber == 2.0) { //corner Left
-			if (firstLetter == 'L') {
-				autonomousCommand = new OutsideSwitchLeftAuto();
-			} else if (firstLetter == 'R') {
-				autonomousCommand = new LineCrossAuto(); // need
-			}
-		}else if (autoNumber == 2.5) { // 2 cube corner right
-		
-			if (firstLetter == 'R') {
-				autonomousCommand = new OutsideSwitchrightAutoExtended();
-			} else if (firstLetter == 'L') {
-				autonomousCommand = new LineCrossAuto();
-			}
-		}
-		 else if (autoNumber == 3.0) { // 2 cube corner Left
-			if (firstLetter == 'L') {
-				autonomousCommand = new OutsideSwitchLeftAutoExtended();
-			} else if (firstLetter == 'R' ) {
-				autonomousCommand = new LineCrossAuto();
-			}
-		
-		}else if(autoNumber == 3.5) {
-			if (firstLetter == 'L') {
-				autonomousCommand = new AutoLeftSwitchExchange();
-			} else if (firstLetter == 'R' ) {
-				autonomousCommand = new AutoRightSwitchExchange();
-			}
-		}
-		else if(autoNumber == 4.0) { //Beaksquad auto left
-			if(firstLetter == 'L' && secondLetter == 'L') {
-				autonomousCommand = new OutsideSwitchLeftAuto();
-			}else if(firstLetter == 'L'  && secondLetter == 'R') {
-				autonomousCommand = new OutsideSwitchLeftAutoExtended();
-			}else if(firstLetter == 'R') {
-				autonomousCommand = new LineCrossAuto();
-			}
-		}
-		else if(autoNumber == 4.5) { //Beaksquad auto left
-			if(firstLetter == 'R' && secondLetter == 'R') {
-				autonomousCommand = new OutsideSwitchRightAuto();
-			}else if(firstLetter == 'R'  && secondLetter == 'L') {
-				autonomousCommand = new OutsideSwitchrightAutoExtended();
-			}else if(firstLetter == 'L') {
-				autonomousCommand = new LineCrossAuto();
-			}
-		}
-		 else { // Default
-			autonomousCommand = new LineCrossAuto();
-			System.out.println("line cross");
-		}
+	
 
 		// autonomousCommand = chooser.getSelected();
 		//
 		
 		
-		if (autonomousCommand != null) {
-			autonomousCommand.start();
-		}
+//		autonomousCommand = new AutoDriveFlat(40, 0.5);
+		
+//		Scheduler.getInstance().add(autonomousCommand);
+				
+//		System.out.println(autonomousCommand);
+//		
+//		autonomousCommand = new LineCrossAuto();
+//		System.out.println(autonomousCommand);
+
+		
+//		if (autonomousCommand != null) {
+//			autonomousCommand.start();
+//			System.out.println("Started");
+//		}
 
 	}
-
+	
 	@Override
 	public void autonomousPeriodic() {
-    	Scheduler.getInstance().run();//why was this commented out?
+    //	Scheduler.getInstance().run();//why was this commented out?
+		counterAuto++;
+
+		if(autoChosen == false && counterAuto < 500) {
+				if (gameData.equals("") || gameData == null) {
+						gameData = DriverStation.getInstance().getGameSpecificMessage();
+						System.out.println("Looking for gamedata");
+				} else {
+				
+					firstLetter = Robot.gameData.charAt(0);
+					secondLetter = Robot.gameData.charAt(1);
+					if (autoNumber == 0.0) { // Center Auto
+						if (firstLetter == 'L') {
+							autonomousCommand = new AutoLeft();
+							autoChosen = true;
+						} else if (firstLetter == 'R') {
+							autonomousCommand = new AutoRight();
+							autoChosen = true;
+						}
+					} else if (autoNumber == 0.5) { // Left Auto
+						if (firstLetter == 'L') {
+							autonomousCommand = new GoNoGoTest();
+							autoChosen = true;
+						} else if (firstLetter == 'R') {
+							autonomousCommand = new LineCrossAuto(); 
+							autoChosen = true;// need
+						}
+			
+					} else if (autoNumber == 1.0) { // Right Auto
+						System.out.println("got to 1");
+						if (firstLetter == 'R') {
+							autonomousCommand = new GoNoGoTest();
+							autoChosen = true;
+						} else if (firstLetter == 'L') {
+							autonomousCommand = new LineCrossAuto();
+							autoChosen = true;// need
+						}
+			
+					} else if (autoNumber == 1.5) { // Corner Right
+						if (firstLetter == 'R') {
+							autonomousCommand = new OutsideSwitchRightAuto();
+							autoChosen = true;
+						} else if (firstLetter == 'L') {
+							autonomousCommand = new LineCrossAuto();
+							autoChosen = true;// need
+						}
+					} else if(autoNumber == 2.0) { //corner Left
+						if (firstLetter == 'L') {
+							autonomousCommand = new OutsideSwitchLeftAuto();
+							autoChosen = true;
+						} else if (firstLetter == 'R') {
+							autonomousCommand = new LineCrossAuto(); 
+							autoChosen = true;// need
+						}
+					}else if (autoNumber == 2.5) { // 2 cube corner right
+					
+						if (firstLetter == 'R') {
+							autonomousCommand = new OutsideSwitchrightAutoExtended();
+							autoChosen = true;
+						} else if (firstLetter == 'L') {
+							autonomousCommand = new LineCrossAuto();
+							autoChosen = true;
+						}
+					}
+					 else if (autoNumber == 3.0) { // 2 cube corner Left
+						if (firstLetter == 'L') {
+							autonomousCommand = new OutsideSwitchLeftAutoExtended();
+							autoChosen = true;
+						} else if (firstLetter == 'R' ) {
+							autonomousCommand = new LineCrossAuto();
+							autoChosen = true;
+						}
+					
+					}else if(autoNumber == 3.5) {
+						if (firstLetter == 'L') {
+							autonomousCommand = new AutoLeftSwitchExchange();
+							autoChosen = true;
+						} else if (firstLetter == 'R' ) {
+							autonomousCommand = new AutoRightSwitchExchange();
+							autoChosen = true;
+						}
+					}
+					else if(autoNumber == 4.0) { //Beaksquad auto left
+						if(firstLetter == 'L' && secondLetter == 'L') {
+							autonomousCommand = new OutsideSwitchLeftAuto();
+							autoChosen = true;
+						}else if(firstLetter == 'L'  && secondLetter == 'R') {
+							autonomousCommand = new OutsideSwitchLeftAutoExtended();
+							autoChosen = true;
+						}else if(firstLetter == 'R') {
+							autonomousCommand = new LineCrossAuto();
+							autoChosen = true;
+						}
+					}
+					else if(autoNumber == 4.5) { //Beaksquad auto left
+						if(firstLetter == 'R' && secondLetter == 'R') {
+							autonomousCommand = new OutsideSwitchRightAuto();
+							autoChosen = true;
+						}else if(firstLetter == 'R'  && secondLetter == 'L') {
+							autonomousCommand = new OutsideSwitchrightAutoExtended();
+							autoChosen = true;
+						}else if(firstLetter == 'L') {
+							autonomousCommand = new LineCrossAuto();
+							autoChosen = true;
+						}
+					}
+					 else { // Default
+						autonomousCommand = new LineCrossAuto();
+						autoChosen = true;
+						System.out.println("line cross");
+					}
+				}
+				
+		}else if(counterAuto >= 500 && autoChosen == false ) {
+			autonomousCommand = new LineCrossAuto();
+			autoChosen = true;
+		}
+		
+		if(autoChosen == true && autoStarted == false) {
+			autonomousCommand.start();
+			autoStarted = true;
+		}
 		RobotMap.PDP.clearStickyFaults();//why are we doing this system call every time?
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);
@@ -309,6 +372,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Right Current: ", Robot.driveSUB.monitorCurrentIntakeRight());
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
 		SmartDashboard.putNumber("AUTO SELECTION USE THIS ONE: ", autoNumber);
+		
+	//	System.out.println("auto periodic " + DriverStation.getInstance().getGameSpecificMessage());
+
 		
 //		if (pivot.safety()) {
 //			new StopPivot();
@@ -358,7 +424,7 @@ public class Robot extends IterativeRobot {
 		
 		new CompOn();//
 		
-		System.out.println(RobotMap.ultra.getRangeInches());
+		//System.out.println(RobotMap.ultra.getRangeInches());
 		
 	//	System.out.println(Robot.driveSUB.returnCX());
 

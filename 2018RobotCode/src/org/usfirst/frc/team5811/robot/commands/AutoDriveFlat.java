@@ -22,6 +22,7 @@ public class AutoDriveFlat extends Command {
 	}
 
 	protected void intialize() {
+		System.out.println("initialized");
 
 	}
 

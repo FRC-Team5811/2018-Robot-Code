@@ -26,7 +26,7 @@ public class AutoTurnDec extends Command {
 	}
 
 	protected void intialize() {
-		// count = this.duration;
+		 System.out.println("Initialized.");
 
 	}
 

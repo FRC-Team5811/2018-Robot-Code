@@ -22,7 +22,7 @@ public class AutoTurnAcc extends Command {
 	}
 
 	protected void intialize() {
-		//// System.out.println("Initialized.");
+		 System.out.println("Initialized.");
 
 	}
 

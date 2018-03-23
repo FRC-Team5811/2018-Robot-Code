@@ -23,6 +23,8 @@ public class AutoDriveDec extends Command {
 
 	protected void intialize() {
 		// count = this.duration;
+		System.out.println("dec init");
+
 
 	}
 

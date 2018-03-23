@@ -22,6 +22,7 @@ public class AutoDriveAcc extends Command {
 	}
 
 	protected void intialize() {
+		System.out.println("acc init");
 		//// System.out.println("Initialized.");
 		//// System.out.println("This be running");
 		// execute();
@@ -29,7 +30,7 @@ public class AutoDriveAcc extends Command {
 
 	protected void execute() {
 		////// System.out.println("does this work?");
-
+		System.out.println("how fast?");
 		Robot.driveSUB.autoDriveAcc(this.duration, Math.abs(Robot.encoders.getLeftVal()), this.direction);
 		Robot.ledsub.light_blue();
 
