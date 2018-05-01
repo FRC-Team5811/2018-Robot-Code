@@ -1,6 +1,12 @@
 
 package org.usfirst.frc.team5811.robot;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 import org.usfirst.frc.team5811.robot.commands.AutoLeft;
 import org.usfirst.frc.team5811.robot.commands.AutoLeftSwitchExchange;
 import org.usfirst.frc.team5811.robot.commands.AutoRight;
@@ -12,6 +18,7 @@ import org.usfirst.frc.team5811.robot.commands.OutsideSwitchLeftAuto;
 import org.usfirst.frc.team5811.robot.commands.OutsideSwitchLeftAutoExtended;
 import org.usfirst.frc.team5811.robot.commands.OutsideSwitchRightAuto;
 import org.usfirst.frc.team5811.robot.commands.OutsideSwitchrightAutoExtended;
+import org.usfirst.frc.team5811.robot.commands.runProfile;
 import org.usfirst.frc.team5811.robot.subsystems.Arms;
 import org.usfirst.frc.team5811.robot.subsystems.Camera;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
@@ -21,6 +28,8 @@ import org.usfirst.frc.team5811.robot.subsystems.LEDS;
 import org.usfirst.frc.team5811.robot.subsystems.NavX;
 import org.usfirst.frc.team5811.robot.subsystems.Pivot;
 import org.usfirst.frc.team5811.robot.subsystems.Ramp;
+
+import com.samuel.ReaderFile;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -165,7 +174,14 @@ public class Robot extends IterativeRobot {
 		
 		
 	}
-
+	String distance;
+	String angle;
+	String type;
+	String action;
+	float startX = 0;
+	float startY = 0;
+	int wayCount = 0;
+	public static ArrayList data = new ArrayList<ReaderFile>();
 	@Override
 	public void autonomousInit() {
 
@@ -175,6 +191,39 @@ public class Robot extends IterativeRobot {
 		arms.close();
 		navx.reset(); // reseting navx hardware		
 		
+		
+		   try{
+			    FileInputStream fstream = new FileInputStream("Right Corner.txt");
+			          DataInputStream in = new DataInputStream(fstream);
+			          BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			          String strLine;
+			        
+			          if(wayCount == 0) {
+			        	  strLine= br.readLine();
+			        	  String[] initItems = strLine.split(" ");
+			        	  ReaderFile start = new ReaderFile(initItems[0],initItems[1],initItems[2],initItems[3]);
+			        	  startX = Float.parseFloat(start.distance);
+			        	  startY = Float.parseFloat(start.angle);
+			        	  wayCount++;
+			          }
+			          if(wayCount > 0) {
+				          while ((strLine = br.readLine()) != null)   {
+				        	  String[] info = strLine.split(" ");
+				        	  
+				        	  ReaderFile waypoint = new ReaderFile(info[0],info[1],info[2], info[3]);//process record , etc
+				     
+				        	  data.add(waypoint);
+				          }
+				          in.close();
+			          }
+			          
+			          autonomousCommand = new runProfile();
+			          
+			          
+			   }catch (Exception e){
+			     System.err.println("Error: " + e.getMessage());
+			   }
+
 		//
 		//
 		// //chooser.addObject("Test auto routine", new TestAuto());
@@ -198,96 +247,96 @@ public class Robot extends IterativeRobot {
 		// run autoRight
 		//
 	
-	   while (gameData == null || gameData == "") {
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
-		}
-
-		firstLetter = Robot.gameData.charAt(0);
-		secondLetter = Robot.gameData.charAt(1);
-		if (autoNumber == 0.0) { // Center Auto
-			if (firstLetter == 'L') {
-				autonomousCommand = new AutoLeft();
-			} else if (firstLetter == 'R') {
-				autonomousCommand = new AutoRight();
-			}
-		} else if (autoNumber == 0.5) { // Left Auto
-			if (firstLetter == 'L') {
-				autonomousCommand = new GoNoGoTest();
-			} else if (firstLetter == 'R') {
-				autonomousCommand = new LineCrossAuto(); // need
-			}
-
-		} else if (autoNumber == 1.0) { // Right Auto
-			if (firstLetter == 'R') {
-				autonomousCommand = new GoNoGoTest();
-			} else if (firstLetter == 'L') {
-				autonomousCommand = new LineCrossAuto(); // need
-			}
-
-		} else if (autoNumber == 1.5) { // Corner Right
-			if (firstLetter == 'R') {
-				autonomousCommand = new OutsideSwitchRightAuto();
-			} else if (firstLetter == 'L') {
-				autonomousCommand = new LineCrossAuto(); // need
-			}
-		} else if(autoNumber == 2.0) { //corner Left
-			if (firstLetter == 'L') {
-				autonomousCommand = new OutsideSwitchLeftAuto();
-			} else if (firstLetter == 'R') {
-				autonomousCommand = new LineCrossAuto(); // need
-			}
-		}else if (autoNumber == 2.5) { // 2 cube corner right
-		
-			if (firstLetter == 'R') {
-				autonomousCommand = new OutsideSwitchrightAutoExtended();
-			} else if (firstLetter == 'L') {
-				autonomousCommand = new LineCrossAuto();
-			}
-		}
-		 else if (autoNumber == 3.0) { // 2 cube corner Left
-			if (firstLetter == 'L') {
-				autonomousCommand = new OutsideSwitchLeftAutoExtended();
-			} else if (firstLetter == 'R' ) {
-				autonomousCommand = new LineCrossAuto();
-			}
-		
-		}else if(autoNumber == 3.5) {
-			if (firstLetter == 'L') {
-				autonomousCommand = new AutoLeftSwitchExchange();
-			} else if (firstLetter == 'R' ) {
-				autonomousCommand = new AutoRightSwitchExchange();
-			}
-		}
-		else if(autoNumber == 4.0) { //Beaksquad auto left
-			if(firstLetter == 'L' && secondLetter == 'L') {
-				autonomousCommand = new OutsideSwitchLeftAuto();
-			}else if(firstLetter == 'L'  && secondLetter == 'R') {
-				autonomousCommand = new OutsideSwitchLeftAutoExtended();
-			}else if(firstLetter == 'R') {
-				autonomousCommand = new LineCrossAuto();
-			}
-		}
-		else if(autoNumber == 4.5) { //Beaksquad auto left
-			if(firstLetter == 'R' && secondLetter == 'R') {
-				autonomousCommand = new OutsideSwitchRightAuto();
-			}else if(firstLetter == 'R'  && secondLetter == 'L') {
-				autonomousCommand = new OutsideSwitchrightAutoExtended();
-			}else if(firstLetter == 'L') {
-				autonomousCommand = new LineCrossAuto();
-			}
-		}
-		 else { // Default
-			autonomousCommand = new LineCrossAuto();
-			System.out.println("line cross");
-		}
-
-		// autonomousCommand = chooser.getSelected();
-		//
-		
-		
-		if (autonomousCommand != null) {
-			autonomousCommand.start();
-		}
+//	   while (gameData == null || gameData == "") {
+//			gameData = DriverStation.getInstance().getGameSpecificMessage();
+//		}
+//
+//		firstLetter = Robot.gameData.charAt(0);
+//		secondLetter = Robot.gameData.charAt(1);
+//		if (autoNumber == 0.0) { // Center Auto
+//			if (firstLetter == 'L') {
+//				autonomousCommand = new AutoLeft();
+//			} else if (firstLetter == 'R') {
+//				autonomousCommand = new AutoRight();
+//			}
+//		} else if (autoNumber == 0.5) { // Left Auto
+//			if (firstLetter == 'L') {
+//				autonomousCommand = new GoNoGoTest();
+//			} else if (firstLetter == 'R') {
+//				autonomousCommand = new LineCrossAuto(); // need
+//			}
+//
+//		} else if (autoNumber == 1.0) { // Right Auto
+//			if (firstLetter == 'R') {
+//				autonomousCommand = new GoNoGoTest();
+//			} else if (firstLetter == 'L') {
+//				autonomousCommand = new LineCrossAuto(); // need
+//			}
+//
+//		} else if (autoNumber == 1.5) { // Corner Right
+//			if (firstLetter == 'R') {
+//				autonomousCommand = new OutsideSwitchRightAuto();
+//			} else if (firstLetter == 'L') {
+//				autonomousCommand = new LineCrossAuto(); // need
+//			}
+//		} else if(autoNumber == 2.0) { //corner Left
+//			if (firstLetter == 'L') {
+//				autonomousCommand = new OutsideSwitchLeftAuto();
+//			} else if (firstLetter == 'R') {
+//				autonomousCommand = new LineCrossAuto(); // need
+//			}
+//		}else if (autoNumber == 2.5) { // 2 cube corner right
+//		
+//			if (firstLetter == 'R') {
+//				autonomousCommand = new OutsideSwitchrightAutoExtended();
+//			} else if (firstLetter == 'L') {
+//				autonomousCommand = new LineCrossAuto();
+//			}
+//		}
+//		 else if (autoNumber == 3.0) { // 2 cube corner Left
+//			if (firstLetter == 'L') {
+//				autonomousCommand = new OutsideSwitchLeftAutoExtended();
+//			} else if (firstLetter == 'R' ) {
+//				autonomousCommand = new LineCrossAuto();
+//			}
+//		
+//		}else if(autoNumber == 3.5) {
+//			if (firstLetter == 'L') {
+//				autonomousCommand = new AutoLeftSwitchExchange();
+//			} else if (firstLetter == 'R' ) {
+//				autonomousCommand = new AutoRightSwitchExchange();
+//			}
+//		}
+//		else if(autoNumber == 4.0) { //Beaksquad auto left
+//			if(firstLetter == 'L' && secondLetter == 'L') {
+//				autonomousCommand = new OutsideSwitchLeftAuto();
+//			}else if(firstLetter == 'L'  && secondLetter == 'R') {
+//				autonomousCommand = new OutsideSwitchLeftAutoExtended();
+//			}else if(firstLetter == 'R') {
+//				autonomousCommand = new LineCrossAuto();
+//			}
+//		}
+//		else if(autoNumber == 4.5) { //Beaksquad auto left
+//			if(firstLetter == 'R' && secondLetter == 'R') {
+//				autonomousCommand = new OutsideSwitchRightAuto();
+//			}else if(firstLetter == 'R'  && secondLetter == 'L') {
+//				autonomousCommand = new OutsideSwitchrightAutoExtended();
+//			}else if(firstLetter == 'L') {
+//				autonomousCommand = new LineCrossAuto();
+//			}
+//		}
+//		 else { // Default
+//			autonomousCommand = new LineCrossAuto();
+//			System.out.println("line cross");
+//		}
+//
+//		// autonomousCommand = chooser.getSelected();
+//		//
+//		
+//		
+//		if (autonomousCommand != null) {
+//			autonomousCommand.start();
+//		}
 
 	}
 
