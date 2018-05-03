@@ -1,7 +1,15 @@
 
 package org.usfirst.frc.team5811.robot;
-
 import org.usfirst.frc.team5811.robot.commands.AutoDriveFlat;
+
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+//github.com/FRC-Team5811/2018-Robot-Code
 import org.usfirst.frc.team5811.robot.commands.AutoLeft;
 import org.usfirst.frc.team5811.robot.commands.AutoLeftSwitchExchange;
 import org.usfirst.frc.team5811.robot.commands.AutoRight;
@@ -13,6 +21,7 @@ import org.usfirst.frc.team5811.robot.commands.OutsideSwitchLeftAuto;
 import org.usfirst.frc.team5811.robot.commands.OutsideSwitchLeftAutoExtended;
 import org.usfirst.frc.team5811.robot.commands.OutsideSwitchRightAuto;
 import org.usfirst.frc.team5811.robot.commands.OutsideSwitchrightAutoExtended;
+import org.usfirst.frc.team5811.robot.commands.runProfile;
 import org.usfirst.frc.team5811.robot.subsystems.Arms;
 import org.usfirst.frc.team5811.robot.subsystems.Camera;
 import org.usfirst.frc.team5811.robot.subsystems.DriveTrain;
@@ -158,6 +167,7 @@ public class Robot extends IterativeRobot {
 //		System.out.println("AUTONUMBER: " + autoNumber);
 //		System.out.println("gamedata" + DriverStation.getInstance().getGameSpecificMessage());
 		driveSUB.fullReset();
+
 		
 //		if (RobotMap.pivot.get() < -200 || RobotMap.pivot.get() > 10) {
 //			System.out.println("POTENTIOMETER ERROR CHECK CONNECTION");
@@ -171,20 +181,68 @@ public class Robot extends IterativeRobot {
 		
 		
 	}
+
+	String distance;
+	String angle;
+	String type;
+	String action;
+	float startX = 0;
+	float startY = 0;
 	
+	public static ArrayList data = new ArrayList<ReaderFile>();
+//github.com/FRC-Team5811/2018-Robot-Code
 	@Override
 	public void autonomousInit() {
-
+		int wayCount = 0;
 		driveSUB.fullReset(); // reseting angle storing variables
 		driveSUB.motorReset();
 		encoders.reset();
 		arms.close();
 		navx.reset(); // reseting navx hardware		
+
 		Scheduler.getInstance().removeAll();
 		gameData = "";
 		counterAuto = 0;
 		autoChosen = false;
 		autoStarted = false;
+
+		   try{
+			    FileInputStream fstream = new FileInputStream("/home/lvuser/RightCorner.txt");
+			          DataInputStream in = new DataInputStream(fstream);
+			          BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			          String strLine;
+			        
+			          if(wayCount == 0) {
+			        	  strLine= br.readLine();
+			        	  String[] initItems = strLine.split(" ");
+			        	  ReaderFile start = new ReaderFile(initItems[0],initItems[1],initItems[2],initItems[3]);
+			        	  startX = Float.parseFloat(start.distance);
+			        	  startY = Float.parseFloat(start.angle);
+			        	  wayCount++;
+			          }
+			          if(wayCount > 0) {
+				          while ((strLine = br.readLine()) != null)   {
+				        	  String[] info = strLine.split(" ");
+				        	  
+				        	  ReaderFile waypoint = new ReaderFile(info[0],info[1],info[2], info[3]);//process record , etc
+				        	  if(!strLine.equals("")) {
+				        		  data.add(waypoint);
+				        	  }
+				        	  
+				          }
+				          in.close();
+			          }
+			          System.out.println("Made to running");
+			          autonomousCommand = new runProfile();
+			          
+			          
+			   }catch (Exception e){
+			     System.err.println("Error: " + e.getMessage());
+			   }
+		
+
+	
+//github.com/FRC-Team5811/2018-Robot-Code
 		//
 		//
 		// //chooser.addObject("Test auto routine", new TestAuto());
@@ -208,6 +266,7 @@ public class Robot extends IterativeRobot {
 		// run autoRight
 		//
 	
+
 		//System.out.println("auto init " + DriverStation.getInstance().getGameSpecificMessage());
 
 	
@@ -229,134 +288,225 @@ public class Robot extends IterativeRobot {
 //		if (autonomousCommand != null) {
 //			autonomousCommand.start();
 //			System.out.println("Started");
-//		}
 
+//	   while (gameData == null || gameData == "") {
+//			gameData = DriverStation.getInstance().getGameSpecificMessage();
+//		}
+//
+//		firstLetter = Robot.gameData.charAt(0);
+//		secondLetter = Robot.gameData.charAt(1);
+//		if (autoNumber == 0.0) { // Center Auto
+//			if (firstLetter == 'L') {
+//				autonomousCommand = new AutoLeft();
+//			} else if (firstLetter == 'R') {
+//				autonomousCommand = new AutoRight();
+//			}
+//		} else if (autoNumber == 0.5) { // Left Auto
+//			if (firstLetter == 'L') {
+//				autonomousCommand = new GoNoGoTest();
+//			} else if (firstLetter == 'R') {
+//				autonomousCommand = new LineCrossAuto(); // need
+//			}
+//
+//		} else if (autoNumber == 1.0) { // Right Auto
+//			if (firstLetter == 'R') {
+//				autonomousCommand = new GoNoGoTest();
+//			} else if (firstLetter == 'L') {
+//				autonomousCommand = new LineCrossAuto(); // need
+//			}
+//
+//		} else if (autoNumber == 1.5) { // Corner Right
+//			if (firstLetter == 'R') {
+//				autonomousCommand = new OutsideSwitchRightAuto();
+//			} else if (firstLetter == 'L') {
+//				autonomousCommand = new LineCrossAuto(); // need
+//			}
+//		} else if(autoNumber == 2.0) { //corner Left
+//			if (firstLetter == 'L') {
+//				autonomousCommand = new OutsideSwitchLeftAuto();
+//			} else if (firstLetter == 'R') {
+//				autonomousCommand = new LineCrossAuto(); // need
+//			}
+//		}else if (autoNumber == 2.5) { // 2 cube corner right
+//		
+//			if (firstLetter == 'R') {
+//				autonomousCommand = new OutsideSwitchrightAutoExtended();
+//			} else if (firstLetter == 'L') {
+//				autonomousCommand = new LineCrossAuto();
+//			}
+//		}
+//		 else if (autoNumber == 3.0) { // 2 cube corner Left
+//			if (firstLetter == 'L') {
+//				autonomousCommand = new OutsideSwitchLeftAutoExtended();
+//			} else if (firstLetter == 'R' ) {
+//				autonomousCommand = new LineCrossAuto();
+//			}
+//		
+//		}else if(autoNumber == 3.5) {
+//			if (firstLetter == 'L') {
+//				autonomousCommand = new AutoLeftSwitchExchange();
+//			} else if (firstLetter == 'R' ) {
+//				autonomousCommand = new AutoRightSwitchExchange();
+//			}
+//		}
+//		else if(autoNumber == 4.0) { //Beaksquad auto left
+//			if(firstLetter == 'L' && secondLetter == 'L') {
+//				autonomousCommand = new OutsideSwitchLeftAuto();
+//			}else if(firstLetter == 'L'  && secondLetter == 'R') {
+//				autonomousCommand = new OutsideSwitchLeftAutoExtended();
+//			}else if(firstLetter == 'R') {
+//				autonomousCommand = new LineCrossAuto();
+//			}
+//		}
+//		else if(autoNumber == 4.5) { //Beaksquad auto left
+//			if(firstLetter == 'R' && secondLetter == 'R') {
+//				autonomousCommand = new OutsideSwitchRightAuto();
+//			}else if(firstLetter == 'R'  && secondLetter == 'L') {
+//				autonomousCommand = new OutsideSwitchrightAutoExtended();
+//			}else if(firstLetter == 'L') {
+//				autonomousCommand = new LineCrossAuto();
+//			}
+//		}
+//		 else { // Default
+//			autonomousCommand = new LineCrossAuto();
+//			System.out.println("line cross");
+//		}
+//
+//		// autonomousCommand = chooser.getSelected();
+//		//
+//		
+//		
+//		if (autonomousCommand != null) {
+//			autonomousCommand.start();
+
+//		}
+		   autonomousCommand.start();
 	}
 	
 	@Override
 	public void autonomousPeriodic() {
     //	Scheduler.getInstance().run();//why was this commented out?
-		counterAuto++;
-
-		if(autoChosen == false && counterAuto < 500) {
-				if (gameData.equals("") || gameData == null) {
-						gameData = DriverStation.getInstance().getGameSpecificMessage();
-						System.out.println("Looking for gamedata");
-				} else {
-				
-					firstLetter = Robot.gameData.charAt(0);
-					secondLetter = Robot.gameData.charAt(1);
-					if (autoNumber == 0.0) { // Center Auto
-						if (firstLetter == 'L') {
-							autonomousCommand = new AutoLeft();
-							autoChosen = true;
-						} else if (firstLetter == 'R') {
-							autonomousCommand = new AutoRight();
-							autoChosen = true;
-						}
-					} else if (autoNumber == 0.5) { // Left Auto
-						if (firstLetter == 'L') {
-							autonomousCommand = new GoNoGoTest();
-							autoChosen = true;
-						} else if (firstLetter == 'R') {
-							autonomousCommand = new LineCrossAuto(); 
-							autoChosen = true;// need
-						}
-			
-					} else if (autoNumber == 1.0) { // Right Auto
-						System.out.println("got to 1");
-						if (firstLetter == 'R') {
-							autonomousCommand = new GoNoGoTest();
-							autoChosen = true;
-						} else if (firstLetter == 'L') {
-							autonomousCommand = new LineCrossAuto();
-							autoChosen = true;// need
-						}
-			
-					} else if (autoNumber == 1.5) { // Corner Right
-						if (firstLetter == 'R') {
-							autonomousCommand = new OutsideSwitchRightAuto();
-							autoChosen = true;
-						} else if (firstLetter == 'L') {
-							autonomousCommand = new LineCrossAuto();
-							autoChosen = true;// need
-						}
-					} else if(autoNumber == 2.0) { //corner Left
-						if (firstLetter == 'L') {
-							autonomousCommand = new OutsideSwitchLeftAuto();
-							autoChosen = true;
-						} else if (firstLetter == 'R') {
-							autonomousCommand = new LineCrossAuto(); 
-							autoChosen = true;// need
-						}
-					}else if (autoNumber == 2.5) { // 2 cube corner right
-					
-						if (firstLetter == 'R') {
-							autonomousCommand = new OutsideSwitchrightAutoExtended();
-							autoChosen = true;
-						} else if (firstLetter == 'L') {
-							autonomousCommand = new LineCrossAuto();
-							autoChosen = true;
-						}
-					}
-					 else if (autoNumber == 3.0) { // 2 cube corner Left
-						if (firstLetter == 'L') {
-							autonomousCommand = new OutsideSwitchLeftAutoExtended();
-							autoChosen = true;
-						} else if (firstLetter == 'R' ) {
-							autonomousCommand = new LineCrossAuto();
-							autoChosen = true;
-						}
-					
-					}else if(autoNumber == 3.5) {
-						if (firstLetter == 'L') {
-							autonomousCommand = new AutoLeftSwitchExchange();
-							autoChosen = true;
-						} else if (firstLetter == 'R' ) {
-							autonomousCommand = new AutoRightSwitchExchange();
-							autoChosen = true;
-						}
-					}
-					else if(autoNumber == 4.0) { //Beaksquad auto left
-						if(firstLetter == 'L' && secondLetter == 'L') {
-							autonomousCommand = new OutsideSwitchLeftAuto();
-							autoChosen = true;
-						}else if(firstLetter == 'L'  && secondLetter == 'R') {
-							autonomousCommand = new OutsideSwitchLeftAutoExtended();
-							autoChosen = true;
-						}else if(firstLetter == 'R') {
-							autonomousCommand = new LineCrossAuto();
-							autoChosen = true;
-						}
-					}
-					else if(autoNumber == 4.5) { //Beaksquad auto left
-						if(firstLetter == 'R' && secondLetter == 'R') {
-							autonomousCommand = new OutsideSwitchRightAuto();
-							autoChosen = true;
-						}else if(firstLetter == 'R'  && secondLetter == 'L') {
-							autonomousCommand = new OutsideSwitchrightAutoExtended();
-							autoChosen = true;
-						}else if(firstLetter == 'L') {
-							autonomousCommand = new LineCrossAuto();
-							autoChosen = true;
-						}
-					}
-					 else { // Default
-						autonomousCommand = new LineCrossAuto();
-						autoChosen = true;
-						System.out.println("line cross");
-					}
-				}
-				
-		}else if(counterAuto >= 500 && autoChosen == false ) {
-			autonomousCommand = new LineCrossAuto();
-			autoChosen = true;
-		}
-		
-		if(autoChosen == true && autoStarted == false) {
-			autonomousCommand.start();
-			autoStarted = true;
-		}
+//		counterAuto++;
+//
+//		if(autoChosen == false && counterAuto < 500) {
+//				if (gameData.equals("") || gameData == null) {
+//						gameData = DriverStation.getInstance().getGameSpecificMessage();
+//						System.out.println("Looking for gamedata");
+//				} else {
+//				
+//					firstLetter = Robot.gameData.charAt(0);
+//					secondLetter = Robot.gameData.charAt(1);
+//					if (autoNumber == 0.0) { // Center Auto
+//						if (firstLetter == 'L') {
+//							autonomousCommand = new AutoLeft();
+//							autoChosen = true;
+//						} else if (firstLetter == 'R') {
+//							autonomousCommand = new AutoRight();
+//							autoChosen = true;
+//						}
+//					} else if (autoNumber == 0.5) { // Left Auto
+//						if (firstLetter == 'L') {
+//							autonomousCommand = new GoNoGoTest();
+//							autoChosen = true;
+//						} else if (firstLetter == 'R') {
+//							autonomousCommand = new LineCrossAuto(); 
+//							autoChosen = true;// need
+//						}
+//			
+//					} else if (autoNumber == 1.0) { // Right Auto
+//						System.out.println("got to 1");
+//						if (firstLetter == 'R') {
+//							autonomousCommand = new GoNoGoTest();
+//							autoChosen = true;
+//						} else if (firstLetter == 'L') {
+//							autonomousCommand = new LineCrossAuto();
+//							autoChosen = true;// need
+//						}
+//			
+//					} else if (autoNumber == 1.5) { // Corner Right
+//						if (firstLetter == 'R') {
+//							autonomousCommand = new OutsideSwitchRightAuto();
+//							autoChosen = true;
+//						} else if (firstLetter == 'L') {
+//							autonomousCommand = new LineCrossAuto();
+//							autoChosen = true;// need
+//						}
+//					} else if(autoNumber == 2.0) { //corner Left
+//						if (firstLetter == 'L') {
+//							autonomousCommand = new OutsideSwitchLeftAuto();
+//							autoChosen = true;
+//						} else if (firstLetter == 'R') {
+//							autonomousCommand = new LineCrossAuto(); 
+//							autoChosen = true;// need
+//						}
+//					}else if (autoNumber == 2.5) { // 2 cube corner right
+//					
+//						if (firstLetter == 'R') {
+//							autonomousCommand = new OutsideSwitchrightAutoExtended();
+//							autoChosen = true;
+//						} else if (firstLetter == 'L') {
+//							autonomousCommand = new LineCrossAuto();
+//							autoChosen = true;
+//						}
+//					}
+//					 else if (autoNumber == 3.0) { // 2 cube corner Left
+//						if (firstLetter == 'L') {
+//							autonomousCommand = new OutsideSwitchLeftAutoExtended();
+//							autoChosen = true;
+//						} else if (firstLetter == 'R' ) {
+//							autonomousCommand = new LineCrossAuto();
+//							autoChosen = true;
+//						}
+//					
+//					}else if(autoNumber == 3.5) {
+//						if (firstLetter == 'L') {
+//							autonomousCommand = new AutoLeftSwitchExchange();
+//							autoChosen = true;
+//						} else if (firstLetter == 'R' ) {
+//							autonomousCommand = new AutoRightSwitchExchange();
+//							autoChosen = true;
+//						}
+//					}
+//					else if(autoNumber == 4.0) { //Beaksquad auto left
+//						if(firstLetter == 'L' && secondLetter == 'L') {
+//							autonomousCommand = new OutsideSwitchLeftAuto();
+//							autoChosen = true;
+//						}else if(firstLetter == 'L'  && secondLetter == 'R') {
+//							autonomousCommand = new OutsideSwitchLeftAutoExtended();
+//							autoChosen = true;
+//						}else if(firstLetter == 'R') {
+//							autonomousCommand = new LineCrossAuto();
+//							autoChosen = true;
+//						}
+//					}
+//					else if(autoNumber == 4.5) { //Beaksquad auto left
+//						if(firstLetter == 'R' && secondLetter == 'R') {
+//							autonomousCommand = new OutsideSwitchRightAuto();
+//							autoChosen = true;
+//						}else if(firstLetter == 'R'  && secondLetter == 'L') {
+//							autonomousCommand = new OutsideSwitchrightAutoExtended();
+//							autoChosen = true;
+//						}else if(firstLetter == 'L') {
+//							autonomousCommand = new LineCrossAuto();
+//							autoChosen = true;
+//						}
+//					}
+//					 else { // Default
+//						autonomousCommand = new LineCrossAuto();
+//						autoChosen = true;
+//						System.out.println("line cross");
+//					}
+//				}
+//				
+//		}else if(counterAuto >= 500 && autoChosen == false ) {
+//			autonomousCommand = new LineCrossAuto();
+//			autoChosen = true;
+//		}
+//		
+//		if(autoChosen == true && autoStarted == false) {
+//			autonomousCommand.start();
+//			autoStarted = true;
+//		}
 		RobotMap.PDP.clearStickyFaults();//why are we doing this system call every time?
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);
