@@ -12,7 +12,7 @@ public class runProfile extends CommandGroup {
 
     public runProfile() {
 		requires(Robot.driveSUB);
-		requires(Robot.navx);
+		requires(Robot.navx);//
 		requires(Robot.encoders);
     	for(int steps = 0; steps < Robot.data.size(); steps++) {
     		addSequential(new TurnAuto(Double.parseDouble(((ReaderFile) Robot.data.get(steps)).angle), 0.9*Math.signum(Double.parseDouble(((ReaderFile) Robot.data.get(steps)).angle))));
