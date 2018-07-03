@@ -83,6 +83,8 @@ public class Robot extends IterativeRobot {
 
 		oi = new OI();
 		
+		gameData = ""; //Zippo, zilch, none, nada
+		
 		RobotMap.ultra.setAutomaticMode(true);
 		RobotMap.PDP.clearStickyFaults();
 		// SmartDashboard.getNumber("Auto Number", 0.0);
@@ -176,10 +178,6 @@ public class Robot extends IterativeRobot {
 //		}
 //		System.out.println("Disable periodic " + DriverStation.getInstance().getGameSpecificMessage());
 //		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if (gameData == null || gameData == "") {
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
-			// waiting for letter
-		}
 		
 		
 	}
@@ -191,7 +189,7 @@ public class Robot extends IterativeRobot {
 	float startX = 0;
 	float startY = 0;
 	
-//github.com/FRC-Team5811/2018-Robot-Code
+    //github.com/FRC-Team5811/2018-Robot-Code
 	@Override
 	public void autonomousInit() {
 		int wayCount = 0;
@@ -210,7 +208,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().removeAll();
 		//autoNumber =0.0;
 		System.out.println("Auto Init GameData: " + gameData);
-		//gameData = "";
+		
 	}
 	
 	@Override
