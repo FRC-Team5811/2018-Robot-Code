@@ -178,14 +178,7 @@ public class Robot extends IterativeRobot {
 //		}
 //		System.out.println("Disable periodic " + DriverStation.getInstance().getGameSpecificMessage());
 //		gameData = DriverStation.getInstance().getGameSpecificMessage();
-<<<<<<< HEAD
-=======
-		
-		if (gameData == null || gameData == "") {
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
-			// waiting for letter
-		}
->>>>>>> branch 'master' of https://github.com/FRC-Team5811/2018-Robot-Code
+
 		
 		
 	}
@@ -214,15 +207,11 @@ public class Robot extends IterativeRobot {
         autoStarted = false;
 		
 		Scheduler.getInstance().removeAll();
-<<<<<<< HEAD
+
 		//autoNumber =0.0;
 		System.out.println("Auto Init GameData: " + gameData);
-		
-=======
-		// gameData = ""; //This line of code literally ruined our season 
->>>>>>> branch 'master' of https://github.com/FRC-Team5811/2018-Robot-Code
+
 	}
-	
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();//why was this commented out? //because we tried running the scheduler in robotPerdiodic() to always run the scheduler
