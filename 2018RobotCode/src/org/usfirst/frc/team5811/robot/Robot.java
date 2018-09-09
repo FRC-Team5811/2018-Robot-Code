@@ -50,7 +50,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Camera camera;
 	public static Arms arms;
-	// hi
 	double autoSelecter;
 
 	double autoNumber;
@@ -84,6 +83,8 @@ public class Robot extends IterativeRobot {
 
 		oi = new OI();
 		
+		gameData = ""; //Zippo, zilch, none, nada
+		
 		RobotMap.ultra.setAutomaticMode(true);
 		RobotMap.PDP.clearStickyFaults();
 		// SmartDashboard.getNumber("Auto Number", 0.0);
@@ -101,6 +102,7 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("Test Auto DO NOT USE" , new TestAuto());
 		// chooser.addObject("Go no go test DO NOT USE", new GoNoGoTest());
 		// System.out.print("I'm not slow?");
+		autoNumber = SmartDashboard.getNumber("AUTO SELECTION USE THIS ONE: ", 0.0);
 
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);
@@ -148,7 +150,10 @@ public class Robot extends IterativeRobot {
 		//autoNumber = SmartDashboard.getNumber("DB/Slider 0", 0.0);
 		// System.out.println("Game data string:" + gameData);
 //		Scheduler.getInstance().run();
+		
+		SmartDashboard.getNumber("AUTO SELECTION USE THIS ONE: ", 0.0);
 		autoNumber = SmartDashboard.getNumber("AUTO SELECTION USE THIS ONE: ", 0.0);
+		//autoNumber = 0;
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);
 		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
@@ -173,10 +178,7 @@ public class Robot extends IterativeRobot {
 //		}
 //		System.out.println("Disable periodic " + DriverStation.getInstance().getGameSpecificMessage());
 //		gameData = DriverStation.getInstance().getGameSpecificMessage();
-//		if (gameData == null || gameData == "") {
-//			gameData = DriverStation.getInstance().getGameSpecificMessage();
-//			// waiting for letter
-//		}
+
 		
 		
 	}
@@ -188,29 +190,40 @@ public class Robot extends IterativeRobot {
 	float startX = 0;
 	float startY = 0;
 	
-//github.com/FRC-Team5811/2018-Robot-Code
+    //github.com/FRC-Team5811/2018-Robot-Code
 	@Override
 	public void autonomousInit() {
 		int wayCount = 0;
+		counterAuto = 0;
+		autoChosen = false; //We have not selected an auto yet
 		driveSUB.fullReset(); // reseting angle storing variables
 		driveSUB.motorReset();
 		encoders.reset();
 		arms.close();
 		navx.reset(); // reseting navx hardware		
-
+		//autonomousCommand = new LineCrossAuto();
+        //autonomousCommand.start();
+        autoChosen=false;
+        autoStarted = false;
+		
 		Scheduler.getInstance().removeAll();
-		gameData = "";
+
+		//autoNumber =0.0;
+		System.out.println("Auto Init GameData: " + gameData);
+
 	}
-	
 	@Override
 	public void autonomousPeriodic() {
-    //	Scheduler.getInstance().run();//why was this commented out?
+		Scheduler.getInstance().run();//why was this commented out? //because we tried running the scheduler in robotPerdiodic() to always run the scheduler
+		
+		System.out.println("Auto Periodic GameData: " + gameData);
+		
 		counterAuto++;
 
 		if(autoChosen == false && counterAuto < 500) {
 				if (gameData.equals("") || gameData == null) {
 						gameData = DriverStation.getInstance().getGameSpecificMessage();
-						System.out.println("Looking for gamedata");
+						System.out.println("Looking for grandma");
 				} else {
 				
 					firstLetter = Robot.gameData.charAt(0);
@@ -267,8 +280,7 @@ public class Robot extends IterativeRobot {
 							autonomousCommand = new LineCrossAuto();
 							autoChosen = true;
 						}
-					}
-					 else if (autoNumber == 3.0) { // 2 cube corner Left
+					}else if (autoNumber == 3.0) { // 2 cube corner Left
 						if (firstLetter == 'L') {
 							autonomousCommand = new OutsideSwitchLeftAutoExtended();
 							autoChosen = true;
@@ -285,8 +297,7 @@ public class Robot extends IterativeRobot {
 							autonomousCommand = new AutoRightSwitchExchange();
 							autoChosen = true;
 						}
-					}
-					else if(autoNumber == 4.0) { //Beaksquad auto left
+					}else if(autoNumber == 4.0) { //Beaksquad auto left
 						if(firstLetter == 'L' && secondLetter == 'L') {
 							autonomousCommand = new OutsideSwitchLeftAuto();
 							autoChosen = true;
@@ -297,8 +308,7 @@ public class Robot extends IterativeRobot {
 							autonomousCommand = new LineCrossAuto();
 							autoChosen = true;
 						}
-					}
-					else if(autoNumber == 4.5) { //Beaksquad auto left
+					}else if(autoNumber == 4.5) { //Beaksquad auto right
 						if(firstLetter == 'R' && secondLetter == 'R') {
 							autonomousCommand = new OutsideSwitchRightAuto();
 							autoChosen = true;
@@ -309,8 +319,7 @@ public class Robot extends IterativeRobot {
 							autonomousCommand = new LineCrossAuto();
 							autoChosen = true;
 						}
-					}
-					 else { // Default
+					}else { // Default
 						autonomousCommand = new LineCrossAuto();
 						autoChosen = true;
 						System.out.println("line cross");
@@ -324,9 +333,9 @@ public class Robot extends IterativeRobot {
 		
 		if(autoChosen == true && autoStarted == false) {
 			autonomousCommand.start();
-			autoStarted = true;
+			autoStarted = true; 
 		}
-		RobotMap.PDP.clearStickyFaults();//why are we doing this system call every time?
+	/*	RobotMap.PDP.clearStickyFaults();//why are we doing this system call every time?
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);
 		SmartDashboard.putNumber("Right Encoder: ", encoders.getRightVal()/108.6497744841);
 		SmartDashboard.putNumber("NavX Angle: ", navx.grabValues());
@@ -340,7 +349,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Switch Goal - Current: ", Robot.pivot.differenceSwitchTrans());
 		SmartDashboard.putNumber("Intake Right Current: ", Robot.driveSUB.monitorCurrentIntakeRight());
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
-		SmartDashboard.putNumber("AUTO SELECTION USE THIS ONE: ", autoNumber);
+		SmartDashboard.putNumber("AUTO SELECTION USE THIS ONE: ", autoNumber); */
 		
 	//	System.out.println("auto periodic " + DriverStation.getInstance().getGameSpecificMessage());
 
@@ -349,8 +358,8 @@ public class Robot extends IterativeRobot {
 //			new StopPivot();
 //			System.out.println("PIVOT DISABLED");
 //		}
-
 	}
+	
 
 	@Override
 	public void teleopInit() {
@@ -363,18 +372,20 @@ public class Robot extends IterativeRobot {
 		driveSUB.motorReset();
 		
 		// System.out.println("Navx: " + navx.grabValues());
-		if (autonomousCommand != null)
+		if (autonomousCommand != null) {
 			autonomousCommand.cancel();
+		}
+		Scheduler.getInstance().removeAll();
 	}
 
 	@Override 
-	public void robotPeriodic() { //Is this for real?
-		Scheduler.getInstance().run();
+	public void robotPeriodic() { //Is this for real? //It was a fix recommended by Girls of Steel (maybe someone else)
+		//Scheduler.getInstance().run(); 
 	}
 	
 	@Override
 	public void teleopPeriodic() {
-//		Scheduler.getInstance().run();
+		Scheduler.getInstance().run(); //
 		// compressor.setClosedLoopControl(true);
 		RobotMap.PDP.clearStickyFaults();
 		SmartDashboard.putNumber("Left Encoder: ", encoders.getLeftVal()/108.6497744841);

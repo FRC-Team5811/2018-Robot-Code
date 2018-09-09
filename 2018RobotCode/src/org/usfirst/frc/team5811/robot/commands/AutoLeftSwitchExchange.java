@@ -46,13 +46,13 @@ public class AutoLeftSwitchExchange extends CommandGroup {
 		addSequential(new TurnAuto(0.01, 0), 0.05);
 		addSequential(new FullStop(waitTime));
 		
-		addSequential(new DriveAuto(30, 0.9), 1.5);
+		addSequential(new DriveAuto(10, 0.9), 1.5);
 		addSequential(new FullStop(waitTime));
 		
 		addSequential(new TurnAuto(40, -0.9));
 		addSequential(new FullStop(waitTime));
 		
-		addSequential(new DriveAuto(DT2Left+12, .9));
+		addSequential(new DriveAuto(DT2Left+6, .9));
 		addSequential(new FullStop(waitTime));
 		
 		addSequential(new TurnAuto(110, -0.9));
@@ -70,6 +70,9 @@ public class AutoLeftSwitchExchange extends CommandGroup {
 		
 		addSequential(new DriveAuto(36, -0.7));
 		addSequential(new FullStop(waitTime));
+		
+		addSequential(new IntakeInward(), 1);
+		
 		
 //		addSequential(new TurnAuto(-160, 0.9));
 //		addSequential(new FullStop(waitTime));
