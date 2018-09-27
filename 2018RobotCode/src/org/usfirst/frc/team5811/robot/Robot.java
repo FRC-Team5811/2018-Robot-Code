@@ -118,7 +118,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Right Current: ", Robot.driveSUB.monitorCurrentIntakeRight());
 		SmartDashboard.putNumber("Intake Left Current: ", Robot.driveSUB.monitorCurrentIntakeLeft());
 
-		arms.close();
+//		arms.close();
 
 		// gamedata = null;
 
@@ -367,7 +367,7 @@ public class Robot extends IterativeRobot {
 		driveSUB.fullReset(); // reseting angle storing variables
 		encoders.reset();
 		
-		arms.close();
+//		arms.close();
 		
 		driveSUB.motorReset();
 		

@@ -21,9 +21,9 @@ public class Intake extends Subsystem {
 	public boolean leftOff;
 	public boolean rightOff;
 	
-	double backShotPower = 0.4;
-	double exchangeShotPower = 0.5;
-	double switchShotPower = 0.6;
+	double backShotPower = 1.0;
+	double exchangeShotPower = 1.0;
+	double switchShotPower = 1.0;
 
 	@Override
 	protected void initDefaultCommand() {

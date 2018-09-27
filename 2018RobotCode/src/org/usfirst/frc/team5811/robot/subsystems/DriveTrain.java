@@ -51,8 +51,8 @@ public class DriveTrain extends Subsystem {
 	double angleTolerance = 1; // used in autoAngleCorrect
 	double rotationRateTolerance = 1; // used in autoAngleCorrect
 
-	double arcadeSpeedModifier = 1;
-	double arcadeTurnModifier = 1;
+	double arcadeSpeedModifier = 0.5;
+	double arcadeTurnModifier = 0.5;
 
 	double minVisionVal = 30;
 	double maxVisionVal = 70;
